@@ -73,7 +73,10 @@
 
     
     .topbar {
-      display: flex; align-items: center; justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      column-gap: 1.25rem;
       padding: 1.4rem 2rem;
       max-width: var(--max);
       margin: 0 auto;
@@ -83,6 +86,7 @@
       font-family: var(--font-serif);
       font-size: 1.4rem;
       color: var(--ink);
+      justify-self: start;
     }
     .brand-logo .dot {
       width: 10px; height: 10px; border-radius: 50%;
@@ -90,7 +94,12 @@
       display: inline-block;
     }
     .brand-logo em { font-style: italic; color: var(--accent); }
-    .topbar nav { display: flex; gap: 1.6rem; font-size: 0.9rem; }
+    .topbar nav {
+      display: flex;
+      gap: 1.6rem;
+      font-size: 0.9rem;
+      justify-self: center;
+    }
     .topbar nav a {
       color: var(--muted);
       font-family: var(--font-mono);
@@ -99,6 +108,13 @@
       text-transform: uppercase;
     }
     .topbar nav a:hover { color: var(--accent); text-decoration: none; }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      justify-self: end;
+    }
 
     
     .settings-btn {
@@ -1183,8 +1199,20 @@
 
     @media (max-width: 768px) {
       .page { padding: 0 1rem 4rem; }
-      .topbar { padding: 1rem; }
-      .topbar nav { gap: 1rem; }
+      .topbar {
+        grid-template-columns: minmax(0, 1fr) auto;
+        row-gap: 0.9rem;
+        padding: 1rem;
+      }
+      .topbar nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        gap: 1rem;
+        justify-self: center;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .topbar-actions { gap: 0.7rem; }
       .input-row { flex-direction: column; }
       .input-row button { padding: 0.85rem 1rem; }
       .section-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
@@ -1264,7 +1292,9 @@
       <a href="#library" data-i18n="nav.library">Library</a>
       <a href="#" data-compare-trigger data-i18n="nav.compare">Compare</a>
       <a href="#" data-trash-trigger data-i18n="nav.trash">Trash</a>
-      <a href="README.md" data-i18n="nav.docs">Docs</a>
+      <a href="https://github.com/jasonxiej/brand-research-jasonxiej" data-i18n="nav.docs">GitHub</a>
+    </nav>
+    <div class="topbar-actions">
       <button id="lang-toggle" type="button" class="lang-toggle-btn" title="切换语言" aria-label="切换语言">中</button>
       <button id="settings-btn" type="button" class="settings-btn" title="设置" aria-label="设置">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1273,7 +1303,7 @@
         </svg>
         <span data-i18n="nav.settings">设置</span>
       </button>
-    </nav>
+    </div>
   </header>
 
   <div class="page">
@@ -1294,11 +1324,6 @@
         <button id="generate-btn" type="button">调研</button>
       </div>
     </div>
-    <p class="input-hint">
-      提示：点击 <code>调研</code> 会通过 <code>POST /api/research</code> 启动后台任务，并订阅 <code>/api/research/:id/events</code> SSE 实时回传日志；完成后会自动刷新下方品牌库。
-      也可以使用 <code>node scripts/refresh-index.js</code> 手动刷新品牌库索引。
-    </p>
-
     
     <div class="status-panel" id="status-panel">
       <div class="panel-inner">
@@ -1489,8 +1514,8 @@
         brands = data.brands || [];
         renderGrid();
       } catch (e) {
-        grid.innerHTML = '<div class="empty"><div class="icon">!</div><div class="msg">无法加载 brands/index.json。请确认文件存在或运行 <code>node scripts/refresh-index.js</code> 重新生成。</div></div>';
-        meta.textContent = '加载失败';
+        grid.innerHTML = '';
+        meta.textContent = '';
       }
     }
 
@@ -2009,6 +2034,7 @@
       try { localStorage.setItem(BRAND_KEY, name); } catch {}
     }
 
+    let activeBrandName = readLocalBrand() || DEFAULT_BRAND;
 
     function replaceTextInNode(node, search, replace) {
       if (!node) return;
@@ -2032,15 +2058,21 @@
 
     function applyBrandName(name) {
       const finalName = (name || DEFAULT_BRAND).trim() || DEFAULT_BRAND;
+      const previousName = activeBrandName || DEFAULT_BRAND;
 
       document.querySelectorAll('.brand-name-slot').forEach((el) => {
         el.textContent = finalName;
       });
 
       replaceTextInNode(document.body, '{YOUR_BRAND}', finalName);
+      if (previousName && previousName !== finalName) {
+        replaceTextInNode(document.body, previousName, finalName);
+      }
 
       if (document.title.indexOf('{YOUR_BRAND}') >= 0) {
         document.title = document.title.split('{YOUR_BRAND}').join(finalName);
+      } else if (previousName && previousName !== finalName && document.title.indexOf(previousName) >= 0) {
+        document.title = document.title.split(previousName).join(finalName);
       } else if (document.title.indexOf(DEFAULT_BRAND) >= 0 && finalName !== DEFAULT_BRAND) {
 
         document.title = document.title.split(DEFAULT_BRAND).join(finalName);
@@ -2050,6 +2082,7 @@
         if (el.tagName === 'INPUT') el.placeholder = el.getAttribute('data-brand-placeholder').split('{YOUR_BRAND}').join(finalName);
       });
       writeLocalBrand(finalName);
+      activeBrandName = finalName;
 
       document.dispatchEvent(new CustomEvent('brandname:updated', { detail: { name: finalName } }));
     }
@@ -2101,7 +2134,7 @@
 
       save: async (name) => {
         const finalName = (name || DEFAULT_BRAND).trim() || DEFAULT_BRAND;
-        writeLocalBrand(finalName);
+        applyBrandName(finalName);
         try {
           await fetch('/api/config', {
             method: 'POST',
@@ -2254,37 +2287,33 @@
   <div class="settings-overlay" id="settings-overlay" aria-hidden="true">
     <div class="settings-modal" role="dialog" aria-labelledby="settings-title">
       <div class="settings-head">
-        <h2 id="settings-title" data-i18n="settings.title">设置 · <span class="brand-name-slot">{YOUR_BRAND}</span></h2>
+        <h2 id="settings-title" data-i18n="settings.title">设置</h2>
         <button class="settings-close" id="settings-close" type="button" aria-label="关闭">×</button>
       </div>
       <div class="settings-body">
-        <p class="hint">第一项是「<strong>你的品牌</strong>」名 — 保存后会实时替换页面所有 <code>{YOUR_BRAND}</code> 占位符（顶栏 logo、副标题、设置标题、LAN 提示等）。<br>下方是 LLM 配置：留空表示不修改该字段，写入 <code>.env</code> 并立即生效。</p>
+        <p class="hint">第一项是「<strong>你的品牌</strong>」名 — 保存后会实时替换页面所有 <code>{YOUR_BRAND}</code> 占位符（顶栏 logo、副标题、设置标题、LAN 提示等）。</p>
         <div class="field" style="background:var(--bg3);border-radius:8px;padding:0.9rem 1rem;margin-bottom:1.2rem;">
           <label for="cfg-brand-name"><strong>Your Brand · 你的品牌</strong></label>
           <input id="cfg-brand-name" type="text" autocomplete="off" placeholder="例如：Kiwii / Lumi / Oura" data-brand-placeholder="例如：{YOUR_BRAND} / Lumi / Oura" />
-          <div class="field-hint">默认 <code>Kiwii</code>。保存后写入 <code>.env</code> 的 <code>BRAND_NAME</code>，并通过 <code>/api/state</code> / <code>/api/health</code> / <code>/api/config</code> 让前端读取；前端也会同步存到 <code>localStorage</code> 离线可用。</div>
         </div>
         <div class="field">
           <label for="cfg-api-key">API Key</label>
           <input id="cfg-api-key" type="password" autocomplete="off" placeholder="sk-xxxxxxxxxxxxxxxx" />
-          <div class="field-hint">对应 <code>MINIMAX_API_KEY</code>（或 <code>OPENAI_API_KEY</code>）。</div>
         </div>
         <div class="field">
           <label for="cfg-base-url">Base URL</label>
           <input id="cfg-base-url" type="text" autocomplete="off" placeholder="https://platform.shuyanai.com/v1" />
-          <div class="field-hint">对应 <code>MINIMAX_BASE_URL</code>，第三方代理时改这里。</div>
         </div>
         <div class="field">
           <label for="cfg-model">Model</label>
           <input id="cfg-model" type="text" autocomplete="off" placeholder="MiniMax-M3" />
-          <div class="field-hint">对应 <code>MINIMAX_MODEL</code>，例如 <code>MiniMax-M3</code> / <code>deepseek-chat</code>。</div>
         </div>
       </div>
       <div class="settings-foot">
-        <div class="status" id="settings-status">就绪</div>
+        <div class="status" id="settings-status"></div>
         <div class="actions">
           <button id="settings-cancel" type="button">取消</button>
-          <button id="settings-save" class="primary" type="button">保存到 .env</button>
+          <button id="settings-save" class="primary" type="button">保存</button>
         </div>
       </div>
     </div>
@@ -2312,7 +2341,7 @@
         apiKeyInput.value = '';
         baseUrlInput.value = '';
         modelInput.value = '';
-        setStatus('就绪 · Your Brand 会立即替换页面占位符', '');
+        setStatus('', '');
         setTimeout(function () { brandNameInput.focus(); }, 60);
       }
       function close() {
@@ -2353,10 +2382,10 @@
         try {
 
           if (brandChanged && window.__brandName && window.__brandName.save) {
-            await window.__brandName.save(newBrand);
+            window.__brandName.apply(newBrand);
           }
 
-          if (llmChanged) {
+          if (llmChanged || brandChanged) {
             if (brandChanged) payload.brandName = newBrand;
             var r = await fetch('/api/config', {
               method: 'POST',
@@ -2366,19 +2395,10 @@
             var data = await {};
             try { data = await r.json(); } catch (e) {}
             if (!r.ok || !data.ok) {
-              setStatus('LLM 保存失败：' + (data.error || ('HTTP ' + r.status)) + (brandChanged ? '（Your Brand 已生效）' : ''), 'error');
+              setStatus('保存失败：' + (data.error || ('HTTP ' + r.status)) + (brandChanged ? '（品牌名已在本页生效）' : ''), 'error');
               saveBtn.disabled = false;
               return;
             }
-          } else if (brandChanged) {
-
-            try {
-              await fetch('/api/config', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ brandName: newBrand }),
-              });
-            } catch (e) {  }
           }
           setStatus('✓ 已保存 · ' + (brandChanged ? ('当前品牌：' + newBrand) : 'LLM 配置已生效'), 'success');
           setTimeout(function () { close(); }, 700);
@@ -2865,12 +2885,12 @@
         'nav.library':  '品牌库',
         'nav.compare':  '对比',
         'nav.trash':    '回收站',
-        'nav.docs':     '文档',
+        'nav.docs':     'GitHub',
         'nav.settings': '设置',
         'hero.label':   '品牌调研 · 枢纽',
         'hero.title':   '让<em>品牌视觉</em>调研<br>成为 {YOUR_BRAND} 的常态',
         'hero.subtitle':'输入品牌名 → 触发 brand-research skill → 自动生成 8 维结构化报告 + 雷达图，沉淀到本地品牌库，与 {YOUR_BRAND} 现有对标品牌做横向对比。',
-        'settings.title': '设置 · {YOUR_BRAND}',
+        'settings.title': '设置',
         'trash.title':    '回收站 · 30 天保留',
       },
       'en': {
@@ -2878,12 +2898,12 @@
         'nav.library':  'Library',
         'nav.compare':  'Compare',
         'nav.trash':    'Trash',
-        'nav.docs':     'Docs',
+        'nav.docs':     'GitHub',
         'nav.settings': 'Settings',
         'hero.label':   'Brand Research · Hub',
         'hero.title':   'Make <em>brand visual</em> research<br>a habit for {YOUR_BRAND}',
         'hero.subtitle':'Enter a brand name → trigger the brand-research skill → auto-generate an 8-dimension structured report + radar chart, stored in your local brand library for side-by-side comparison with {YOUR_BRAND}\u2019s existing benchmarks.',
-        'settings.title': 'Settings · {YOUR_BRAND}',
+        'settings.title': 'Settings',
         'trash.title':    'Trash · 30-day Retention',
       },
     };

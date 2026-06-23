@@ -33,6 +33,11 @@ const ROOT = __dirname;
 const PORT = Number(process.env.PORT) || 8000;
 const HOST = process.env.HOST || '0.0.0.0';
 const LAN_HOST = process.env.LAN_HOST || '';  // 钉死局域网 IP 的环境变量；不填就自动探测
+const DEFAULT_BRAND_NAME = 'Kiwii';
+
+function currentBrandName() {
+  return (process.env.BRAND_NAME || DEFAULT_BRAND_NAME).trim() || DEFAULT_BRAND_NAME;
+}
 
 // ---------- 工具：探测本机局域网 IPv4 ----------
 function detectLanIp() {
@@ -244,11 +249,11 @@ async function handleRefreshIndex(req, res) {
 async function handleConfigSave(req, res) {
   try {
     const body = await readBody(req);
-    const { apiKey, baseUrl, model } = body || {};
+    const { apiKey, baseUrl, model, brandName } = body || {};
 
     // 校验：至少要有一个字段
-    if (!apiKey && !baseUrl && !model) {
-      return sendJSON(res, 400, { error: '至少需要提供一个字段（apiKey / baseUrl / model）' });
+    if (!apiKey && !baseUrl && !model && !brandName) {
+      return sendJSON(res, 400, { error: '至少需要提供一个字段（brandName / apiKey / baseUrl / model）' });
     }
 
     const envPath = path.join(ROOT, '.env');
@@ -265,6 +270,7 @@ async function handleConfigSave(req, res) {
     }
 
     let updated = envContent;
+    if (brandName) updated = upsertEnv(updated, 'BRAND_NAME', brandName);
     if (apiKey)  updated = upsertEnv(updated, 'MINIMAX_API_KEY', apiKey);
     if (baseUrl) updated = upsertEnv(updated, 'MINIMAX_BASE_URL', baseUrl);
     if (model)   updated = upsertEnv(updated, 'MINIMAX_MODEL', model);
@@ -278,6 +284,7 @@ async function handleConfigSave(req, res) {
 
     // 立即让本进程的 dotenv 重新加载（researcher.mjs 通过 dotenv.config 读取）
     // 注：dotenv 不会覆盖已存在的 env var，需要重置
+    if (brandName) delete process.env.BRAND_NAME;
     if (apiKey)  delete process.env.MINIMAX_API_KEY;
     if (baseUrl) delete process.env.MINIMAX_BASE_URL;
     if (model)   delete process.env.MINIMAX_MODEL;
@@ -294,7 +301,8 @@ async function handleConfigSave(req, res) {
     sendJSON(res, 200, {
       ok: true,
       message: '已写入 .env，立即生效',
-      updated: { apiKey: !!apiKey, baseUrl: !!baseUrl, model: !!model },
+      brandName: currentBrandName(),
+      updated: { brandName: !!brandName, apiKey: !!apiKey, baseUrl: !!baseUrl, model: !!model },
     });
   } catch (e) {
     sendJSON(res, 500, { error: e.message });
@@ -452,7 +460,16 @@ const server = http.createServer(async (req, res) => {
   try {
     // API
     if (p === '/api/health' && method === 'GET') {
-      return sendJSON(res, 200, { ok: true, uptime: process.uptime(), jobs: jobs.size });
+      return sendJSON(res, 200, { ok: true, uptime: process.uptime(), jobs: jobs.size, brandName: currentBrandName() });
+    }
+    if ((p === '/api/state' || p === '/api/config') && method === 'GET') {
+      return sendJSON(res, 200, {
+        ok: true,
+        brandName: currentBrandName(),
+        baseUrl: process.env.MINIMAX_BASE_URL || process.env.OPENAI_BASE_URL || '',
+        model: process.env.MINIMAX_MODEL || process.env.OPENAI_MODEL || '',
+        hasApiKey: !!(process.env.MINIMAX_API_KEY || process.env.OPENAI_API_KEY),
+      });
     }
     if (p === '/api/network-info' && method === 'GET') {
       const lanIp = detectLanIp();
@@ -520,7 +537,7 @@ server.listen(PORT, HOST, () => {
     console.log(`   LLM URL  : ${baseURL}`);
     console.log(`   LLM Model: ${model}`);
   } else {
-    console.log('   ⚠ 未配置 LLM API Key，请在 .env 中设置 MINIMAX_API_KEY');
+    console.log('   ⚠ 未配置 AI 模型 API Key，请在设置里填写 API Key，或在 .env 中配置 API Key');
   }
   console.log('═══════════════════════════════════════════════════════════════');
   console.log('');
