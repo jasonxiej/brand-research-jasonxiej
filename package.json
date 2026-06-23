@@ -1,0 +1,21 @@
+{
+  "name": "kiwii-brand-research-hub",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Kiwii 品牌视觉调研中心 · 一键调研后端（Node + MiniMax M3）",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs",
+    "refresh-index": "node scripts/refresh-index.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "openai": "^4.62.0"
+  }
+}

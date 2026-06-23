@@ -1,0 +1,86 @@
+# ─────────────────────────────────────────────────────────
+#  Kiwii Brand Research Hub · .gitignore
+# ─────────────────────────────────────────────────────────
+
+# OS 噪音
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+ehthumbs_vista.db
+$RECYCLE.BIN/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Node / 前端工具链
+node_modules/
+.parcel-cache/
+.cache/
+dist/
+.vite/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 日志
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 本地环境
+.env
+.env.local
+.env.*.local
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+*~
+
+# 用户产物（报告 + 品牌库索引 + 回收站）
+oura-*.html
+aesop-*.html
+b-o-*.html
+hatch-*.html
+linear-*.html
+notion-*.html
+notion-so-*.html
+archived/
+pending/
+
+# 项目内运行时状态
+brands/index.json
+brands/trash.json
+.smoke.log
+.start-error.log
+.start-output.log
+
+# 参考截图（chat 里下载的设计参考图，不进库）
+assets/screenshots/
+
+# 桌面启动脚本副本（项目内的正式文件保留）
+desktop-*.bat
+
+# Windows 自动产物
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# ── 显式包含：skill 包里的 zip 必须 push 上去 ──
+# （.gitignore 默认 *.zip 会忽略，但 brand-research-skill/
+#   下的 zip 是 skill 分发资产，必须保留）
+!brand-research-skill/*.zip

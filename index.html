@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiwii 品牌调研库 · Brand Research Hub</title>
+
+  <style>
+    @font-face {
+      font-family: 'InstrumentSerif';
+      src: url('./_shared/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal;
+    }
+    @font-face {
+      font-family: 'InstrumentSerif';
+      src: url('./_shared/fonts/InstrumentSerif-Italic.ttf') format('truetype');
+      font-weight: 400; font-style: italic;
+    }
+    @font-face {
+      font-family: 'InstrumentSans';
+      src: url('./_shared/fonts/InstrumentSans-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'InstrumentSans';
+      src: url('./_shared/fonts/InstrumentSans-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'GeistMono';
+      src: url('./_shared/fonts/GeistMono-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'GeistMono';
+      src: url('./_shared/fonts/GeistMono-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+
+    :root {
+      --bg: #FBF8F3;
+      --bg2: #FFFFFF;
+      --bg3: #F4EFE6;
+      --ink: #1A1A1A;
+      --muted: #6B6B6B;
+      --rule: #E8E0D4;
+      --accent: #FF7A45;
+      --accent2: #7FB069;
+      --accent3: #6B4EFF;
+      --font-serif: 'InstrumentSerif', Georgia, serif;
+      --font-sans: 'InstrumentSans', Helvetica, Arial, sans-serif;
+      --font-mono: 'GeistMono', 'Courier New', monospace;
+      --max: 1200px;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent3); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 2rem 5rem; }
+
+    /* Top bar */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .brand-logo {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+    .brand-logo .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .brand-logo em { font-style: italic; color: var(--accent); }
+    .topbar nav { display: flex; gap: 1.6rem; font-size: 0.9rem; }
+    .topbar nav a {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .topbar nav a:hover { color: var(--accent); text-decoration: none; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+    }
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em { color: var(--accent); font-style: italic; }
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* Input section */
+    .input-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 2rem 2.2rem;
+      max-width: 820px;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 2px 0 var(--bg3);
+    }
+    .input-card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+    .input-card .input-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.4rem;
+    }
+    .input-row {
+      display: flex; gap: 0.6rem;
+    }
+    .input-row input[type="text"] {
+      flex: 1;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      padding: 0.85rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .input-row input[type="text"]:focus {
+      border-color: var(--accent);
+    }
+    .input-row input[type="text"]::placeholder { color: var(--muted); }
+    .input-row button {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0 1.6rem;
+      background: var(--ink);
+      color: var(--bg2);
+      border: 0;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .input-row button:hover { background: var(--accent); }
+    .input-row button:disabled { background: var(--muted); cursor: not-allowed; }
+
+    .input-hint {
+      max-width: 820px;
+      margin: 0 auto 4rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .input-hint code {
+      font-family: var(--font-mono);
+      background: var(--bg3);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.78rem;
+      color: var(--ink);
+    }
+
+    /* Result / status panel */
+    .status-panel {
+      max-width: 820px;
+      margin: -2rem auto 4rem;
+      display: none;
+    }
+    .status-panel.show { display: block; }
+    .status-panel .panel-inner {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem 1.4rem;
+    }
+    .status-panel .panel-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .status-panel .panel-body {
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    .status-panel .panel-body code {
+      font-family: var(--font-mono);
+      background: var(--bg3);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.85rem;
+    }
+    .status-panel .panel-actions {
+      margin-top: 1rem;
+      display: flex; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .status-panel .panel-actions a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.9rem;
+      background: var(--ink);
+      color: var(--bg2);
+      border-radius: 5px;
+    }
+    .status-panel .panel-actions a:hover { background: var(--accent); text-decoration: none; }
+    .status-panel .panel-actions a.secondary {
+      background: transparent; color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .status-panel .panel-actions a.secondary:hover {
+      background: var(--bg3); color: var(--ink);
+    }
+
+    /* Section header */
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+    .section-head .meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .section-head .actions { display: flex; gap: 0.5rem; }
+    .section-head .actions button {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.85rem;
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .section-head .actions button:hover { color: var(--ink); border-color: var(--ink); }
+    .section-head .actions button.primary {
+      background: var(--ink); color: var(--bg2); border-color: var(--ink);
+    }
+    .section-head .actions button.primary:disabled {
+      background: var(--muted); border-color: var(--muted); cursor: not-allowed;
+    }
+    .section-head .actions button.primary:not(:disabled):hover { background: var(--accent); border-color: var(--accent); }
+
+    /* Brand grid */
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    @media (max-width: 1400px) {
+      .brand-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .brand-grid { grid-template-columns: 1fr; }
+    }
+    .brand-card {
+      position: relative;
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.6rem 1.4rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: flex; flex-direction: column;
+      cursor: pointer;
+    }
+    .brand-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 26, 26, 0.06);
+      border-color: var(--ink);
+    }
+    .brand-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(255, 122, 69, 0.18);
+    }
+    .brand-card .check {
+      position: absolute; top: 1rem; left: 1rem;
+      width: 22px; height: 22px;
+      border: 1.5px solid var(--rule);
+      border-radius: 50%;
+      background: var(--bg2);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .brand-card.selected .check {
+      background: var(--accent); border-color: var(--accent);
+    }
+    .brand-card .check::after {
+      content: '✓';
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .brand-card.selected .check::after { opacity: 1; }
+
+    .brand-card .brand-meta {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+    .brand-card .brand-meta .pill {
+      background: var(--bg3); padding: 2px 8px; border-radius: 3px;
+    }
+    .brand-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+    .brand-card .tagline {
+      font-style: italic;
+      color: var(--accent);
+      font-size: 0.92rem;
+      margin-bottom: 0.8rem;
+    }
+    .brand-card .summary {
+      color: var(--ink);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+    .brand-card .colors {
+      display: flex; gap: 0.4rem; margin-bottom: 1rem;
+    }
+    .brand-card .colors .c {
+      width: 22px; height: 22px;
+      border-radius: 5px;
+      border: 1px solid var(--rule);
+    }
+    .brand-card .footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+    .brand-card .footer .date {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .brand-card .footer .open {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent3);
+      letter-spacing: 0.05em;
+    }
+
+    /* Compare tray */
+    .compare-tray {
+      position: fixed;
+      bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--ink);
+      color: var(--bg2);
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      display: flex; align-items: center; gap: 1rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      transition: transform 0.25s ease;
+      z-index: 100;
+    }
+    .compare-tray.show { transform: translateX(-50%) translateY(0); }
+    .compare-tray .count {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .compare-tray .count strong { color: var(--accent); font-size: 1rem; }
+    .compare-tray .tray-tags {
+      display: flex; gap: 0.3rem; max-width: 320px; overflow: hidden;
+    }
+    .compare-tray .tray-tag {
+      font-size: 0.78rem;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 3px 9px; border-radius: 4px;
+      white-space: nowrap;
+    }
+    .compare-tray button {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.9rem;
+      background: var(--accent);
+      color: white;
+      border: 0; border-radius: 5px;
+      cursor: pointer;
+    }
+    .compare-tray button.secondary {
+      background: transparent; border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .compare-tray button:hover { filter: brightness(1.1); }
+
+    /* Empty */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--muted);
+    }
+    .empty .icon {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      color: var(--rule);
+      margin-bottom: 0.6rem;
+    }
+    .empty .msg { font-size: 0.95rem; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+    .footer a { color: var(--accent3); }
+
+    /* LAN Share Card */
+    .lan-card {
+      position: fixed; right: 20px; bottom: 20px; z-index: 9999;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid #D8CFBD;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(26, 26, 26, 0.12);
+      padding: 14px 16px; width: 320px;
+      color: #1A1A1A; font-size: 13px; line-height: 1.5;
+    }
+    .lan-card.collapsed { width: 44px; height: 44px; padding: 0; overflow: hidden; }
+    .lan-card.collapsed .lan-body { display: none; }
+    .lan-card.collapsed .lan-toggle::before { content: '+'; }
+    .lan-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; cursor: pointer; }
+    .lan-head .lan-title {
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #6B6B6B;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .lan-head .lan-title::before {
+      content: ''; width: 6px; height: 6px; background: #7FB069;
+      border-radius: 50%; box-shadow: 0 0 0 3px rgba(127, 176, 105, 0.22);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(127, 176, 105, 0.22); }
+      50% { box-shadow: 0 0 0 6px rgba(127, 176, 105, 0.05); }
+    }
+    .lan-toggle {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #F4EFE6; color: #2A2A2A;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+    }
+    .lan-toggle::before { content: '−'; }
+    .lan-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .lan-row .lan-label {
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #6B6B6B;
+    }
+    .lan-url {
+      display: flex; align-items: center; gap: 6px;
+      background: #F4EFE6; border: 1px solid #E8E0D4;
+      border-radius: 6px; padding: 8px 10px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 12px;
+      word-break: break-all;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .lan-url:hover { background: #EFE7D8; }
+    .lan-url-text { flex: 1; }
+    .copy-btn {
+      flex-shrink: 0; border: none; background: #1A1A1A; color: white;
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 10px;
+      padding: 4px 8px; border-radius: 4px; cursor: pointer;
+    }
+    .copy-btn:hover { background: #FF7A45; }
+    .lan-hint { font-size: 11px; color: #6B6B6B; line-height: 1.6; }
+    .lan-hint code {
+      font-family: 'SF Mono', Menlo, Consolas, monospace; background: #F4EFE6;
+      padding: 1px 5px; border-radius: 3px; font-size: 11px; color: #1A1A1A;
+    }
+    .lan-toast {
+      position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%);
+      background: #1A1A1A; color: white;
+      padding: 6px 12px; border-radius: 6px;
+      font-size: 12px; opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .lan-toast.show { opacity: 1; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page { padding: 0 1rem 4rem; }
+      .topbar { padding: 1rem; }
+      .topbar nav { gap: 1rem; }
+      .input-row { flex-direction: column; }
+      .input-row button { padding: 0.85rem 1rem; }
+      .section-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .compare-tray {
+        left: 1rem; right: 1rem;
+        transform: translateX(0) translateY(120%);
+        width: auto; border-radius: var(--radius);
+        flex-wrap: wrap;
+      }
+      .compare-tray.show { transform: translateX(0) translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand-logo">
+      <span class="dot"></span>
+      <span>Kiwii <em>Brand Lab</em></span>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#library">Library</a>
+      <a href="compare.html">Compare</a>
+      <a href="README.md">Docs</a>
+    </nav>
+  </header>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-label">Brand Research · Hub</div>
+      <h1>让<em>品牌视觉</em>调研<br>成为 Kiwii 的常态</h1>
+      <p>输入品牌名 → 触发 brand-research skill → 自动生成 8 维结构化报告 + 雷达图，沉淀到本地品牌库，与 Kiwii 现有对标品牌做横向对比。</p>
+    </section>
+
+    <!-- INPUT -->
+    <div class="input-card" id="generator">
+      <h2>开始一次新的品牌调研</h2>
+      <p class="input-desc">输入品牌名（如 "Hatch"）或品牌官网 URL（如 "https://www.hatch.co"），然后让 brand-research skill 接手。生成完毕后页面会出现在下方「品牌库」。</p>
+      <div class="input-row">
+        <input id="brand-input" type="text" placeholder="例：Hatch / Oura / https://www.hatch.co" autocomplete="off">
+        <button id="generate-btn" type="button">调研</button>
+      </div>
+    </div>
+    <p class="input-hint">
+      提示：点击 <code>调研</code> 后，会在本地草稿 <code>pending/<code id="pending-file">pending-brand.md</code></code> 中写入提示词，方便你直接复制给 Trae 对话或 Trae CLI 触发 skill。
+      也可以使用 <code>node scripts/refresh-index.js</code> 手动刷新品牌库索引。
+    </p>
+
+    <!-- STATUS PANEL -->
+    <div class="status-panel" id="status-panel">
+      <div class="panel-inner">
+        <div class="panel-title" id="status-title">等待生成</div>
+        <div class="panel-body" id="status-body">—</div>
+        <div class="panel-actions" id="status-actions"></div>
+      </div>
+    </div>
+
+    <!-- LIBRARY -->
+    <section id="library" style="margin-top: 2rem;">
+      <div class="section-head">
+        <h2>品牌库</h2>
+        <div class="actions">
+          <span class="meta" id="library-meta">0 个品牌</span>
+          <button id="refresh-btn" type="button">刷新</button>
+          <button id="compare-btn" type="button" class="primary" disabled>对比所选 (0)</button>
+        </div>
+      </div>
+
+      <div class="brand-grid" id="brand-grid">
+        <div class="empty">
+          <div class="icon">∅</div>
+          <div class="msg">正在加载品牌库…</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Kiwii Brand Research Hub · v1.0 · 生成时间 <span id="footer-date"></span><br>
+      Powered by <code>consulting-analysis</code> + <code>brand-research</code> skills
+    </footer>
+  </div>
+
+  <!-- Compare tray -->
+  <div class="compare-tray" id="compare-tray">
+    <div class="count">已选 <strong id="tray-count">0</strong> 个</div>
+    <div class="tray-tags" id="tray-tags"></div>
+    <button id="tray-cancel" class="secondary" type="button">清空</button>
+    <button id="tray-go" type="button">生成对比页 →</button>
+  </div>
+
+  <script>
+    // 1. 加载品牌库
+    const grid = document.getElementById('brand-grid');
+    const meta = document.getElementById('library-meta');
+    const compareBtn = document.getElementById('compare-btn');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const tray = document.getElementById('compare-tray');
+    const trayCount = document.getElementById('tray-count');
+    const trayTags = document.getElementById('tray-tags');
+    const trayCancel = document.getElementById('tray-cancel');
+    const trayGo = document.getElementById('tray-go');
+    const footerDate = document.getElementById('footer-date');
+
+    let brands = [];
+    let selectedIds = new Set();
+
+    footerDate.textContent = new Date().toISOString().slice(0, 10);
+
+    async function loadLibrary() {
+      try {
+        const r = await fetch('./brands/index.json?t=' + Date.now());
+        const data = await r.json();
+        brands = data.brands || [];
+        renderGrid();
+      } catch (e) {
+        grid.innerHTML = '<div class="empty"><div class="icon">!</div><div class="msg">无法加载 brands/index.json。请确认文件存在或运行 <code>node scripts/refresh-index.js</code> 重新生成。</div></div>';
+        meta.textContent = '加载失败';
+      }
+    }
+
+    function renderGrid() {
+      meta.textContent = brands.length + ' 个品牌';
+      if (!brands.length) {
+        grid.innerHTML = '<div class="empty"><div class="icon">∅</div><div class="msg">品牌库为空。在上方输入一个品牌名开始你的第一次调研。</div></div>';
+        return;
+      }
+      grid.innerHTML = brands.map((b) => {
+        const colors = (b.primaryColors || []).map((c) => `<div class="c" style="background:${c}"></div>`).join('');
+        const sel = selectedIds.has(b.id);
+        return `
+        <div class="brand-card ${sel ? 'selected' : ''}" data-id="${b.id}">
+          <div class="check"></div>
+          <div class="brand-meta">
+            <span class="pill">${b.category || 'Brand'}</span>
+            ${b.country ? '<span>· ' + b.country + '</span>' : ''}
+          </div>
+          <h3>${b.nameZh || b.name}</h3>
+          ${b.tagline ? '<div class="tagline">"' + b.tagline + '"</div>' : ''}
+          <div class="summary">${b.summary || ''}</div>
+          <div class="colors">${colors}</div>
+          <div class="footer">
+            <span class="date">${b.createdAt || ''}</span>
+            <a class="open" href="${b.reportUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">查看报告 →</a>
+          </div>
+        </div>`;
+      }).join('');
+
+      grid.querySelectorAll('.brand-card').forEach((card) => {
+        card.addEventListener('click', () => toggleSelect(card.dataset.id));
+      });
+    }
+
+    function toggleSelect(id) {
+      if (selectedIds.has(id)) {
+        selectedIds.delete(id);
+      } else {
+        if (selectedIds.size >= 4) {
+          alert('最多选择 4 个品牌进行对比。');
+          return;
+        }
+        selectedIds.add(id);
+      }
+      renderGrid();
+      updateTray();
+    }
+
+    function updateTray() {
+      const n = selectedIds.size;
+      compareBtn.textContent = `对比所选 (${n})`;
+      compareBtn.disabled = n < 2;
+      trayCount.textContent = n;
+      const selected = brands.filter((b) => selectedIds.has(b.id));
+      trayTags.innerHTML = selected.map((b) => `<span class="tray-tag">${b.nameZh || b.name}</span>`).join('');
+      tray.classList.toggle('show', n > 0);
+    }
+
+    refreshBtn.addEventListener('click', loadLibrary);
+    compareBtn.addEventListener('click', goCompare);
+    trayCancel.addEventListener('click', () => {
+      selectedIds.clear();
+      renderGrid();
+      updateTray();
+    });
+    trayGo.addEventListener('click', goCompare);
+
+    function goCompare() {
+      if (selectedIds.size < 2) {
+        alert('请至少选择 2 个品牌进行对比。');
+        return;
+      }
+      const ids = Array.from(selectedIds).join(',');
+      window.location.href = './compare.html?ids=' + encodeURIComponent(ids);
+    }
+
+    // 2. 输入 → 写 pending 文件 + 给出提示
+    const input = document.getElementById('brand-input');
+    const btn = document.getElementById('generate-btn');
+    const statusPanel = document.getElementById('status-panel');
+    const statusTitle = document.getElementById('status-title');
+    const statusBody = document.getElementById('status-body');
+    const statusActions = document.getElementById('status-actions');
+    const pendingFile = document.getElementById('pending-file');
+
+    function slugify(s) {
+      return s.toLowerCase().trim()
+        .replace(/^https?:\/\/(www\.)?/, '')
+        .replace(/[\/\?#].*$/, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '')
+        .slice(0, 40) || 'brand';
+    }
+
+    btn.addEventListener('click', () => {
+      const raw = (input.value || '').trim();
+      if (!raw) {
+        input.focus();
+        return;
+      }
+      const slug = slugify(raw);
+      const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+      const file = `${slug}-${today}.html`;
+      pendingFile.textContent = `pending/${slug}.md`;
+
+      const prompt = `请调用 brand-research skill，对品牌「${raw}」做一次完整的品牌视觉与商业调研。完成后请将 HTML 报告保存到：\n\nF:\\\\工作\\\\kiwii\\\\03-品牌设计\\\\brand-research\\\\${file}\n\n保存后请提示我运行：\nnode scripts/refresh-index.js\n来刷新品牌库索引。`;
+
+      // 尝试写入 pending/<slug>.md
+      fetch('./pending/_save.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, content: prompt }),
+      }).catch(() => {});
+
+      // 显示提示面板
+      statusPanel.classList.add('show');
+      statusTitle.textContent = '调研指令已就绪';
+      statusBody.innerHTML = `
+        <p>请把以下 prompt 发送给 Trae 对话（或 Trae CLI），它会调用 <code>brand-research</code> skill 完成 8 维拆解 + 雷达图，并自动落盘到：</p>
+        <p style="margin: 0.5rem 0;"><code>F:\\工作\\kiwii\\03-品牌设计\\brand-research\\${file}</code></p>
+        <p>生成后点击 <code>刷新</code>，新品牌会出现在下方品牌库中。</p>
+        <details style="margin-top: 0.6rem;">
+          <summary style="cursor:pointer;color:var(--accent);">查看完整 prompt</summary>
+          <pre style="background:var(--bg3);padding:0.8rem;border-radius:6px;margin-top:0.5rem;font-size:0.82rem;white-space:pre-wrap;font-family:var(--font-mono);">${prompt.replace(/</g, '&lt;')}</pre>
+        </details>
+      `;
+      statusActions.innerHTML = `
+        <a href="#" id="copy-prompt">复制 prompt</a>
+        <a href="#" class="secondary" id="copy-path">复制报告路径</a>
+      `;
+      document.getElementById('copy-prompt').addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(prompt).then(() => alert('已复制到剪贴板'));
+      });
+      document.getElementById('copy-path').addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(`F:\\工作\\kiwii\\03-品牌设计\\brand-research\\${file}`).then(() => alert('已复制路径'));
+      });
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') btn.click();
+    });
+
+    // 3. 初始化
+    loadLibrary();
+  </script>
+
+  <!-- LAN Share Card -->
+  <div class="lan-card" id="lan-card">
+    <div class="lan-head" id="lan-head">
+      <span class="lan-title">局域网共享</span>
+      <span class="lan-toggle" id="lan-toggle"></span>
+    </div>
+    <div class="lan-body">
+      <div class="lan-row">
+        <span class="lan-label">本机访问</span>
+        <div class="lan-url" data-url="" id="lan-url-local" title="点击在新窗口打开">
+          <span class="lan-url-text" id="lan-url-local-text">检测中…</span>
+          <button class="copy-btn" data-copy="local">Copy</button>
+        </div>
+      </div>
+      <div class="lan-row">
+        <span class="lan-label">局域网 URL（手机/同事可访问）</span>
+        <div class="lan-url" data-url="" id="lan-url-lan" title="点击在新窗口打开">
+          <span class="lan-url-text" id="lan-url-lan-text">检测中…</span>
+          <button class="copy-btn" data-copy="lan">Copy</button>
+        </div>
+      </div>
+      <div class="lan-hint">
+        📱 同一 Wi-Fi 下的手机/平板/同事电脑，用上面"局域网 URL"打开即可。
+        <br>启动方式：双击 <code>start-server.bat</code>（已绑定 0.0.0.0）
+      </div>
+    </div>
+    <div class="lan-toast" id="lan-toast">已复制</div>
+  </div>
+
+  <script>
+    // LAN IP 检测与渲染
+    (function () {
+      var card = document.getElementById('lan-card');
+      var head = document.getElementById('lan-head');
+      var toggle = document.getElementById('lan-toggle');
+      var localEl = document.getElementById('lan-url-local');
+      var localText = document.getElementById('lan-url-local-text');
+      var lanEl = document.getElementById('lan-url-lan');
+      var lanText = document.getElementById('lan-url-lan-text');
+      var toast = document.getElementById('lan-toast');
+      var port = location.port || '8000';
+
+      // 默认值：当前页面的 host 已经是访问 IP，所以可以直接用
+      var host = location.hostname || 'localhost';
+      var localUrl = location.origin || ('http://localhost:' + port);
+      var lanUrl = 'http://' + host + ':' + port;
+
+      localText.textContent = 'http://localhost:' + port + '/';
+      localEl.setAttribute('data-url', 'http://localhost:' + port + '/');
+
+      lanText.textContent = lanUrl + '/';
+      lanEl.setAttribute('data-url', lanUrl + '/');
+
+      // 调本地 /api/network-info：返回真实的局域网 IP（避免依赖外网）
+      fetch('/api/network-info')
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.urls) {
+            if (d.urls.local) {
+              localText.textContent = d.urls.local;
+              localEl.setAttribute('data-url', d.urls.local);
+            }
+            if (d.urls.lan) {
+              lanText.textContent = d.urls.lan;
+              lanEl.setAttribute('data-url', d.urls.lan);
+            }
+          }
+        })
+        .catch(function () {});
+
+      // 折叠/展开
+      head.addEventListener('click', function () {
+        card.classList.toggle('collapsed');
+      });
+
+      // 点击 URL 框：新窗口打开
+      [localEl, lanEl].forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          if (e.target.classList.contains('copy-btn')) return;
+          var url = el.getAttribute('data-url');
+          if (url) window.open(url, '_blank', 'noopener');
+        });
+      });
+
+      // 复制按钮
+      document.querySelectorAll('.copy-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var which = btn.getAttribute('data-copy');
+          var url = (which === 'local' ? localEl : lanEl).getAttribute('data-url');
+          navigator.clipboard.writeText(url).then(function () {
+            showToast('已复制 ' + url);
+          }).catch(function () {
+            // fallback
+            var ta = document.createElement('textarea');
+            ta.value = url; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('已复制 ' + url);
+          });
+        });
+      });
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(function () { toast.classList.remove('show'); }, 1500);
+      }
+    })();
+  </script>
+</body>
+</html>

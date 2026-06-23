@@ -1,0 +1,46 @@
+Kiwii Brand Research Skill · 一行安装速查
+============================================
+
+## 1) 装 skill 到 agent 的 skills 目录
+
+# Windows PowerShell
+Copy-Item -Path ".\brand-research-skill" -Destination "$env:USERPROFILE\.trae\skills\brand-research" -Recurse -Force
+
+# macOS / Linux
+cp -r brand-research-skill ~/.trae/skills/brand-research
+# 或 Claude Code:  ~/.claude/skills/brand-research
+# 或 Cursor:       ~/.cursor/skills/brand-research
+
+
+## 2) 解压项目源码 + 装依赖 + 启动
+
+# 解压（任选其一）
+unzip brand-research-skill/brand-research-project.zip -d ./brand-research
+# Windows PS: Expand-Archive brand-research-skill/brand-research-project.zip -DestinationPath ./brand-research -Force
+
+cd brand-research
+npm install
+
+# 填 API Key
+cp .env.example .env       # Linux / macOS
+copy .env.example .env     # Windows
+# 然后用编辑器打开 .env，填入 MINIMAX_API_KEY
+
+# 启动
+./start-server.bat     # Windows
+./start-server.sh      # macOS / Linux
+
+# 浏览器打开（启动脚本会自动弹出）
+http://localhost:8000/
+
+# 同 Wi-Fi 设备
+http://<你的IP>:8000/     # 启动时会自动打印
+
+
+## 3) 想钉死局域网 IP
+
+# Windows
+set LAN_HOST=192.168.1.100 && start-server.bat
+
+# macOS / Linux
+LAN_HOST=192.168.1.100 ./start-server.sh

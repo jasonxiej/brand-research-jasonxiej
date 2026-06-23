@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品牌对比 · Kiwii Brand Lab</title>
+
+  <style>
+    @font-face {
+      font-family: 'InstrumentSerif';
+      src: url('./_shared/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal;
+    }
+    @font-face {
+      font-family: 'InstrumentSerif';
+      src: url('./_shared/fonts/InstrumentSerif-Italic.ttf') format('truetype');
+      font-weight: 400; font-style: italic;
+    }
+    @font-face {
+      font-family: 'InstrumentSans';
+      src: url('./_shared/fonts/InstrumentSans-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'InstrumentSans';
+      src: url('./_shared/fonts/InstrumentSans-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'GeistMono';
+      src: url('./_shared/fonts/GeistMono-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'GeistMono';
+      src: url('./_shared/fonts/GeistMono-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+
+    :root {
+      --bg: #FBF8F3;
+      --bg2: #FFFFFF;
+      --bg3: #F4EFE6;
+      --ink: #1A1A1A;
+      --muted: #6B6B6B;
+      --rule: #E8E0D4;
+      --accent: #FF7A45;
+      --accent2: #7FB069;
+      --accent3: #6B4EFF;
+      --font-serif: 'InstrumentSerif', Georgia, serif;
+      --font-sans: 'InstrumentSans', Helvetica, Arial, sans-serif;
+      --font-mono: 'GeistMono', 'Courier New', monospace;
+      --max: 1200px;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent3); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 2rem 5rem; }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .brand-logo {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+    .brand-logo .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .brand-logo em { font-style: italic; color: var(--accent); }
+    .topbar nav { display: flex; gap: 1.6rem; font-size: 0.9rem; }
+    .topbar nav a {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+    .compare-hero {
+      padding: 2rem 0 2rem;
+      text-align: center;
+    }
+    .compare-hero .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .compare-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+    .compare-hero h1 em { color: var(--accent); font-style: italic; }
+    .compare-hero .subtitle {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Picker */
+    .picker {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 3rem;
+    }
+    .picker h3 {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .picker-list {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .picker-pill {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--ink);
+    }
+    .picker-pill:hover { border-color: var(--ink); }
+    .picker-pill.on {
+      background: var(--ink);
+      color: var(--bg2);
+      border-color: var(--ink);
+    }
+    .picker .picker-foot {
+      margin-top: 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .picker .picker-foot a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent3);
+    }
+
+    /* Section head */
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+    .section-head .meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Comparison table */
+    .table-wrap {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      overflow-x: auto;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    th {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--bg3);
+      min-width: 110px;
+    }
+    th.brand-col {
+      background: var(--bg2);
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-family: var(--font-serif);
+      text-transform: none;
+      letter-spacing: 0;
+      min-width: 200px;
+    }
+    th.brand-col em { color: var(--accent); font-style: italic; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: var(--bg3); }
+    .row-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* Chart card */
+    .chart-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+    #radar-chart { width: 100%; height: 520px; }
+
+    /* Palette gallery */
+    .palette-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .palette-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+    }
+    .palette-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+    }
+    .palette-card .strip {
+      display: flex; gap: 0;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      margin-bottom: 0.6rem;
+    }
+    .palette-card .strip .s {
+      flex: 1;
+      height: 44px;
+      position: relative;
+    }
+    .palette-card .hex-row {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Takeaway */
+    .takeaway {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-top: 2rem;
+    }
+    .takeaway h2 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    .takeaway ol {
+      counter-reset: t;
+      list-style: none;
+      padding: 0;
+    }
+    .takeaway ol li {
+      counter-increment: t;
+      padding: 0.8rem 0 0.8rem 2rem;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+      line-height: 1.75;
+    }
+    .takeaway ol li:last-child { border-bottom: 0; }
+    .takeaway ol li::before {
+      content: counter(t, decimal-leading-zero);
+      position: absolute;
+      left: 0; top: 0.95rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+    }
+
+    /* Empty state */
+    .empty {
+      text-align: center;
+      padding: 5rem 1rem;
+      color: var(--muted);
+    }
+    .empty .icon { font-family: var(--font-serif); font-size: 2.4rem; color: var(--rule); }
+    .empty .msg { margin-top: 0.5rem; font-size: 0.95rem; }
+    .empty a {
+      display: inline-block; margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      background: var(--ink);
+      color: var(--bg2);
+      border-radius: 6px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .page { padding: 0 1rem 4rem; }
+      .topbar { padding: 1rem; }
+      #radar-chart { height: 380px; }
+      .table-wrap { font-size: 0.8rem; }
+    }
+
+    /* LAN Share Card */
+    .lan-card {
+      position: fixed; right: 20px; bottom: 20px; z-index: 9999;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid #D8CFBD;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(26, 26, 26, 0.12);
+      padding: 14px 16px; width: 320px;
+      color: #1A1A1A; font-size: 13px; line-height: 1.5;
+    }
+    .lan-card.collapsed { width: 44px; height: 44px; padding: 0; overflow: hidden; }
+    .lan-card.collapsed .lan-body { display: none; }
+    .lan-card.collapsed .lan-toggle::before { content: '+'; }
+    .lan-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; cursor: pointer; }
+    .lan-head .lan-title {
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #6B6B6B;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .lan-head .lan-title::before {
+      content: ''; width: 6px; height: 6px; background: #7FB069;
+      border-radius: 50%; box-shadow: 0 0 0 3px rgba(127, 176, 105, 0.22);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(127, 176, 105, 0.22); }
+      50% { box-shadow: 0 0 0 6px rgba(127, 176, 105, 0.05); }
+    }
+    .lan-toggle {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #F4EFE6; color: #2A2A2A;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+    }
+    .lan-toggle::before { content: '−'; }
+    .lan-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .lan-row .lan-label {
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #6B6B6B;
+    }
+    .lan-url {
+      display: flex; align-items: center; gap: 6px;
+      background: #F4EFE6; border: 1px solid #E8E0D4;
+      border-radius: 6px; padding: 8px 10px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 12px;
+      word-break: break-all; cursor: pointer; transition: background 0.15s;
+    }
+    .lan-url:hover { background: #EFE7D8; }
+    .lan-url-text { flex: 1; }
+    .copy-btn {
+      flex-shrink: 0; border: none; background: #1A1A1A; color: white;
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 10px;
+      padding: 4px 8px; border-radius: 4px; cursor: pointer;
+    }
+    .copy-btn:hover { background: #FF7A45; }
+    .lan-hint { font-size: 11px; color: #6B6B6B; line-height: 1.6; }
+    .lan-hint code {
+      font-family: 'SF Mono', Menlo, Consolas, monospace; background: #F4EFE6;
+      padding: 1px 5px; border-radius: 3px; font-size: 11px; color: #1A1A1A;
+    }
+    .lan-toast {
+      position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%);
+      background: #1A1A1A; color: white;
+      padding: 6px 12px; border-radius: 6px;
+      font-size: 12px; opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .lan-toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand-logo">
+      <span class="dot"></span>
+      <span>Kiwii <em>Brand Lab</em></span>
+    </div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./index.html#library">Library</a>
+      <a href="./compare.html">Compare</a>
+    </nav>
+  </header>
+
+  <div class="page">
+
+    <section class="compare-hero">
+      <div class="label">Brand Comparison</div>
+      <h1>把多个<em>参考品牌</em><br>放在一张表里看</h1>
+      <p class="subtitle">最多 4 个品牌。雷达图、色板、定位、用户、卖点一表对齐，最后给出 Kiwii 视觉北极星建议。</p>
+    </section>
+
+    <!-- Picker -->
+    <div class="picker">
+      <h3>选择对比品牌（2–4 个）</h3>
+      <div class="picker-list" id="picker-list"></div>
+      <div class="picker-foot">
+        <span id="picker-status">未选择</span>
+        <a href="./index.html#library">← 回到品牌库</a>
+      </div>
+    </div>
+
+    <!-- Result sections (hidden until 2+ selected) -->
+    <div id="result-area" style="display:none;">
+
+      <div class="section-head">
+        <h2>1 · 8 维拆解总览</h2>
+        <div class="meta" id="t-meta">0 个品牌</div>
+      </div>
+      <div class="table-wrap" id="table-wrap"></div>
+
+      <div class="section-head">
+        <h2>2 · 六维调性雷达图</h2>
+        <div class="meta">克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度</div>
+      </div>
+      <div class="chart-card">
+        <div id="radar-chart"></div>
+      </div>
+
+      <div class="section-head">
+        <h2>3 · 色板并置</h2>
+        <div class="meta">每个品牌主色 4 色</div>
+      </div>
+      <div class="palette-gallery" id="palette-gallery"></div>
+
+      <div class="section-head">
+        <h2>4 · Kiwii 视觉北极星建议</h2>
+        <div class="meta">基于本次对比的横向洞察</div>
+      </div>
+      <div class="takeaway">
+        <h2>Takeaway · Actionable Insights</h2>
+        <ol id="takeaway-list"></ol>
+      </div>
+    </div>
+
+    <!-- Empty -->
+    <div id="empty-area" class="empty">
+      <div class="icon">⊕</div>
+      <div class="msg">从上方选择 2–4 个品牌开始对比。</div>
+      <a href="./index.html#library">前往品牌库</a>
+    </div>
+
+    <footer class="footer">
+      Kiwii Brand Research Hub · Compare · <span id="footer-date"></span>
+    </footer>
+  </div>
+
+  <script src="./_shared/js/echarts.min.js"></script>
+  <script>
+    const SERIES_COLORS = ['#1F1F1F', '#FF7A45', '#7FB069', '#6B4EFF'];
+
+    let allBrands = [];
+    let selectedIds = new Set();
+    let chart = null;
+
+    document.getElementById('footer-date').textContent = new Date().toISOString().slice(0, 10);
+
+    function getQueryIds() {
+      const u = new URLSearchParams(location.search);
+      return (u.get('ids') || '').split(',').filter(Boolean);
+    }
+
+    async function loadAll() {
+      try {
+        const r = await fetch('./brands/index.json?t=' + Date.now());
+        const data = await r.json();
+        allBrands = data.brands || [];
+        const ids = getQueryIds();
+        if (ids.length) {
+          ids.slice(0, 4).forEach((id) => {
+            if (allBrands.find((b) => b.id === id)) selectedIds.add(id);
+          });
+        }
+        renderPicker();
+        renderResult();
+      } catch (e) {
+        document.getElementById('empty-area').innerHTML = '<div class="icon">!</div><div class="msg">无法加载 brands/index.json</div>';
+      }
+    }
+
+    function renderPicker() {
+      const list = document.getElementById('picker-list');
+      const status = document.getElementById('picker-status');
+      if (!allBrands.length) {
+        list.innerHTML = '<div style="color:var(--muted);font-size:0.9rem;">品牌库为空，请先在首页生成至少 2 个调研。</div>';
+        return;
+      }
+      list.innerHTML = allBrands.map((b) => {
+        const on = selectedIds.has(b.id);
+        return `<div class="picker-pill ${on ? 'on' : ''}" data-id="${b.id}">${b.nameZh || b.name}</div>`;
+      }).join('');
+      list.querySelectorAll('.picker-pill').forEach((pill) => {
+        pill.addEventListener('click', () => {
+          const id = pill.dataset.id;
+          if (selectedIds.has(id)) {
+            selectedIds.delete(id);
+          } else {
+            if (selectedIds.size >= 4) { alert('最多 4 个品牌'); return; }
+            selectedIds.add(id);
+          }
+          // sync URL
+          const u = new URLSearchParams();
+          if (selectedIds.size) u.set('ids', Array.from(selectedIds).join(','));
+          history.replaceState(null, '', location.pathname + (u.toString() ? '?' + u : ''));
+          renderPicker();
+          renderResult();
+        });
+      });
+      status.textContent = selectedIds.size
+        ? `已选 ${selectedIds.size} 个品牌${selectedIds.size < 2 ? '（至少 2 个）' : ''}`
+        : '未选择';
+    }
+
+    function getSelected() {
+      return allBrands.filter((b) => selectedIds.has(b.id));
+    }
+
+    function renderResult() {
+      const result = document.getElementById('result-area');
+      const empty = document.getElementById('empty-area');
+      const sel = getSelected();
+
+      if (sel.length < 2) {
+        result.style.display = 'none';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+      result.style.display = 'block';
+
+      document.getElementById('t-meta').textContent = sel.length + ' 个品牌';
+      renderTable(sel);
+      renderRadar(sel);
+      renderPalettes(sel);
+      renderTakeaway(sel);
+    }
+
+    function renderTable(sel) {
+      const cols = ['维度', ...sel.map((b) => b.nameZh || b.name)];
+      const dims = [
+        { key: 'tagline', label: 'Tagline' },
+        { key: 'category', label: '品类' },
+        { key: 'country', label: '国家' },
+        { key: 'palette', label: '主色板' },
+        { key: 'radar', label: '六维调性' },
+        { key: 'summary', label: '品牌概述' },
+      ];
+      let html = '<table><thead><tr>';
+      cols.forEach((c, i) => {
+        if (i === 0) html += `<th>${c}</th>`;
+        else html += `<th class="brand-col">${c}</th>`;
+      });
+      html += '</tr></thead><tbody>';
+
+      dims.forEach((d) => {
+        html += '<tr><td><span class="row-label">' + d.label + '</span></td>';
+        sel.forEach((b) => {
+          let v = '';
+          if (d.key === 'palette') {
+            const cs = (b.primaryColors || []).map((c) => `<span style="display:inline-block;width:14px;height:14px;background:${c};border:1px solid var(--rule);border-radius:3px;margin-right:4px;vertical-align:middle"></span>`).join('');
+            v = cs || '—';
+          } else if (d.key === 'radar') {
+            if (b.radar && b.radar['识别强度'] !== undefined) {
+              v = `克制 ${b.radar['克制']} · 温度 ${b.radar['温度感']} · 游戏 ${b.radar['游戏化']} · 科技 ${b.radar['科技感']} · 情感 ${b.radar['情感连接']} · 识别 ${b.radar['识别强度']}`;
+            } else v = '—';
+          } else {
+            v = b[d.key] || '—';
+          }
+          html += `<td>${v}</td>`;
+        });
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      document.getElementById('table-wrap').innerHTML = html;
+    }
+
+    function renderRadar(sel) {
+      const container = document.getElementById('radar-chart');
+      if (chart) chart.dispose();
+      if (typeof echarts === 'undefined') return;
+      chart = echarts.init(container, null, { renderer: 'canvas' });
+      const data = sel.map((b, i) => {
+        const r = b.radar || {};
+        return {
+          name: b.nameZh || b.name,
+          value: [
+            r['克制'] || 0,
+            r['温度感'] || 0,
+            r['游戏化'] || 0,
+            r['科技感'] || 0,
+            r['情感连接'] || 0,
+            r['识别强度'] || 0,
+          ],
+          itemStyle: { color: SERIES_COLORS[i % SERIES_COLORS.length] },
+          lineStyle: { width: 2, color: SERIES_COLORS[i % SERIES_COLORS.length] },
+          areaStyle: { color: hexToRgba(SERIES_COLORS[i % SERIES_COLORS.length], 0.12) },
+        };
+      });
+      chart.setOption({
+        legend: {
+          data: sel.map((b) => b.nameZh || b.name),
+          bottom: 0,
+          textStyle: { fontFamily: 'InstrumentSans, sans-serif', fontSize: 12, color: '#1A1A1A' },
+        },
+        tooltip: { trigger: 'item' },
+        radar: {
+          indicator: [
+            { name: '克制度', max: 10 },
+            { name: '温度感', max: 10 },
+            { name: '游戏化', max: 10 },
+            { name: '科技感', max: 10 },
+            { name: '情感连接', max: 10 },
+            { name: '识别强度', max: 10 },
+          ],
+          shape: 'polygon',
+          splitNumber: 5,
+          axisName: { color: '#1A1A1A', fontFamily: 'InstrumentSans, sans-serif', fontSize: 13 },
+          splitLine: { lineStyle: { color: '#E8E0D4' } },
+          splitArea: { areaStyle: { color: ['rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)'] } },
+          axisLine: { lineStyle: { color: '#E8E0D4' } },
+        },
+        series: [{ type: 'radar', data }],
+      });
+      window.addEventListener('resize', () => chart && chart.resize());
+    }
+
+    function hexToRgba(hex, a) {
+      const m = hex.replace('#', '').match(/.{2}/g);
+      if (!m) return `rgba(0,0,0,${a})`;
+      const [r, g, b] = m.map((x) => parseInt(x, 16));
+      return `rgba(${r},${g},${b},${a})`;
+    }
+
+    function renderPalettes(sel) {
+      const wrap = document.getElementById('palette-gallery');
+      wrap.innerHTML = sel.map((b) => {
+        const colors = b.primaryColors || [];
+        const strip = colors.map((c) => `<div class="s" style="background:${c}"></div>`).join('');
+        const hex = colors.join(' · ');
+        return `
+        <div class="palette-card">
+          <h3>${b.nameZh || b.name}</h3>
+          <div class="strip">${strip}</div>
+          <div class="hex-row">${hex}</div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderTakeaway(sel) {
+      // 简易洞察：基于雷达最高/最低维度
+      const ol = document.getElementById('takeaway-list');
+      const insights = [];
+      // 1. 找到雷达最突出的维度
+      const dims = ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
+      const avg = {};
+      dims.forEach((d) => {
+        const vals = sel.map((b) => (b.radar && b.radar[d]) || 0);
+        avg[d] = vals.reduce((a, b) => a + b, 0) / vals.length;
+      });
+      const sorted = Object.entries(avg).sort((a, b) => b[1] - a[1]);
+      const top = sorted[0][0];
+      const bot = sorted[sorted.length - 1][0];
+
+      insights.push(`<strong>${top}</strong> 是本次对比品牌的共同高点（平均 ${avg[top].toFixed(1)}/10），意味着这一调性是这类品牌的"基本盘"。Kiwii 若想快速进入同一象限，可考虑从 ${top} 维度切入。`);
+
+      insights.push(`<strong>${bot}</strong> 是最低洼地（平均 ${avg[bot].toFixed(1)}/10），但同时也是<em>差异化机会</em>——若 Kiwii 决定强化 ${bot}，将立即拉开与这批参考品牌的距离。`);
+
+      // 2. 色板
+      const allColors = sel.flatMap((b) => b.primaryColors || []);
+      const neutrals = allColors.filter((c) => {
+        const m = c.replace('#', '').match(/.{2}/g).map((x) => parseInt(x, 16));
+        const [r, g, b] = m;
+        return Math.max(r, g, b) - Math.min(r, g, b) < 20;
+      });
+      if (neutrals.length > 0) {
+        insights.push(`<strong>色板共性</strong>：${neutrals.length} 个主色为低饱和中性（黑白灰/米色），与 Kiwii 现有 #FBF8F3 + #FF7A45 调性高度一致。可保留中性基底 + 1 个暖色点缀的策略。`);
+      } else {
+        insights.push(`<strong>色板多样性</strong>：本次对比品牌的主色覆盖了较广的色相，Kiwii 可在保持中性基底的同时，从对比样本中提取 1 个"对标色"作为新系列的辅助色。`);
+      }
+
+      // 3. 品牌定位建议
+      const taglines = sel.map((b) => b.tagline).filter(Boolean);
+      if (taglines.length >= 2) {
+        insights.push(`<strong>定位策略</strong>：参考品牌的 tagline 普遍为"形容词 + 形容词"或"形容词. 名词." 的简洁结构（如 <em>${taglines[0]}</em>${taglines[1] ? '、<em>' + taglines[1] + '</em>' : ''}），建议 Kiwii 的 tagline 也控制在 2–4 个词以内，用斜体而非加粗呈现。`);
+      } else {
+        insights.push(`<strong>定位策略</strong>：多数参考品牌的定位都聚焦于"场景 × 体感"而非"功能 × 参数"，Kiwii 后续生成 tagline 时可优先考虑"动词 + 感官词"或"形容词对仗"两种句式。`);
+      }
+
+      ol.innerHTML = insights.map((s) => `<li>${s}</li>`).join('');
+    }
+
+    loadAll();
+  </script>
+
+  <!-- LAN Share Card -->
+  <div class="lan-card" id="lan-card">
+    <div class="lan-head" id="lan-head">
+      <span class="lan-title">局域网共享</span>
+      <span class="lan-toggle" id="lan-toggle"></span>
+    </div>
+    <div class="lan-body">
+      <div class="lan-row">
+        <span class="lan-label">本机访问</span>
+        <div class="lan-url" id="lan-url-local" title="点击在新窗口打开">
+          <span class="lan-url-text" id="lan-url-local-text">检测中…</span>
+          <button class="copy-btn" data-copy="local">Copy</button>
+        </div>
+      </div>
+      <div class="lan-row">
+        <span class="lan-label">局域网 URL（含当前对比选区）</span>
+        <div class="lan-url" id="lan-url-lan" title="点击在新窗口打开">
+          <span class="lan-url-text" id="lan-url-lan-text">检测中…</span>
+          <button class="copy-btn" data-copy="lan">Copy</button>
+        </div>
+      </div>
+      <div class="lan-hint">
+        📱 同一 Wi-Fi 下用上方"局域网 URL"打开，自动带入当前选中的品牌。
+        <br>启动方式：双击 <code>start-server.bat</code>
+      </div>
+    </div>
+    <div class="lan-toast" id="lan-toast">已复制</div>
+  </div>
+
+  <script>
+    (function () {
+      var card = document.getElementById('lan-card');
+      var head = document.getElementById('lan-head');
+      var localEl = document.getElementById('lan-url-local');
+      var localText = document.getElementById('lan-url-local-text');
+      var lanEl = document.getElementById('lan-url-lan');
+      var lanText = document.getElementById('lan-url-lan-text');
+      var toast = document.getElementById('lan-toast');
+      var port = location.port || '8000';
+      var host = location.hostname || 'localhost';
+
+      function refresh() {
+        var localUrl = 'http://localhost:' + port + '/compare.html' + location.search;
+        var lanUrl = 'http://' + host + ':' + port + '/compare.html' + location.search;
+        localText.textContent = localUrl;
+        localEl.setAttribute('data-url', localUrl);
+        lanText.textContent = lanUrl;
+        lanEl.setAttribute('data-url', lanUrl);
+      }
+      refresh();
+      // 监听选区变化
+      var origReplace = history.replaceState.bind(history);
+      history.replaceState = function () {
+        origReplace.apply(null, arguments);
+        setTimeout(refresh, 0);
+      };
+      window.addEventListener('popstate', refresh);
+
+      head.addEventListener('click', function () { card.classList.toggle('collapsed'); });
+      [localEl, lanEl].forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          if (e.target.classList.contains('copy-btn')) return;
+          var url = el.getAttribute('data-url');
+          if (url) window.open(url, '_blank', 'noopener');
+        });
+      });
+      document.querySelectorAll('.copy-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var which = btn.getAttribute('data-copy');
+          var url = (which === 'local' ? localEl : lanEl).getAttribute('data-url');
+          navigator.clipboard.writeText(url).then(function () {
+            showToast('已复制 ' + url);
+          }).catch(function () {
+            var ta = document.createElement('textarea');
+            ta.value = url; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('已复制 ' + url);
+          });
+        });
+      });
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(function () { toast.classList.remove('show'); }, 1500);
+      }
+    })();
+  </script>
+</body>
+</html>

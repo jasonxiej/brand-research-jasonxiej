@@ -1,0 +1,39 @@
+{
+  "name": "brand-research",
+  "version": "1.1.0",
+  "description": "Kiwii 品牌视觉调研 · 8 维结构化拆解 + 6 轴调性雷达，自动生成报告 + 沉淀到品牌库 + 多选横向对比",
+  "author": {
+    "name": "Kiwii Brand Lab"
+  },
+  "license": "MIT",
+  "categories": ["research", "design", "brand", "productivity"],
+  "tags": ["brand", "visual-identity", "radar", "comparison", "llm-workflow", "research-hub"],
+  "agents": ["SOLO", "Trae", "Claude Code", "Cursor", "Windsurf"],
+  "requirements": {
+    "node": ">=18",
+    "dependencies": ["cheerio", "dotenv", "openai"]
+  },
+  "env": {
+    "required": ["MINIMAX_API_KEY"],
+    "optional": ["OPENAI_BASE_URL", "OPENAI_MODEL", "BRAND_RESEARCH_DIR", "LAN_HOST", "HOST", "PORT"]
+  },
+  "files": {
+    "skill_definition": "SKILL.md",
+    "readme": "README.md",
+    "project_zip": "brand-research-project.zip"
+  },
+  "bundle": {
+    "size_kb": 618,
+    "file_count": 31,
+    "excludes": ["node_modules", ".env", "brands/*.json", "*.html reports", "archived/", "logs"]
+  },
+  "triggers": [
+    "对 X 做品牌调研",
+    "Analyze the visual identity of X",
+    "把 X 加到品牌库",
+    "Add X to the brand library",
+    "Compare X and Y",
+    "show Oura's radar"
+  ],
+  "url_replacement_note": "本 skill 通过 brand-research-project.zip 自带项目源码分发，无需联网拉仓库。"
+}
