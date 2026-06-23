@@ -1,4 +1,4 @@
-# Brand Research Skill (Kiwii)
+# Brand Research Skill ({YOUR_BRAND})
 
 > 品牌视觉调研 skill · 8 维结构化拆解 + 6 轴调性雷达 · 一键安装即用
 
@@ -125,4 +125,4 @@ rm -rf ./brand-research                # 项目代码
 
 ## License
 
-MIT © 2026 Kiwii Brand Lab
+MIT © 2026 {YOUR_BRAND} Brand Lab

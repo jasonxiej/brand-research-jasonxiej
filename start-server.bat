@@ -1,6 +1,6 @@
 @echo off
 REM ============================================================
-REM   Kiwii Brand Research Hub - Startup Script
+REM   {YOUR_BRAND} Brand Research Hub - Startup Script
 REM   English only to avoid GBK/UTF-8 codepage issues.
 REM   Run this by double-clicking, or from cmd / PowerShell.
 REM ============================================================
@@ -12,7 +12,7 @@ set PORT=8000
 
 echo.
 echo ============================================================
-echo   Kiwii Brand Research Hub - Node backend starting
+echo   {YOUR_BRAND} Brand Research Hub - Node backend starting
 echo ============================================================
 echo.
 

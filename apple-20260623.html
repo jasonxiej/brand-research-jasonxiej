@@ -1,268 +1,15 @@
-// lib/report-template.mjs
-// ============================================================
-// 把 researcher.mjs 返回的 JSON 数据渲染为 HTML 报告
-// 风格对齐 oura-20260622.html：米色底 + InstrumentSerif + accent #FF7A45
-// 输出单文件、自包含（字体 / echarts 都用 _shared 下的资源）
-// ============================================================
-
-const C = {
-  bg: '#FBF8F3',
-  bg2: '#FFFFFF',
-  bg3: '#F4EFE6',
-  ink: '#1A1A1A',
-  muted: '#6B6B6B',
-  rule: '#E8E0D4',
-  accent: '#FF7A45',
-  accent2: '#7FB069',
-  accent3: '#6B4EFF',
-};
-
-const RADAR_LABELS = ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
-
-// ---------- 工具：转义 ----------
-const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-// ---------- 子组件 ----------
-function renderSwatch({ hex, name }) {
-  return `
-    <div class="swatch">
-      <div class="swatch-block" style="background:${esc(hex)};"></div>
-      <div class="swatch-info"><span>${esc(hex)}</span>${esc(name || '')}</div>
-    </div>`;
-}
-
-function renderChapter2(data, url) {
-  const d = data;
-  const palette = (d.palette || []).slice(0, 6).map(renderSwatch).join('');
-  const swatches = palette || `
-    <div class="swatch"><div class="swatch-block" style="background:${C.accent};"></div>
-    <div class="swatch-info"><span>${C.accent}</span>Accent</div></div>`;
-
-  const toneTags = (d.tone || []).map((t) => `<strong>${esc(t)}</strong>`).join('、');
-  const sellingPoints = (d.sellingPoints || []).map((p, i) => `${i + 1}. ${esc(p)}`).join('<br>');
-
-  const targetUser = d.targetUser || {};
-  const targetUserHTML = `
-    年龄：${esc(targetUser.age || '—')}<br>
-    身份：${esc(targetUser.identity || '—')}<br>
-    痛点：${esc(targetUser.pain || '—')}<br>
-    场景：${esc(targetUser.scene || '—')}`;
-
-  const sitePreviewHTML = url ? `
-    <div class="site-preview" data-url="${esc(url)}" data-name="${esc(d.name)}">
-      <div class="site-preview-header">
-        <span class="label"><span class="dot"></span>官网预览 · ${esc(url)}</span>
-        <div class="actions">
-          <button type="button" data-mode="screenshot" class="active">截图</button>
-          <button type="button" data-mode="frame">内嵌</button>
-          <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a>
-        </div>
-      </div>
-      <div class="site-preview-body mode-screenshot">
-        <span class="site-preview-loading">LOADING…</span>
-        <img class="screenshot" alt="${esc(d.name)} 官网截图" loading="lazy">
-        <iframe class="frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
-        <div class="fallback">
-          <div class="icon">🔗</div>
-          <div class="msg">该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。</div>
-          <a class="open-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">在新窗口打开 ${esc(d.name)} 官网 ↗</a>
-        </div>
-      </div>
-    </div>` : '';
-
-  const logo = d.logo || {};
-  const typography = d.typography || {};
-  const photo = d.photography || {};
-
-  return `
-    <section class="chapter" id="ch2">
-      <div class="chapter-header">
-        <span class="chapter-num">Chapter 01</span>
-        <h2>8 维视觉与商业拆解</h2>
-      </div>
-      <p class="chapter-desc">从 Logo 到核心卖点，逐项拆解 ${esc(d.name)} 品牌的视觉资产与商业逻辑。</p>
-
-      <div class="brand-card">
-        <div class="brand-name">${esc(d.nameZh || d.name)} <span class="tag">${esc(d.category || 'Brand')} · ${esc(d.country || '—')}</span></div>
-
-        <div class="detail-grid">
-          <div class="detail-item">
-            <div class="detail-label">1 · Logo</div>
-            <div class="detail-value">类型：<strong>${esc(logo.type || '—')}</strong><br>${esc(logo.description || '')}<br><em>${esc(logo.construction || '')}</em></div>
-          </div>
-
-          <div class="detail-item">
-            <div class="detail-label">2 · 色板</div>
-            <div class="palette">${swatches}</div>
-          </div>
-
-          <div class="detail-item">
-            <div class="detail-label">3 · 字体系统</div>
-            <div class="detail-value">标题：${esc(typography.heading || '—')}<br>正文：${esc(typography.body || '—')}<br><em>${esc(typography.notes || '')}</em></div>
-          </div>
-
-          <div class="detail-item">
-            <div class="detail-label">4 · 摄影风格</div>
-            <div class="detail-value">类型：<strong>${esc(photo.style || '—')}</strong><br>光线：${esc(photo.lighting || '—')}<br>色调：${esc(photo.tone || '—')}<br>构图：${esc(photo.composition || '—')}</div>
-          </div>
-
-          <div class="detail-item full">
-            <div class="detail-label">5 · 品牌调性</div>
-            <div class="detail-value">关键词：${toneTags || '—'}<br>${esc(d.toneSummary || '')}</div>
-          </div>
-
-          <div class="detail-item full">
-            <div class="detail-label">6 · 品牌定位</div>
-            <div class="detail-value">${d.tagline ? `Tagline：<em>${esc(d.tagline)}</em><br>` : ''}${esc(d.positioning || '')}</div>
-          </div>
-
-          <div class="detail-item">
-            <div class="detail-label">7 · 目标用户</div>
-            <div class="detail-value">${targetUserHTML}</div>
-          </div>
-
-          <div class="detail-item">
-            <div class="detail-label">8 · 核心卖点</div>
-            <div class="detail-value">${sellingPoints || '—'}</div>
-          </div>
-        </div>
-
-        ${sitePreviewHTML}
-      </div>
-    </section>`;
-}
-
-function renderChapter3(data) {
-  return `
-    <section class="chapter" id="ch3">
-      <div class="chapter-header">
-        <span class="chapter-num">Chapter 02</span>
-        <h2>品牌叙事总结</h2>
-      </div>
-      <div class="summary-block">
-        <h3>Summary · 一段话理解 ${esc(data.name)}</h3>
-        <p>${esc(data.summary || '—')}</p>
-      </div>
-    </section>`;
-}
-
-function renderChapter4(data) {
-  const radar = data.radar || {};
-  const values = RADAR_LABELS.map((k) => {
-    const v = radar[k];
-    const n = Number(v);
-    return Number.isFinite(n) ? n : 5;
-  });
-  return `
-    <section class="chart-section" id="ch4">
-      <div class="chapter-header">
-        <span class="chapter-num">Chapter 03</span>
-        <h2>六维调性雷达图</h2>
-      </div>
-      <p class="chapter-desc">克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。</p>
-      <div class="chart-card">
-        <div id="radar-chart"></div>
-      </div>
-    </section>
-
-    <script>
-      window.__RADAR_DATA__ = {
-        name: ${JSON.stringify(data.name || '')},
-        values: ${JSON.stringify(values)},
-        labels: ${JSON.stringify(RADAR_LABELS)},
-      };
-    </script>`;
-}
-
-function renderChapter5(data, userBrand) {
-  const items = Array.isArray(data.brandTakeaway) ? data.brandTakeaway : null;
-  const hasTakeaway = items && items.length > 0;
-
-  const ub = (userBrand || '').trim() || data.name || '该品牌';
-
-  // 缺失时显示兜底提示文案，不再硬编码套话
-  const body = hasTakeaway
-    ? `<ul>${items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`
-    : `<p class="takeaway-empty">本报告未生成可执行建议，请重新调研。</p>`;
-
-  return `
-    <section class="chapter" id="ch5">
-      <div class="chapter-header">
-        <span class="chapter-num">Chapter 04</span>
-        <h2>${esc(ub)} 的 5 条可执行建议</h2>
-      </div>
-      <p class="chapter-desc">基于「${esc(data.name || ub)}」的视觉与商业策略，提取对「${esc(ub)}」最具借鉴价值的洞察。</p>
-      <div class="takeaway">
-        <h3>Takeaway · 5 Actionable Insights</h3>
-        ${body}
-      </div>
-    </section>`;
-}
-
-// ---------- 主入口 ----------
-export function renderReport({ name, url, data, meta, createdAt, userBrand }) {
-  const d = data || {};
-  const date = createdAt || new Date().toISOString().slice(0, 10);
-  const heroImage = meta?.ogImage || '';
-
-  // 调取子组件
-  const ch2 = renderChapter2(d, url);
-  const ch3 = renderChapter3(d);
-  const ch4 = renderChapter4(d);
-  const ch5 = renderChapter5(d, userBrand);
-
-  // 主色：取 palette 的第一色作为 accent2（雷达图描边色）
-  const radarColor = (d.primaryColors && d.primaryColors[0]) || '#1A1A1A';
-
-  // 完整品牌数据 payload（写到 <script id="__BRAND_DATA__"> 块，供 refresh-index / 前端使用）
-  const slug = (name || d.name || 'brand').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'brand';
-  const dateCompact = date.replace(/-/g, '');
-  const fileName = `${slug}-${dateCompact}.html`;
-  const brandDataPayload = {
-    id: `${slug}-${dateCompact}`,
-    name: d.name || name,
-    nameZh: d.nameZh || '',
-    url: url || d.url || '',
-    tagline: d.tagline || '',
-    category: d.category || '',
-    country: d.country || '',
-    year: d.year || null,
-    summary: d.summary || '',
-    primaryColors: d.primaryColors || (d.palette || []).slice(0, 4).map((p) => p.hex),
-    palette: d.palette || [],
-    logo: d.logo || {},
-    typography: d.typography || {},
-    photography: d.photography || {},
-    tone: d.tone || [],
-    toneSummary: d.toneSummary || '',
-    positioning: d.positioning || '',
-    targetUser: d.targetUser || {},
-    sellingPoints: d.sellingPoints || [],
-    radar: d.radar || {},
-    meta: {
-      favicon: meta?.favicon || d.favicon || '',
-      ogImage: meta?.ogImage || d.heroImage || '',
-      heroImage: meta?.ogImage || d.heroImage || '',
-      logoCandidates: meta?.logoCandidates || d.logoCandidates || [],
-    },
-    reportFile: fileName,
-    reportUrl: './' + fileName,
-    createdAt: date,
-  };
-
-  return `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${esc(d.name || name)} 品牌视觉研究</title>
-${heroImage ? `  <meta property="og:image" content="${esc(heroImage)}">\n` : ''}  <link rel="stylesheet" href="./_shared/css/report-base.css">
+  <title>Apple 品牌视觉研究</title>
+  <link rel="stylesheet" href="./_shared/css/report-base.css">
   <style>
     :root {
-      --bg: ${C.bg}; --bg2: ${C.bg2}; --bg3: ${C.bg3};
-      --ink: ${C.ink}; --muted: ${C.muted}; --rule: ${C.rule};
-      --accent: ${C.accent}; --accent2: ${C.accent2}; --accent3: ${C.accent3};
+      --bg: #FBF8F3; --bg2: #FFFFFF; --bg3: #F4EFE6;
+      --ink: #1A1A1A; --muted: #6B6B6B; --rule: #E8E0D4;
+      --accent: #FF7A45; --accent2: #7FB069; --accent3: #6B4EFF;
       --font-serif: 'InstrumentSerif', Georgia, serif;
       --font-sans: 'InstrumentSans', Helvetica, Arial, sans-serif;
       --font-mono: 'GeistMono', 'Courier New', monospace;
@@ -325,7 +72,6 @@ ${heroImage ? `  <meta property="og:image" content="${esc(heroImage)}">\n` : ''}
     .takeaway li { padding: 0.7rem 0 0.7rem 1.5rem; position: relative; border-bottom: 1px solid var(--rule); line-height: 1.7; counter-increment: takeaway; }
     .takeaway li::before { content: counter(takeaway); position: absolute; left: 0; top: 0.85rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
     .takeaway li:last-child { border-bottom: 0; }
-    .takeaway-empty { color: var(--muted); font-style: italic; padding: 1rem 0 0.5rem; border-left: 3px solid var(--accent); padding-left: 1rem; background: var(--bg3); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 0.5rem; }
 
     .site-preview { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; margin-top: 1.5rem; }
     .site-preview-header { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 1rem; background: var(--bg3); border-bottom: 1px solid var(--rule); }
@@ -370,9 +116,9 @@ ${heroImage ? `  <meta property="og:image" content="${esc(heroImage)}">\n` : ''}
   <article class="page">
     <header class="cover">
       <div class="cover-label">Brand Research Report</div>
-      <h1>${esc(d.name || name)} 品牌<em>视觉</em>研究</h1>
-      <p class="subtitle">${esc(d.name || name)} 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图</p>
-      <div class="cover-meta">${esc(date)} &middot; Brand Research &middot; ${esc(d.tagline || d.category || '')}</div>
+      <h1>Apple 品牌<em>视觉</em>研究</h1>
+      <p class="subtitle">Apple 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图</p>
+      <div class="cover-meta">2026-06-23 &middot; Brand Research &middot; Think different.</div>
     </header>
 
     <nav class="toc">
@@ -381,22 +127,162 @@ ${heroImage ? `  <meta property="og:image" content="${esc(heroImage)}">\n` : ''}
         <li><a href="#ch2">8 维视觉与商业拆解</a></li>
         <li><a href="#ch3">品牌叙事总结</a></li>
         <li><a href="#ch4">六维调性雷达图</a></li>
-        <li><a href="#ch5">${esc((userBrand || '').trim() || d.name || '该品牌')} 的 5 条可执行建议</a></li>
+        <li><a href="#ch5">该品牌 的 5 条可执行建议</a></li>
       </ol>
     </nav>
 
-    ${ch2}
-    ${ch3}
-    ${ch4}
-    ${ch5}
+    
+    <section class="chapter" id="ch2">
+      <div class="chapter-header">
+        <span class="chapter-num">Chapter 01</span>
+        <h2>8 维视觉与商业拆解</h2>
+      </div>
+      <p class="chapter-desc">从 Logo 到核心卖点，逐项拆解 Apple 品牌的视觉资产与商业逻辑。</p>
+
+      <div class="brand-card">
+        <div class="brand-name">苹果 <span class="tag">Consumer Electronics · 美国</span></div>
+
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="detail-label">1 · Logo</div>
+            <div class="detail-value">类型：<strong>组合</strong><br>被咬一口的苹果轮廓，极简且高度识别。<br><em>以单一外轮廓为核心，利用负形切口形成“咬痕”，强调几何简化与符号记忆点。</em></div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">2 · 色板</div>
+            <div class="palette">
+    <div class="swatch">
+      <div class="swatch-block" style="background:#000000;"></div>
+      <div class="swatch-info"><span>#000000</span>Black/黑</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#F5F5F7;"></div>
+      <div class="swatch-info"><span>#F5F5F7</span>Off White/雾白</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#A2AAAD;"></div>
+      <div class="swatch-info"><span>#A2AAAD</span>Silver/银灰</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#0071E3;"></div>
+      <div class="swatch-info"><span>#0071E3</span>Blue/苹果蓝</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#1D1D1F;"></div>
+      <div class="swatch-info"><span>#1D1D1F</span>Charcoal/炭黑</div>
+    </div></div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">3 · 字体系统</div>
+            <div class="detail-value">标题：SF Pro Display<br>正文：SF Pro Text<br><em>无衬线、字重层级清晰、字面现代克制，强调高可读性与系统一致性。</em></div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">4 · 摄影风格</div>
+            <div class="detail-value">类型：<strong>studio,lifestyle</strong><br>光线：柔和高质感布光，常见大面积均匀补光与干净高光。<br>色调：明亮、纯净、克制、现代<br>构图：大留白、产品居中或偏轴对称，突出单品轮廓与材质细节。</div>
+          </div>
+
+          <div class="detail-item full">
+            <div class="detail-label">5 · 品牌调性</div>
+            <div class="detail-value">关键词：<strong>极简克制</strong>、<strong>高级感</strong>、<strong>科技感</strong>、<strong>人本温度</strong>、<strong>清爽明快</strong><br>以极简语言传递高端科技体验。</div>
+          </div>
+
+          <div class="detail-item full">
+            <div class="detail-label">6 · 品牌定位</div>
+            <div class="detail-value">Tagline：<em>Think different.</em><br>以软硬件一体化体验为核心的高端消费电子与生态品牌。</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">7 · 目标用户</div>
+            <div class="detail-value">
+    年龄：18-45岁<br>
+    身份：城市白领、创意工作者、学生及科技爱好者<br>
+    痛点：希望设备简单易用、审美统一、生态联动顺畅<br>
+    场景：办公、创作、通勤、娱乐与日常生活</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">8 · 核心卖点</div>
+            <div class="detail-value">1. 软硬件与服务生态高度协同<br>2. 工业设计极简且辨识度强<br>3. 操作体验统一、上手门槛低<br>4. 品牌审美稳定，具备强烈身份表达<br>5. 产品线覆盖多场景，形成生态闭环</div>
+          </div>
+        </div>
+
+        
+    <div class="site-preview" data-url="https://www.apple.com" data-name="Apple">
+      <div class="site-preview-header">
+        <span class="label"><span class="dot"></span>官网预览 · https://www.apple.com</span>
+        <div class="actions">
+          <button type="button" data-mode="screenshot" class="active">截图</button>
+          <button type="button" data-mode="frame">内嵌</button>
+          <a href="https://www.apple.com" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a>
+        </div>
+      </div>
+      <div class="site-preview-body mode-screenshot">
+        <span class="site-preview-loading">LOADING…</span>
+        <img class="screenshot" alt="Apple 官网截图" loading="lazy">
+        <iframe class="frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        <div class="fallback">
+          <div class="icon">🔗</div>
+          <div class="msg">该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。</div>
+          <a class="open-btn" href="https://www.apple.com" target="_blank" rel="noopener noreferrer">在新窗口打开 Apple 官网 ↗</a>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="chapter" id="ch3">
+      <div class="chapter-header">
+        <span class="chapter-num">Chapter 02</span>
+        <h2>品牌叙事总结</h2>
+      </div>
+      <div class="summary-block">
+        <h3>Summary · 一段话理解 Apple</h3>
+        <p>“Apple”以极简设计和强生态协同建立全球高端科技心智。其视觉语言高度统一，依托简洁标志、克制色彩与明亮产品影像，持续传递“易用、先进、可信赖”的品牌印象，并通过软硬件整合强化用户粘性与溢价能力。</p>
+      </div>
+    </section>
+    
+    <section class="chart-section" id="ch4">
+      <div class="chapter-header">
+        <span class="chapter-num">Chapter 03</span>
+        <h2>六维调性雷达图</h2>
+      </div>
+      <p class="chapter-desc">克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。</p>
+      <div class="chart-card">
+        <div id="radar-chart"></div>
+      </div>
+    </section>
+
+    <script>
+      window.__RADAR_DATA__ = {
+        name: "Apple",
+        values: [9.5,6,1.5,9,7.5,10],
+      };
+    </script>
+    
+    <section class="chapter" id="ch5">
+      <div class="chapter-header">
+        <span class="chapter-num">Chapter 04</span>
+        <h2>该品牌 的 5 条可执行建议</h2>
+      </div>
+      <p class="chapter-desc">基于「Apple」的视觉与商业策略，提取对「该品牌」最具借鉴价值的洞察。</p>
+      <div class="takeaway">
+        <h3>Takeaway · 5 Actionable Insights</h3>
+        <ul>
+          <li>用「中性 + 1 暖点缀」取代高饱和撞色，保持全渠道视觉统一。</li><li>建立 1–2 个「杀手级场景」而非泛功能堆叠，让品牌叙事聚焦。</li><li>把「克制度 / 温度感 / 情感」作为长期调性，避免游戏化与高识别强度。</li><li>用「斜体 + 大字号」做强调，营造安静、有呼吸感的语气。</li><li>色板中预留 1–2 个暖中性色（沙色 / 雾绿），为系列延展留空间。</li>
+        </ul>
+      </div>
+    </section>
 
     <footer>
-      Generated by {YOUR_BRAND} Brand Lab · ${esc(date)}<br>
+      Generated by {YOUR_BRAND} Brand Lab · 2026-06-23<br>
       Powered by <code>brand-research</code> skill + MiniMax M3
     </footer>
   </article>
 
-  <script id="__BRAND_DATA__" type="application/json">${esc(JSON.stringify(brandDataPayload))}</script>
+  <script id="__BRAND_DATA__" type="application/json">{&quot;id&quot;:&quot;apple-20260623&quot;,&quot;name&quot;:&quot;Apple&quot;,&quot;nameZh&quot;:&quot;苹果&quot;,&quot;url&quot;:&quot;https://www.apple.com&quot;,&quot;tagline&quot;:&quot;Think different.&quot;,&quot;category&quot;:&quot;Consumer Electronics&quot;,&quot;country&quot;:&quot;美国&quot;,&quot;year&quot;:1976,&quot;summary&quot;:&quot;“Apple”以极简设计和强生态协同建立全球高端科技心智。其视觉语言高度统一，依托简洁标志、克制色彩与明亮产品影像，持续传递“易用、先进、可信赖”的品牌印象，并通过软硬件整合强化用户粘性与溢价能力。&quot;,&quot;primaryColors&quot;:[&quot;#000000&quot;,&quot;#F5F5F7&quot;,&quot;#A2AAAD&quot;,&quot;#0071E3&quot;],&quot;palette&quot;:[{&quot;hex&quot;:&quot;#000000&quot;,&quot;name&quot;:&quot;Black/黑&quot;},{&quot;hex&quot;:&quot;#F5F5F7&quot;,&quot;name&quot;:&quot;Off White/雾白&quot;},{&quot;hex&quot;:&quot;#A2AAAD&quot;,&quot;name&quot;:&quot;Silver/银灰&quot;},{&quot;hex&quot;:&quot;#0071E3&quot;,&quot;name&quot;:&quot;Blue/苹果蓝&quot;},{&quot;hex&quot;:&quot;#1D1D1F&quot;,&quot;name&quot;:&quot;Charcoal/炭黑&quot;}],&quot;logo&quot;:{&quot;type&quot;:&quot;组合&quot;,&quot;description&quot;:&quot;被咬一口的苹果轮廓，极简且高度识别。&quot;,&quot;construction&quot;:&quot;以单一外轮廓为核心，利用负形切口形成“咬痕”，强调几何简化与符号记忆点。&quot;},&quot;typography&quot;:{&quot;heading&quot;:&quot;SF Pro Display&quot;,&quot;body&quot;:&quot;SF Pro Text&quot;,&quot;notes&quot;:&quot;无衬线、字重层级清晰、字面现代克制，强调高可读性与系统一致性。&quot;},&quot;photography&quot;:{&quot;style&quot;:&quot;studio,lifestyle&quot;,&quot;lighting&quot;:&quot;柔和高质感布光，常见大面积均匀补光与干净高光。&quot;,&quot;tone&quot;:&quot;明亮、纯净、克制、现代&quot;,&quot;composition&quot;:&quot;大留白、产品居中或偏轴对称，突出单品轮廓与材质细节。&quot;},&quot;tone&quot;:[&quot;极简克制&quot;,&quot;高级感&quot;,&quot;科技感&quot;,&quot;人本温度&quot;,&quot;清爽明快&quot;],&quot;toneSummary&quot;:&quot;以极简语言传递高端科技体验。&quot;,&quot;positioning&quot;:&quot;以软硬件一体化体验为核心的高端消费电子与生态品牌。&quot;,&quot;targetUser&quot;:{&quot;age&quot;:&quot;18-45岁&quot;,&quot;identity&quot;:&quot;城市白领、创意工作者、学生及科技爱好者&quot;,&quot;pain&quot;:&quot;希望设备简单易用、审美统一、生态联动顺畅&quot;,&quot;scene&quot;:&quot;办公、创作、通勤、娱乐与日常生活&quot;},&quot;sellingPoints&quot;:[&quot;软硬件与服务生态高度协同&quot;,&quot;工业设计极简且辨识度强&quot;,&quot;操作体验统一、上手门槛低&quot;,&quot;品牌审美稳定，具备强烈身份表达&quot;,&quot;产品线覆盖多场景，形成生态闭环&quot;],&quot;radar&quot;:{&quot;克制&quot;:9.5,&quot;温度感&quot;:6,&quot;游戏化&quot;:1.5,&quot;科技感&quot;:9,&quot;情感连接&quot;:7.5,&quot;识别强度&quot;:10},&quot;meta&quot;:{&quot;favicon&quot;:&quot;&quot;,&quot;ogImage&quot;:&quot;&quot;,&quot;heroImage&quot;:&quot;&quot;,&quot;logoCandidates&quot;:[]},&quot;reportFile&quot;:&quot;apple-20260623.html&quot;,&quot;reportUrl&quot;:&quot;./apple-20260623.html&quot;,&quot;createdAt&quot;:&quot;2026-06-23&quot;}</script>
 
   <script src="./_shared/js/echarts.min.js"></script>
   <script>
@@ -405,14 +291,19 @@ ${heroImage ? `  <meta property="og:image" content="${esc(heroImage)}">\n` : ''}
       var c = document.getElementById('radar-chart');
       if (!c || !window.echarts) return;
       var chart = window.echarts.init(c, null, { renderer: 'canvas' });
-      var color = ${JSON.stringify(radarColor)};
-      var labels = data.labels || ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
+      var color = "#000000";
       chart.setOption({
         color: [color],
-        tooltip: { trigger: 'item' },
         legend: { show: false },
         radar: {
-          indicator: labels.map(function (name) { return { name: name, max: 10 }; }),
+          indicator: [
+            { name: '克制', max: 10 },
+            { name: '温度感', max: 10 },
+            { name: '游戏化', max: 10 },
+            { name: '科技感', max: 10 },
+            { name: '情感连接', max: 10 },
+            { name: '识别强度', max: 10 }
+          ],
           shape: 'polygon',
           splitNumber: 5,
           axisName: { color: '#1A1A1A', fontFamily: 'InstrumentSans, sans-serif', fontSize: 13 },
@@ -422,11 +313,9 @@ ${heroImage ? `  <meta property="og:image" content="${esc(heroImage)}">\n` : ''}
         },
         series: [{
           type: 'radar',
-          symbol: 'circle',
-          symbolSize: 6,
           data: [{
             value: data.values,
-            name: data.name || '品牌雷达',
+            name: data.name,
             lineStyle: { width: 2, color: color },
             itemStyle: { color: color },
             areaStyle: { color: color + '20' }
@@ -481,5 +370,4 @@ ${heroImage ? `  <meta property="og:image" content="${esc(heroImage)}">\n` : ''}
     })();
   </script>
 </body>
-</html>`;
-}
+</html>

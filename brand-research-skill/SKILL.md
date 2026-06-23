@@ -1,13 +1,13 @@
 ---
 name: "brand-research"
-description: "Generates a structured 8-dimension brand visual research report (logo / palette / typography / photography / tone / positioning / target user / selling points + 6-axis tone radar) from a brand name or website URL, saves it as a self-contained HTML page, and indexes it into a local brand library with a 30-day trash bin. Invoke when the user asks to research/analyze/decompose a brand's visual identity, or wants to add a new brand to the Kiwii brand-research hub."
+description: "Generates a structured 8-dimension brand visual research report (logo / palette / typography / photography / tone / positioning / target user / selling points + 6-axis tone radar) from a brand name or website URL, saves it as a self-contained HTML page, and indexes it into a local brand library with a 30-day trash bin. Invoke when the user asks to research/analyze/decompose a brand's visual identity, or wants to add a new brand to the {YOUR_BRAND} brand-research hub."
 ---
 
-# Brand Research (Kiwii)
+# Brand Research ({YOUR_BRAND})
 
 A reproducible brand-visual-research workflow. Given a brand name or homepage URL, it produces:
 
-- A self-contained **HTML report** (no build, no CDN) with 8 dimensions + tone radar + Kiwii takeaways
+- A self-contained **HTML report** (no build, no CDN) with 8 dimensions + tone radar + actionable takeaways
 - A **JSON index entry** in `brands/index.json` so the report appears in the local brand library
 - A **re-runnable** Node backend (port 8000) that serves the hub at `http://localhost:8000/`
 - **Trash bin** (`brands/trash.json`): 30-day retention with one-click restore; regenerating an already-trashed brand auto-restores it
@@ -77,7 +77,7 @@ This is idempotent and re-scans all reports. It also reconciles with the trash b
 
 ### 5. Compare brands
 
-Open `http://localhost:8000/compare.html?ids=id1,id2,id3,id4` (up to 4 ids) to see a side-by-side 8-dimension table + overlapping radar + Kiwii visual-north-star suggestions.
+Open `http://localhost:8000/compare.html?ids=id1,id2,id3,id4` (up to 4 ids) to see a side-by-side 8-dimension table + overlapping radar + visual-north-star suggestions.
 
 ### 6. LAN access
 

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trash · Brand Research Hub</title>
+  <style>
+    :root {
+      --bg: #FBF8F3;
+      --paper: #FFFFFF;
+      --ink: #1A1A1A;
+      --muted: #6B6B6B;
+      --rule: #E8E0D4;
+      --accent: #FF7A45;
+      --radius: 16px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'Consolas', 'SF Mono', monospace;
+      --page-max: 1920px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font-sans); background: var(--bg); color: var(--ink); }
+    a { color: var(--accent); text-decoration: none; }
+    .page { max-width: var(--page-max); margin: 0 auto; padding: 28px 20px 48px; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 2rem;
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+    .topbar nav {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .topbar nav a {
+      position: relative;
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0;
+      opacity: 0.72;
+      transition: opacity 0.15s ease, color 0.15s ease;
+    }
+    .topbar nav a:hover,
+    .topbar nav a.active {
+      opacity: 1;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .topbar nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.18s ease;
+    }
+    .topbar nav a:hover::after,
+    .topbar nav a.active::after { transform: scaleX(1); }
+    .brand-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+    .brand-link { display: inline-flex; align-items: baseline; gap: 0.5rem; color: inherit; }
+    .brand-logo .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .brand-logo em { font-style: italic; color: var(--accent); }
+    .hero, .card { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero { padding: 24px; margin-bottom: 20px; }
+    .hero h1 { margin: 0 0 8px; font-family: var(--font-serif); font-size: 28px; font-weight: 400; }
+    .hero p { margin: 0; color: var(--muted); line-height: 1.8; }
+    .stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: 18px 0 0; }
+    .stat { border: 1px solid var(--rule); border-radius: 14px; padding: 14px 16px; background: #fffdf8; }
+    .stat .label { color: var(--muted); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .stat .value { font-size: 26px; margin-top: 6px; font-family: var(--font-serif); }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 18px 0; }
+    .toolbar .hint { color: var(--muted); font-size: 13px; }
+    .toolbar button { border: 1px solid var(--rule); background: #fff; color: var(--ink); border-radius: 999px; padding: 10px 14px; cursor: pointer; }
+    .toolbar button:hover { border-color: var(--ink); }
+    .list { display: grid; gap: 14px; }
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 20px 22px;
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(180deg, #fff, #fffdf8);
+    }
+    .item h3 { margin: 0 0 8px; font-size: 18px; }
+    .meta { color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .meta code { background: #F4EFE6; padding: 1px 6px; border-radius: 4px; }
+    .actions { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+    .actions button, .actions a { border: 1px solid var(--rule); background: #fff; color: var(--ink); text-decoration: none; border-radius: 10px; padding: 10px 14px; cursor: pointer; text-align: center; min-width: 110px; }
+    .actions .restore:hover { background: #EFF7EE; border-color: #7FB069; }
+    .actions .purge:hover { background: #FFF1EE; border-color: #FF7A45; }
+    .empty { padding: 48px 20px; text-align: center; color: var(--muted); }
+    .empty .icon { font-family: var(--font-serif); font-size: 42px; color: var(--rule); margin-bottom: 10px; }
+    .pill { display: inline-block; background: #F4EFE6; border: 1px solid var(--rule); border-radius: 999px; padding: 4px 10px; font-size: 12px; margin-right: 8px; }
+    @media (max-width: 768px) {
+      .topbar, .toolbar, .item { grid-template-columns: 1fr; display: grid; }
+      .stats { grid-template-columns: 1fr; }
+      .item { grid-template-columns: 1fr; }
+      .actions { flex-direction: row; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-slot"></div>
+  <div class="page">
+    <section class="hero">
+      <h1>回收站</h1>
+      <p>删除的品牌案例会保留 30 天，可在这里恢复或永久删除。这个兼容页与浮层使用同一套 API。</p>
+      <div class="stats">
+        <div class="stat"><div class="label">总数</div><div class="value" id="stat-count">0</div></div>
+        <div class="stat"><div class="label">最近更新</div><div class="value" id="stat-updated">—</div></div>
+        <div class="stat"><div class="label">保留期限</div><div class="value" id="stat-retain">30 天</div></div>
+      </div>
+    </section>
+    <div class="toolbar card" style="padding:14px 16px;">
+      <div class="hint">提示：恢复后会重新回到品牌库；立即删除则无法找回。</div>
+      <button id="refresh-btn" type="button">刷新</button>
+    </div>
+    <main class="list" id="list"></main>
+  </div>
+  <script>
+    const listEl = document.getElementById('list');
+    const countEl = document.getElementById('stat-count');
+    const updatedEl = document.getElementById('stat-updated');
+    const retainEl = document.getElementById('stat-retain');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const activePage = 'trash';
+    function markActive() { const link = document.querySelector(`.topbar a[data-page="${activePage}"]`); if (link) link.classList.add('active'); }
+    function fmtDate(s) { if (!s) return '—'; try { return new Date(s).toLocaleString('zh-CN'); } catch { return s; } }
+    async function load() {
+      listEl.innerHTML = '<div class="empty"><div class="icon">…</div>加载中</div>';
+      const r = await fetch('/api/trash?t=' + Date.now());
+      const data = await r.json();
+      const items = data.items || [];
+      countEl.textContent = String(data.count ?? items.length ?? 0);
+      updatedEl.textContent = fmtDate(data.lastPurge?.at || data.updated || data.updatedAt || '');
+      retainEl.textContent = (data.items?.[0]?.retainDays || data.retainDays || 30) + ' 天';
+      if (!items.length) {
+        listEl.innerHTML = '<div class="card empty"><div class="icon">∅</div><div>回收站目前是空的。</div></div>';
+        return;
+      }
+      listEl.innerHTML = items.map((it) => {
+        const expire = it.expiresAt ? fmtDate(it.expiresAt) : '—';
+        return `
+          <section class="card item">
+            <div>
+              <div><span class="pill">${it.category || 'Brand'}</span><span class="pill">${it.country || '—'}</span></div>
+              <h3>${it.nameZh || it.name || it.id}</h3>
+              <div class="meta">
+                <div>删除时间：<code>${fmtDate(it.deletedAt)}</code></div>
+                <div>到期时间：<code>${expire}</code></div>
+                <div>ID：<code>${it.id}</code></div>
+              </div>
+            </div>
+            <div class="actions">
+              <button class="restore" data-id="${it.id}">恢复</button>
+              <button class="purge" data-id="${it.id}">立即删除</button>
+            </div>
+          </section>`;
+      }).join('');
+      listEl.querySelectorAll('.restore').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          if (!confirm('确定恢复这个品牌案例吗？')) return;
+          const r = await fetch('/api/trash/' + encodeURIComponent(btn.dataset.id) + '/restore', { method: 'POST' });
+          if (r.ok) load(); else alert((await r.json().catch(() => ({}))).error || '恢复失败');
+        });
+      });
+      listEl.querySelectorAll('.purge').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          if (!confirm('确定永久删除吗？此操作无法撤销。')) return;
+          const r = await fetch('/api/trash/' + encodeURIComponent(btn.dataset.id) + '/purge', { method: 'POST' });
+          if (r.ok) load(); else alert((await r.json().catch(() => ({}))).error || '删除失败');
+        });
+      });
+    }
+    fetch('./_shared/header.html').then(r => r.text()).then(html => { document.getElementById('header-slot').innerHTML = html; markActive(); });
+    refreshBtn.addEventListener('click', load);
+    load();
+  </script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 @echo off
 chcp 65001 >nul
-title Kiwii 品牌调研中心 · 停止服务
+title {YOUR_BRAND} 品牌调研中心 · 停止服务
 
 REM ============================================================
-REM   Kiwii Brand Research Hub · 停止脚本
+REM   {YOUR_BRAND} Brand Research Hub · 停止脚本
 REM   关闭 8000 端口上所有 Python http.server 进程
 REM ============================================================
 
@@ -11,7 +11,7 @@ setlocal
 
 echo.
 echo ============================================================
-echo   正在停止 Kiwii 品牌调研中心...
+echo   正在停止 {YOUR_BRAND} 品牌调研中心...
 echo ============================================================
 echo.
 
@@ -26,7 +26,8 @@ for /f "tokens=5" %%P in ('netstat -ano ^| findstr ":%PORT% " ^| findstr "LISTEN
 )
 
 REM 同时关闭可能存在的 python.exe 残留
-taskkill /F /IM python.exe /FI "WINDOWTITLE eq Kiwii*" >nul 2>&1
+taskkill /F /IM python.exe /FI "WINDOWTITLE eq Brand Research*" >nul 2>&1
+taskkill /F /IM node.exe /FI "WINDOWTITLE eq Brand Research*" >nul 2>&1
 
 if "%FOUND%"=="1" (
     echo.

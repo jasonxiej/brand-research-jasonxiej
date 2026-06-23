@@ -246,7 +246,7 @@ function main() {
   const out = {
     version: existing.version || '1.0.0',
     updated: new Date().toISOString().slice(0, 10),
-    description: existing.description || 'Kiwii 品牌调研库索引',
+    description: existing.description || '{YOUR_BRAND} 品牌调研库索引',
     brands: merged,
   };
 

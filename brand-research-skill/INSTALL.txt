@@ -1,4 +1,4 @@
-Kiwii Brand Research Skill · 一行安装速查
+{YOUR_BRAND} Brand Research Skill · 一行安装速查
 ============================================
 
 ## 1) 装 skill 到 agent 的 skills 目录

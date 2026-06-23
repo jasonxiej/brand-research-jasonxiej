@@ -1,9 +1,9 @@
 {
   "name": "brand-research",
   "version": "1.1.0",
-  "description": "Kiwii 品牌视觉调研 · 8 维结构化拆解 + 6 轴调性雷达，自动生成报告 + 沉淀到品牌库 + 多选横向对比",
+  "description": "品牌视觉调研 · 8 维结构化拆解 + 6 轴调性雷达，自动生成报告 + 沉淀到品牌库 + 多选横向对比",
   "author": {
-    "name": "Kiwii Brand Lab"
+    "name": "{YOUR_BRAND}"
   },
   "license": "MIT",
   "categories": ["research", "design", "brand", "productivity"],

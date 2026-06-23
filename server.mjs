@@ -1,6 +1,6 @@
 // server.mjs
 // ============================================================
-// Kiwii Brand Research Hub · Node 后端
+// {YOUR_BRAND} Brand Research Hub · Node 后端
 // 替代 python -m http.server，提供：
 //   - 静态文件服务（./）
 //   - POST /api/research  接收品牌名，启动调研
@@ -96,6 +96,20 @@ function sendJSON(res, status, data) {
   res.end(JSON.stringify(data));
 }
 
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    let chunks = [];
+    req.on('data', (c) => chunks.push(c));
+    req.on('end', () => {
+      const raw = Buffer.concat(chunks).toString('utf8');
+      if (!raw) return resolve({});
+      try { resolve(JSON.parse(raw)); }
+      catch (e) { reject(new Error('Invalid JSON: ' + e.message)); }
+    });
+    req.on('error', reject);
+  });
+}
+
 function sendText(res, status, text, type = 'text/plain; charset=utf-8') {
   res.writeHead(status, { 'Content-Type': type, 'Cache-Control': 'no-store' });
   res.end(text);
@@ -189,6 +203,7 @@ async function runJob(job, raw) {
       data: result.data,
       meta: result.meta,
       createdAt: new Date().toISOString().slice(0, 10),
+      userBrand: job.userBrand,
     });
     await fsp.writeFile(filePath, html, 'utf8');
     log({ level: 'success', msg: `✓ 报告已写入: ${fileName} (${(html.length / 1024).toFixed(1)} KB)` });
@@ -221,6 +236,68 @@ async function handleRefreshIndex(req, res) {
     sendJSON(res, 200, { ok: true, message: 'index 已刷新' });
   } catch (e) {
     sendJSON(res, 500, { ok: false, error: e.message });
+  }
+}
+
+// ---------- POST /api/config ----------
+// 把 API key / base URL / model 写入 .env，立即生效（同一进程的 researcher 会读到）
+async function handleConfigSave(req, res) {
+  try {
+    const body = await readBody(req);
+    const { apiKey, baseUrl, model } = body || {};
+
+    // 校验：至少要有一个字段
+    if (!apiKey && !baseUrl && !model) {
+      return sendJSON(res, 400, { error: '至少需要提供一个字段（apiKey / baseUrl / model）' });
+    }
+
+    const envPath = path.join(ROOT, '.env');
+    let envContent = '';
+    if (fs.existsSync(envPath)) envContent = fs.readFileSync(envPath, 'utf8');
+
+    function upsertEnv(content, key, value) {
+      // 不写入空字符串
+      if (!value && value !== 0) return content;
+      const re = new RegExp(`^${key}=.*$`, 'm');
+      const line = `${key}=${value}`;
+      if (re.test(content)) return content.replace(re, line);
+      return content.replace(/\n?$/, '\n') + line + '\n';
+    }
+
+    let updated = envContent;
+    if (apiKey)  updated = upsertEnv(updated, 'MINIMAX_API_KEY', apiKey);
+    if (baseUrl) updated = upsertEnv(updated, 'MINIMAX_BASE_URL', baseUrl);
+    if (model)   updated = upsertEnv(updated, 'MINIMAX_MODEL', model);
+
+    // 备份旧 .env
+    if (fs.existsSync(envPath)) {
+      const bakPath = envPath + '.bak.' + Date.now();
+      fs.copyFileSync(envPath, bakPath);
+    }
+    fs.writeFileSync(envPath, updated, 'utf8');
+
+    // 立即让本进程的 dotenv 重新加载（researcher.mjs 通过 dotenv.config 读取）
+    // 注：dotenv 不会覆盖已存在的 env var，需要重置
+    if (apiKey)  delete process.env.MINIMAX_API_KEY;
+    if (baseUrl) delete process.env.MINIMAX_BASE_URL;
+    if (model)   delete process.env.MINIMAX_MODEL;
+    // 重新解析 .env
+    const dotenv = await import('dotenv');
+    dotenv.config({ path: envPath, override: true });
+
+    // 重新加载 researcher 模块以读取新 env（require cache）
+    try {
+      const researcherUrl = require.resolve('./lib/researcher.mjs');
+      delete require.cache[researcherUrl];
+    } catch {}
+
+    sendJSON(res, 200, {
+      ok: true,
+      message: '已写入 .env，立即生效',
+      updated: { apiKey: !!apiKey, baseUrl: !!baseUrl, model: !!model },
+    });
+  } catch (e) {
+    sendJSON(res, 500, { error: e.message });
   }
 }
 
@@ -391,6 +468,7 @@ const server = http.createServer(async (req, res) => {
         },
       });
     }
+    if (p === '/api/config' && method === 'POST') return await handleConfigSave(req, res);
     if (p === '/api/research' && method === 'POST') return handleResearch(req, res);
     if (p === '/api/refresh-index' && method === 'POST') return handleRefreshIndex(req, res);
     const sseMatch = p.match(/^\/api\/research\/([0-9a-f-]+)\/events$/);
@@ -423,7 +501,7 @@ server.listen(PORT, HOST, () => {
   startupPurge();
   console.log('');
   console.log('═══════════════════════════════════════════════════════════════');
-  console.log('   Kiwii Brand Research Hub · Node 后端');
+  console.log('   {YOUR_BRAND} Brand Research Hub · Node 后端');
   console.log('═══════════════════════════════════════════════════════════════');
   console.log(`   监听地址 : http://${HOST}:${PORT}`);
   const lanIp = detectLanIp();

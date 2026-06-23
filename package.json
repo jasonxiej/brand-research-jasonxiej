@@ -1,9 +1,9 @@
 {
-  "name": "kiwii-brand-research-hub",
+  "name": "brand-research-hub",
   "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "Kiwii 品牌视觉调研中心 · 一键调研后端（Node + MiniMax M3）",
+  "description": "品牌视觉调研中心 · 一键调研后端（Node + MiniMax M3）",
   "main": "server.mjs",
   "scripts": {
     "start": "node server.mjs",

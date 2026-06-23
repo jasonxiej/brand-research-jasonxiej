@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kiwii 品牌调研库 · Brand Research Hub</title>
+  <title><span class="brand-name-slot">{YOUR_BRAND}</span> 品牌调研库 · Brand Research Hub</title>
 
   <style>
     @font-face {
@@ -50,7 +50,7 @@
       --font-serif: 'InstrumentSerif', Georgia, serif;
       --font-sans: 'InstrumentSans', Helvetica, Arial, sans-serif;
       --font-mono: 'GeistMono', 'Courier New', monospace;
-      --max: 1200px;
+      --max: 1920px;
       --radius: 14px;
       --radius-sm: 8px;
     }
@@ -71,7 +71,7 @@
 
     .page { max-width: var(--max); margin: 0 auto; padding: 0 2rem 5rem; }
 
-    /* Top bar */
+    
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.4rem 2rem;
@@ -100,7 +100,25 @@
     }
     .topbar nav a:hover { color: var(--accent); text-decoration: none; }
 
-    /* Hero */
+    
+    .settings-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .settings-btn:hover { color: var(--ink); border-color: var(--ink); }
+    .settings-btn svg { display: block; }
+
+    
     .hero {
       text-align: center;
       padding: 3rem 1rem 4rem;
@@ -129,7 +147,7 @@
       line-height: 1.8;
     }
 
-    /* Input section */
+    
     .input-card {
       background: var(--bg2);
       border: 1px solid var(--rule);
@@ -201,7 +219,7 @@
       color: var(--ink);
     }
 
-    /* Result / status panel */
+    
     .status-panel {
       max-width: 820px;
       margin: -2rem auto 4rem;
@@ -258,7 +276,7 @@
       background: var(--bg3); color: var(--ink);
     }
 
-    /* Section header */
+    
     .section-head {
       display: flex; align-items: baseline; justify-content: space-between;
       margin-bottom: 1.5rem;
@@ -299,7 +317,7 @@
     }
     .section-head .actions button.primary:not(:disabled):hover { background: var(--accent); border-color: var(--accent); }
 
-    /* Brand grid */
+    
     .brand-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -412,7 +430,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* Compare tray */
+    
     .compare-tray {
       position: fixed;
       bottom: 1.5rem; left: 50%;
@@ -459,7 +477,7 @@
     }
     .compare-tray button:hover { filter: brightness(1.1); }
 
-    /* Empty */
+    
     .empty {
       grid-column: 1 / -1;
       text-align: center;
@@ -474,7 +492,7 @@
     }
     .empty .msg { font-size: 0.95rem; }
 
-    /* Footer */
+    
     .footer {
       text-align: center;
       padding: 3rem 1rem 1rem;
@@ -485,7 +503,7 @@
     }
     .footer a { color: var(--accent3); }
 
-    /* LAN Share Card */
+    
     .lan-card {
       position: fixed; right: 20px; bottom: 20px; z-index: 9999;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -558,7 +576,611 @@
     }
     .lan-toast.show { opacity: 1; }
 
-    /* Responsive */
+    
+    .settings-overlay {
+      position: fixed; inset: 0;
+      background: rgba(26, 26, 26, 0.45);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .settings-overlay.show { opacity: 1; pointer-events: auto; }
+    .settings-modal {
+      background: var(--bg2);
+      border-radius: 16px;
+      width: 92%; max-width: 560px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      transform: translateY(8px);
+      transition: transform 0.2s;
+    }
+    .settings-overlay.show .settings-modal { transform: translateY(0); }
+    .settings-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .settings-head h2 {
+      font-family: var(--font-serif);
+      font-weight: 400; font-size: 1.3rem;
+    }
+    .settings-close {
+      background: none; border: none;
+      font-size: 1.5rem; color: var(--muted);
+      cursor: pointer; line-height: 1; padding: 0.2rem 0.4rem;
+    }
+    .settings-close:hover { color: var(--ink); }
+    .settings-body { padding: 1.2rem 1.4rem; }
+    .settings-body .hint {
+      font-size: 0.85rem; color: var(--muted);
+      line-height: 1.7; margin-bottom: 1rem;
+    }
+    .settings-body .hint code {
+      font-family: var(--font-mono);
+      background: var(--bg3); padding: 1px 6px; border-radius: 3px;
+      font-size: 0.82rem; color: var(--ink);
+    }
+    .field { margin-bottom: 0.9rem; }
+    .field label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .field input {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      padding: 0.6rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field input:focus { border-color: var(--accent); }
+    .field .field-hint {
+      font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem;
+    }
+    .settings-foot {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.4rem;
+      border-top: 1px solid var(--rule);
+      background: var(--bg);
+    }
+    .settings-foot .status {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .settings-foot .status.success { color: var(--accent2); }
+    .settings-foot .status.error { color: var(--accent); }
+    .settings-foot .actions { display: flex; gap: 0.6rem; }
+    .settings-foot button {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 1px solid var(--rule);
+      background: var(--bg2);
+      color: var(--ink);
+    }
+    .settings-foot button:hover { border-color: var(--ink); }
+    .settings-foot button.primary {
+      background: var(--ink); color: var(--bg2);
+      border-color: var(--ink);
+    }
+    .settings-foot button.primary:hover { background: var(--accent); border-color: var(--accent); }
+    .settings-foot button.primary:disabled { background: var(--muted); border-color: var(--muted); cursor: not-allowed; }
+
+    
+    .status-panel .panel-head {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .status-panel .panel-status {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background: var(--bg3);
+      color: var(--muted);
+    }
+    .status-panel .panel-status.running { background: rgba(255, 122, 69, 0.14); color: var(--accent); }
+    .status-panel .panel-status.done    { background: rgba(127, 176, 105, 0.18); color: var(--accent2); }
+    .status-panel .panel-status.failed  { background: rgba(255, 122, 69, 0.22); color: var(--accent); }
+    .status-panel .panel-close {
+      margin-left: auto;
+      background: none; border: none;
+      font-size: 1.1rem; color: var(--muted);
+      cursor: pointer; line-height: 1; padding: 0 0.4rem;
+    }
+    .status-panel .panel-close:hover { color: var(--ink); }
+    .log-stream {
+      margin-top: 0.7rem;
+      max-height: 220px;
+      overflow: auto;
+      background: #16181D;
+      color: #E8E0D4;
+      border-radius: 6px;
+      padding: 0.7rem 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      display: none;
+    }
+    .log-stream.show { display: block; }
+    .log-line { display: block; }
+    .log-line.info    { color: #C9D1D9; }
+    .log-line.success { color: #7FB069; }
+    .log-line.warn    { color: #E0B85C; }
+    .log-line.error   { color: #FF7A45; }
+    .log-line .ts { color: #6B6B6B; margin-right: 6px; }
+
+    
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(26, 26, 26, 0.45);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 11000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .modal-overlay.show { opacity: 1; pointer-events: auto; }
+    .modal-card {
+      background: var(--bg2);
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      transform: translateY(8px);
+      transition: transform 0.2s;
+    }
+    .modal-overlay.show .modal-card { transform: translateY(0); }
+
+    
+    .report-modal {
+      width: 94%; max-width: 1100px; height: 86vh;
+      display: flex; flex-direction: column;
+    }
+    .report-head {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .report-title-wrap { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+    .report-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    #report-title {
+      font-family: var(--font-serif);
+      font-weight: 400; font-size: 1.15rem;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .report-actions { display: flex; align-items: center; gap: 0.4rem; }
+    .report-btn, .report-close {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      border-radius: 5px;
+      padding: 0.4rem 0.7rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .report-btn:hover, .report-close:hover { color: var(--ink); border-color: var(--ink); text-decoration: none; }
+    .report-close { font-size: 1.1rem; line-height: 1; padding: 0.2rem 0.55rem; }
+    .report-body { flex: 1; background: var(--bg); }
+    #report-iframe { width: 100%; height: 100%; border: 0; background: var(--bg); }
+
+    
+    .trash-modal {
+      width: 94%; max-width: 760px;
+      max-height: 86vh; display: flex; flex-direction: column;
+    }
+    .trash-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .trash-head h2 {
+      font-family: var(--font-serif);
+      font-weight: 400; font-size: 1.3rem;
+    }
+    .trash-head h2 .trash-retain {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-left: 0.4rem;
+    }
+    .trash-close {
+      background: none; border: none;
+      font-size: 1.5rem; color: var(--muted);
+      cursor: pointer; line-height: 1; padding: 0.2rem 0.4rem;
+    }
+    .trash-close:hover { color: var(--ink); }
+    .trash-body { padding: 1.1rem 1.3rem; overflow: auto; }
+    .trash-toolbar {
+      display: flex; gap: 0.8rem; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    .trash-toolbar .hint {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.6;
+      max-width: 480px;
+    }
+    .trash-toolbar .hint code {
+      font-family: var(--font-mono);
+      background: var(--bg3); padding: 1px 6px; border-radius: 3px;
+      color: var(--ink); font-size: 0.82rem;
+    }
+    .trash-actions-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .trash-actions-bar button {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.8rem;
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .trash-actions-bar button:hover { color: var(--ink); border-color: var(--ink); }
+    .trash-list { display: grid; gap: 0.8rem; }
+    .trash-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 0.95rem 1.1rem;
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      background: linear-gradient(180deg, #fff, #fffdf8);
+    }
+    .trash-item h4 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem; font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+    .trash-pills { margin-bottom: 0.4rem; }
+    .trash-pills .pill {
+      display: inline-block;
+      background: var(--bg3); border: 1px solid var(--rule);
+      border-radius: 999px; padding: 2px 9px;
+      font-family: var(--font-mono); font-size: 0.7rem;
+      color: var(--muted); margin-right: 0.4rem;
+    }
+    .trash-meta {
+      color: var(--muted); font-size: 0.82rem; line-height: 1.7;
+    }
+    .trash-meta code {
+      font-family: var(--font-mono);
+      background: var(--bg3); padding: 1px 5px; border-radius: 3px;
+      color: var(--ink); font-size: 0.78rem;
+    }
+    .trash-buttons {
+      display: flex; flex-direction: column; gap: 0.4rem; justify-content: center;
+    }
+    .trash-buttons button {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.85rem;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 1px solid var(--rule);
+      background: white;
+      color: var(--ink);
+      min-width: 100px;
+    }
+    .trash-buttons button.restore { color: var(--accent2); border-color: rgba(127,176,105,0.4); }
+    .trash-buttons button.restore:hover { background: #EFF7EE; border-color: var(--accent2); }
+    .trash-buttons button.purge { color: var(--accent); border-color: rgba(255,122,69,0.4); }
+    .trash-buttons button.purge:hover { background: #FFF1EE; border-color: var(--accent); }
+    .trash-empty {
+      text-align: center; padding: 2.5rem 1rem; color: var(--muted);
+    }
+    .trash-empty .icon {
+      font-family: var(--font-serif);
+      font-size: 2rem; color: var(--rule); margin-bottom: 0.4rem;
+    }
+
+    
+    .brand-name-slot {
+      font-style: normal;
+      transition: color 0.2s;
+    }
+
+
+    /* ===== Compare Overlay ===== */
+    .compare-overlay {
+      position: fixed; inset: 0;
+      background: rgba(26, 26, 26, 0.45);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 11500;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+      padding: 2rem;
+    }
+    .compare-overlay.show { opacity: 1; pointer-events: auto; }
+    .compare-modal {
+      background: var(--bg);
+      border-radius: 16px;
+      width: 100%; max-width: 1920px;
+      max-height: 92vh;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transform: translateY(8px);
+      transition: transform 0.2s;
+    }
+    .compare-overlay.show .compare-modal { transform: translateY(0); }
+
+    .compare-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.6rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--bg2);
+      flex-shrink: 0;
+    }
+    .compare-head .compare-title-wrap {
+      display: flex; flex-direction: column; min-width: 0; flex: 1;
+    }
+    .compare-head .compare-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .compare-head h2 {
+      font-family: var(--font-serif);
+      font-weight: 400; font-size: 1.3rem;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .compare-head .compare-actions {
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .compare-close {
+      background: none; border: 1px solid var(--rule);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem; color: var(--muted);
+      cursor: pointer; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .compare-close:hover { color: var(--ink); border-color: var(--ink); background: var(--bg3); }
+
+    .compare-body {
+      overflow-y: auto;
+      padding: 1.6rem 2rem 2.4rem;
+      flex: 1;
+    }
+
+    /* Picker inside overlay */
+    .compare-picker {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      padding: 1.35rem;
+      margin-bottom: 1.4rem;
+    }
+    .compare-picker .cp-head {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .compare-picker .cp-head h3 {
+      font-family: var(--font-serif); font-weight: 400; font-size: 1.2rem;
+    }
+    .compare-picker .cp-hint { color: var(--muted); font-size: 0.85rem; }
+    .compare-picker .cp-list {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      min-height: 48px; padding: 0.5rem 0;
+    }
+    .compare-picker .cp-empty {
+      color: var(--muted); font-size: 0.9rem; padding: 1rem 0;
+    }
+    .compare-chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--bg3); border: 1px solid var(--rule);
+      border-radius: 999px; padding: 0.4rem 0.85rem;
+      font-size: 0.88rem;
+    }
+    .compare-chip .chip-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .compare-chip .chip-remove {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); font-size: 1rem; line-height: 1; padding: 0 0.1rem;
+    }
+    .compare-chip .chip-remove:hover { color: var(--accent); }
+    .compare-picker .cp-foot {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      margin-top: 1rem; flex-wrap: wrap;
+    }
+    .compare-picker .cp-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .compare-picker select {
+      font-family: var(--font-sans); font-size: 0.88rem;
+      padding: 0.5rem 0.8rem; border: 1px solid var(--rule);
+      border-radius: var(--radius-sm); background: white; color: var(--ink); cursor: pointer;
+    }
+    .compare-picker select:disabled { color: var(--muted); cursor: not-allowed; opacity: 0.6; }
+    .compare-picker .cp-btn {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.55rem 1rem; border: 1px solid var(--rule);
+      border-radius: var(--radius-sm); background: white; color: var(--ink); cursor: pointer;
+    }
+    .compare-picker .cp-btn:hover:not(:disabled) {
+      border-color: var(--accent); color: var(--accent);
+    }
+    .compare-picker .cp-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .compare-picker .cp-status { color: var(--muted); font-size: 0.85rem; }
+
+    /* Compare table */
+    .compare-table-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      padding: 0;
+      overflow: hidden;
+      margin-bottom: 1.4rem;
+    }
+    .compare-table-card .ct-scroll { overflow-x: auto; }
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th, .compare-table td {
+      padding: 1rem 1.1rem; text-align: left; vertical-align: top;
+      border-bottom: 1px solid var(--rule);
+    }
+    .compare-table th {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); background: var(--bg3); font-weight: 400; width: 160px;
+    }
+    .compare-table tr:last-child th, .compare-table tr:last-child td { border-bottom: 0; }
+    .compare-table .col-cell { min-width: 180px; }
+    .compare-table .brand-cell {
+      font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.2;
+    }
+    .compare-table .brand-cell .meta {
+      display: block; font-family: var(--font-mono); font-size: 0.7rem;
+      color: var(--muted); letter-spacing: 0.05em; margin-top: 0.3rem; text-transform: uppercase;
+    }
+    .compare-table .tagline-cell {
+      font-style: italic; color: var(--accent); font-family: var(--font-serif);
+    }
+    .compare-table .radar-cell { font-size: 0.85rem; line-height: 1.7; }
+    .compare-table .radar-cell .rd-row {
+      display: flex; justify-content: space-between; gap: 0.5rem;
+      padding: 0.18rem 0; border-bottom: 1px dashed transparent;
+    }
+    .compare-table .radar-cell .rd-row .k { color: var(--muted); }
+    .compare-table .radar-cell .rd-row .v { font-family: var(--font-mono); font-size: 0.82rem; }
+    .compare-table .radar-cell .bar {
+      display: inline-block; height: 4px; background: var(--accent);
+      border-radius: 2px; vertical-align: middle; margin-left: 0.4rem; opacity: 0.65;
+    }
+    .swatch-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .swatch {
+      width: 36px; height: 36px; border-radius: 8px;
+      border: 1px solid var(--rule);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .swatch-hex {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      color: var(--muted); display: block; margin-top: 0.25rem;
+    }
+
+    /* Chart card */
+    .compare-chart-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      padding: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    #compare-radar-chart { width: 100%; min-height: 460px; }
+
+    /* Palette gallery */
+    .compare-palette-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .compare-palette-card {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+    .compare-palette-card .pc-head {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;
+    }
+    .compare-palette-card .pc-head .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .compare-palette-card .pc-head h4 {
+      font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400;
+    }
+    .compare-palette-card .pc-head .meta {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      color: var(--muted); letter-spacing: 0.05em;
+      text-transform: uppercase; margin-left: auto;
+    }
+    .compare-palette-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem;
+    }
+    .compare-palette-strip .ps {
+      aspect-ratio: 1 / 1.4; border-radius: 10px; position: relative;
+      border: 1px solid var(--rule); overflow: hidden;
+    }
+    .compare-palette-strip .ps .label {
+      position: absolute; left: 0.4rem; right: 0.4rem; bottom: 0.4rem;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      padding: 0.1rem 0.3rem; border-radius: 4px;
+      background: rgba(255,255,255,0.85); color: var(--ink);
+    }
+
+    /* Takeaway */
+    .compare-takeaway {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      padding: 1.2rem 1.4rem;
+    }
+    .compare-takeaway h3 {
+      font-family: var(--font-serif); font-weight: 400;
+      margin-bottom: 0.8rem; font-size: 1.2rem;
+    }
+    .compare-takeaway ol { padding-left: 1.4rem; }
+    .compare-takeaway ol li { margin-bottom: 0.5rem; line-height: 1.7; }
+
+    /* Section head inside overlay */
+    .compare-section-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 1rem; margin: 1.4rem 0 0.8rem; flex-wrap: wrap;
+    }
+    .compare-section-head h2 {
+      font-family: var(--font-serif); font-weight: 400; font-size: 1.35rem;
+    }
+    .compare-section-head .meta { color: var(--muted); font-size: 0.9rem; }
+
+    .compare-state-banner {
+      padding: 1.5rem; text-align: center;
+      color: var(--muted);
+      font-family: var(--font-mono); font-size: 0.85rem;
+    }
+
     @media (max-width: 768px) {
       .page { padding: 0 1rem 4rem; }
       .topbar { padding: 1rem; }
@@ -573,7 +1195,61 @@
         flex-wrap: wrap;
       }
       .compare-tray.show { transform: translateX(0) translateY(0); }
+      .report-modal { height: 90vh; }
+      .trash-modal { max-height: 92vh; }
+      .trash-item { grid-template-columns: 1fr; }
+      .trash-buttons { flex-direction: row; flex-wrap: wrap; }
+      .compare-overlay { padding: 0.5rem; }
+      .compare-body { padding: 1rem 1.2rem 1.6rem; }
+      .compare-table th { width: 110px; padding: 0.7rem 0.6rem; font-size: 0.65rem; }
+      .compare-table th, .compare-table td { padding: 0.7rem 0.6rem; }
+      #compare-radar-chart { min-height: 360px; }
     }
+
+    /* ===== Brand card delete (×) button ===== */
+    .brand-card .delete-btn {
+      position: absolute;
+      top: 0.6rem; right: 0.6rem;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--rule);
+      background: var(--bg2);
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; line-height: 1;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s, color 0.15s, border-color 0.15s, background 0.15s;
+      z-index: 2;
+      padding: 0;
+    }
+    .brand-card:hover .delete-btn,
+    .brand-card .delete-btn:focus { opacity: 1; }
+    .brand-card .delete-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: #FFF1EE;
+    }
+    .brand-card .delete-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ===== Language toggle button ===== */
+    .lang-toggle-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      min-width: 44px;
+      justify-content: center;
+    }
+    .lang-toggle-btn:hover { color: var(--ink); border-color: var(--ink); }
   </style>
 </head>
 <body>
@@ -581,26 +1257,35 @@
   <header class="topbar">
     <div class="brand-logo">
       <span class="dot"></span>
-      <span>Kiwii <em>Brand Lab</em></span>
+      <span><span class="brand-name-slot">{YOUR_BRAND}</span> <em>Brand Lab</em></span>
     </div>
     <nav>
-      <a href="#home">Home</a>
-      <a href="#library">Library</a>
-      <a href="compare.html">Compare</a>
-      <a href="README.md">Docs</a>
+      <a href="#home" data-i18n="nav.home">Home</a>
+      <a href="#library" data-i18n="nav.library">Library</a>
+      <a href="#" data-compare-trigger data-i18n="nav.compare">Compare</a>
+      <a href="#" data-trash-trigger data-i18n="nav.trash">Trash</a>
+      <a href="README.md" data-i18n="nav.docs">Docs</a>
+      <button id="lang-toggle" type="button" class="lang-toggle-btn" title="切换语言" aria-label="切换语言">中</button>
+      <button id="settings-btn" type="button" class="settings-btn" title="设置" aria-label="设置">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span data-i18n="nav.settings">设置</span>
+      </button>
     </nav>
   </header>
 
   <div class="page">
 
-    <!-- HERO -->
+    
     <section class="hero" id="home">
-      <div class="hero-label">Brand Research · Hub</div>
-      <h1>让<em>品牌视觉</em>调研<br>成为 Kiwii 的常态</h1>
-      <p>输入品牌名 → 触发 brand-research skill → 自动生成 8 维结构化报告 + 雷达图，沉淀到本地品牌库，与 Kiwii 现有对标品牌做横向对比。</p>
+      <div class="hero-label" data-i18n="hero.label">Brand Research · Hub</div>
+      <h1 data-i18n="hero.title">让<em>品牌视觉</em>调研<br>成为 {YOUR_BRAND} 的常态</h1>
+      <p data-i18n="hero.subtitle">输入品牌名 → 触发 brand-research skill → 自动生成 8 维结构化报告 + 雷达图，沉淀到本地品牌库，与 {YOUR_BRAND} 现有对标品牌做横向对比。</p>
     </section>
 
-    <!-- INPUT -->
+    
     <div class="input-card" id="generator">
       <h2>开始一次新的品牌调研</h2>
       <p class="input-desc">输入品牌名（如 "Hatch"）或品牌官网 URL（如 "https://www.hatch.co"），然后让 brand-research skill 接手。生成完毕后页面会出现在下方「品牌库」。</p>
@@ -610,26 +1295,32 @@
       </div>
     </div>
     <p class="input-hint">
-      提示：点击 <code>调研</code> 后，会在本地草稿 <code>pending/<code id="pending-file">pending-brand.md</code></code> 中写入提示词，方便你直接复制给 Trae 对话或 Trae CLI 触发 skill。
+      提示：点击 <code>调研</code> 会通过 <code>POST /api/research</code> 启动后台任务，并订阅 <code>/api/research/:id/events</code> SSE 实时回传日志；完成后会自动刷新下方品牌库。
       也可以使用 <code>node scripts/refresh-index.js</code> 手动刷新品牌库索引。
     </p>
 
-    <!-- STATUS PANEL -->
+    
     <div class="status-panel" id="status-panel">
       <div class="panel-inner">
-        <div class="panel-title" id="status-title">等待生成</div>
-        <div class="panel-body" id="status-body">—</div>
+        <div class="panel-head">
+          <div class="panel-title" id="status-title">等待生成</div>
+          <span class="panel-status" id="panel-status">空闲</span>
+          <button class="panel-close" id="status-close" type="button" aria-label="关闭" title="关闭">×</button>
+        </div>
+        <div class="panel-body" id="status-body">在状态面板查看实时日志；后台调研完成后会自动刷新下方品牌库。</div>
+        <pre class="log-stream" id="log-stream" aria-live="polite"></pre>
         <div class="panel-actions" id="status-actions"></div>
       </div>
     </div>
 
-    <!-- LIBRARY -->
+    
     <section id="library" style="margin-top: 2rem;">
       <div class="section-head">
         <h2>品牌库</h2>
         <div class="actions">
           <span class="meta" id="library-meta">0 个品牌</span>
           <button id="refresh-btn" type="button">刷新</button>
+          <button id="trash-btn" type="button" data-trash-trigger>回收站</button>
           <button id="compare-btn" type="button" class="primary" disabled>对比所选 (0)</button>
         </div>
       </div>
@@ -643,12 +1334,126 @@
     </section>
 
     <footer class="footer">
-      Kiwii Brand Research Hub · v1.0 · 生成时间 <span id="footer-date"></span><br>
+      <span class="brand-name-slot">{YOUR_BRAND}</span> Brand Research Hub · v1.0 · 生成时间 <span id="footer-date"></span><br>
       Powered by <code>consulting-analysis</code> + <code>brand-research</code> skills
     </footer>
   </div>
 
-  <!-- Compare tray -->
+  
+  <div class="compare-overlay" id="compare-overlay" aria-hidden="true">
+    <div class="compare-modal" role="dialog" aria-labelledby="compare-title" aria-modal="true">
+      <div class="compare-head">
+        <div class="compare-title-wrap">
+          <span class="compare-label">品牌对比 · Brand Comparison</span>
+          <h2 id="compare-title">并排对比 · Side-by-side</h2>
+        </div>
+        <div class="compare-actions">
+          <button class="compare-close" id="compare-close" type="button" aria-label="关闭对比浮层" title="关闭 (Esc)">×</button>
+        </div>
+      </div>
+      <div class="compare-body">
+        <!-- Picker -->
+        <div class="compare-picker">
+          <div class="cp-head">
+            <h3>对比品牌（2 – 4 个）</h3>
+            <span class="cp-hint">在此添加或移除品牌，也可返回品牌库调整。</span>
+          </div>
+          <div class="cp-list" id="cp-list"></div>
+          <div class="cp-foot">
+            <span class="cp-status" id="cp-status">尚未选择品牌</span>
+            <div class="cp-actions">
+              <select id="cp-add" aria-label="添加品牌到对比"></select>
+              <button type="button" id="cp-remove-all" class="cp-btn">清空全部</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result area -->
+        <div id="compare-result" style="display:none;">
+          <div class="compare-section-head">
+            <h2>1 · 对比总览</h2>
+            <div class="meta" id="compare-t-meta">0 个品牌</div>
+          </div>
+          <div class="compare-table-card">
+            <div class="ct-scroll">
+              <table class="compare-table" id="compare-table"></table>
+            </div>
+          </div>
+
+          <div class="compare-section-head">
+            <h2>2 · 6 维风格雷达</h2>
+            <div class="meta">克制 · 温度感 · 游戏化 · 科技感 · 情感连接 · 识别强度</div>
+          </div>
+          <div class="compare-chart-card">
+            <div id="compare-radar-chart"></div>
+          </div>
+
+          <div class="compare-section-head">
+            <h2>3 · 主色板并排对比</h2>
+            <div class="meta">每品牌展示 4 个主色</div>
+          </div>
+          <div class="compare-palette-gallery" id="compare-palette-gallery"></div>
+
+          <div class="compare-section-head">
+            <h2>4 · 可执行建议</h2>
+            <div class="meta">基于本次对比的可执行洞察</div>
+          </div>
+          <div class="compare-takeaway">
+            <h3>可执行建议 · Actionable Insights</h3>
+            <ol id="compare-takeaway-list"></ol>
+          </div>
+        </div>
+
+        <div id="compare-result-empty" class="compare-state-banner">
+          至少选择 2 个品牌开始对比。
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay" id="report-overlay" aria-hidden="true">
+    <div class="modal-card report-modal" role="dialog" aria-labelledby="report-title" aria-modal="true">
+      <div class="report-head">
+        <div class="report-title-wrap">
+          <span class="report-label">报告预览 · Report</span>
+          <h2 id="report-title">—</h2>
+        </div>
+        <div class="report-actions">
+          <a id="report-open-new" href="#" target="_blank" rel="noopener noreferrer" class="report-btn">新窗口打开 ↗</a>
+          <button class="report-close" id="report-close" type="button" aria-label="关闭报告">×</button>
+        </div>
+      </div>
+      <div class="report-body">
+        <iframe id="report-iframe" title="报告预览" src="about:blank" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal-overlay" id="trash-overlay" aria-hidden="true">
+    <div class="modal-card trash-modal" role="dialog" aria-labelledby="trash-title" aria-modal="true">
+      <div class="trash-head">
+        <h2 id="trash-title" data-i18n="trash.title">回收站 · 30 天保留<span class="trash-retain" id="trash-retain"></span></h2>
+        <button class="trash-close" id="trash-close" type="button" aria-label="关闭回收站">×</button>
+      </div>
+      <div class="trash-body">
+        <div class="trash-toolbar">
+          <div class="hint">
+            删除的品牌案例会保留 <code>30</code> 天，到期后由服务端自动清理。<br>
+            按钮说明：<strong>恢复</strong> = 重新回到下方品牌库；<strong>立即删除</strong> = 永久清除（无法恢复）。
+          </div>
+          <div class="trash-actions-bar">
+            <button id="trash-refresh" type="button">刷新</button>
+            <button id="trash-purge-expired" type="button">清理过期项</button>
+          </div>
+        </div>
+        <div class="trash-list" id="trash-list"></div>
+      </div>
+    </div>
+  </div>
+
+  
   <div class="compare-tray" id="compare-tray">
     <div class="count">已选 <strong id="tray-count">0</strong> 个</div>
     <div class="tray-tags" id="tray-tags"></div>
@@ -657,7 +1462,10 @@
   </div>
 
   <script>
-    // 1. 加载品牌库
+
+    const escAttr = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+
     const grid = document.getElementById('brand-grid');
     const meta = document.getElementById('library-meta');
     const compareBtn = document.getElementById('compare-btn');
@@ -696,25 +1504,67 @@
         const colors = (b.primaryColors || []).map((c) => `<div class="c" style="background:${c}"></div>`).join('');
         const sel = selectedIds.has(b.id);
         return `
-        <div class="brand-card ${sel ? 'selected' : ''}" data-id="${b.id}">
+        <div class="brand-card ${sel ? 'selected' : ''}" data-id="${escAttr(b.id)}">
           <div class="check"></div>
+          <button class="delete-btn" type="button" data-delete-id="${escAttr(b.id)}" aria-label="删除品牌" title="删除到回收站">×</button>
           <div class="brand-meta">
-            <span class="pill">${b.category || 'Brand'}</span>
-            ${b.country ? '<span>· ' + b.country + '</span>' : ''}
+            <span class="pill">${escAttr(b.category || 'Brand')}</span>
+            ${b.country ? '<span>· ' + escAttr(b.country) + '</span>' : ''}
           </div>
-          <h3>${b.nameZh || b.name}</h3>
-          ${b.tagline ? '<div class="tagline">"' + b.tagline + '"</div>' : ''}
-          <div class="summary">${b.summary || ''}</div>
+          <h3>${escAttr(b.nameZh || b.name || b.id)}</h3>
+          ${b.tagline ? '<div class="tagline">"' + escAttr(b.tagline) + '"</div>' : ''}
+          <div class="summary">${escAttr(b.summary || '')}</div>
           <div class="colors">${colors}</div>
           <div class="footer">
-            <span class="date">${b.createdAt || ''}</span>
-            <a class="open" href="${b.reportUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">查看报告 →</a>
+            <span class="date">${escAttr(b.createdAt || '')}</span>
+            <a class="open" href="#" data-report-url="${escAttr(b.reportUrl || '')}" data-report-name="${escAttr(b.nameZh || b.name || '')}" onclick="event.stopPropagation();return false;">查看报告 →</a>
           </div>
         </div>`;
       }).join('');
 
       grid.querySelectorAll('.brand-card').forEach((card) => {
         card.addEventListener('click', () => toggleSelect(card.dataset.id));
+      });
+
+      grid.querySelectorAll('.open[data-report-url]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const url = a.getAttribute('data-report-url') || '';
+          const name = a.getAttribute('data-report-name') || '报告';
+          if (url) openReportModal(url, name);
+        });
+      });
+
+      grid.querySelectorAll('.delete-btn[data-delete-id]').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const id = btn.getAttribute('data-delete-id');
+          if (!id) return;
+          if (!confirm('确定删除这个品牌案例吗？它会进入回收站并保留 30 天。')) return;
+          btn.disabled = true;
+          try {
+            const r = await fetch('/api/trash', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id }),
+            });
+            if (!r.ok) {
+              const data = await r.json().catch(() => ({}));
+              alert('删除失败：' + (data.error || ('HTTP ' + r.status)));
+              btn.disabled = false;
+              return;
+            }
+            // Remove from local selection if present, then refresh
+            if (selectedIds.has(id)) selectedIds.delete(id);
+            await loadLibrary();
+            updateTray();
+          } catch (err) {
+            alert('删除失败：' + (err?.message || err));
+            btn.disabled = false;
+          }
+        });
       });
     }
 
@@ -738,7 +1588,7 @@
       compareBtn.disabled = n < 2;
       trayCount.textContent = n;
       const selected = brands.filter((b) => selectedIds.has(b.id));
-      trayTags.innerHTML = selected.map((b) => `<span class="tray-tag">${b.nameZh || b.name}</span>`).join('');
+      trayTags.innerHTML = selected.map((b) => `<span class="tray-tag">${b.name || b.nameZh}</span>`).join('');
       tray.classList.toggle('show', n > 0);
     }
 
@@ -756,83 +1606,515 @@
         alert('请至少选择 2 个品牌进行对比。');
         return;
       }
-      const ids = Array.from(selectedIds).join(',');
-      window.location.href = './compare.html?ids=' + encodeURIComponent(ids);
+      openCompareOverlay();
     }
 
-    // 2. 输入 → 写 pending 文件 + 给出提示
+    // Defer to the compare overlay module (defined later in the page)
+    function openCompareOverlay() {
+      if (typeof window.__compareOverlay === 'function') {
+        window.__compareOverlay();
+      } else {
+        // Fallback: if module not yet ready, wait a tick.
+        setTimeout(() => {
+          if (typeof window.__compareOverlay === 'function') window.__compareOverlay();
+          else alert('对比浮层尚未就绪，请稍后重试。');
+        }, 50);
+      }
+    }
+
+
     const input = document.getElementById('brand-input');
     const btn = document.getElementById('generate-btn');
     const statusPanel = document.getElementById('status-panel');
     const statusTitle = document.getElementById('status-title');
     const statusBody = document.getElementById('status-body');
     const statusActions = document.getElementById('status-actions');
-    const pendingFile = document.getElementById('pending-file');
+    const panelStatus = document.getElementById('panel-status');
+    const logStream = document.getElementById('log-stream');
+    const statusClose = document.getElementById('status-close');
 
-    function slugify(s) {
-      return s.toLowerCase().trim()
-        .replace(/^https?:\/\/(www\.)?/, '')
-        .replace(/[\/\?#].*$/, '')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '')
-        .slice(0, 40) || 'brand';
+    function setPanelStatus(text, kind) {
+      panelStatus.textContent = text;
+      panelStatus.classList.remove('running', 'done', 'failed');
+      if (kind) panelStatus.classList.add(kind);
     }
 
-    btn.addEventListener('click', () => {
+    function appendLog(level, msg, ts) {
+      if (!logStream) return;
+      logStream.classList.add('show');
+      const line = document.createElement('span');
+      line.className = 'log-line ' + (level || 'info');
+      const t = ts ? new Date(ts) : new Date();
+      const hh = String(t.getHours()).padStart(2, '0');
+      const mm = String(t.getMinutes()).padStart(2, '0');
+      const ss = String(t.getSeconds()).padStart(2, '0');
+      line.innerHTML = '<span class="ts">' + hh + ':' + mm + ':' + ss + '</span>' + escHtml(msg);
+      logStream.appendChild(line);
+      logStream.scrollTop = logStream.scrollHeight;
+    }
+
+    function escHtml(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    function clearLog() {
+      if (!logStream) return;
+      logStream.innerHTML = '';
+    }
+
+    function closeStatusPanel() {
+      statusPanel.classList.remove('show');
+    }
+
+    statusClose.addEventListener('click', closeStatusPanel);
+
+    let activeJobId = null;
+    let activeJobES = null;
+
+    function teardownActiveJob() {
+      if (activeJobES) {
+        try { activeJobES.close(); } catch {}
+        activeJobES = null;
+      }
+      activeJobId = null;
+    }
+
+    function subscribeSSE(jobId) {
+      teardownActiveJob();
+      activeJobId = jobId;
+      const url = '/api/research/' + encodeURIComponent(jobId) + '/events';
+      let es;
+      try {
+        es = new EventSource(url);
+      } catch (e) {
+        appendLog('error', 'SSE 连接失败：' + (e?.message || e));
+        return;
+      }
+      activeJobES = es;
+
+      es.onopen = function () {
+        appendLog('info', '▶ 已连接 SSE：' + url);
+      };
+
+      es.onmessage = function (ev) {
+        if (!ev.data) return;
+        let evt = null;
+        try { evt = JSON.parse(ev.data); } catch { return; }
+        appendLog(evt.level || 'info', evt.msg || JSON.stringify(evt), evt.ts);
+      };
+
+      es.addEventListener('done', function (ev) {
+        let payload = {};
+        try { payload = JSON.parse(ev.data || '{}'); } catch {}
+        if (payload.ok) {
+          setPanelStatus('已完成', 'done');
+          appendLog('success', '🎉 调研完成，刷新品牌库…');
+          btn.disabled = false;
+          btn.textContent = '调研';
+
+          loadLibrary();
+
+          if (payload.reportUrl) {
+            statusActions.innerHTML = '';
+            const openLink = document.createElement('a');
+            openLink.href = '#';
+            openLink.textContent = '打开报告（浮层）';
+            openLink.addEventListener('click', function (e) {
+              e.preventDefault();
+              openReportModal(payload.reportUrl, payload.brand || '报告');
+            });
+            const newWinLink = document.createElement('a');
+            newWinLink.href = payload.reportUrl;
+            newWinLink.target = '_blank';
+            newWinLink.rel = 'noopener noreferrer';
+            newWinLink.textContent = '新窗口打开 ↗';
+            const refreshLink = document.createElement('a');
+            refreshLink.href = '#';
+            refreshLink.className = 'secondary';
+            refreshLink.textContent = '刷新品牌库';
+            refreshLink.addEventListener('click', function (e) {
+              e.preventDefault();
+              loadLibrary();
+            });
+            statusActions.appendChild(openLink);
+            statusActions.appendChild(newWinLink);
+            statusActions.appendChild(refreshLink);
+          }
+        } else {
+          setPanelStatus('失败', 'failed');
+          appendLog('error', '✗ 调研失败：' + (payload.error || '未知错误'));
+          btn.disabled = false;
+          btn.textContent = '调研';
+        }
+        try { es.close(); } catch {}
+        if (activeJobES === es) activeJobES = null;
+      });
+
+      es.onerror = function () {
+
+        appendLog('warn', '⚠ SSE 连接异常（重连中或已结束）');
+      };
+    }
+
+    async function startResearch() {
       const raw = (input.value || '').trim();
       if (!raw) {
         input.focus();
         return;
       }
-      const slug = slugify(raw);
-      const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-      const file = `${slug}-${today}.html`;
-      pendingFile.textContent = `pending/${slug}.md`;
+      btn.disabled = true;
+      const originalLabel = btn.textContent;
+      btn.textContent = '启动中…';
 
-      const prompt = `请调用 brand-research skill，对品牌「${raw}」做一次完整的品牌视觉与商业调研。完成后请将 HTML 报告保存到：\n\nF:\\\\工作\\\\kiwii\\\\03-品牌设计\\\\brand-research\\\\${file}\n\n保存后请提示我运行：\nnode scripts/refresh-index.js\n来刷新品牌库索引。`;
 
-      // 尝试写入 pending/<slug>.md
-      fetch('./pending/_save.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, content: prompt }),
-      }).catch(() => {});
-
-      // 显示提示面板
+      clearLog();
+      statusActions.innerHTML = '';
+      statusTitle.textContent = '启动调研：' + raw;
+      statusBody.innerHTML = '正在通过 <code>POST /api/research</code> 启动后台任务…';
       statusPanel.classList.add('show');
-      statusTitle.textContent = '调研指令已就绪';
-      statusBody.innerHTML = `
-        <p>请把以下 prompt 发送给 Trae 对话（或 Trae CLI），它会调用 <code>brand-research</code> skill 完成 8 维拆解 + 雷达图，并自动落盘到：</p>
-        <p style="margin: 0.5rem 0;"><code>F:\\工作\\kiwii\\03-品牌设计\\brand-research\\${file}</code></p>
-        <p>生成后点击 <code>刷新</code>，新品牌会出现在下方品牌库中。</p>
-        <details style="margin-top: 0.6rem;">
-          <summary style="cursor:pointer;color:var(--accent);">查看完整 prompt</summary>
-          <pre style="background:var(--bg3);padding:0.8rem;border-radius:6px;margin-top:0.5rem;font-size:0.82rem;white-space:pre-wrap;font-family:var(--font-mono);">${prompt.replace(/</g, '&lt;')}</pre>
-        </details>
-      `;
-      statusActions.innerHTML = `
-        <a href="#" id="copy-prompt">复制 prompt</a>
-        <a href="#" class="secondary" id="copy-path">复制报告路径</a>
-      `;
-      document.getElementById('copy-prompt').addEventListener('click', (e) => {
-        e.preventDefault();
-        navigator.clipboard.writeText(prompt).then(() => alert('已复制到剪贴板'));
-      });
-      document.getElementById('copy-path').addEventListener('click', (e) => {
-        e.preventDefault();
-        navigator.clipboard.writeText(`F:\\工作\\kiwii\\03-品牌设计\\brand-research\\${file}`).then(() => alert('已复制路径'));
-      });
-    });
+      setPanelStatus('启动中', 'running');
+      appendLog('info', '🎯 准备调研：' + raw);
+      appendLog('info', '→ POST /api/research { brand: "' + raw + '" }');
+
+      let resp;
+      try {
+        resp = await fetch('/api/research', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ brand: raw }),
+        });
+      } catch (e) {
+        setPanelStatus('失败', 'failed');
+        appendLog('error', '✗ 网络错误：' + (e?.message || e));
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+        return;
+      }
+
+      let data = {};
+      try { data = await resp.json(); } catch {}
+      if (!resp.ok || !data.jobId) {
+        setPanelStatus('失败', 'failed');
+        appendLog('error', '✗ 启动失败：' + (data.error || ('HTTP ' + resp.status)));
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+        return;
+      }
+
+      appendLog('success', '✓ 任务已启动 · jobId=' + data.jobId.slice(0, 8));
+      setPanelStatus('运行中', 'running');
+      subscribeSSE(data.jobId);
+    }
+
+    btn.addEventListener('click', startResearch);
 
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') btn.click();
+      if (e.key === 'Enter') startResearch();
     });
 
-    // 3. 初始化
+
     loadLibrary();
+
+
+    const reportOverlay = document.getElementById('report-overlay');
+    const reportIframe  = document.getElementById('report-iframe');
+    const reportTitleEl = document.getElementById('report-title');
+    const reportOpenNew = document.getElementById('report-open-new');
+    const reportCloseBtn= document.getElementById('report-close');
+
+    function openReportModal(url, name) {
+      if (!url) return;
+
+      const absUrl = /^https?:\/\//i.test(url) ? url : url.replace(/^\.\//, '/');
+      reportIframe.src = absUrl;
+      reportTitleEl.textContent = name + ' · ' + (absUrl.split('/').pop() || '');
+      reportOpenNew.href = absUrl;
+      reportOverlay.classList.add('show');
+      reportOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeReportModal() {
+      reportOverlay.classList.remove('show');
+      reportOverlay.setAttribute('aria-hidden', 'true');
+
+      reportIframe.src = 'about:blank';
+      document.body.style.overflow = '';
+    }
+    reportCloseBtn.addEventListener('click', closeReportModal);
+    reportOverlay.addEventListener('click', (e) => {
+      if (e.target === reportOverlay) closeReportModal();
+    });
+
+
+    const trashOverlay = document.getElementById('trash-overlay');
+    const trashListEl = document.getElementById('trash-list');
+    const trashCloseBtn = document.getElementById('trash-close');
+    const trashRefreshBtn = document.getElementById('trash-refresh');
+    const trashPurgeExpiredBtn = document.getElementById('trash-purge-expired');
+    const trashRetainEl = document.getElementById('trash-retain');
+
+    function fmtDate(s) {
+      if (!s) return '—';
+      try { return new Date(s).toLocaleString('zh-CN', { hour12: false }); } catch { return s; }
+    }
+    function fmtDay(s) {
+      if (!s) return '—';
+      try { return new Date(s).toLocaleDateString('zh-CN'); } catch { return s; }
+    }
+
+    async function loadTrash() {
+      trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">…</div>加载中…</div>';
+      let data = null;
+      try {
+        const r = await fetch('/api/trash?t=' + Date.now());
+        data = await r.json();
+      } catch (e) {
+        trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">!</div>回收站加载失败：' + escHtml(e.message || e) + '</div>';
+        return;
+      }
+      const items = (data && data.items) || [];
+      const retain = (items[0] && items[0].retainDays) || (data && data.retainDays) || 30;
+      trashRetainEl.textContent = '· 默认保留 ' + retain + ' 天';
+      if (!items.length) {
+        trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">∅</div>回收站目前是空的。<br><span style="font-size:0.82rem;color:var(--muted);">删除的品牌案例会保留 ' + retain + ' 天，到期后自动清理。</span></div>';
+        return;
+      }
+      trashListEl.innerHTML = items.map((it) => {
+        const name = it.nameZh || it.name || it.id;
+        const days = typeof it.daysLeft === 'number' ? it.daysLeft : null;
+        const expire = it.expiresAt ? fmtDate(it.expiresAt) : '—';
+        const daysHint = days !== null
+          ? (days <= 0 ? '<span style="color:var(--accent);">（已到期，待清理）</span>' : '（剩余 ' + days + ' 天）')
+          : '';
+        return `
+          <div class="trash-item">
+            <div>
+              <h4>${escHtml(name)}</h4>
+              <div class="trash-pills">
+                <span class="pill">${escHtml(it.category || 'Brand')}</span>
+                ${it.country ? '<span class="pill">' + escHtml(it.country) + '</span>' : ''}
+              </div>
+              <div class="trash-meta">
+                删除时间：<code>${escHtml(fmtDate(it.deletedAt))}</code> · ${escHtml(fmtDay(it.deletedAt))}<br>
+                到期时间：<code>${escHtml(expire)}</code> ${daysHint}<br>
+                ID：<code>${escHtml(it.id)}</code>
+              </div>
+            </div>
+            <div class="trash-buttons">
+              <button class="restore" data-id="${escAttr(it.id)}">恢复</button>
+              <button class="purge" data-id="${escAttr(it.id)}">立即删除</button>
+            </div>
+          </div>`;
+      }).join('');
+
+      trashListEl.querySelectorAll('button.restore').forEach((b) => {
+        b.addEventListener('click', async () => {
+          if (!confirm('确定恢复这个品牌案例吗？恢复后会重新出现在下方品牌库。')) return;
+          b.disabled = true;
+          try {
+            const r = await fetch('/api/trash/' + encodeURIComponent(b.dataset.id) + '/restore', { method: 'POST' });
+            if (r.ok) {
+              await loadTrash();
+              loadLibrary();
+            } else {
+              const data = await r.json().catch(() => ({}));
+              alert('恢复失败：' + (data.error || ('HTTP ' + r.status)));
+            }
+          } catch (e) {
+            alert('恢复失败：' + (e.message || e));
+          } finally {
+            b.disabled = false;
+          }
+        });
+      });
+      trashListEl.querySelectorAll('button.purge').forEach((b) => {
+        b.addEventListener('click', async () => {
+          if (!confirm('确定立即删除吗？此操作无法撤销，将永久删除该品牌案例及其报告 HTML。')) return;
+          b.disabled = true;
+          try {
+            const r = await fetch('/api/trash/' + encodeURIComponent(b.dataset.id) + '/purge', { method: 'POST' });
+            if (r.ok) {
+              await loadTrash();
+            } else {
+              const data = await r.json().catch(() => ({}));
+              alert('删除失败：' + (data.error || ('HTTP ' + r.status)));
+            }
+          } catch (e) {
+            alert('删除失败：' + (e.message || e));
+          } finally {
+            b.disabled = false;
+          }
+        });
+      });
+    }
+
+    function openTrashModal() {
+      trashOverlay.classList.add('show');
+      trashOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      loadTrash();
+    }
+    function closeTrashModal() {
+      trashOverlay.classList.remove('show');
+      trashOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    trashCloseBtn.addEventListener('click', closeTrashModal);
+    trashRefreshBtn.addEventListener('click', loadTrash);
+    trashPurgeExpiredBtn.addEventListener('click', async () => {
+      trashPurgeExpiredBtn.disabled = true;
+      try {
+        await fetch('/api/trash/purge-expired', { method: 'POST' });
+        await loadTrash();
+        loadLibrary();
+      } finally {
+        trashPurgeExpiredBtn.disabled = false;
+      }
+    });
+    trashOverlay.addEventListener('click', (e) => {
+      if (e.target === trashOverlay) closeTrashModal();
+    });
+
+
+    document.querySelectorAll('[data-trash-trigger]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openTrashModal();
+      });
+    });
+
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (trashOverlay.classList.contains('show')) closeTrashModal();
+      else if (reportOverlay.classList.contains('show')) closeReportModal();
+    });
   </script>
 
-  <!-- LAN Share Card -->
+  <script>
+
+    const BRAND_KEY = 'brandResearchHub.userBrand';
+    const DEFAULT_BRAND = 'Kiwii';
+
+    function readLocalBrand() {
+      try {
+        const v = localStorage.getItem(BRAND_KEY);
+        return v && v.trim() ? v.trim() : '';
+      } catch { return ''; }
+    }
+    function writeLocalBrand(name) {
+      try { localStorage.setItem(BRAND_KEY, name); } catch {}
+    }
+
+
+    function replaceTextInNode(node, search, replace) {
+      if (!node) return;
+      if (node.nodeType === 3) {
+        if (node.textContent && node.textContent.indexOf(search) >= 0) {
+          node.textContent = node.textContent.split(search).join(replace);
+        }
+        return;
+      }
+      if (node.nodeType !== 1) return;
+      if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE' || node.tagName === 'TITLE') return;
+
+      if (node.classList && node.classList.contains('brand-name-slot')) return;
+
+      if (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA' || node.tagName === 'SELECT') return;
+      const children = node.childNodes;
+      for (let i = 0; i < children.length; i++) {
+        replaceTextInNode(children[i], search, replace);
+      }
+    }
+
+    function applyBrandName(name) {
+      const finalName = (name || DEFAULT_BRAND).trim() || DEFAULT_BRAND;
+
+      document.querySelectorAll('.brand-name-slot').forEach((el) => {
+        el.textContent = finalName;
+      });
+
+      replaceTextInNode(document.body, '{YOUR_BRAND}', finalName);
+
+      if (document.title.indexOf('{YOUR_BRAND}') >= 0) {
+        document.title = document.title.split('{YOUR_BRAND}').join(finalName);
+      } else if (document.title.indexOf(DEFAULT_BRAND) >= 0 && finalName !== DEFAULT_BRAND) {
+
+        document.title = document.title.split(DEFAULT_BRAND).join(finalName);
+      }
+
+      document.querySelectorAll('[data-brand-placeholder]').forEach((el) => {
+        if (el.tagName === 'INPUT') el.placeholder = el.getAttribute('data-brand-placeholder').split('{YOUR_BRAND}').join(finalName);
+      });
+      writeLocalBrand(finalName);
+
+      document.dispatchEvent(new CustomEvent('brandname:updated', { detail: { name: finalName } }));
+    }
+
+    async function fetchBrandNameFromBackend() {
+
+      const tries = [
+        async () => {
+          const r = await fetch('/api/state', { cache: 'no-store' });
+          if (!r.ok) throw new Error('state ' + r.status);
+          const d = await r.json();
+          return (d && (d.brandName || d.brand || d.userBrand)) || '';
+        },
+        async () => {
+          const r = await fetch('/api/health', { cache: 'no-store' });
+          if (!r.ok) throw new Error('health ' + r.status);
+          const d = await r.json();
+          return (d && (d.brandName || d.brand || d.userBrand)) || '';
+        },
+        async () => {
+          const r = await fetch('/api/config', { cache: 'no-store' });
+          if (!r.ok) throw new Error('config ' + r.status);
+          const d = await r.json();
+          return (d && (d.brandName || d.brand || d.userBrand)) || '';
+        },
+      ];
+      for (const t of tries) {
+        try {
+          const v = await t();
+          if (v && String(v).trim()) return String(v).trim();
+        } catch {}
+      }
+      return '';
+    }
+
+
+    (async function initBrand() {
+      let name = '';
+      try { name = await fetchBrandNameFromBackend(); } catch {}
+      if (!name) name = readLocalBrand();
+      applyBrandName(name || DEFAULT_BRAND);
+    })();
+
+
+    window.__brandName = {
+      apply: applyBrandName,
+      get: () => (readLocalBrand() || DEFAULT_BRAND),
+      set: (n) => applyBrandName(n),
+
+      save: async (name) => {
+        const finalName = (name || DEFAULT_BRAND).trim() || DEFAULT_BRAND;
+        writeLocalBrand(finalName);
+        try {
+          await fetch('/api/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ brandName: finalName }),
+          });
+        } catch {}
+        return finalName;
+      },
+    };
+  </script>
+
+  
   <div class="lan-card" id="lan-card">
     <div class="lan-head" id="lan-head">
       <span class="lan-title">局域网共享</span>
@@ -854,7 +2136,7 @@
         </div>
       </div>
       <div class="lan-hint">
-        📱 同一 Wi-Fi 下的手机/平板/同事电脑，用上面"局域网 URL"打开即可。
+        📱 同一 Wi-Fi 下的手机/平板/同事电脑，用上面"局域网 URL"打开即可访问 <span class="brand-name-slot">{YOUR_BRAND}</span> 品牌调研库。
         <br>启动方式：双击 <code>start-server.bat</code>（已绑定 0.0.0.0）
       </div>
     </div>
@@ -862,8 +2144,33 @@
   </div>
 
   <script>
-    // LAN IP 检测与渲染
+
     (function () {
+      function copyText(text) {
+        return new Promise(function (resolve, reject) {
+          if (!text) return reject(new Error('empty'));
+          try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            ta.style.top = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            ta.setSelectionRange(0, ta.value.length);
+            var ok = document.execCommand && document.execCommand('copy');
+            document.body.removeChild(ta);
+            if (ok) return resolve();
+          } catch (e) {}
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(resolve).catch(reject);
+          } else {
+            reject(new Error('copy failed'));
+          }
+        });
+      }
       var card = document.getElementById('lan-card');
       var head = document.getElementById('lan-head');
       var toggle = document.getElementById('lan-toggle');
@@ -874,7 +2181,7 @@
       var toast = document.getElementById('lan-toast');
       var port = location.port || '8000';
 
-      // 默认值：当前页面的 host 已经是访问 IP，所以可以直接用
+
       var host = location.hostname || 'localhost';
       var localUrl = location.origin || ('http://localhost:' + port);
       var lanUrl = 'http://' + host + ':' + port;
@@ -885,7 +2192,7 @@
       lanText.textContent = lanUrl + '/';
       lanEl.setAttribute('data-url', lanUrl + '/');
 
-      // 调本地 /api/network-info：返回真实的局域网 IP（避免依赖外网）
+
       fetch('/api/network-info')
         .then(function (r) { return r.json(); })
         .then(function (d) {
@@ -902,12 +2209,12 @@
         })
         .catch(function () {});
 
-      // 折叠/展开
+
       head.addEventListener('click', function () {
         card.classList.toggle('collapsed');
       });
 
-      // 点击 URL 框：新窗口打开
+
       [localEl, lanEl].forEach(function (el) {
         el.addEventListener('click', function (e) {
           if (e.target.classList.contains('copy-btn')) return;
@@ -916,16 +2223,16 @@
         });
       });
 
-      // 复制按钮
+
       document.querySelectorAll('.copy-btn').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
           e.stopPropagation();
           var which = btn.getAttribute('data-copy');
           var url = (which === 'local' ? localEl : lanEl).getAttribute('data-url');
-          navigator.clipboard.writeText(url).then(function () {
+          copyText(url).then(function () {
             showToast('已复制 ' + url);
           }).catch(function () {
-            // fallback
+
             var ta = document.createElement('textarea');
             ta.value = url; document.body.appendChild(ta);
             ta.select(); document.execCommand('copy');
@@ -941,6 +2248,748 @@
         setTimeout(function () { toast.classList.remove('show'); }, 1500);
       }
     })();
+  </script>
+
+  
+  <div class="settings-overlay" id="settings-overlay" aria-hidden="true">
+    <div class="settings-modal" role="dialog" aria-labelledby="settings-title">
+      <div class="settings-head">
+        <h2 id="settings-title" data-i18n="settings.title">设置 · <span class="brand-name-slot">{YOUR_BRAND}</span></h2>
+        <button class="settings-close" id="settings-close" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="settings-body">
+        <p class="hint">第一项是「<strong>你的品牌</strong>」名 — 保存后会实时替换页面所有 <code>{YOUR_BRAND}</code> 占位符（顶栏 logo、副标题、设置标题、LAN 提示等）。<br>下方是 LLM 配置：留空表示不修改该字段，写入 <code>.env</code> 并立即生效。</p>
+        <div class="field" style="background:var(--bg3);border-radius:8px;padding:0.9rem 1rem;margin-bottom:1.2rem;">
+          <label for="cfg-brand-name"><strong>Your Brand · 你的品牌</strong></label>
+          <input id="cfg-brand-name" type="text" autocomplete="off" placeholder="例如：Kiwii / Lumi / Oura" data-brand-placeholder="例如：{YOUR_BRAND} / Lumi / Oura" />
+          <div class="field-hint">默认 <code>Kiwii</code>。保存后写入 <code>.env</code> 的 <code>BRAND_NAME</code>，并通过 <code>/api/state</code> / <code>/api/health</code> / <code>/api/config</code> 让前端读取；前端也会同步存到 <code>localStorage</code> 离线可用。</div>
+        </div>
+        <div class="field">
+          <label for="cfg-api-key">API Key</label>
+          <input id="cfg-api-key" type="password" autocomplete="off" placeholder="sk-xxxxxxxxxxxxxxxx" />
+          <div class="field-hint">对应 <code>MINIMAX_API_KEY</code>（或 <code>OPENAI_API_KEY</code>）。</div>
+        </div>
+        <div class="field">
+          <label for="cfg-base-url">Base URL</label>
+          <input id="cfg-base-url" type="text" autocomplete="off" placeholder="https://platform.shuyanai.com/v1" />
+          <div class="field-hint">对应 <code>MINIMAX_BASE_URL</code>，第三方代理时改这里。</div>
+        </div>
+        <div class="field">
+          <label for="cfg-model">Model</label>
+          <input id="cfg-model" type="text" autocomplete="off" placeholder="MiniMax-M3" />
+          <div class="field-hint">对应 <code>MINIMAX_MODEL</code>，例如 <code>MiniMax-M3</code> / <code>deepseek-chat</code>。</div>
+        </div>
+      </div>
+      <div class="settings-foot">
+        <div class="status" id="settings-status">就绪</div>
+        <div class="actions">
+          <button id="settings-cancel" type="button">取消</button>
+          <button id="settings-save" class="primary" type="button">保存到 .env</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    (function () {
+      var btn = document.getElementById('settings-btn');
+      var overlay = document.getElementById('settings-overlay');
+      var closeBtn = document.getElementById('settings-close');
+      var cancelBtn = document.getElementById('settings-cancel');
+      var saveBtn = document.getElementById('settings-save');
+      var statusEl = document.getElementById('settings-status');
+      var brandNameInput = document.getElementById('cfg-brand-name');
+      var apiKeyInput = document.getElementById('cfg-api-key');
+      var baseUrlInput = document.getElementById('cfg-base-url');
+      var modelInput = document.getElementById('cfg-model');
+
+      function open() {
+        overlay.classList.add('show');
+        overlay.setAttribute('aria-hidden', 'false');
+
+        brandNameInput.value = (window.__brandName && window.__brandName.get) ? window.__brandName.get() : '';
+        apiKeyInput.value = '';
+        baseUrlInput.value = '';
+        modelInput.value = '';
+        setStatus('就绪 · Your Brand 会立即替换页面占位符', '');
+        setTimeout(function () { brandNameInput.focus(); }, 60);
+      }
+      function close() {
+        overlay.classList.remove('show');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+      function setStatus(msg, kind) {
+        statusEl.textContent = msg;
+        statusEl.classList.remove('success', 'error');
+        if (kind) statusEl.classList.add(kind);
+      }
+
+      btn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      cancelBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) close();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('show')) close();
+      });
+
+      saveBtn.addEventListener('click', async function () {
+        var newBrand = brandNameInput.value.trim();
+        var payload = {
+          apiKey: apiKeyInput.value.trim(),
+          baseUrl: baseUrlInput.value.trim(),
+          model: modelInput.value.trim(),
+        };
+        var llmChanged = !!(payload.apiKey || payload.baseUrl || payload.model);
+        var brandChanged = !!newBrand;
+        if (!llmChanged && !brandChanged) {
+          setStatus('至少需要填写一个字段', 'error');
+          return;
+        }
+        saveBtn.disabled = true;
+        setStatus('正在保存…', '');
+        try {
+
+          if (brandChanged && window.__brandName && window.__brandName.save) {
+            await window.__brandName.save(newBrand);
+          }
+
+          if (llmChanged) {
+            if (brandChanged) payload.brandName = newBrand;
+            var r = await fetch('/api/config', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            var data = await {};
+            try { data = await r.json(); } catch (e) {}
+            if (!r.ok || !data.ok) {
+              setStatus('LLM 保存失败：' + (data.error || ('HTTP ' + r.status)) + (brandChanged ? '（Your Brand 已生效）' : ''), 'error');
+              saveBtn.disabled = false;
+              return;
+            }
+          } else if (brandChanged) {
+
+            try {
+              await fetch('/api/config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ brandName: newBrand }),
+              });
+            } catch (e) {  }
+          }
+          setStatus('✓ 已保存 · ' + (brandChanged ? ('当前品牌：' + newBrand) : 'LLM 配置已生效'), 'success');
+          setTimeout(function () { close(); }, 700);
+        } catch (e) {
+          setStatus('网络错误：' + e.message, 'error');
+        } finally {
+          saveBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+<!-- ECharts: CDN first, local fallback (migrated from compare.html) -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js" crossorigin="anonymous"
+          onerror="this.onerror=null;var s=document.createElement('script');s.src='./_shared/js/echarts.min.js';document.head.appendChild(s);"></script>
+
+  <script>
+  /* ============================================================
+   *  Brand Compare Overlay (migrated from compare.html)
+   * ============================================================ */
+  (function () {
+    'use strict';
+
+    const MAX_BRANDS = 4;
+
+    // Radar dimension labels (display order) — Chinese keys used internally
+    const RADAR_DIM_KEYS = ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
+    const RADAR_DIM_LABELS_EN = ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
+
+    // Country code translation map (Chinese -> English) for forced English UI
+    const COUNTRY_EN = {
+      '德国': 'Germany',
+      '美国': 'United States',
+      '芬兰': 'Finland',
+      '日本': 'Japan',
+      '中国': 'China',
+      '韩国': 'South Korea',
+      '英国': 'United Kingdom',
+      '法国': 'France',
+      '意大利': 'Italy',
+      '西班牙': 'Spain',
+      '瑞典': 'Sweden',
+      '丹麦': 'Denmark',
+      '荷兰': 'Netherlands',
+      '瑞士': 'Switzerland',
+      '加拿大': 'Canada',
+      '澳大利亚': 'Australia',
+      '新加坡': 'Singapore',
+      '挪威': 'Norway',
+      '比利时': 'Belgium',
+      '奥地利': 'Austria',
+      '爱尔兰': 'Ireland',
+      '新西兰': 'New Zealand',
+      '巴西': 'Brazil',
+      '印度': 'India',
+      '俄罗斯': 'Russia',
+    };
+    const toEnCountry = (c) => {
+      if (!c) return '—';
+      if (COUNTRY_EN[c]) return COUNTRY_EN[c];
+      return /[\u4e00-\u9fa5]/.test(c) ? c : c;
+    };
+
+    // Category translation map (Chinese -> English) for forced English UI
+    const CATEGORY_EN = {
+      '运动服饰': 'Sportswear',
+      '运动服饰与运动装备': 'Sportswear & Equipment',
+      '运动装备': 'Sports Equipment',
+      '消费电子': 'Consumer Electronics',
+      '游戏平台 / 游戏主机': 'Gaming Platform / Console',
+      '游戏平台': 'Gaming Platform',
+      '游戏主机': 'Gaming Console',
+      '智能硬件': 'Smart Hardware',
+      '可穿戴设备': 'Wearable Device',
+      '健康科技': 'Health Tech',
+      '生活方式': 'Lifestyle',
+    };
+    const toEnCategory = (c) => {
+      if (!c) return '—';
+      if (CATEGORY_EN[c]) return CATEGORY_EN[c];
+      return /[\u4e00-\u9fa5]/.test(c) ? c : c;
+    };
+
+    // Color palette for chart series (distinct, accessible)
+    const SERIES_COLORS = ['#FF7A45', '#6B4EFF', '#7FB069', '#E5A100', '#3FA7CC', '#C0392B', '#9B59B6', '#16A085'];
+
+    // Helpers
+    const escHtml = (s) => String(s ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+
+    /**
+     * Extract radar values (length 6) from any supported shape:
+     *  - radarValues: [v1..v6]
+     *  - radar: { 克制: v, 温度感: v, ... }     (object form)
+     *  - radar: [{ dimension, score }, ...]      (array form, e.g. Oura)
+     */
+    function getRadarValues(brand) {
+      if (Array.isArray(brand.radarValues) && brand.radarValues.length === 6) {
+        return brand.radarValues.map((v) => Number(v) || 0);
+      }
+      if (brand.radar && !Array.isArray(brand.radar)) {
+        return RADAR_DIM_KEYS.map((k) => Number(brand.radar[k]) || 0);
+      }
+      if (Array.isArray(brand.radar)) {
+        return RADAR_DIM_KEYS.map((k) => {
+          const found = brand.radar.find((d) => d && d.dimension === k);
+          return Number(found && found.score) || 0;
+        });
+      }
+      return [0, 0, 0, 0, 0, 0];
+    }
+
+    function hexToRgba(hex, alpha) {
+      const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      if (!m) return 'rgba(0,0,0,' + alpha + ')';
+      const r = parseInt(m[1], 16), g = parseInt(m[2], 16), b = parseInt(m[3], 16);
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    // ===== State (ordered list) =====
+    const state = {
+      selectedIds: [],
+      chart: null,
+    };
+
+    // ===== DOM refs =====
+    const overlay     = document.getElementById('compare-overlay');
+    const closeBtn    = document.getElementById('compare-close');
+    const pickerList  = document.getElementById('cp-list');
+    const pickerStatus= document.getElementById('cp-status');
+    const pickerAdd   = document.getElementById('cp-add');
+    const pickerClear = document.getElementById('cp-remove-all');
+    const resultArea  = document.getElementById('compare-result');
+    const resultEmpty = document.getElementById('compare-result-empty');
+    const compareTableEl = document.getElementById('compare-table');
+    const compareTMeta = document.getElementById('compare-t-meta');
+    const paletteEl   = document.getElementById('compare-palette-gallery');
+    const takeawayEl  = document.getElementById('compare-takeaway-list');
+    const radarEl     = document.getElementById('compare-radar-chart');
+
+    function getAllBrands() {
+      // Use the global brands array from index.html if present
+      if (typeof brands !== 'undefined' && Array.isArray(brands) && brands.length) {
+        return brands;
+      }
+      return [];
+    }
+
+    function getSelectedBrands() {
+      const all = getAllBrands();
+      return state.selectedIds.map((id) => all.find((b) => b.id === id)).filter(Boolean);
+    }
+
+    // ===== Picker =====
+    function renderPicker() {
+      const all = getAllBrands();
+
+      // Selected chips
+      if (state.selectedIds.length === 0) {
+        pickerList.innerHTML = '<div class="cp-empty">尚未选择品牌。请从下方下拉框添加 2 – 4 个。</div>';
+      } else {
+        const selected = getSelectedBrands();
+        pickerList.innerHTML = selected.map((b, idx) => {
+          const color = SERIES_COLORS[idx % SERIES_COLORS.length];
+          return `
+            <span class="compare-chip" data-id="${escHtml(b.id)}">
+              <span class="chip-dot" style="background:${color}"></span>
+              <span>${escHtml(b.name || b.nameZh || b.id)}</span>
+              <button class="chip-remove" type="button" aria-label="移除 ${escHtml(b.name || b.id)}" data-id="${escHtml(b.id)}">×</button>
+            </span>`;
+        }).join('');
+        pickerList.querySelectorAll('.chip-remove').forEach((btn) => {
+          btn.addEventListener('click', () => removeFromSelection(btn.dataset.id));
+        });
+      }
+
+      // Status
+      const n = state.selectedIds.length;
+      pickerStatus.textContent = n === 0
+        ? '尚未选择品牌'
+        : (n < 2
+            ? '已选 ' + n + ' 个 · 至少选 2 个才能对比'
+            : '已选 ' + n + ' / ' + MAX_BRANDS + ' 个 · 可以开始对比');
+
+      // Dropdown
+      const remaining = all.filter((b) => !state.selectedIds.includes(b.id));
+      pickerAdd.innerHTML = '<option value="">— 添加品牌 —</option>' + remaining.map((b) => {
+        return '<option value="' + escHtml(b.id) + '">' + escHtml(b.name || b.nameZh || b.id) + ' · ' + escHtml(toEnCategory(b.category)) + '</option>';
+      }).join('');
+      pickerAdd.disabled = n >= MAX_BRANDS || remaining.length === 0;
+      if (n >= MAX_BRANDS) {
+        pickerAdd.options[0].textContent = '— 已达 ' + MAX_BRANDS + ' 个上限 —';
+      } else if (remaining.length === 0) {
+        pickerAdd.options[0].textContent = '— 没有更多品牌 —';
+      }
+
+      pickerClear.disabled = n === 0;
+    }
+
+    function addToSelection(id) {
+      if (!id) return;
+      if (state.selectedIds.includes(id)) return;
+      if (state.selectedIds.length >= MAX_BRANDS) return;
+      state.selectedIds.push(id);
+      renderAll();
+    }
+
+    function removeFromSelection(id) {
+      state.selectedIds = state.selectedIds.filter((x) => x !== id);
+      renderAll();
+    }
+
+    function clearSelection() {
+      state.selectedIds = [];
+      renderAll();
+    }
+
+    // ===== Table =====
+    function renderTable() {
+      const selected = getSelectedBrands();
+      compareTMeta.textContent = selected.length + (selected.length === 1 ? ' 个品牌' : ' 个品牌');
+
+      const headerCells = selected.map((b, idx) => {
+        const color = SERIES_COLORS[idx % SERIES_COLORS.length];
+        const sub = [toEnCategory(b.category), toEnCountry(b.country)].filter(Boolean).join(' · ');
+        return '<th class="col-cell" style="border-left: 4px solid ' + color + ';">' +
+          '<div class="brand-cell">' + escHtml(b.name || b.nameZh || b.id) +
+          '<span class="meta">' + escHtml(sub) + '</span></div>' +
+        '</th>';
+      }).join('');
+
+      const rows = [];
+      rows.push('<tr><th>品类</th>' + selected.map((b) => '<td>' + escHtml(toEnCategory(b.category)) + '</td>').join('') + '</tr>');
+      rows.push('<tr><th>国家</th>' + selected.map((b) => '<td>' + escHtml(toEnCountry(b.country)) + '</td>').join('') + '</tr>');
+      rows.push('<tr><th>Slogan</th>' + selected.map((b) => '<td class="tagline-cell">"' + escHtml(b.tagline || '—') + '"</td>').join('') + '</tr>');
+
+      const radarCells = selected.map((b) => {
+        const vals = getRadarValues(b);
+        const inner = RADAR_DIM_LABELS_EN.map((label, i) => {
+          const v = vals[i] || 0;
+          const barWidth = Math.max(0, Math.min(10, v)) * 8;
+          return '<div class="rd-row"><span class="k">' + escHtml(label) + '</span><span class="v">' + v.toFixed(1) + '<span class="bar" style="width:' + barWidth + 'px"></span></span></div>';
+        }).join('');
+        return '<td class="radar-cell">' + inner + '</td>';
+      }).join('');
+      rows.push('<tr><th>维度对比</th>' + radarCells + '</tr>');
+
+      const colorCells = selected.map((b) => {
+        const colors = (b.primaryColors || []).slice(0, 4);
+        const swatches = colors.map((hex) => {
+          return '<div>' +
+            '<div class="swatch" style="background:' + escHtml(hex) + '"></div>' +
+            '<span class="swatch-hex">' + escHtml(hex) + '</span>' +
+          '</div>';
+        }).join('');
+        return '<td><div class="swatch-row">' + swatches + '</div></td>';
+      }).join('');
+      rows.push('<tr><th>主色板</th>' + colorCells + '</tr>');
+
+      compareTableEl.innerHTML =
+        '<thead><tr><th>字段</th>' + headerCells + '</tr></thead>' +
+        '<tbody>' + rows.join('') + '</tbody>';
+    }
+
+    // ===== Radar =====
+    function renderRadar() {
+      if (!radarEl || typeof echarts === 'undefined') return;
+
+      const selected = getSelectedBrands();
+      const indicator = RADAR_DIM_LABELS_EN.map((name) => ({ name, max: 10 }));
+
+      const seriesData = selected.map((b, idx) => {
+        const color = SERIES_COLORS[idx % SERIES_COLORS.length];
+        return {
+          name: b.name || b.nameZh || b.id,
+          value: getRadarValues(b),
+          lineStyle: { width: 2, color },
+          itemStyle: { color },
+          areaStyle: { color: hexToRgba(color, 0.12) },
+          symbol: 'circle',
+          symbolSize: 6,
+        };
+      });
+
+      const option = {
+        tooltip: { trigger: 'item' },
+        legend: {
+          bottom: 0,
+          icon: 'circle',
+          itemWidth: 10,
+          itemHeight: 10,
+          textStyle: { fontFamily: 'InstrumentSans, sans-serif', color: '#1A1A1A' },
+        },
+        radar: {
+          indicator,
+          shape: 'polygon',
+          splitNumber: 5,
+          axisName: {
+            color: '#1A1A1A',
+            fontFamily: 'InstrumentSans, sans-serif',
+            fontSize: 12,
+          },
+          splitLine: { lineStyle: { color: '#E8E0D4' } },
+          splitArea: {
+            areaStyle: {
+              color: ['rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)']
+            }
+          },
+          axisLine: { lineStyle: { color: '#E8E0D4' } }
+        },
+        series: [{
+          type: 'radar',
+          data: seriesData,
+        }],
+      };
+
+      if (state.chart) {
+        state.chart.setOption(option, true);
+      } else {
+        state.chart = echarts.init(radarEl, null, { renderer: 'canvas' });
+        state.chart.setOption(option);
+      }
+    }
+
+    // ===== Palette =====
+    function renderPaletteGallery() {
+      const selected = getSelectedBrands();
+      paletteEl.innerHTML = selected.map((b, idx) => {
+        const color = SERIES_COLORS[idx % SERIES_COLORS.length];
+        const colors = (b.primaryColors || []).slice(0, 4);
+        const fills = colors.map((hex) => {
+          const label = hex.toUpperCase();
+          return '<div class="ps" style="background:' + escHtml(hex) + '"><span class="label">' + escHtml(label) + '</span></div>';
+        }).join('');
+        const padded = fills + Array.from({ length: Math.max(0, 4 - colors.length) }).map(() => '<div class="ps" style="background:#F4EFE6"><span class="label">—</span></div>').join('');
+        return '<div class="compare-palette-card">' +
+          '<div class="pc-head">' +
+            '<span class="dot" style="background:' + color + '"></span>' +
+            '<h4>' + escHtml(b.name || b.nameZh || b.id) + '</h4>' +
+            '<span class="meta">' + escHtml(toEnCategory(b.category)) + '</span>' +
+          '</div>' +
+          '<div class="compare-palette-strip">' + padded + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    // ===== Takeaway =====
+    function renderTakeaway() {
+      const selected = getSelectedBrands();
+      if (selected.length < 2) {
+        takeawayEl.innerHTML = '<li>至少选择 2 个品牌以获得洞察建议。</li>';
+        return;
+      }
+
+      const radars = selected.map((b) => ({ name: b.name || b.nameZh || b.id, vals: getRadarValues(b) }));
+      const dims = RADAR_DIM_LABELS_EN;
+
+      const leaders = dims.map((dim, i) => {
+        let bestIdx = 0; let bestVal = radars[0].vals[i];
+        for (let k = 1; k < radars.length; k++) {
+          if (radars[k].vals[i] > bestVal) { bestVal = radars[k].vals[i]; bestIdx = k; }
+        }
+        return { dim, name: radars[bestIdx].name, val: bestVal };
+      });
+
+      const avg = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
+      const avgRestraint   = avg(radars.map((r) => r.vals[0]));
+      const avgWarmth      = avg(radars.map((r) => r.vals[1]));
+      const avgRecognition = avg(radars.map((r) => r.vals[5]));
+
+      const sortedByRecognition = [...radars].sort((a, b) => b.vals[5] - a.vals[5]);
+
+      const items = [];
+      items.push('<strong>' + leaders[0].name + '</strong> 在 <strong>克制</strong> 维度领先（' + leaders[0].val.toFixed(1) + '），而 <strong>' + leaders[1].name + '</strong> 在 <strong>温度感</strong> 维度领先（' + leaders[1].val.toFixed(1) + '）—— 建议找到契合品牌定位的平衡点。');
+      items.push('<strong>识别强度</strong> TOP 2：' + sortedByRecognition.slice(0, 2).map((r) => r.name).join(' 与 ') + '。可优先借鉴它们的标志性符号（Logo、专属色、可复用的图形单元），再打磨其他细节。');
+      items.push('组内平均：克制 ' + avgRestraint.toFixed(1) + ' · 温度感 ' + avgWarmth.toFixed(1) + ' · 识别强度 ' + avgRecognition.toFixed(1) + '。建议把品牌定位在「低分与高分差距最大」的维度上，做差异化。');
+      items.push('主色板策略：保持一个中性底色 + 一个标志性强调色。' + (selected[0].name || '每个品牌') + ' 使用 ' + (selected[0].primaryColors || []).slice(0, 4).length + ' 个主色 —— 视觉一致性上对齐这个数量级。');
+      items.push('避免在所有维度上都和这组品牌对标。挑出 1–2 个可以「过度投入」的维度（如温度感或科技感），让其他维度保持品类平均即可。');
+
+      takeawayEl.innerHTML = items.map((t) => '<li>' + t + '</li>').join('');
+    }
+
+    // ===== Orchestrator =====
+    function renderAll() {
+      renderPicker();
+      const selected = getSelectedBrands();
+      if (selected.length < 2) {
+        resultArea.style.display = 'none';
+        resultEmpty.style.display = 'block';
+        resultEmpty.textContent = selected.length === 0
+          ? '尚未选择品牌。请从上方选择 2 – 4 个品牌开始对比。'
+          : '已选 ' + selected.length + ' 个品牌。再选至少 1 个开始对比。';
+        if (state.chart) { try { state.chart.dispose(); } catch (e) {} state.chart = null; }
+        return;
+      }
+      resultArea.style.display = '';
+      resultEmpty.style.display = 'none';
+      renderTable();
+      renderRadar();
+      renderPaletteGallery();
+      renderTakeaway();
+    }
+
+    // ===== Open / Close =====
+    function open() {
+      // Seed selection from the home page's selectedIds (Set of brand ids)
+      try {
+        if (typeof selectedIds !== 'undefined' && selectedIds && typeof selectedIds.size === 'number') {
+          state.selectedIds = Array.from(selectedIds);
+        }
+      } catch (e) {}
+      renderAll();
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      // Resize chart after the overlay becomes visible
+      setTimeout(() => { if (state.chart) state.chart.resize(); }, 80);
+    }
+
+    function close() {
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (state.chart) { try { state.chart.dispose(); } catch (e) {} state.chart = null; }
+    }
+
+    // ===== Wire events =====
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+    pickerAdd.addEventListener('change', (e) => {
+      const id = e.target.value;
+      if (id) {
+        addToSelection(id);
+        e.target.value = '';
+      }
+    });
+    pickerClear.addEventListener('click', clearSelection);
+
+    // Esc to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('show')) close();
+    });
+
+    // Resize on window resize while open
+    window.addEventListener('resize', () => {
+      if (overlay.classList.contains('show') && state.chart) {
+        try { state.chart.resize(); } catch (e) {}
+      }
+    });
+
+    // Top nav Compare trigger
+    document.querySelectorAll('[data-compare-trigger]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+      });
+    });
+
+    // Expose opener for index.html's "对比所选" / tray buttons
+    window.__compareOverlay = open;
+  })();
+  </script>
+
+  <script>
+  /* ============================================================
+   *  Language toggle (zh / en)
+   *  - reads localStorage.lang (default 'zh') on init
+   *  - #lang-toggle button flips between 'zh' and 'en'
+   *  - updates topbar brand-link, hero, settings modal title, trash modal title
+   * ============================================================ */
+  (function () {
+    'use strict';
+
+    var LANG_KEY = 'lang';
+    var DEFAULT_LANG = 'zh';
+
+    var STRINGS = {
+      'zh': {
+        'nav.home':     '首页',
+        'nav.library':  '品牌库',
+        'nav.compare':  '对比',
+        'nav.trash':    '回收站',
+        'nav.docs':     '文档',
+        'nav.settings': '设置',
+        'hero.label':   '品牌调研 · 枢纽',
+        'hero.title':   '让<em>品牌视觉</em>调研<br>成为 {YOUR_BRAND} 的常态',
+        'hero.subtitle':'输入品牌名 → 触发 brand-research skill → 自动生成 8 维结构化报告 + 雷达图，沉淀到本地品牌库，与 {YOUR_BRAND} 现有对标品牌做横向对比。',
+        'settings.title': '设置 · {YOUR_BRAND}',
+        'trash.title':    '回收站 · 30 天保留',
+      },
+      'en': {
+        'nav.home':     'Home',
+        'nav.library':  'Library',
+        'nav.compare':  'Compare',
+        'nav.trash':    'Trash',
+        'nav.docs':     'Docs',
+        'nav.settings': 'Settings',
+        'hero.label':   'Brand Research · Hub',
+        'hero.title':   'Make <em>brand visual</em> research<br>a habit for {YOUR_BRAND}',
+        'hero.subtitle':'Enter a brand name → trigger the brand-research skill → auto-generate an 8-dimension structured report + radar chart, stored in your local brand library for side-by-side comparison with {YOUR_BRAND}\u2019s existing benchmarks.',
+        'settings.title': 'Settings · {YOUR_BRAND}',
+        'trash.title':    'Trash · 30-day Retention',
+      },
+    };
+
+    function readLang() {
+      try {
+        var v = localStorage.getItem(LANG_KEY);
+        if (v === 'en' || v === 'zh') return v;
+      } catch (e) {}
+      return DEFAULT_LANG;
+    }
+
+    function writeLang(v) {
+      try { localStorage.setItem(LANG_KEY, v); } catch (e) {}
+    }
+
+    function getBrandName() {
+      try {
+        if (window.__brandName && typeof window.__brandName.get === 'function') {
+          return window.__brandName.get();
+        }
+      } catch (e) {}
+      try {
+        var v = localStorage.getItem('brandResearchHub.userBrand');
+        if (v && v.trim()) return v.trim();
+      } catch (e) {}
+      return 'Kiwii';
+    }
+
+    function applyLang(lang) {
+      if (lang !== 'en' && lang !== 'zh') lang = DEFAULT_LANG;
+      var dict = STRINGS[lang] || STRINGS[DEFAULT_LANG];
+      var brand = getBrandName();
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        var tpl = dict[key];
+        if (typeof tpl !== 'string') return;
+        // Replace {YOUR_BRAND} placeholder with the actual brand name
+        var txt = tpl.split('{YOUR_BRAND}').join(brand);
+
+        if (key === 'hero.title') {
+          // Hero title contains inline <em> and <br> tags
+          el.innerHTML = txt;
+        } else if (key === 'trash.title') {
+          // Preserve the dynamic retain span (must not destroy it — loadTrash holds a reference)
+          var retain = el.querySelector('#trash-retain');
+          if (retain) {
+            var firstNode = el.firstChild;
+            if (firstNode && firstNode.nodeType === 3) {
+              firstNode.nodeValue = txt;
+            } else {
+              el.insertBefore(document.createTextNode(txt), retain);
+            }
+          } else {
+            el.textContent = txt;
+          }
+        } else if (key === 'settings.title') {
+          // Preserve the brand-name-slot span
+          var slot = el.querySelector('.brand-name-slot');
+          if (slot) {
+            var firstNode = el.firstChild;
+            if (firstNode && firstNode.nodeType === 3) {
+              firstNode.nodeValue = txt;
+            } else {
+              el.insertBefore(document.createTextNode(txt), slot);
+            }
+          } else {
+            el.textContent = txt;
+          }
+        } else {
+          el.textContent = txt;
+        }
+      });
+
+      // Update toggle button label: shows the language user can switch INTO
+      var btn = document.getElementById('lang-toggle');
+      if (btn) {
+        btn.textContent = (lang === 'zh') ? 'EN' : '中';
+        btn.setAttribute('title', (lang === 'zh') ? 'Switch to English' : '切换到中文');
+        btn.setAttribute('aria-label', btn.getAttribute('title'));
+      }
+
+      // Update <html lang="..."> for accessibility
+      try { document.documentElement.setAttribute('lang', (lang === 'zh') ? 'zh-CN' : 'en'); } catch (e) {}
+    }
+
+    function init() {
+      var current = readLang();
+      applyLang(current);
+      var btn = document.getElementById('lang-toggle');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var next = (readLang() === 'zh') ? 'en' : 'zh';
+          writeLang(next);
+          applyLang(next);
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
   </script>
 </body>
 </html>

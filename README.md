@@ -1,6 +1,6 @@
-# Kiwii Brand Research Hub
+# {YOUR_BRAND} Brand Research Hub
 
-> 让品牌视觉调研成为 Kiwii 的常态。输入品牌名 → 自动生成 8 维结构化报告 → 沉淀到品牌库 → 多选横向对比。
+> 让品牌视觉调研成为 {YOUR_BRAND} 的常态。输入品牌名 → 自动生成 8 维结构化报告 → 沉淀到品牌库 → 多选横向对比。
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue?logo=github)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -12,7 +12,7 @@
 - **🎨 0 依赖纯静态** — 纯 HTML + JS + JSON，**无需 npm / 构建工具**，双击或推 GitHub Pages 即可访问
 - **🧠 8 维结构化拆解** — Logo / 色板 / 字体 / 摄影 / 调性 / 定位 / 用户 / 卖点
 - **📊 六维调性雷达图** — 克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度
-- **🔀 多品牌横向对比** — 最多 4 个品牌叠加雷达 + 8 维表 + 自动生成 Kiwii 视觉北极星建议
+- **🔀 多品牌横向对比** — 最多 4 个品牌叠加雷达 + 8 维表 + 自动生成 {YOUR_BRAND} 视觉北极星建议
 - **🔌 skill 友好** — 与 `consulting-analysis` + `brand-research` skill 配合，一键生成新报告
 - **📡 局域网共享** — 一键启动脚本，绑定 `0.0.0.0` 让手机/同事同 Wi-Fi 访问
 - **📦 报告自动沉淀** — 每次新报告生成后自动加入品牌库，无需手动改配置
@@ -87,7 +87,7 @@ python -m http.server 8000 --bind 0.0.0.0
 - 8 维拆解总览表
 - 六维调性雷达图（叠加）
 - 色板并置
-- Kiwii 视觉北极星建议（4 条自动洞察）
+- {YOUR_BRAND} 视觉北极星建议（4 条自动洞察）
 
 ## 📦 部署到 GitHub Pages
 
@@ -100,7 +100,7 @@ python -m http.server 8000 --bind 0.0.0.0
    ```bash
    git init
    git add .
-   git commit -m "Initial commit: Kiwii Brand Research Hub"
+   git commit -m "Initial commit: {YOUR_BRAND} Brand Research Hub"
    git branch -M main
    git remote add origin https://github.com/<your-username>/brand-research.git
    git push -u origin main
@@ -147,7 +147,7 @@ python -m http.server 8000 --bind 0.0.0.0
 
 ## 🎨 视觉系统
 
-所有页面沿用 **Kiwii Editorial Reference**：
+所有页面沿用 **{YOUR_BRAND} Editorial Reference**：
 
 | Token | 值 |
 |-------|---|
@@ -186,6 +186,6 @@ A：GitHub Pages 免费版只支持 public 仓库。如需私有，可改用：
 
 ## 📄 License
 
-MIT © 2026 Kiwii Brand Lab
+MIT © 2026 {YOUR_BRAND} Brand Lab
 
 详见 [LICENSE](./LICENSE)。

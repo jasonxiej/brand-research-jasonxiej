@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================
-#   Kiwii Brand Research Hub - Startup Script (macOS / Linux)
+#   {YOUR_BRAND} Brand Research Hub - Startup Script (macOS / Linux)
 # ============================================================
 
 set -e
@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 
 echo
 echo "============================================================"
-echo "  Kiwii Brand Research Hub - Node backend starting"
+echo "  {YOUR_BRAND} Brand Research Hub - Node backend starting"
 echo "============================================================"
 echo
 
