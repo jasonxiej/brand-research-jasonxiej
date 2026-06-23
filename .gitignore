@@ -84,3 +84,7 @@ desktop-*.bat
 # （.gitignore 默认 *.zip 会忽略，但 brand-research-skill/
 #   下的 zip 是 skill 分发资产，必须保留）
 !brand-research-skill/*.zip
+
+# GitHub Actions workflow 文件（当前 PAT 没有 workflow scope，
+# 留本地供手动启用，但不入仓）
+.github/workflows/*.yml
