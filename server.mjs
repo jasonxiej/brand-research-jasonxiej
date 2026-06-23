@@ -495,6 +495,12 @@ const server = http.createServer(async (req, res) => {
 
     // 回收站 API
     if (p === '/api/trash' && method === 'GET') return await handleListTrash(req, res);
+    if (p === '/api/trash' && method === 'POST') {
+      const body = await readBody(req);
+      if (body?.action === 'purge-expired') return await handlePurgeExpired(req, res);
+      if (!body?.id) return sendJSON(res, 400, { ok: false, error: '缺少品牌 id' });
+      return await handleMoveToTrash(req, res, body.id);
+    }
     if (p === '/api/trash/purge-expired' && method === 'POST') return await handlePurgeExpired(req, res);
     const trashMoveMatch = p.match(/^\/api\/trash\/([\w-]+)$/);
     if (trashMoveMatch && method === 'POST') return await handleMoveToTrash(req, res, trashMoveMatch[1]);

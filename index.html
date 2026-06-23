@@ -1509,7 +1509,8 @@
 
     async function loadLibrary() {
       try {
-        const r = await fetch('./brands/index.json?t=' + Date.now());
+        let r = await fetch('/api/brands?t=' + Date.now());
+        if (!r.ok) r = await fetch('./brands/index.json?t=' + Date.now());
         const data = await r.json();
         brands = data.brands || [];
         renderGrid();
@@ -1784,6 +1785,46 @@
       };
     }
 
+    function renderResearchDone(payload) {
+      const result = payload.result || {};
+      const reportUrl = payload.reportUrl || result.reportUrl || result.url;
+      const brandName = payload.brand || result.brand || '报告';
+
+      setPanelStatus('已完成', 'done');
+      appendLog('success', '🎉 调研完成，刷新品牌库…');
+      btn.disabled = false;
+      btn.textContent = '调研';
+
+      loadLibrary();
+
+      if (reportUrl) {
+        statusActions.innerHTML = '';
+        const openLink = document.createElement('a');
+        openLink.href = '#';
+        openLink.textContent = '打开报告（浮层）';
+        openLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          openReportModal(reportUrl, brandName);
+        });
+        const newWinLink = document.createElement('a');
+        newWinLink.href = reportUrl;
+        newWinLink.target = '_blank';
+        newWinLink.rel = 'noopener noreferrer';
+        newWinLink.textContent = '新窗口打开 ↗';
+        const refreshLink = document.createElement('a');
+        refreshLink.href = '#';
+        refreshLink.className = 'secondary';
+        refreshLink.textContent = '刷新品牌库';
+        refreshLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          loadLibrary();
+        });
+        statusActions.appendChild(openLink);
+        statusActions.appendChild(newWinLink);
+        statusActions.appendChild(refreshLink);
+      }
+    }
+
     async function startResearch() {
       const raw = (input.value || '').trim();
       if (!raw) {
@@ -1821,7 +1862,17 @@
 
       let data = {};
       try { data = await resp.json(); } catch {}
+      if (resp.ok && data.ok && (data.status === 'done' || data.reportUrl || data.result)) {
+        (data.events || []).forEach(function (evt) {
+          appendLog(evt.level || 'info', evt.msg || JSON.stringify(evt), evt.ts);
+        });
+        renderResearchDone(data);
+        return;
+      }
       if (!resp.ok || !data.jobId) {
+        (data.events || []).forEach(function (evt) {
+          appendLog(evt.level || 'info', evt.msg || JSON.stringify(evt), evt.ts);
+        });
         setPanelStatus('失败', 'failed');
         appendLog('error', '✗ 启动失败：' + (data.error || ('HTTP ' + resp.status)));
         btn.disabled = false;
