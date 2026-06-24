@@ -1,7 +1,6 @@
 import { runResearch } from '../lib/researcher.mjs';
 import { renderReport } from '../lib/report-template.mjs';
 import { buildReportEntry } from '../lib/report-entry.mjs';
-import { normalizeImportedReport } from '../lib/report-import.mjs';
 import { getRuntimeConfig } from '../lib/runtime-config.mjs';
 import { saveBrandReport } from '../lib/supabase-store.mjs';
 import { json, methodNotAllowed, readJson } from '../lib/http-api.mjs';
@@ -14,48 +13,32 @@ export default async function handler(req, res) {
 
   try {
     const body = await readJson(req);
-    const raw = String(body.brand || body.input || '').trim();
-    const imported = body.reportData ?? body.data ?? body.importedReport ?? null;
-
-    if (!raw && !imported) {
-      return json(res, 400, { ok: false, error: 'brand 或 reportData 不能为空' });
-    }
+    const content = String(body.content || body.md || body.markdown || '').trim();
+    const brandName = String(body.brandName || body.brand || '').trim();
+    if (!content) return json(res, 400, { ok: false, error: 'content 不能为空' });
 
     const config = await getRuntimeConfig();
-    if (!config.apiKey && !imported) {
-      return json(res, 400, { ok: false, error: '未配置 AI 模型 API Key。请在设置里填写 API Key，或在 Vercel 环境变量中配置 API Key。' });
+    if (!config.apiKey) {
+      return json(res, 400, { ok: false, error: '未配置 AI 模型 API Key。请先在设置里填写。' });
     }
 
-    let result;
-    if (imported) {
-      log({ level: 'info', msg: `🎆 准备导入报告数据：${raw || 'brand'}` });
-      const data = normalizeImportedReport(imported, { name: raw });
-      result = {
-        slug: data.slug,
-        name: data.name || raw || 'brand',
-        url: data.url || null,
-        data,
-        meta: data.meta || {},
-      };
-    } else {
-      log({ level: 'info', msg: `🎆 准备调研：${raw}` });
-      result = await runResearch({
-        raw,
-        onLog: log,
-        llmConfig: {
-          apiKey: config.apiKey,
-          baseUrl: config.baseUrl,
-          model: config.model,
-        },
-      });
-    }
+    log({ level: 'info', msg: `📄 读取用户提交 Markdown：${brandName || 'brand'}` });
+    const result = await runResearch({
+      raw: brandName || content.slice(0, 40),
+      sourceMarkdown: content,
+      onLog: log,
+      llmConfig: {
+        apiKey: config.apiKey,
+        baseUrl: config.baseUrl,
+        model: config.model,
+      },
+    });
 
     const createdAt = new Date().toISOString().slice(0, 10);
     const date = createdAt.replace(/-/g, '');
     const fileName = `${result.slug}-${date}.html`;
     const id = fileName.replace(/\.html$/i, '');
 
-    log({ level: 'info', msg: `→ 生成报告 HTML: ${fileName}` });
     const html = renderReport({
       name: result.name,
       url: result.url,
@@ -67,7 +50,6 @@ export default async function handler(req, res) {
 
     const brand = buildReportEntry({ fileName, result, createdAt });
     await saveBrandReport({ id, fileName, brand, html });
-    log({ level: 'success', msg: `✓ 报告已保存到 Supabase: ${fileName}` });
 
     return json(res, 200, {
       ok: true,
@@ -77,9 +59,7 @@ export default async function handler(req, res) {
         slug: result.slug,
         brand: result.data.name || result.name,
         file: fileName,
-        url: brand.reportUrl,
         reportUrl: brand.reportUrl,
-        mode: imported ? 'import' : 'research',
       },
       reportUrl: brand.reportUrl,
       brand: result.data.name || result.name,

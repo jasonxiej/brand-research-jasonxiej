@@ -1,13 +1,13 @@
-// server.mjs
+﻿// server.mjs
 // ============================================================
-// {YOUR_BRAND} Brand Research Hub · Node 后端
-// 替代 python -m http.server，提供：
-//   - 静态文件服务（./）
-//   - POST /api/research  接收品牌名，启动调研
-//   - GET  /api/research/:id/events  SSE 实时日志流
-//   - POST /api/refresh-index  重建 brands/index.json
-//   - GET  /api/health 健康检查
-//   - GET  /api/jobs/:id 查询单个 job 状态
+// {YOUR_BRAND} Brand Research Hub 路 Node 鍚庣
+// 鏇夸唬 python -m http.server锛屾彁渚涳細
+//   - 闈欐€佹枃浠舵湇鍔★紙./锛?
+//   - POST /api/research  鎺ユ敹鍝佺墝鍚嶏紝鍚姩璋冪爺
+//   - GET  /api/research/:id/events  SSE 瀹炴椂鏃ュ織娴?
+//   - POST /api/refresh-index  閲嶅缓 brands/index.json
+//   - GET  /api/health 鍋ュ悍妫€鏌?
+//   - GET  /api/jobs/:id 鏌ヨ鍗曚釜 job 鐘舵€?
 // ============================================================
 
 import 'dotenv/config';
@@ -22,6 +22,7 @@ import { spawn } from 'node:child_process';
 
 import { runResearch, slugify } from './lib/researcher.mjs';
 import { renderReport } from './lib/report-template.mjs';
+import { normalizeImportedReport } from './lib/report-import.mjs';
 import {
   listTrash, listTrashIds,
   moveToTrash, restoreFromTrash, purgeTrashItem, purgeExpired,
@@ -32,25 +33,25 @@ const ROOT = __dirname;
 
 const PORT = Number(process.env.PORT) || 8000;
 const HOST = process.env.HOST || '0.0.0.0';
-const LAN_HOST = process.env.LAN_HOST || '';  // 钉死局域网 IP 的环境变量；不填就自动探测
+const LAN_HOST = process.env.LAN_HOST || '';  // 閽夋灞€鍩熺綉 IP 鐨勭幆澧冨彉閲忥紱涓嶅～灏辫嚜鍔ㄦ帰娴?
 const DEFAULT_BRAND_NAME = 'Kiwii';
 
 function currentBrandName() {
   return (process.env.BRAND_NAME || DEFAULT_BRAND_NAME).trim() || DEFAULT_BRAND_NAME;
 }
 
-// ---------- 工具：探测本机局域网 IPv4 ----------
+// ---------- 宸ュ叿锛氭帰娴嬫湰鏈哄眬鍩熺綉 IPv4 ----------
 function detectLanIp() {
-  // 1) 如果用户钉死了 LAN_HOST，直接用
+  // 1) 濡傛灉鐢ㄦ埛閽夋浜?LAN_HOST锛岀洿鎺ョ敤
   if (LAN_HOST) return LAN_HOST;
-  // 2) 否则从 os.networkInterfaces 找第一个非 internal 的 IPv4
+  // 2) 鍚﹀垯浠?os.networkInterfaces 鎵剧涓€涓潪 internal 鐨?IPv4
   try {
     const ifaces = os.networkInterfaces();
     const candidates = [];
     for (const name of Object.keys(ifaces)) {
       for (const i of ifaces[name] || []) {
         if (i.family === 'IPv4' && !i.internal) {
-          // 优先 192.168 / 10. / 172.16-31 私有网段
+          // 浼樺厛 192.168 / 10. / 172.16-31 绉佹湁缃戞
           const pri = /^(192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.)/.test(i.address) ? 1 : 0;
           candidates.push({ addr: i.address, pri, name });
         }
@@ -86,16 +87,16 @@ const MIME = {
   '.map':  'application/json',
 };
 
-// ---------- Job 状态（内存） ----------
+// ---------- Job 鐘舵€侊紙鍐呭瓨锛?----------
 /** @type {Map<string, {id:string, status:string, events:any[], result?:any, error?:string, createdAt:number}>} */
 const jobs = new Map();
-// 24h 后自动清理
+// 24h 鍚庤嚜鍔ㄦ竻鐞?
 setInterval(() => {
   const cutoff = Date.now() - 24 * 3600 * 1000;
   for (const [id, j] of jobs) if (j.createdAt < cutoff) jobs.delete(id);
 }, 3600 * 1000).unref();
 
-// ---------- 工具 ----------
+// ---------- 宸ュ叿 ----------
 function sendJSON(res, status, data) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
   res.end(JSON.stringify(data));
@@ -120,7 +121,7 @@ function sendText(res, status, text, type = 'text/plain; charset=utf-8') {
   res.end(text);
 }
 
-// 防止路径穿越
+// 闃叉璺緞绌胯秺
 function safeJoin(rel) {
   const decoded = decodeURIComponent(rel.split('?')[0]);
   const target = path.normalize(path.join(ROOT, decoded));
@@ -128,7 +129,7 @@ function safeJoin(rel) {
   return target;
 }
 
-// ---------- 静态文件服务 ----------
+// ---------- 闈欐€佹枃浠舵湇鍔?----------
 async function serveStatic(req, res, relPath) {
   let target = safeJoin(relPath || '/');
   if (!target) return sendText(res, 403, 'Forbidden');
@@ -161,47 +162,87 @@ async function handleResearch(req, res) {
   try { payload = body ? JSON.parse(body) : {}; } catch { return sendJSON(res, 400, { error: 'invalid json' }); }
 
   const raw = (payload.brand || payload.input || '').trim();
-  if (!raw) return sendJSON(res, 400, { error: 'brand 不能为空' });
+  if (!raw) return sendJSON(res, 400, { error: 'brand 涓嶈兘涓虹┖' });
 
   const jobId = randomUUID();
   const job = { id: jobId, status: 'pending', events: [], result: null, error: null, createdAt: Date.now() };
   jobs.set(jobId, job);
 
-  sendJSON(res, 202, { jobId, status: 'pending', message: '调研已启动，订阅 /api/research/' + jobId + '/events 获取实时日志' });
+  sendJSON(res, 202, { jobId, status: 'pending', message: '璋冪爺宸插惎鍔紝璁㈤槄 /api/research/' + jobId + '/events 鑾峰彇瀹炴椂鏃ュ織' });
 
-  // 异步执行（不 await，让响应先返回）
+  // 寮傛鎵ц锛堜笉 await锛岃鍝嶅簲鍏堣繑鍥烇級
   runJob(job, raw).catch((e) => {
     job.status = 'failed';
     job.error = e?.message || String(e);
-    job.events.push({ level: 'error', msg: '✗ 失败: ' + job.error, ts: Date.now() });
+    job.events.push({ level: 'error', msg: '鉁?澶辫触: ' + job.error, ts: Date.now() });
   });
 }
 
-// ---------- 后台跑调研 ----------
+async function handleResearchMd(req, res) {
+  const body = await readBody(req);
+  const md = String(body.content || body.md || body.markdown || '').trim();
+  const brandName = String(body.brandName || body.brand || '').trim();
+  if (!md) return sendJSON(res, 400, { ok: false, error: 'content 不能为空' });
+
+  const result = await runResearch({
+    raw: brandName || md.slice(0, 40),
+    sourceMarkdown: md,
+    onLog: () => {},
+  });
+
+  const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const fileName = `${result.slug}-${date}.html`;
+  const filePath = path.join(ROOT, fileName);
+
+  const html = renderReport({
+    name: result.name,
+    url: result.url,
+    data: result.data,
+    meta: result.meta,
+    createdAt: new Date().toISOString().slice(0, 10),
+    userBrand: currentBrandName(),
+  });
+  await fsp.writeFile(filePath, html, 'utf8');
+
+  sendJSON(res, 200, {
+    ok: true,
+    status: 'done',
+    brand: result.data.name || result.name,
+    reportUrl: './' + fileName,
+    result: {
+      slug: result.slug,
+      brand: result.data.name || result.name,
+      file: fileName,
+      reportUrl: './' + fileName,
+    },
+  });
+}
+
+// ---------- 鍚庡彴璺戣皟鐮?----------
 async function runJob(job, raw) {
   const log = (evt) => {
     const e = { ...evt, ts: Date.now() };
     job.events.push(e);
-    // 截断太长的历史，最多保留 200 条
+    // 鎴柇澶暱鐨勫巻鍙诧紝鏈€澶氫繚鐣?200 鏉?
     if (job.events.length > 200) job.events.splice(0, job.events.length - 200);
   };
 
   job.status = 'running';
-  log({ level: 'info', msg: `🎬 任务启动 (jobId=${job.id.slice(0, 8)})` });
+  log({ level: 'info', msg: `馃幀 浠诲姟鍚姩 (jobId=${job.id.slice(0, 8)})` });
 
   try {
-    // 1. 调研
+    // 1. 璋冪爺
     const result = await runResearch({
       raw,
       onLog: log,
     });
 
-    // 2. 生成报告 HTML
+    // 2. 鐢熸垚鎶ュ憡 HTML
     const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     const fileName = `${result.slug}-${date}.html`;
     const filePath = path.join(ROOT, fileName);
 
-    log({ level: 'info', msg: `→ 生成报告 HTML: ${fileName}` });
+    log({ level: 'info', msg: `鈫?鐢熸垚鎶ュ憡 HTML: ${fileName}` });
     const html = renderReport({
       name: result.name,
       url: result.url,
@@ -211,12 +252,12 @@ async function runJob(job, raw) {
       userBrand: job.userBrand,
     });
     await fsp.writeFile(filePath, html, 'utf8');
-    log({ level: 'success', msg: `✓ 报告已写入: ${fileName} (${(html.length / 1024).toFixed(1)} KB)` });
+    log({ level: 'success', msg: `鉁?鎶ュ憡宸插啓鍏? ${fileName} (${(html.length / 1024).toFixed(1)} KB)` });
 
-    // 3. 刷新品牌库索引
-    log({ level: 'info', msg: '→ 刷新品牌库索引…' });
+    // 3. 鍒锋柊鍝佺墝搴撶储寮?
+    log({ level: 'info', msg: '刷新品牌库索引…' });
     await runRefreshIndex();
-    log({ level: 'success', msg: '✓ 品牌库索引已更新' });
+    log({ level: 'success', msg: '鉁?鍝佺墝搴撶储寮曞凡鏇存柊' });
 
     job.status = 'done';
     job.result = {
@@ -226,11 +267,11 @@ async function runJob(job, raw) {
       url: '/' + fileName,
       reportUrl: './' + fileName,
     };
-    log({ level: 'success', msg: `🎉 调研完成！查看报告: <a href="./${fileName}" target="_blank">${fileName}</a>` });
+    log({ level: 'success', msg: `馃帀 璋冪爺瀹屾垚锛佹煡鐪嬫姤鍛? <a href="./${fileName}" target="_blank">${fileName}</a>` });
   } catch (e) {
     job.status = 'failed';
     job.error = e?.message || String(e);
-    log({ level: 'error', msg: '✗ 调研失败: ' + job.error });
+    log({ level: 'error', msg: '鉁?璋冪爺澶辫触: ' + job.error });
   }
 }
 
@@ -245,13 +286,13 @@ async function handleRefreshIndex(req, res) {
 }
 
 // ---------- POST /api/config ----------
-// 把 API key / base URL / model 写入 .env，立即生效（同一进程的 researcher 会读到）
+// 鎶?API key / base URL / model 鍐欏叆 .env锛岀珛鍗崇敓鏁堬紙鍚屼竴杩涚▼鐨?researcher 浼氳鍒帮級
 async function handleConfigSave(req, res) {
   try {
     const body = await readBody(req);
     const { apiKey, baseUrl, model, brandName } = body || {};
 
-    // 校验：至少要有一个字段
+    // 鏍￠獙锛氳嚦灏戣鏈変竴涓瓧娈?
     if (!apiKey && !baseUrl && !model && !brandName) {
       return sendJSON(res, 400, { error: '至少需要提供一个字段（brandName / apiKey / baseUrl / model）' });
     }
@@ -261,7 +302,7 @@ async function handleConfigSave(req, res) {
     if (fs.existsSync(envPath)) envContent = fs.readFileSync(envPath, 'utf8');
 
     function upsertEnv(content, key, value) {
-      // 不写入空字符串
+      // 涓嶅啓鍏ョ┖瀛楃涓?
       if (!value && value !== 0) return content;
       const re = new RegExp(`^${key}=.*$`, 'm');
       const line = `${key}=${value}`;
@@ -275,24 +316,24 @@ async function handleConfigSave(req, res) {
     if (baseUrl) updated = upsertEnv(updated, 'MINIMAX_BASE_URL', baseUrl);
     if (model)   updated = upsertEnv(updated, 'MINIMAX_MODEL', model);
 
-    // 备份旧 .env
+    // 澶囦唤鏃?.env
     if (fs.existsSync(envPath)) {
       const bakPath = envPath + '.bak.' + Date.now();
       fs.copyFileSync(envPath, bakPath);
     }
     fs.writeFileSync(envPath, updated, 'utf8');
 
-    // 立即让本进程的 dotenv 重新加载（researcher.mjs 通过 dotenv.config 读取）
-    // 注：dotenv 不会覆盖已存在的 env var，需要重置
+    // 绔嬪嵆璁╂湰杩涚▼鐨?dotenv 閲嶆柊鍔犺浇锛坮esearcher.mjs 閫氳繃 dotenv.config 璇诲彇锛?
+    // 娉細dotenv 涓嶄細瑕嗙洊宸插瓨鍦ㄧ殑 env var锛岄渶瑕侀噸缃?
     if (brandName) delete process.env.BRAND_NAME;
     if (apiKey)  delete process.env.MINIMAX_API_KEY;
     if (baseUrl) delete process.env.MINIMAX_BASE_URL;
     if (model)   delete process.env.MINIMAX_MODEL;
-    // 重新解析 .env
+    // 閲嶆柊瑙ｆ瀽 .env
     const dotenv = await import('dotenv');
     dotenv.config({ path: envPath, override: true });
 
-    // 重新加载 researcher 模块以读取新 env（require cache）
+    // 閲嶆柊鍔犺浇 researcher 妯″潡浠ヨ鍙栨柊 env锛坮equire cache锛?
     try {
       const researcherUrl = require.resolve('./lib/researcher.mjs');
       delete require.cache[researcherUrl];
@@ -309,7 +350,7 @@ async function handleConfigSave(req, res) {
   }
 }
 
-// ---------- 回收站路由处理 ----------
+// ---------- 鍥炴敹绔欒矾鐢卞鐞?----------
 async function handleListTrash(req, res) {
   const items = await listTrash();
   sendJSON(res, 200, { ok: true, items, count: items.length, lastPurge: lastPurgeResult });
@@ -348,27 +389,27 @@ function runRefreshIndex() {
   });
 }
 
-// ---------- 启动时清理回收站过期项 ----------
+// ---------- 鍚姩鏃舵竻鐞嗗洖鏀剁珯杩囨湡椤?----------
 let lastPurgeResult = { purged: [], at: null };
 async function startupPurge() {
   try {
     const r = await purgeExpired();
     lastPurgeResult = { purged: r.purged, at: new Date().toISOString() };
     if (r.purged.length) {
-      console.log(`[回收站] 启动清理：永久删除 ${r.purged.length} 个过期项: ${r.purged.map((p) => p.id).join(', ')}`);
+      console.log(`[鍥炴敹绔橾 鍚姩娓呯悊锛氭案涔呭垹闄?${r.purged.length} 涓繃鏈熼」: ${r.purged.map((p) => p.id).join(', ')}`);
     } else {
-      console.log(`[回收站] 启动清理：无过期项（保留 ${r.retainDays} 天）`);
+      console.log(`[鍥炴敹绔橾 鍚姩娓呯悊锛氭棤杩囨湡椤癸紙淇濈暀 ${r.retainDays} 澶╋級`);
     }
   } catch (e) {
-    console.error('[回收站] 启动清理失败:', e.message);
+    console.error('[鍥炴敹绔橾 鍚姩娓呯悊澶辫触:', e.message);
   }
 }
-// 每小时检查一次
+// 姣忓皬鏃舵鏌ヤ竴娆?
 setInterval(async () => {
   const r = await purgeExpired();
   if (r.purged.length) {
     lastPurgeResult = { purged: r.purged, at: new Date().toISOString() };
-    console.log(`[回收站] 定时清理：永久删除 ${r.purged.length} 个过期项: ${r.purged.map((p) => p.id).join(', ')}`);
+    console.log(`[鍥炴敹绔橾 瀹氭椂娓呯悊锛氭案涔呭垹闄?${r.purged.length} 涓繃鏈熼」: ${r.purged.map((p) => p.id).join(', ')}`);
   }
 }, 60 * 60 * 1000).unref();
 
@@ -386,21 +427,21 @@ function handleSSE(req, res, jobId) {
   });
   res.write(':ok\n\n');
 
-  // 先把历史 events 全部推一遍
+  // 鍏堟妸鍘嗗彶 events 鍏ㄩ儴鎺ㄤ竴閬?
   for (const evt of job.events) {
     res.write(`data: ${JSON.stringify(evt)}\n\n`);
   }
 
-  // 然后用定时器轮询新事件
+  // 鐒跺悗鐢ㄥ畾鏃跺櫒杞鏂颁簨浠?
   let lastIndex = job.events.length;
   const tick = setInterval(() => {
     try {
-      // 推送新事件
+      // 鎺ㄩ€佹柊浜嬩欢
       while (lastIndex < job.events.length) {
         res.write(`data: ${JSON.stringify(job.events[lastIndex])}\n\n`);
         lastIndex++;
       }
-      // 终态
+      // 缁堟€?
       if (job.status === 'done') {
         res.write(`event: done\ndata: ${JSON.stringify({ ok: true, ...job.result })}\n\n`);
         clearInterval(tick);
@@ -415,7 +456,7 @@ function handleSSE(req, res, jobId) {
     }
   }, 400);
 
-  // 心跳
+  // 蹇冭烦
   const hb = setInterval(() => { try { res.write(':hb\n\n'); } catch {} }, 15000);
 
   req.on('close', () => { clearInterval(tick); clearInterval(hb); });
@@ -434,13 +475,13 @@ function handleGetJob(req, res, jobId) {
   });
 }
 
-// ---------- 路由分发 ----------
+// ---------- 璺敱鍒嗗彂 ----------
 const server = http.createServer(async (req, res) => {
   const u = new URL(req.url, `http://${req.headers.host}`);
   const p = u.pathname;
   const method = req.method;
 
-  // CORS 预检
+  // CORS 棰勬
   if (method === 'OPTIONS') {
     res.writeHead(204, {
       'Access-Control-Allow-Origin': '*',
@@ -450,11 +491,11 @@ const server = http.createServer(async (req, res) => {
     return res.end();
   }
 
-  // 简单访问日志
+  // 绠€鍗曡闂棩蹇?
   const t0 = Date.now();
   res.on('finish', () => {
     const ms = Date.now() - t0;
-    console.log(`${method} ${p} → ${res.statusCode} (${ms}ms)`);
+    console.log(`${method} ${p} 鈫?${res.statusCode} (${ms}ms)`);
   });
 
   try {
@@ -487,18 +528,19 @@ const server = http.createServer(async (req, res) => {
     }
     if (p === '/api/config' && method === 'POST') return await handleConfigSave(req, res);
     if (p === '/api/research' && method === 'POST') return handleResearch(req, res);
+    if (p === '/api/research.md' && method === 'POST') return await handleResearchMd(req, res);
     if (p === '/api/refresh-index' && method === 'POST') return handleRefreshIndex(req, res);
     const sseMatch = p.match(/^\/api\/research\/([0-9a-f-]+)\/events$/);
     if (sseMatch && method === 'GET') return handleSSE(req, res, sseMatch[1]);
     const jobMatch = p.match(/^\/api\/jobs\/([0-9a-f-]+)$/);
     if (jobMatch && method === 'GET') return handleGetJob(req, res, jobMatch[1]);
 
-    // 回收站 API
+    // 鍥炴敹绔?API
     if (p === '/api/trash' && method === 'GET') return await handleListTrash(req, res);
     if (p === '/api/trash' && method === 'POST') {
       const body = await readBody(req);
       if (body?.action === 'purge-expired') return await handlePurgeExpired(req, res);
-      if (!body?.id) return sendJSON(res, 400, { ok: false, error: '缺少品牌 id' });
+      if (!body?.id) return sendJSON(res, 400, { ok: false, error: '缂哄皯鍝佺墝 id' });
       return await handleMoveToTrash(req, res, body.id);
     }
     if (p === '/api/trash/purge-expired' && method === 'POST') return await handlePurgeExpired(req, res);
@@ -509,7 +551,7 @@ const server = http.createServer(async (req, res) => {
     const trashPurgeMatch = p.match(/^\/api\/trash\/([\w-]+)\/purge$/);
     if (trashPurgeMatch && method === 'POST') return await handlePurgeTrashItem(req, res, trashPurgeMatch[1]);
 
-    // 静态文件
+    // 闈欐€佹枃浠?
     if (method === 'GET' || method === 'HEAD') return serveStatic(req, res, p);
 
     sendText(res, 405, 'Method Not Allowed');
@@ -520,31 +562,21 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  // 启动时清理回收站过期项
   startupPurge();
   console.log('');
-  console.log('═══════════════════════════════════════════════════════════════');
-  console.log('   {YOUR_BRAND} Brand Research Hub · Node 后端');
-  console.log('═══════════════════════════════════════════════════════════════');
-  console.log(`   监听地址 : http://${HOST}:${PORT}`);
+  console.log('==================================================');
+  console.log('==================================================');
+  console.log('   {YOUR_BRAND} Brand Research Hub - Node backend');
+  console.log('==================================================');
+  console.log(`   Listening : http://${HOST}:${PORT}`);
   const lanIp = detectLanIp();
-  console.log(`   本机访问 : http://localhost:${PORT}/`);
-  console.log(`   局域网   : http://${lanIp}:${PORT}/${LAN_HOST ? '  (已用 LAN_HOST 钉死)' : ''}`);
-  console.log(`   静态目录 : ${ROOT}`);
-  console.log(`   健康检查 : http://localhost:${PORT}/api/health`);
-  console.log(`   网络信息 : http://localhost:${PORT}/api/network-info`);
-  console.log('');
-  const apiKey = process.env.MINIMAX_API_KEY || process.env.OPENAI_API_KEY;
-  if (apiKey) {
-    const masked = apiKey.slice(0, 6) + '…' + apiKey.slice(-4);
-    console.log(`   LLM Key  : ${masked}  ✓`);
-    const baseURL = process.env.MINIMAX_BASE_URL || process.env.OPENAI_BASE_URL || '(default)';
-    const model = process.env.MINIMAX_MODEL || process.env.OPENAI_MODEL || '(default)';
-    console.log(`   LLM URL  : ${baseURL}`);
-    console.log(`   LLM Model: ${model}`);
-  } else {
-    console.log('   ⚠ 未配置 AI 模型 API Key，请在设置里填写 API Key，或在 .env 中配置 API Key');
-  }
-  console.log('═══════════════════════════════════════════════════════════════');
+  console.log(`   Local      : http://localhost:${PORT}/`);
+  console.log(`   LAN        : http://${lanIp}:${PORT}/${LAN_HOST ? '  (pinned by LAN_HOST)' : ''}`);
+  console.log(`   Static dir : ${ROOT}`);
+  console.log(`   Health     : http://localhost:${PORT}/api/health`);
+  console.log(`   Network    : http://localhost:${PORT}/api/network-info`);
+  console.log('==================================================');
   console.log('');
 });
+
+

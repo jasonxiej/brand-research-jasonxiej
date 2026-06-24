@@ -7,6 +7,9 @@
     }
   ],
   "functions": {
+    "server.mjs": {
+      "includeFiles": "{*.html,assets/**,_shared/**,brands/**}"
+    },
     "api/**/*.js": {
       "maxDuration": 60
     }

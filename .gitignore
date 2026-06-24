@@ -52,18 +52,13 @@ pnpm-debug.log*
 *~
 
 # 用户产物（报告 + 品牌库索引 + 回收站）
-oura-*.html
-aesop-*.html
-b-o-*.html
-hatch-*.html
-linear-*.html
-notion-*.html
-notion-so-*.html
+# 品牌报告 HTML（按需保留，不再全局排除）
+# oura-*.html aesop-*.html hatch-*.html 等
 archived/
 pending/
 
-# 项目内运行时状态
-brands/index.json
+# 项目内运行时状态（brands/index.json 保留入库，方便新环境直接使用）
+# brands/index.json
 brands/trash.json
 .smoke.log
 .start-error.log

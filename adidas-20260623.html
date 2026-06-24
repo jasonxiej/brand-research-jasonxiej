@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adidas 品牌视觉研究</title>
+  <title><span data-bi="阿迪达斯品牌视觉研究::Adidas· Visual Brand Research">阿迪达斯品牌视觉研究</span></title>
   <link rel="stylesheet" href="./_shared/css/report-base.css">
   <style>
     :root {
@@ -24,7 +24,14 @@
     a:hover { text-decoration: underline; }
     .page { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-    .cover { text-align: center; padding: 6rem 1rem 4rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
+    /* 顶栏：品牌名 + 语言切换 */
+    .topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; margin-bottom: 1rem; }
+    .topbar .crumb { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+    .topbar .lang-toggle { display: flex; gap: 0.25rem; padding: 3px; background: var(--bg3); border-radius: 999px; font-family: var(--font-mono); font-size: 0.7rem; }
+    .topbar .lang-toggle button { border: 0; background: transparent; padding: 0.3rem 0.7rem; border-radius: 999px; cursor: pointer; color: var(--muted); font-family: inherit; font-size: inherit; }
+    .topbar .lang-toggle button.active { background: var(--ink); color: var(--bg2); }
+
+    .cover { text-align: center; padding: 4rem 1rem 3rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
     .cover-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
     .cover h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 1rem; }
     .cover h1 em { color: var(--accent); font-style: italic; }
@@ -72,6 +79,7 @@
     .takeaway li { padding: 0.7rem 0 0.7rem 1.5rem; position: relative; border-bottom: 1px solid var(--rule); line-height: 1.7; counter-increment: takeaway; }
     .takeaway li::before { content: counter(takeaway); position: absolute; left: 0; top: 0.85rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
     .takeaway li:last-child { border-bottom: 0; }
+    .takeaway-empty { color: var(--muted); font-style: italic; padding: 1rem 0 0.5rem; border-left: 3px solid var(--accent); padding-left: 1rem; background: var(--bg3); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 0.5rem; }
 
     .site-preview { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; margin-top: 1.5rem; }
     .site-preview-header { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 1rem; background: var(--bg3); border-bottom: 1px solid var(--rule); }
@@ -114,119 +122,123 @@
 </head>
 <body>
   <article class="page">
+    <div class="topbar">
+      <span class="crumb"><span data-bi="Brand Library · 品牌调研库::Brand Library · 品牌调研库">Brand Library · 品牌调研库</span></span>
+      <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language toggle">
+        <button type="button" data-lang="zh">中</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+
     <header class="cover">
-      <div class="cover-label">Brand Research Report</div>
-      <h1>Adidas 品牌<em>视觉</em>研究</h1>
-      <p class="subtitle">Adidas 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图</p>
-      <div class="cover-meta">2026-06-23 &middot; Brand Research &middot; Impossible Is Nothing</div>
+      <div class="cover-label"><span data-bi="Brand Research Report::Brand Research Report">Brand Research Report</span></div>
+      <h1><span data-bi="阿迪达斯 品牌视觉研究::Adidas · Visual Brand Research">阿迪达斯 品牌视觉研究</span></h1>
+      <p class="subtitle"><span data-bi="阿迪达斯 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图::An 8-dimension breakdown of Adidas's logo, palette, typography, photography, tone, positioning, target user, and selling points + radar chart.">阿迪达斯 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图</span></p>
+      <div class="cover-meta">2026-06-23 &middot; Brand Research &middot; <span data-bi="Sportswear::Sportswear">Sportswear</span> · <span data-bi="Germany::Germany">Germany</span></div>
     </header>
 
     <nav class="toc">
-      <h2>目录</h2>
+      <h2><span data-bi="目录::Contents">目录</span></h2>
       <ol>
-        <li><a href="#ch2">8 维视觉与商业拆解</a></li>
-        <li><a href="#ch3">品牌叙事总结</a></li>
-        <li><a href="#ch4">六维调性雷达图</a></li>
-        <li><a href="#ch5">该品牌 的 5 条可执行建议</a></li>
+        <li><a href="#ch2"><span data-bi="8 维视觉与商业拆解::8-Dimension Visual &amp; Business Breakdown">8 维视觉与商业拆解</span></a></li>
+        <li><a href="#ch3"><span data-bi="品牌叙事总结::Brand Narrative Summary">品牌叙事总结</span></a></li>
+        <li><a href="#ch4"><span data-bi="六维调性雷达图::6-Dimension Tone Radar">六维调性雷达图</span></a></li>
+        <li><a href="#ch5"><span data-bi="Kiwii 的 5 条可执行建议::5 Actionable Insights for Kiwii">Kiwii 的 5 条可执行建议</span></a></li>
       </ol>
     </nav>
 
     
     <section class="chapter" id="ch2">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 01</span>
-        <h2>8 维视觉与商业拆解</h2>
+        <span class="chapter-num"><span data-bi="Chapter 01::Chapter 01">Chapter 01</span></span>
+        <h2><span data-bi="8 维视觉与商业拆解::8-Dimension Visual &amp; Business Breakdown">8 维视觉与商业拆解</span></h2>
       </div>
-      <p class="chapter-desc">从 Logo 到核心卖点，逐项拆解 Adidas 品牌的视觉资产与商业逻辑。</p>
+      <p class="chapter-desc"><span data-bi="从 Logo 到核心卖点，逐项拆解 阿迪达斯 品牌的视觉资产与商业逻辑。::A detailed breakdown of Adidas's visual assets and business logic — from logo to core selling points.">从 Logo 到核心卖点，逐项拆解 阿迪达斯 品牌的视觉资产与商业逻辑。</span></p>
 
       <div class="brand-card">
-        <div class="brand-name">阿迪达斯 <span class="tag">运动服饰 · 德国</span></div>
+        <div class="brand-name"><span data-bi="阿迪达斯::Adidas">阿迪达斯</span> <span class="tag"><span data-bi="Sportswear · Germany::Sportswear · Germany">Sportswear · Germany</span></span></div>
 
         <div class="detail-grid">
           <div class="detail-item">
-            <div class="detail-label">1 · Logo</div>
-            <div class="detail-value">类型：<strong>组合</strong><br>以三叶草与三条纹为核心识别，兼具字标与图形符号的全球统一体系。<br><em>基于简洁字形与强识别图形的组合结构，依靠三条平行斜线与留白形成动态平衡，强化运动感与品牌记忆点。</em></div>
+            <div class="detail-label"><span data-bi="1 · Logo::1 · Logo">1 · Logo</span></div>
+            <div class="detail-value"><span data-bi="类型::Type">类型</span>：<strong><span data-bi="组合::Combination">组合</span></strong><br><span data-bi="以三叶草与三条纹为核心识别，兼具字标与图形符号的全球统一体系。::Built around the Trefoil and Three Stripes as core identifiers, a globally unified system combining wordmark and graphic symbol.">以三叶草与三条纹为核心识别，兼具字标与图形符号的全球统一体系。</span><br><em><span data-bi="基于简洁字形与强识别图形的组合结构，依靠三条平行斜线与留白形成动态平衡，强化运动感与品牌记忆点。::A combination structure anchored in clean letterforms and highly recognizable graphics, using three parallel diagonal lines and negative space to create dynamic balance — reinforcing athletic energy and brand recall.">基于简洁字形与强识别图形的组合结构，依靠三条平行斜线与留白形成动态平衡，强化运动感与品牌记忆点。</span></em></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">2 · 色板</div>
+            <div class="detail-label"><span data-bi="2 · 色板::2 · Palette">2 · 色板</span></div>
             <div class="palette">
     <div class="swatch">
       <div class="swatch-block" style="background:#000000;"></div>
-      <div class="swatch-info"><span>#000000</span>黑色</div>
+      <div class="swatch-info"><span>#000000</span><span data-bi="黑色::Black">黑色</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#FFFFFF;"></div>
-      <div class="swatch-info"><span>#FFFFFF</span>白色</div>
+      <div class="swatch-info"><span>#FFFFFF</span><span data-bi="白色::White">白色</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#1C1C1C;"></div>
-      <div class="swatch-info"><span>#1C1C1C</span>炭黑</div>
+      <div class="swatch-info"><span>#1C1C1C</span><span data-bi="炭黑::Charcoal">炭黑</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#C6C6C6;"></div>
-      <div class="swatch-info"><span>#C6C6C6</span>中性灰</div>
+      <div class="swatch-info"><span>#C6C6C6</span><span data-bi="中性灰::Neutral Gray">中性灰</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#0057B8;"></div>
-      <div class="swatch-info"><span>#0057B8</span>阿迪蓝</div>
+      <div class="swatch-info"><span>#0057B8</span><span data-bi="阿迪蓝::Adidas Blue">阿迪蓝</span></div>
     </div></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">3 · 字体系统</div>
-            <div class="detail-value">标题：无衬线粗体，偏几何感的品牌定制字形<br>正文：现代无衬线体，清晰高可读性，适配电商与运动场景<br><em>整体强调力量感、速度感与高识别度，字重对比明确。</em></div>
+            <div class="detail-label"><span data-bi="3 · 字体系统::3 · Typography">3 · 字体系统</span></div>
+            <div class="detail-value"><span data-bi="标题::Heading">标题</span>：<span data-bi="无衬线粗体，偏几何感的品牌定制字形::Bold sans-serif, with a slightly geometric custom brand typeface">无衬线粗体，偏几何感的品牌定制字形</span><br><span data-bi="正文::Body">正文</span>：<span data-bi="现代无衬线体，清晰高可读性，适配电商与运动场景::Modern sans-serif, optimized for high readability across e-commerce and sport contexts">现代无衬线体，清晰高可读性，适配电商与运动场景</span><br><em><span data-bi="整体强调力量感、速度感与高识别度，字重对比明确。::The system emphasizes power, speed, and strong recognition, with clear weight contrast throughout.">整体强调力量感、速度感与高识别度，字重对比明确。</span></em></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">4 · 摄影风格</div>
-            <div class="detail-value">类型：<strong>lifestyle, studio, documentary</strong><br>光线：高对比自然光与硬朗棚拍混合，局部强调轮廓<br>色调：利落、真实、能量感、运动感<br>构图：中近景人物为主，动态姿态与大留白并存，常用强角度与品牌符号入镜</div>
+            <div class="detail-label"><span data-bi="4 · 摄影风格::4 · Photography">4 · 摄影风格</span></div>
+            <div class="detail-value"><span data-bi="类型::Type">类型</span>：<strong><span data-bi="lifestyle, studio, documentary::—">lifestyle, studio, documentary</span></strong><br><span data-bi="光线::Lighting">光线</span>：<span data-bi="高对比自然光与硬朗棚拍混合，局部强调轮廓::A mix of high-contrast natural light and hard, directional studio lighting, with targeted emphasis on silhouette">高对比自然光与硬朗棚拍混合，局部强调轮廓</span><br><span data-bi="色调::Tone">色调</span>：<span data-bi="利落、真实、能量感、运动感::Crisp, authentic, energetic, athletic">利落、真实、能量感、运动感</span><br><span data-bi="构图::Composition">构图</span>：<span data-bi="中近景人物为主，动态姿态与大留白并存，常用强角度与品牌符号入镜::Mid- and close-range portraits featuring dynamic poses alongside generous negative space, frequently incorporating strong camera angles and brand symbols within the frame">中近景人物为主，动态姿态与大留白并存，常用强角度与品牌符号入镜</span></div>
           </div>
 
           <div class="detail-item full">
-            <div class="detail-label">5 · 品牌调性</div>
-            <div class="detail-value">关键词：<strong>运动专业</strong>、<strong>年轻活力</strong>、<strong>经典耐看</strong>、<strong>城市街头感</strong>、<strong>自信进取</strong><br>经典运动美学，兼具专业与街头活力。</div>
+            <div class="detail-label"><span data-bi="5 · 品牌调性::5 · Brand Tone">5 · 品牌调性</span></div>
+            <div class="detail-value"><span data-bi="关键词::Keywords">关键词</span>：<span data-bi="&lt;strong&gt;运动专业&lt;/strong&gt;、&lt;strong&gt;年轻活力&lt;/strong&gt;、&lt;strong&gt;经典耐看&lt;/strong&gt;、&lt;strong&gt;城市街头感&lt;/strong&gt;、&lt;strong&gt;自信进取&lt;/strong&gt;::&lt;strong&gt;Athletically professional&lt;/strong&gt;, &lt;strong&gt;Youthful and energetic&lt;/strong&gt;, &lt;strong&gt;Timeless and enduring&lt;/strong&gt;, &lt;strong&gt;Urban street sensibility&lt;/strong&gt;, &lt;strong&gt;Confident and driven&lt;/strong&gt;"><strong>运动专业</strong>、<strong>年轻活力</strong>、<strong>经典耐看</strong>、<strong>城市街头感</strong>、<strong>自信进取</strong></span><br><span data-bi="经典运动美学，兼具专业与街头活力。::Classic sports aesthetic that bridges professional performance with street-level energy.">经典运动美学，兼具专业与街头活力。</span></div>
           </div>
 
           <div class="detail-item full">
-            <div class="detail-label">6 · 品牌定位</div>
-            <div class="detail-value">Tagline：<em>Impossible Is Nothing</em><br>面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。</div>
+            <div class="detail-label"><span data-bi="6 · 品牌定位::6 · Positioning">6 · 品牌定位</span></div>
+            <div class="detail-value"><span data-bi="Tagline：::Tagline: ">Tagline：</span><em><span data-bi="Impossible Is Nothing::Impossible Is Nothing">Impossible Is Nothing</span></em><br><span data-bi="面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。::A top-tier global sports brand for athletes and culture-driven consumers, connecting professional performance to daily wear and self-expression.">面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。</span></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">7 · 目标用户</div>
-            <div class="detail-value">
-    年龄：16-40岁<br>
-    身份：运动爱好者、城市年轻人、潮流消费者<br>
-    痛点：需要兼顾性能、舒适与风格表达的穿着解决方案<br>
-    场景：训练、通勤、街头穿搭、休闲社交</div>
+            <div class="detail-label"><span data-bi="7 · 目标用户::7 · Target User">7 · 目标用户</span></div>
+            <div class="detail-value"><span data-bi="年龄：16-40岁&lt;br&gt;身份：运动爱好者、城市年轻人、潮流消费者&lt;br&gt;痛点：需要兼顾性能、舒适与风格表达的穿着解决方案&lt;br&gt;场景：训练、通勤、街头穿搭、休闲社交::Age: 16-40&lt;br&gt;Identity: Sports enthusiasts, urban youth, style-driven consumers&lt;br&gt;Pain: A need for wardrobe solutions that balance performance, comfort, and personal style&lt;br&gt;Scene: Training, commuting, street styling, casual social occasions">年龄：16-40岁<br>身份：运动爱好者、城市年轻人、潮流消费者<br>痛点：需要兼顾性能、舒适与风格表达的穿着解决方案<br>场景：训练、通勤、街头穿搭、休闲社交</span></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">8 · 核心卖点</div>
-            <div class="detail-value">1. 三条纹与三叶草构成极强品牌识别系统<br>2. 兼具运动科技、舒适脚感与日常穿搭属性<br>3. 覆盖跑步、训练、足球、篮球与生活方式全场景<br>4. 拥有长期运动文化与潮流联名资产<br>5. 品牌历史深厚，兼具经典性与持续创新能力</div>
+            <div class="detail-label"><span data-bi="8 · 核心卖点::8 · Selling Points">8 · 核心卖点</span></div>
+            <div class="detail-value"><span data-bi="1. 三条纹与三叶草构成极强品牌识别系统&lt;br&gt;2. 兼具运动科技、舒适脚感与日常穿搭属性&lt;br&gt;3. 覆盖跑步、训练、足球、篮球与生活方式全场景&lt;br&gt;4. 拥有长期运动文化与潮流联名资产&lt;br&gt;5. 品牌历史深厚，兼具经典性与持续创新能力::1. Three Stripes and Trefoil form an exceptionally strong brand recognition system&lt;br&gt;2. Combines sports technology, comfort, and everyday styling in one product line&lt;br&gt;3. Covers the full spectrum of running, training, football, basketball, and lifestyle&lt;br&gt;4. Built on a deep heritage of sports culture and high-profile collaborations&lt;br&gt;5. A storied brand history that balances classic credibility with continuous innovation">1. 三条纹与三叶草构成极强品牌识别系统<br>2. 兼具运动科技、舒适脚感与日常穿搭属性<br>3. 覆盖跑步、训练、足球、篮球与生活方式全场景<br>4. 拥有长期运动文化与潮流联名资产<br>5. 品牌历史深厚，兼具经典性与持续创新能力</span></div>
           </div>
         </div>
 
         
     <div class="site-preview" data-url="https://www.adidas.com" data-name="Adidas">
       <div class="site-preview-header">
-        <span class="label"><span class="dot"></span>官网预览 · https://www.adidas.com</span>
+        <span class="label"><span class="dot"></span><span data-bi="官网预览 · https://www.adidas.com::Site preview · https://www.adidas.com">官网预览 · https://www.adidas.com</span></span>
         <div class="actions">
-          <button type="button" data-mode="screenshot" class="active">截图</button>
-          <button type="button" data-mode="frame">内嵌</button>
-          <a href="https://www.adidas.com" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a>
+          <button type="button" data-mode="screenshot" class="active"><span data-bi="截图::Screenshot">截图</span></button>
+          <button type="button" data-mode="frame"><span data-bi="内嵌::Embed">内嵌</span></button>
+          <a href="https://www.adidas.com" target="_blank" rel="noopener noreferrer"><span data-bi="新窗口打开 ↗::Open in new tab ↗">新窗口打开 ↗</span></a>
         </div>
       </div>
       <div class="site-preview-body mode-screenshot">
-        <span class="site-preview-loading">LOADING…</span>
+        <span class="site-preview-loading"><span data-bi="LOADING…::LOADING…">LOADING…</span></span>
         <img class="screenshot" alt="Adidas 官网截图" loading="lazy">
         <iframe class="frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
         <div class="fallback">
           <div class="icon">🔗</div>
-          <div class="msg">该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。</div>
-          <a class="open-btn" href="https://www.adidas.com" target="_blank" rel="noopener noreferrer">在新窗口打开 Adidas 官网 ↗</a>
+          <div class="msg"><span data-bi="该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。::This site cannot be embedded in the page (X-Frame-Options / CSP restriction). Click the button below to open it in a new tab.">该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。</span></div>
+          <a class="open-btn" href="https://www.adidas.com" target="_blank" rel="noopener noreferrer"><span data-bi="在新窗口打开 Adidas 官网 ↗::Open Adidas in a new tab ↗">在新窗口打开 Adidas 官网 ↗</span></a>
         </div>
       </div>
     </div>
@@ -235,21 +247,21 @@
     
     <section class="chapter" id="ch3">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 02</span>
-        <h2>品牌叙事总结</h2>
+        <span class="chapter-num"><span data-bi="Chapter 02::Chapter 02">Chapter 02</span></span>
+        <h2><span data-bi="品牌叙事总结::Brand Narrative Summary">品牌叙事总结</span></h2>
       </div>
       <div class="summary-block">
-        <h3>Summary · 一段话理解 Adidas</h3>
-        <p>阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。</p>
+        <h3><span data-bi="Summary · 一段话理解 阿迪达斯::Summary · Adidas in one paragraph">Summary · 一段话理解 阿迪达斯</span></h3>
+        <p><span data-bi="阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。::Adidas is a global sports brand that built its iconic recognition around the Three Stripes, uniting professional performance, street culture, and everyday wearability. Its visual system is anchored in high-contrast black and white, bold graphic symbols, and sharp, confident typography — delivering a brand presence that feels classic, reliable, and full of kinetic energy. Through ongoing collaborations and cultural activations, it continuously reinforces a youthful, expressive edge.">阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。</span></p>
       </div>
     </section>
     
     <section class="chart-section" id="ch4">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 03</span>
-        <h2>六维调性雷达图</h2>
+        <span class="chapter-num"><span data-bi="Chapter 03::Chapter 03">Chapter 03</span></span>
+        <h2><span data-bi="六维调性雷达图::6-Dimension Tone Radar">六维调性雷达图</span></h2>
       </div>
-      <p class="chapter-desc">克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。</p>
+      <p class="chapter-desc"><span data-bi="克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。::Restraint / Warmth / Gamification / Tech / Emotional bond / Identity strength. Each scored 0-10.">克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。</span></p>
       <div class="chart-card">
         <div id="radar-chart"></div>
       </div>
@@ -259,69 +271,132 @@
       window.__RADAR_DATA__ = {
         name: "Adidas",
         values: [7.5,5.5,4,7,6.5,9.5],
+        labels: ["克制","温度感","游戏化","科技感","情感连接","识别强度"],
+        labelsEn: ["Restraint","Warmth","Gamification","Tech","Emotion","Identity"],
       };
     </script>
     
     <section class="chapter" id="ch5">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 04</span>
-        <h2>该品牌 的 5 条可执行建议</h2>
+        <span class="chapter-num"><span data-bi="Chapter 04::Chapter 04">Chapter 04</span></span>
+        <h2><span data-bi="Kiwii 的 5 条可执行建议::5 Actionable Insights for Kiwii">Kiwii 的 5 条可执行建议</span></h2>
       </div>
-      <p class="chapter-desc">基于「Adidas」的视觉与商业策略，提取对「该品牌」最具借鉴价值的洞察。</p>
+      <p class="chapter-desc"><span data-bi="基于「阿迪达斯」的视觉与商业策略，提取对「阿迪达斯」最具借鉴价值的洞察。::Drawing on the visual &amp; commercial strategy of &quot;Adidas&quot;, here are the most transferable takeaways.">基于「阿迪达斯」的视觉与商业策略，提取对「阿迪达斯」最具借鉴价值的洞察。</span></p>
       <div class="takeaway">
-        <h3>Takeaway · 5 Actionable Insights</h3>
-        <ul>
-          <li>用「中性 + 1 暖点缀」取代高饱和撞色，保持全渠道视觉统一。</li><li>建立 1–2 个「杀手级场景」而非泛功能堆叠，让品牌叙事聚焦。</li><li>把「克制度 / 温度感 / 情感」作为长期调性，避免游戏化与高识别强度。</li><li>用「斜体 + 大字号」做强调，营造安静、有呼吸感的语气。</li><li>色板中预留 1–2 个暖中性色（沙色 / 雾绿），为系列延展留空间。</li>
-        </ul>
+        <h3><span data-bi="Takeaway · 5 Actionable Insights::Takeaway · 5 Actionable Insights">Takeaway · 5 Actionable Insights</span></h3>
+        <ul><li><span data-bi="用粗体压缩无衬线字体强化标题运动感::Use bold, condensed sans-serif type to amplify the athletic feel of headlines">用粗体压缩无衬线字体强化标题运动感</span></li><li><span data-bi="采用单色基底搭配一个强调色的配色法则::Build color systems around a monochrome base paired with a single accent color">采用单色基底搭配一个强调色的配色法则</span></li><li><span data-bi="每季度与文化IP推一次限量联名::Release a limited collaboration with a cultural IP each season">每季度与文化IP推一次限量联名</span></li><li><span data-bi="首页采用70%中性色加30%品牌色布局::Structure the homepage around a 70% neutral to 30% brand color ratio">首页采用70%中性色加30%品牌色布局</span></li><li><span data-bi="把鞋盒和快递包装统一印上品牌符号::Unify shoeboxes and shipping packaging with consistent brand symbols">把鞋盒和快递包装统一印上品牌符号</span></li></ul>
       </div>
     </section>
 
     <footer>
-      Generated by {YOUR_BRAND} Brand Lab · 2026-06-23<br>
-      Powered by <code>brand-research</code> skill + MiniMax M3
+      <span data-bi="Generated by  Brand Lab · 2026-06-23::Generated by  Brand Lab · 2026-06-23">Generated by &lt;span class=&quot;brand-name-slot&quot;&gt;&lt;/span&gt; Brand Lab · 2026-06-23</span><br>
+      Powered by <code>brand-research</code> skill + your-default-model<br>
     </footer>
   </article>
 
-  <script id="__BRAND_DATA__" type="application/json">{&quot;id&quot;:&quot;adidas-20260623&quot;,&quot;name&quot;:&quot;Adidas&quot;,&quot;nameZh&quot;:&quot;阿迪达斯&quot;,&quot;url&quot;:&quot;https://www.adidas.com&quot;,&quot;tagline&quot;:&quot;Impossible Is Nothing&quot;,&quot;category&quot;:&quot;运动服饰&quot;,&quot;country&quot;:&quot;德国&quot;,&quot;year&quot;:1949,&quot;summary&quot;:&quot;阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。&quot;,&quot;primaryColors&quot;:[&quot;#000000&quot;,&quot;#FFFFFF&quot;,&quot;#1C1C1C&quot;,&quot;#C6C6C6&quot;],&quot;palette&quot;:[{&quot;hex&quot;:&quot;#000000&quot;,&quot;name&quot;:&quot;黑色&quot;},{&quot;hex&quot;:&quot;#FFFFFF&quot;,&quot;name&quot;:&quot;白色&quot;},{&quot;hex&quot;:&quot;#1C1C1C&quot;,&quot;name&quot;:&quot;炭黑&quot;},{&quot;hex&quot;:&quot;#C6C6C6&quot;,&quot;name&quot;:&quot;中性灰&quot;},{&quot;hex&quot;:&quot;#0057B8&quot;,&quot;name&quot;:&quot;阿迪蓝&quot;}],&quot;logo&quot;:{&quot;type&quot;:&quot;组合&quot;,&quot;description&quot;:&quot;以三叶草与三条纹为核心识别，兼具字标与图形符号的全球统一体系。&quot;,&quot;construction&quot;:&quot;基于简洁字形与强识别图形的组合结构，依靠三条平行斜线与留白形成动态平衡，强化运动感与品牌记忆点。&quot;},&quot;typography&quot;:{&quot;heading&quot;:&quot;无衬线粗体，偏几何感的品牌定制字形&quot;,&quot;body&quot;:&quot;现代无衬线体，清晰高可读性，适配电商与运动场景&quot;,&quot;notes&quot;:&quot;整体强调力量感、速度感与高识别度，字重对比明确。&quot;},&quot;photography&quot;:{&quot;style&quot;:&quot;lifestyle, studio, documentary&quot;,&quot;lighting&quot;:&quot;高对比自然光与硬朗棚拍混合，局部强调轮廓&quot;,&quot;tone&quot;:&quot;利落、真实、能量感、运动感&quot;,&quot;composition&quot;:&quot;中近景人物为主，动态姿态与大留白并存，常用强角度与品牌符号入镜&quot;},&quot;tone&quot;:[&quot;运动专业&quot;,&quot;年轻活力&quot;,&quot;经典耐看&quot;,&quot;城市街头感&quot;,&quot;自信进取&quot;],&quot;toneSummary&quot;:&quot;经典运动美学，兼具专业与街头活力。&quot;,&quot;positioning&quot;:&quot;面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。&quot;,&quot;targetUser&quot;:{&quot;age&quot;:&quot;16-40岁&quot;,&quot;identity&quot;:&quot;运动爱好者、城市年轻人、潮流消费者&quot;,&quot;pain&quot;:&quot;需要兼顾性能、舒适与风格表达的穿着解决方案&quot;,&quot;scene&quot;:&quot;训练、通勤、街头穿搭、休闲社交&quot;},&quot;sellingPoints&quot;:[&quot;三条纹与三叶草构成极强品牌识别系统&quot;,&quot;兼具运动科技、舒适脚感与日常穿搭属性&quot;,&quot;覆盖跑步、训练、足球、篮球与生活方式全场景&quot;,&quot;拥有长期运动文化与潮流联名资产&quot;,&quot;品牌历史深厚，兼具经典性与持续创新能力&quot;],&quot;radar&quot;:{&quot;克制&quot;:7.5,&quot;温度感&quot;:5.5,&quot;游戏化&quot;:4,&quot;科技感&quot;:7,&quot;情感连接&quot;:6.5,&quot;识别强度&quot;:9.5},&quot;meta&quot;:{&quot;favicon&quot;:&quot;&quot;,&quot;ogImage&quot;:&quot;&quot;,&quot;heroImage&quot;:&quot;&quot;,&quot;logoCandidates&quot;:[]},&quot;reportFile&quot;:&quot;adidas-20260623.html&quot;,&quot;reportUrl&quot;:&quot;./adidas-20260623.html&quot;,&quot;createdAt&quot;:&quot;2026-06-23&quot;}</script>
+  <script id="__BRAND_DATA__" type="application/json">{&quot;id&quot;:&quot;adidas-20260623&quot;,&quot;name&quot;:&quot;Adidas&quot;,&quot;nameZh&quot;:&quot;阿迪达斯&quot;,&quot;nameEn&quot;:&quot;Adidas&quot;,&quot;url&quot;:&quot;https://www.adidas.com&quot;,&quot;tagline&quot;:&quot;Impossible Is Nothing&quot;,&quot;taglineZh&quot;:&quot;Impossible Is Nothing&quot;,&quot;taglineEn&quot;:&quot;&quot;,&quot;category&quot;:&quot;Sportswear&quot;,&quot;categoryZh&quot;:&quot;Sportswear&quot;,&quot;categoryEn&quot;:&quot;&quot;,&quot;country&quot;:&quot;Germany&quot;,&quot;countryZh&quot;:&quot;Germany&quot;,&quot;countryEn&quot;:&quot;&quot;,&quot;year&quot;:1949,&quot;summary&quot;:&quot;阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。&quot;,&quot;summaryEn&quot;:&quot;Adidas is a global sports brand that built its iconic recognition around the Three Stripes, uniting professional performance, street culture, and everyday wearability. Its visual system is anchored in high-contrast black and white, bold graphic symbols, and sharp, confident typography — delivering a brand presence that feels classic, reliable, and full of kinetic energy. Through ongoing collaborations and cultural activations, it continuously reinforces a youthful, expressive edge.&quot;,&quot;primaryColors&quot;:[&quot;#000000&quot;,&quot;#FFFFFF&quot;,&quot;#1C1C1C&quot;,&quot;#C6C6C6&quot;],&quot;palette&quot;:[{&quot;hex&quot;:&quot;#000000&quot;,&quot;name&quot;:&quot;黑色&quot;,&quot;nameEn&quot;:&quot;Black&quot;},{&quot;hex&quot;:&quot;#FFFFFF&quot;,&quot;name&quot;:&quot;白色&quot;,&quot;nameEn&quot;:&quot;White&quot;},{&quot;hex&quot;:&quot;#1C1C1C&quot;,&quot;name&quot;:&quot;炭黑&quot;,&quot;nameEn&quot;:&quot;Charcoal&quot;},{&quot;hex&quot;:&quot;#C6C6C6&quot;,&quot;name&quot;:&quot;中性灰&quot;,&quot;nameEn&quot;:&quot;Neutral Gray&quot;},{&quot;hex&quot;:&quot;#0057B8&quot;,&quot;name&quot;:&quot;阿迪蓝&quot;,&quot;nameEn&quot;:&quot;Adidas Blue&quot;}],&quot;logo&quot;:{&quot;type&quot;:&quot;组合&quot;,&quot;description&quot;:&quot;以三叶草与三条纹为核心识别，兼具字标与图形符号的全球统一体系。&quot;,&quot;construction&quot;:&quot;基于简洁字形与强识别图形的组合结构，依靠三条平行斜线与留白形成动态平衡，强化运动感与品牌记忆点。&quot;,&quot;typeEn&quot;:&quot;Combination&quot;,&quot;descriptionEn&quot;:&quot;Built around the Trefoil and Three Stripes as core identifiers, a globally unified system combining wordmark and graphic symbol.&quot;,&quot;constructionEn&quot;:&quot;A combination structure anchored in clean letterforms and highly recognizable graphics, using three parallel diagonal lines and negative space to create dynamic balance — reinforcing athletic energy and brand recall.&quot;},&quot;typography&quot;:{&quot;heading&quot;:&quot;无衬线粗体，偏几何感的品牌定制字形&quot;,&quot;body&quot;:&quot;现代无衬线体，清晰高可读性，适配电商与运动场景&quot;,&quot;notes&quot;:&quot;整体强调力量感、速度感与高识别度，字重对比明确。&quot;,&quot;headingEn&quot;:&quot;Bold sans-serif, with a slightly geometric custom brand typeface&quot;,&quot;bodyEn&quot;:&quot;Modern sans-serif, optimized for high readability across e-commerce and sport contexts&quot;,&quot;notesEn&quot;:&quot;The system emphasizes power, speed, and strong recognition, with clear weight contrast throughout.&quot;},&quot;photography&quot;:{&quot;style&quot;:&quot;lifestyle, studio, documentary&quot;,&quot;lighting&quot;:&quot;高对比自然光与硬朗棚拍混合，局部强调轮廓&quot;,&quot;tone&quot;:&quot;利落、真实、能量感、运动感&quot;,&quot;composition&quot;:&quot;中近景人物为主，动态姿态与大留白并存，常用强角度与品牌符号入镜&quot;,&quot;lightingEn&quot;:&quot;A mix of high-contrast natural light and hard, directional studio lighting, with targeted emphasis on silhouette&quot;,&quot;toneEn&quot;:&quot;Crisp, authentic, energetic, athletic&quot;,&quot;compositionEn&quot;:&quot;Mid- and close-range portraits featuring dynamic poses alongside generous negative space, frequently incorporating strong camera angles and brand symbols within the frame&quot;},&quot;tone&quot;:[&quot;运动专业&quot;,&quot;年轻活力&quot;,&quot;经典耐看&quot;,&quot;城市街头感&quot;,&quot;自信进取&quot;],&quot;toneEn&quot;:[&quot;Athletically professional&quot;,&quot;Youthful and energetic&quot;,&quot;Timeless and enduring&quot;,&quot;Urban street sensibility&quot;,&quot;Confident and driven&quot;],&quot;toneSummary&quot;:&quot;经典运动美学，兼具专业与街头活力。&quot;,&quot;toneSummaryEn&quot;:&quot;Classic sports aesthetic that bridges professional performance with street-level energy.&quot;,&quot;positioning&quot;:&quot;面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。&quot;,&quot;positioningEn&quot;:&quot;A top-tier global sports brand for athletes and culture-driven consumers, connecting professional performance to daily wear and self-expression.&quot;,&quot;targetUser&quot;:{&quot;age&quot;:&quot;16-40岁&quot;,&quot;identity&quot;:&quot;运动爱好者、城市年轻人、潮流消费者&quot;,&quot;pain&quot;:&quot;需要兼顾性能、舒适与风格表达的穿着解决方案&quot;,&quot;scene&quot;:&quot;训练、通勤、街头穿搭、休闲社交&quot;},&quot;targetUserEn&quot;:{&quot;age&quot;:&quot;16-40&quot;,&quot;identity&quot;:&quot;Sports enthusiasts, urban youth, style-driven consumers&quot;,&quot;pain&quot;:&quot;A need for wardrobe solutions that balance performance, comfort, and personal style&quot;,&quot;scene&quot;:&quot;Training, commuting, street styling, casual social occasions&quot;},&quot;sellingPoints&quot;:[&quot;三条纹与三叶草构成极强品牌识别系统&quot;,&quot;兼具运动科技、舒适脚感与日常穿搭属性&quot;,&quot;覆盖跑步、训练、足球、篮球与生活方式全场景&quot;,&quot;拥有长期运动文化与潮流联名资产&quot;,&quot;品牌历史深厚，兼具经典性与持续创新能力&quot;],&quot;sellingPointsEn&quot;:[&quot;Three Stripes and Trefoil form an exceptionally strong brand recognition system&quot;,&quot;Combines sports technology, comfort, and everyday styling in one product line&quot;,&quot;Covers the full spectrum of running, training, football, basketball, and lifestyle&quot;,&quot;Built on a deep heritage of sports culture and high-profile collaborations&quot;,&quot;A storied brand history that balances classic credibility with continuous innovation&quot;],&quot;brandTakeaway&quot;:[&quot;用粗体压缩无衬线字体强化标题运动感&quot;,&quot;采用单色基底搭配一个强调色的配色法则&quot;,&quot;每季度与文化IP推一次限量联名&quot;,&quot;首页采用70%中性色加30%品牌色布局&quot;,&quot;把鞋盒和快递包装统一印上品牌符号&quot;],&quot;brandTakeawayEn&quot;:[&quot;Use bold, condensed sans-serif type to amplify the athletic feel of headlines&quot;,&quot;Build color systems around a monochrome base paired with a single accent color&quot;,&quot;Release a limited collaboration with a cultural IP each season&quot;,&quot;Structure the homepage around a 70% neutral to 30% brand color ratio&quot;,&quot;Unify shoeboxes and shipping packaging with consistent brand symbols&quot;],&quot;radar&quot;:{&quot;克制&quot;:7.5,&quot;温度感&quot;:5.5,&quot;游戏化&quot;:4,&quot;科技感&quot;:7,&quot;情感连接&quot;:6.5,&quot;识别强度&quot;:9.5},&quot;meta&quot;:{&quot;favicon&quot;:&quot;&quot;,&quot;ogImage&quot;:&quot;&quot;,&quot;heroImage&quot;:&quot;&quot;,&quot;logoCandidates&quot;:[]},&quot;reportFile&quot;:&quot;adidas-20260623.html&quot;,&quot;reportUrl&quot;:&quot;./adidas-20260623.html&quot;,&quot;createdAt&quot;:&quot;2026-06-23&quot;}</script>
 
   <script src="./_shared/js/echarts.min.js"></script>
   <script>
+    // ===== i18n runtime =====
+    (function () {
+      var STORAGE_KEY = 'kwi_report_lang';
+      function readLang() {
+        try { var v = localStorage.getItem(STORAGE_KEY); if (v === 'en' || v === 'zh') return v; } catch (e) {}
+        return 'en';
+      }
+      function writeLang(v) { try { localStorage.setItem(STORAGE_KEY, v); } catch (e) {} }
+      function applyLang(lang) {
+        document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
+        // 替换所有 [data-bi] 的内容
+        document.querySelectorAll('[data-bi]').forEach(function (el) {
+          var parts = el.getAttribute('data-bi').split('::');
+          el.textContent = parts[lang === 'en' ? 1 : 0] || parts[0] || '';
+        });
+        // 替换所有 [data-bi-html] 的 HTML（用于带标签的内容）
+        document.querySelectorAll('[data-bi-html]').forEach(function (el) {
+          var parts = el.getAttribute('data-bi-html').split('::');
+          el.innerHTML = parts[lang === 'en' ? 1 : 0] || parts[0] || '';
+        });
+        // 顶栏按钮状态
+        document.querySelectorAll('#lang-toggle button').forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        });
+        // 触发雷达图重绘（labels 切换）
+        if (window.__RERENDER_RADAR__) try { window.__RERENDER_RADAR__(lang); } catch (e) {}
+        // 触发 brand-name-slot 替换（如果 report-meta 里有占位）
+        try {
+          var brand = (window.__BRAND__ || '').trim() || 'Kiwii';
+          document.querySelectorAll('.brand-name-slot').forEach(function (s) { s.textContent = brand; });
+        } catch (e) {}
+        // 写 lang
+        window.__CURRENT_LANG__ = lang;
+      }
+      function init() {
+        var cur = readLang();
+        applyLang(cur);
+        document.querySelectorAll('#lang-toggle button').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var next = b.getAttribute('data-lang');
+            if (next && next !== readLang()) {
+              writeLang(next);
+              applyLang(next);
+            }
+          });
+        });
+      }
+      // 暴露供 radar 脚本用
+      window.__APPLY_LANG__ = applyLang;
+      window.__GET_LANG__ = function () { return window.__CURRENT_LANG__ || 'zh'; };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+  <script>
+    // ===== 雷达图（labels 跟语言切换） =====
     (function () {
       var data = window.__RADAR_DATA__;
       var c = document.getElementById('radar-chart');
       if (!c || !window.echarts) return;
       var chart = window.echarts.init(c, null, { renderer: 'canvas' });
       var color = "#000000";
-      chart.setOption({
-        color: [color],
-        legend: { show: false },
-        radar: {
-          indicator: [
-            { name: '克制', max: 10 },
-            { name: '温度感', max: 10 },
-            { name: '游戏化', max: 10 },
-            { name: '科技感', max: 10 },
-            { name: '情感连接', max: 10 },
-            { name: '识别强度', max: 10 }
-          ],
-          shape: 'polygon',
-          splitNumber: 5,
-          axisName: { color: '#1A1A1A', fontFamily: 'InstrumentSans, sans-serif', fontSize: 13 },
-          splitLine: { lineStyle: { color: '#E8E0D4' } },
-          splitArea: { areaStyle: { color: ['rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)'] } },
-          axisLine: { lineStyle: { color: '#E8E0D4' } }
-        },
-        series: [{
-          type: 'radar',
-          data: [{
-            value: data.values,
-            name: data.name,
-            lineStyle: { width: 2, color: color },
-            itemStyle: { color: color },
-            areaStyle: { color: color + '20' }
+      var labelsZh = (data.labels && data.labels.length) ? data.labels : ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
+      var labelsEn = data.labelsEn || labelsZh;
+      function render(lang) {
+        var labels = lang === 'en' ? labelsEn : labelsZh;
+        chart.setOption({
+          color: [color],
+          tooltip: { trigger: 'item' },
+          legend: { show: false },
+          radar: {
+            indicator: labels.map(function (name) { return { name: name, max: 10 }; }),
+            shape: 'polygon',
+            splitNumber: 5,
+            axisName: { color: '#1A1A1A', fontFamily: 'InstrumentSans, sans-serif', fontSize: 13 },
+            splitLine: { lineStyle: { color: '#E8E0D4' } },
+            splitArea: { areaStyle: { color: ['rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)'] } },
+            axisLine: { lineStyle: { color: '#E8E0D4' } }
+          },
+          series: [{
+            type: 'radar',
+            symbol: 'circle',
+            symbolSize: 6,
+            data: [{
+              value: data.values,
+              name: data.name || '品牌雷达',
+              lineStyle: { width: 2, color: color },
+              itemStyle: { color: color },
+              areaStyle: { color: color + '20' }
+            }]
           }]
-        }]
-      });
+        });
+      }
+      // 暴露给 i18n runtime 调用
+      window.__RERENDER_RADAR__ = render;
+      render(window.__GET_LANG__ ? window.__GET_LANG__() : 'zh');
       window.addEventListener('resize', function () { chart.resize(); });
     })();
   </script>

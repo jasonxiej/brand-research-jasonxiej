@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nike 品牌视觉研究</title>
+  <title><span data-bi="耐克品牌视觉研究::Nike· Visual Brand Research">耐克品牌视觉研究</span></title>
   <link rel="stylesheet" href="./_shared/css/report-base.css">
   <style>
     :root {
@@ -24,7 +24,14 @@
     a:hover { text-decoration: underline; }
     .page { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-    .cover { text-align: center; padding: 6rem 1rem 4rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
+    /* 顶栏：品牌名 + 语言切换 */
+    .topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; margin-bottom: 1rem; }
+    .topbar .crumb { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+    .topbar .lang-toggle { display: flex; gap: 0.25rem; padding: 3px; background: var(--bg3); border-radius: 999px; font-family: var(--font-mono); font-size: 0.7rem; }
+    .topbar .lang-toggle button { border: 0; background: transparent; padding: 0.3rem 0.7rem; border-radius: 999px; cursor: pointer; color: var(--muted); font-family: inherit; font-size: inherit; }
+    .topbar .lang-toggle button.active { background: var(--ink); color: var(--bg2); }
+
+    .cover { text-align: center; padding: 4rem 1rem 3rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
     .cover-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
     .cover h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 1rem; }
     .cover h1 em { color: var(--accent); font-style: italic; }
@@ -115,119 +122,123 @@
 </head>
 <body>
   <article class="page">
+    <div class="topbar">
+      <span class="crumb"><span data-bi="Brand Library · 品牌调研库::Brand Library · 品牌调研库">Brand Library · 品牌调研库</span></span>
+      <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language toggle">
+        <button type="button" data-lang="zh">中</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+
     <header class="cover">
-      <div class="cover-label">Brand Research Report</div>
-      <h1>Nike 品牌<em>视觉</em>研究</h1>
-      <p class="subtitle">Nike 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图</p>
-      <div class="cover-meta">2026-06-23 &middot; Brand Research &middot; Just Do It.</div>
+      <div class="cover-label"><span data-bi="Brand Research Report::Brand Research Report">Brand Research Report</span></div>
+      <h1><span data-bi="耐克 品牌视觉研究::Nike · Visual Brand Research">耐克 品牌视觉研究</span></h1>
+      <p class="subtitle"><span data-bi="耐克 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图::An 8-dimension breakdown of Nike's logo, palette, typography, photography, tone, positioning, target user, and selling points + radar chart.">耐克 的 Logo、色板、字体、摄影、调性、定位、用户、卖点 8 维拆解 + 雷达图</span></p>
+      <div class="cover-meta">2026-06-23 &middot; Brand Research &middot; <span data-bi="Sportswear &amp; Athletic Equipment::Sportswear &amp; Athletic Equipment">Sportswear &amp; Athletic Equipment</span> · <span data-bi="United States::United States">United States</span></div>
     </header>
 
     <nav class="toc">
-      <h2>目录</h2>
+      <h2><span data-bi="目录::Contents">目录</span></h2>
       <ol>
-        <li><a href="#ch2">8 维视觉与商业拆解</a></li>
-        <li><a href="#ch3">品牌叙事总结</a></li>
-        <li><a href="#ch4">六维调性雷达图</a></li>
-        <li><a href="#ch5">Nike 的 5 条可执行建议</a></li>
+        <li><a href="#ch2"><span data-bi="8 维视觉与商业拆解::8-Dimension Visual &amp; Business Breakdown">8 维视觉与商业拆解</span></a></li>
+        <li><a href="#ch3"><span data-bi="品牌叙事总结::Brand Narrative Summary">品牌叙事总结</span></a></li>
+        <li><a href="#ch4"><span data-bi="六维调性雷达图::6-Dimension Tone Radar">六维调性雷达图</span></a></li>
+        <li><a href="#ch5"><span data-bi="Kiwii 的 5 条可执行建议::5 Actionable Insights for Kiwii">Kiwii 的 5 条可执行建议</span></a></li>
       </ol>
     </nav>
 
     
     <section class="chapter" id="ch2">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 01</span>
-        <h2>8 维视觉与商业拆解</h2>
+        <span class="chapter-num"><span data-bi="Chapter 01::Chapter 01">Chapter 01</span></span>
+        <h2><span data-bi="8 维视觉与商业拆解::8-Dimension Visual &amp; Business Breakdown">8 维视觉与商业拆解</span></h2>
       </div>
-      <p class="chapter-desc">从 Logo 到核心卖点，逐项拆解 Nike 品牌的视觉资产与商业逻辑。</p>
+      <p class="chapter-desc"><span data-bi="从 Logo 到核心卖点，逐项拆解 耐克 品牌的视觉资产与商业逻辑。::A detailed breakdown of Nike's visual assets and business logic — from logo to core selling points.">从 Logo 到核心卖点，逐项拆解 耐克 品牌的视觉资产与商业逻辑。</span></p>
 
       <div class="brand-card">
-        <div class="brand-name">耐克 <span class="tag">运动服饰与运动装备 · 美国</span></div>
+        <div class="brand-name"><span data-bi="耐克::Nike">耐克</span> <span class="tag"><span data-bi="Sportswear &amp; Athletic Equipment · United States::Sportswear &amp; Athletic Equipment · United States">Sportswear &amp; Athletic Equipment · United States</span></span></div>
 
         <div class="detail-grid">
           <div class="detail-item">
-            <div class="detail-label">1 · Logo</div>
-            <div class="detail-value">类型：<strong>abstract</strong><br>以“Swoosh”弧形勾标构成，极简却具强运动张力，常与字标组合使用。<br><em>由单一流线几何构成，依靠负形、速度感曲线与高识别轮廓建立记忆点。</em></div>
+            <div class="detail-label"><span data-bi="1 · Logo::1 · Logo">1 · Logo</span></div>
+            <div class="detail-value"><span data-bi="类型::Type">类型</span>：<strong><span data-bi="abstract::—">abstract</span></strong><br><span data-bi="以“Swoosh”弧形勾标构成，极简却具强运动张力，常与字标组合使用。::Built on the Swoosh — a fluid arc mark that is minimalist yet charged with athletic momentum, often paired with the wordmark.">以“Swoosh”弧形勾标构成，极简却具强运动张力，常与字标组合使用。</span><br><em><span data-bi="由单一流线几何构成，依靠负形、速度感曲线与高识别轮廓建立记忆点。::Formed by a single streamlined geometry, building memorability through negative space, speed-driven curves, and a high-recognition silhouette.">由单一流线几何构成，依靠负形、速度感曲线与高识别轮廓建立记忆点。</span></em></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">2 · 色板</div>
+            <div class="detail-label"><span data-bi="2 · 色板::2 · Palette">2 · 色板</span></div>
             <div class="palette">
     <div class="swatch">
       <div class="swatch-block" style="background:#111111;"></div>
-      <div class="swatch-info"><span>#111111</span>黑色</div>
+      <div class="swatch-info"><span>#111111</span><span data-bi="黑色::Black">黑色</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#FFFFFF;"></div>
-      <div class="swatch-info"><span>#FFFFFF</span>白色</div>
+      <div class="swatch-info"><span>#FFFFFF</span><span data-bi="白色::White">白色</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#757575;"></div>
-      <div class="swatch-info"><span>#757575</span>中灰</div>
+      <div class="swatch-info"><span>#757575</span><span data-bi="中灰::Mid Gray">中灰</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#F5F5F5;"></div>
-      <div class="swatch-info"><span>#F5F5F5</span>浅灰</div>
+      <div class="swatch-info"><span>#F5F5F5</span><span data-bi="浅灰::Light Gray">浅灰</span></div>
     </div>
     <div class="swatch">
       <div class="swatch-block" style="background:#C8102E;"></div>
-      <div class="swatch-info"><span>#C8102E</span>耐克红</div>
+      <div class="swatch-info"><span>#C8102E</span><span data-bi="耐克红::Nike Red">耐克红</span></div>
     </div></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">3 · 字体系统</div>
-            <div class="detail-value">标题：粗体无衬线，偏 Condensed 运动广告字形<br>正文：现代无衬线体系，接近系统字体与品牌定制字重结合<br><em>标题强调力量与速度，正文保持高可读和商业化传播效率。</em></div>
+            <div class="detail-label"><span data-bi="3 · 字体系统::3 · Typography">3 · 字体系统</span></div>
+            <div class="detail-value"><span data-bi="标题::Heading">标题</span>：<span data-bi="粗体无衬线，偏 Condensed 运动广告字形::Bold sans-serif, leaning toward a condensed athletic ad typeface">粗体无衬线，偏 Condensed 运动广告字形</span><br><span data-bi="正文::Body">正文</span>：<span data-bi="现代无衬线体系，接近系统字体与品牌定制字重结合::A modern sans-serif system, blending near-system fonts with brand-customized weights">现代无衬线体系，接近系统字体与品牌定制字重结合</span><br><em><span data-bi="标题强调力量与速度，正文保持高可读和商业化传播效率。::Headlines emphasize power and speed; body copy stays highly legible and built for commercial communication.">标题强调力量与速度，正文保持高可读和商业化传播效率。</span></em></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">4 · 摄影风格</div>
-            <div class="detail-value">类型：<strong>lifestyle, studio, documentary</strong><br>光线：高对比硬光与均匀柔光并用，强调肌肉线条与产品细节<br>色调：高对比、动势强、冷暖并置、真实竞技感<br>构图：大特写、低机位、斜线构图与留白并行，突出动作瞬间</div>
+            <div class="detail-label"><span data-bi="4 · 摄影风格::4 · Photography">4 · 摄影风格</span></div>
+            <div class="detail-value"><span data-bi="类型::Type">类型</span>：<strong><span data-bi="lifestyle, studio, documentary::—">lifestyle, studio, documentary</span></strong><br><span data-bi="光线::Lighting">光线</span>：<span data-bi="高对比硬光与均匀柔光并用，强调肌肉线条与产品细节::High-contrast hard light paired with even soft light, emphasizing muscle definition and product detail">高对比硬光与均匀柔光并用，强调肌肉线条与产品细节</span><br><span data-bi="色调::Tone">色调</span>：<span data-bi="高对比、动势强、冷暖并置、真实竞技感::High contrast, strong momentum, juxtaposed warm and cool tones, authentic competitive feel">高对比、动势强、冷暖并置、真实竞技感</span><br><span data-bi="构图::Composition">构图</span>：<span data-bi="大特写、低机位、斜线构图与留白并行，突出动作瞬间::Extreme close-ups, low angles, diagonal compositions alongside negative space, capturing peak action moments">大特写、低机位、斜线构图与留白并行，突出动作瞬间</span></div>
           </div>
 
           <div class="detail-item full">
-            <div class="detail-label">5 · 品牌调性</div>
-            <div class="detail-value">关键词：<strong>力量感</strong>、<strong>进取</strong>、<strong>极简高识别</strong>、<strong>竞技精神</strong>、<strong>鼓舞性</strong><br>以极简符号承载高强度运动表达。</div>
+            <div class="detail-label"><span data-bi="5 · 品牌调性::5 · Brand Tone">5 · 品牌调性</span></div>
+            <div class="detail-value"><span data-bi="关键词::Keywords">关键词</span>：<span data-bi="&lt;strong&gt;力量感&lt;/strong&gt;、&lt;strong&gt;进取&lt;/strong&gt;、&lt;strong&gt;极简高识别&lt;/strong&gt;、&lt;strong&gt;竞技精神&lt;/strong&gt;、&lt;strong&gt;鼓舞性&lt;/strong&gt;::&lt;strong&gt;Power&lt;/strong&gt;, &lt;strong&gt;Drive&lt;/strong&gt;, &lt;strong&gt;Minimalist and high-recognition&lt;/strong&gt;, &lt;strong&gt;Competitive spirit&lt;/strong&gt;, &lt;strong&gt;Inspirational&lt;/strong&gt;"><strong>力量感</strong>、<strong>进取</strong>、<strong>极简高识别</strong>、<strong>竞技精神</strong>、<strong>鼓舞性</strong></span><br><span data-bi="以极简符号承载高强度运动表达。::High-intensity athletic expression carried by minimalist symbols.">以极简符号承载高强度运动表达。</span></div>
           </div>
 
           <div class="detail-item full">
-            <div class="detail-label">6 · 品牌定位</div>
-            <div class="detail-value">Tagline：<em>Just Do It.</em><br>面向全球运动人群的头部运动品牌，以产品科技与精神激励驱动消费。</div>
+            <div class="detail-label"><span data-bi="6 · 品牌定位::6 · Positioning">6 · 品牌定位</span></div>
+            <div class="detail-value"><span data-bi="Tagline：::Tagline: ">Tagline：</span><em><span data-bi="Just Do It.::Just Do It.">Just Do It.</span></em><br><span data-bi="面向全球运动人群的头部运动品牌，以产品科技与精神激励驱动消费。::A leading global sports brand targeting athletes worldwide, driving purchase through product technology and the power of motivation.">面向全球运动人群的头部运动品牌，以产品科技与精神激励驱动消费。</span></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">7 · 目标用户</div>
-            <div class="detail-value">
-    年龄：15-45岁<br>
-    身份：专业运动员、健身人群与年轻运动消费群<br>
-    痛点：需要兼顾性能、风格与身份表达，同时渴望被激励和认可<br>
-    场景：训练、比赛、通勤、街头穿搭与日常运动生活</div>
+            <div class="detail-label"><span data-bi="7 · 目标用户::7 · Target User">7 · 目标用户</span></div>
+            <div class="detail-value"><span data-bi="年龄：15-45岁&lt;br&gt;身份：专业运动员、健身人群与年轻运动消费群&lt;br&gt;痛点：需要兼顾性能、风格与身份表达，同时渴望被激励和认可&lt;br&gt;场景：训练、比赛、通勤、街头穿搭与日常运动生活::Age: 15–45&lt;br&gt;Identity: Professional athletes, fitness enthusiasts, and younger sports consumers&lt;br&gt;Pain: Need to balance performance, style, and identity expression, while craving motivation and recognition&lt;br&gt;Scene: Training, competition, commuting, streetwear styling, and everyday active life">年龄：15-45岁<br>身份：专业运动员、健身人群与年轻运动消费群<br>痛点：需要兼顾性能、风格与身份表达，同时渴望被激励和认可<br>场景：训练、比赛、通勤、街头穿搭与日常运动生活</span></div>
           </div>
 
           <div class="detail-item">
-            <div class="detail-label">8 · 核心卖点</div>
-            <div class="detail-value">1. Swoosh 与“Just Do It”形成极强品牌联想与传播资产。<br>2. 覆盖跑步、篮球、训练、生活方式等全场景运动产品线。<br>3. 长期绑定顶级运动员与赛事资源，强化专业背书。<br>4. 在材料、缓震、支撑与轻量化上持续迭代产品科技。<br>5. 把运动表现转译为街头时尚，兼顾功能与审美。</div>
+            <div class="detail-label"><span data-bi="8 · 核心卖点::8 · Selling Points">8 · 核心卖点</span></div>
+            <div class="detail-value"><span data-bi="1. Swoosh 与“Just Do It”形成极强品牌联想与传播资产。&lt;br&gt;2. 覆盖跑步、篮球、训练、生活方式等全场景运动产品线。&lt;br&gt;3. 长期绑定顶级运动员与赛事资源，强化专业背书。&lt;br&gt;4. 在材料、缓震、支撑与轻量化上持续迭代产品科技。&lt;br&gt;5. 把运动表现转译为街头时尚，兼顾功能与审美。::1. The Swoosh and 'Just Do It' form an exceptionally strong brand association and communication asset.&lt;br&gt;2. A full-spectrum product line covering running, basketball, training, and lifestyle.&lt;br&gt;3. Long-term partnerships with elite athletes and premier sporting events reinforce a professional endorsement.&lt;br&gt;4. Continuous iteration of product technology in materials, cushioning, support, and lightweight construction.&lt;br&gt;5. Translates athletic performance into street fashion, balancing function and aesthetic.">1. Swoosh 与“Just Do It”形成极强品牌联想与传播资产。<br>2. 覆盖跑步、篮球、训练、生活方式等全场景运动产品线。<br>3. 长期绑定顶级运动员与赛事资源，强化专业背书。<br>4. 在材料、缓震、支撑与轻量化上持续迭代产品科技。<br>5. 把运动表现转译为街头时尚，兼顾功能与审美。</span></div>
           </div>
         </div>
 
         
     <div class="site-preview" data-url="https://www.nike.com" data-name="Nike">
       <div class="site-preview-header">
-        <span class="label"><span class="dot"></span>官网预览 · https://www.nike.com</span>
+        <span class="label"><span class="dot"></span><span data-bi="官网预览 · https://www.nike.com::Site preview · https://www.nike.com">官网预览 · https://www.nike.com</span></span>
         <div class="actions">
-          <button type="button" data-mode="screenshot" class="active">截图</button>
-          <button type="button" data-mode="frame">内嵌</button>
-          <a href="https://www.nike.com" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a>
+          <button type="button" data-mode="screenshot" class="active"><span data-bi="截图::Screenshot">截图</span></button>
+          <button type="button" data-mode="frame"><span data-bi="内嵌::Embed">内嵌</span></button>
+          <a href="https://www.nike.com" target="_blank" rel="noopener noreferrer"><span data-bi="新窗口打开 ↗::Open in new tab ↗">新窗口打开 ↗</span></a>
         </div>
       </div>
       <div class="site-preview-body mode-screenshot">
-        <span class="site-preview-loading">LOADING…</span>
+        <span class="site-preview-loading"><span data-bi="LOADING…::LOADING…">LOADING…</span></span>
         <img class="screenshot" alt="Nike 官网截图" loading="lazy">
         <iframe class="frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
         <div class="fallback">
           <div class="icon">🔗</div>
-          <div class="msg">该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。</div>
-          <a class="open-btn" href="https://www.nike.com" target="_blank" rel="noopener noreferrer">在新窗口打开 Nike 官网 ↗</a>
+          <div class="msg"><span data-bi="该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。::This site cannot be embedded in the page (X-Frame-Options / CSP restriction). Click the button below to open it in a new tab.">该官网无法在当前页面内嵌预览（受 X-Frame-Options / CSP 限制）。点击下方按钮在新窗口中查看完整页面。</span></div>
+          <a class="open-btn" href="https://www.nike.com" target="_blank" rel="noopener noreferrer"><span data-bi="在新窗口打开 Nike 官网 ↗::Open Nike in a new tab ↗">在新窗口打开 Nike 官网 ↗</span></a>
         </div>
       </div>
     </div>
@@ -236,21 +247,21 @@
     
     <section class="chapter" id="ch3">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 02</span>
-        <h2>品牌叙事总结</h2>
+        <span class="chapter-num"><span data-bi="Chapter 02::Chapter 02">Chapter 02</span></span>
+        <h2><span data-bi="品牌叙事总结::Brand Narrative Summary">品牌叙事总结</span></h2>
       </div>
       <div class="summary-block">
-        <h3>Summary · 一段话理解 Nike</h3>
-        <p>耐克是以“Swoosh”和“Just Do It”构建全球识别的运动品牌。它用极简黑白体系、强动势摄影和明星运动员矩阵，把专业性能、竞技精神与街头时尚合为一体，形成兼具传播力与产品力的超级品牌资产。</p>
+        <h3><span data-bi="Summary · 一段话理解 耐克::Summary · Nike in one paragraph">Summary · 一段话理解 耐克</span></h3>
+        <p><span data-bi="耐克是以“Swoosh”和“Just Do It”构建全球识别的运动品牌。它用极简黑白体系、强动势摄影和明星运动员矩阵，把专业性能、竞技精神与街头时尚合为一体，形成兼具传播力与产品力的超级品牌资产。::Nike is a global sports brand built on the universal recognition of the Swoosh and 'Just Do It.' Through a minimalist black-and-white system, high-velocity photography, and a star-athlete roster, it fuses professional performance, competitive spirit, and street culture into a brand asset that delivers both cultural reach and product power.">耐克是以“Swoosh”和“Just Do It”构建全球识别的运动品牌。它用极简黑白体系、强动势摄影和明星运动员矩阵，把专业性能、竞技精神与街头时尚合为一体，形成兼具传播力与产品力的超级品牌资产。</span></p>
       </div>
     </section>
     
     <section class="chart-section" id="ch4">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 03</span>
-        <h2>六维调性雷达图</h2>
+        <span class="chapter-num"><span data-bi="Chapter 03::Chapter 03">Chapter 03</span></span>
+        <h2><span data-bi="六维调性雷达图::6-Dimension Tone Radar">六维调性雷达图</span></h2>
       </div>
-      <p class="chapter-desc">克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。</p>
+      <p class="chapter-desc"><span data-bi="克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。::Restraint / Warmth / Gamification / Tech / Emotional bond / Identity strength. Each scored 0-10.">克制度 / 温度感 / 游戏化 / 科技感 / 情感连接 / 识别强度，每个维度 0-10 分。</span></p>
       <div class="chart-card">
         <div id="radar-chart"></div>
       </div>
@@ -261,64 +272,131 @@
         name: "Nike",
         values: [7.5,4.5,3,8.5,7,10],
         labels: ["克制","温度感","游戏化","科技感","情感连接","识别强度"],
+        labelsEn: ["Restraint","Warmth","Gamification","Tech","Emotion","Identity"],
       };
     </script>
     
     <section class="chapter" id="ch5">
       <div class="chapter-header">
-        <span class="chapter-num">Chapter 04</span>
-        <h2>Nike 的 5 条可执行建议</h2>
+        <span class="chapter-num"><span data-bi="Chapter 04::Chapter 04">Chapter 04</span></span>
+        <h2><span data-bi="Kiwii 的 5 条可执行建议::5 Actionable Insights for Kiwii">Kiwii 的 5 条可执行建议</span></h2>
       </div>
-      <p class="chapter-desc">基于「Nike」的视觉与商业策略，提取对「Nike」最具借鉴价值的洞察。</p>
+      <p class="chapter-desc"><span data-bi="基于「耐克」的视觉与商业策略，提取对「耐克」最具借鉴价值的洞察。::Drawing on the visual &amp; commercial strategy of &quot;Nike&quot;, here are the most transferable takeaways.">基于「耐克」的视觉与商业策略，提取对「耐克」最具借鉴价值的洞察。</span></p>
       <div class="takeaway">
-        <h3>Takeaway · 5 Actionable Insights</h3>
-        <ul><li>复刻“Swoosh”级单一符号，用一笔曲线统一所有触点。</li><li>强化“Just Do It”式短句口号，把动机直接变成记忆点。</li><li>引入运动员与真实训练切片，替代空泛摆拍式广告。</li><li>重构黑白主视觉，再用高压红作为少量情绪爆点。</li><li>限定产品叙事只讲性能结果，让科技感直接服务胜利感。</li></ul>
+        <h3><span data-bi="Takeaway · 5 Actionable Insights::Takeaway · 5 Actionable Insights">Takeaway · 5 Actionable Insights</span></h3>
+        <ul><li><span data-bi="把品牌slogan从长句压缩到3个单词::Compress the brand slogan from a long line into three words">把品牌slogan从长句压缩到3个单词</span></li><li><span data-bi="主色锁定黑+白+一个高饱和强调色::Lock the primary palette to black, white, and one high-saturation accent color">主色锁定黑+白+一个高饱和强调色</span></li><li><span data-bi="每季度发布一次核心技术升级公告::Release a core technology upgrade announcement every quarter">每季度发布一次核心技术升级公告</span></li><li><span data-bi="签约3位细分运动领域KOL做长代言::Sign three niche-sport KOLs for long-term endorsement">签约3位细分运动领域KOL做长代言</span></li><li><span data-bi="推出与街头品牌联名的限量胶囊系列::Launch limited-edition capsule collections in collaboration with streetwear brands">推出与街头品牌联名的限量胶囊系列</span></li></ul>
       </div>
     </section>
 
     <footer>
-      Generated by {YOUR_BRAND} Brand Lab · 2026-06-23<br>
-      Powered by <code>brand-research</code> skill + MiniMax M3
+      <span data-bi="Generated by  Brand Lab · 2026-06-23::Generated by  Brand Lab · 2026-06-23">Generated by &lt;span class=&quot;brand-name-slot&quot;&gt;&lt;/span&gt; Brand Lab · 2026-06-23</span><br>
+      Powered by <code>brand-research</code> skill + your-default-model<br>
     </footer>
   </article>
 
-  <script id="__BRAND_DATA__" type="application/json">{&quot;id&quot;:&quot;nike-20260623&quot;,&quot;name&quot;:&quot;Nike&quot;,&quot;nameZh&quot;:&quot;耐克&quot;,&quot;url&quot;:&quot;https://www.nike.com&quot;,&quot;tagline&quot;:&quot;Just Do It.&quot;,&quot;category&quot;:&quot;运动服饰与运动装备&quot;,&quot;country&quot;:&quot;美国&quot;,&quot;year&quot;:1964,&quot;summary&quot;:&quot;耐克是以“Swoosh”和“Just Do It”构建全球识别的运动品牌。它用极简黑白体系、强动势摄影和明星运动员矩阵，把专业性能、竞技精神与街头时尚合为一体，形成兼具传播力与产品力的超级品牌资产。&quot;,&quot;primaryColors&quot;:[&quot;#111111&quot;,&quot;#FFFFFF&quot;,&quot;#757575&quot;,&quot;#F5F5F5&quot;],&quot;palette&quot;:[{&quot;hex&quot;:&quot;#111111&quot;,&quot;name&quot;:&quot;黑色&quot;},{&quot;hex&quot;:&quot;#FFFFFF&quot;,&quot;name&quot;:&quot;白色&quot;},{&quot;hex&quot;:&quot;#757575&quot;,&quot;name&quot;:&quot;中灰&quot;},{&quot;hex&quot;:&quot;#F5F5F5&quot;,&quot;name&quot;:&quot;浅灰&quot;},{&quot;hex&quot;:&quot;#C8102E&quot;,&quot;name&quot;:&quot;耐克红&quot;}],&quot;logo&quot;:{&quot;type&quot;:&quot;abstract&quot;,&quot;description&quot;:&quot;以“Swoosh”弧形勾标构成，极简却具强运动张力，常与字标组合使用。&quot;,&quot;construction&quot;:&quot;由单一流线几何构成，依靠负形、速度感曲线与高识别轮廓建立记忆点。&quot;},&quot;typography&quot;:{&quot;heading&quot;:&quot;粗体无衬线，偏 Condensed 运动广告字形&quot;,&quot;body&quot;:&quot;现代无衬线体系，接近系统字体与品牌定制字重结合&quot;,&quot;notes&quot;:&quot;标题强调力量与速度，正文保持高可读和商业化传播效率。&quot;},&quot;photography&quot;:{&quot;style&quot;:&quot;lifestyle, studio, documentary&quot;,&quot;lighting&quot;:&quot;高对比硬光与均匀柔光并用，强调肌肉线条与产品细节&quot;,&quot;tone&quot;:&quot;高对比、动势强、冷暖并置、真实竞技感&quot;,&quot;composition&quot;:&quot;大特写、低机位、斜线构图与留白并行，突出动作瞬间&quot;},&quot;tone&quot;:[&quot;力量感&quot;,&quot;进取&quot;,&quot;极简高识别&quot;,&quot;竞技精神&quot;,&quot;鼓舞性&quot;],&quot;toneSummary&quot;:&quot;以极简符号承载高强度运动表达。&quot;,&quot;positioning&quot;:&quot;面向全球运动人群的头部运动品牌，以产品科技与精神激励驱动消费。&quot;,&quot;targetUser&quot;:{&quot;age&quot;:&quot;15-45岁&quot;,&quot;identity&quot;:&quot;专业运动员、健身人群与年轻运动消费群&quot;,&quot;pain&quot;:&quot;需要兼顾性能、风格与身份表达，同时渴望被激励和认可&quot;,&quot;scene&quot;:&quot;训练、比赛、通勤、街头穿搭与日常运动生活&quot;},&quot;sellingPoints&quot;:[&quot;Swoosh 与“Just Do It”形成极强品牌联想与传播资产。&quot;,&quot;覆盖跑步、篮球、训练、生活方式等全场景运动产品线。&quot;,&quot;长期绑定顶级运动员与赛事资源，强化专业背书。&quot;,&quot;在材料、缓震、支撑与轻量化上持续迭代产品科技。&quot;,&quot;把运动表现转译为街头时尚，兼顾功能与审美。&quot;],&quot;radar&quot;:{&quot;克制&quot;:7.5,&quot;温度感&quot;:4.5,&quot;游戏化&quot;:3,&quot;科技感&quot;:8.5,&quot;情感连接&quot;:7,&quot;识别强度&quot;:10},&quot;meta&quot;:{&quot;favicon&quot;:&quot;&quot;,&quot;ogImage&quot;:&quot;&quot;,&quot;heroImage&quot;:&quot;&quot;,&quot;logoCandidates&quot;:[]},&quot;reportFile&quot;:&quot;nike-20260623.html&quot;,&quot;reportUrl&quot;:&quot;./nike-20260623.html&quot;,&quot;createdAt&quot;:&quot;2026-06-23&quot;}</script>
+  <script id="__BRAND_DATA__" type="application/json">{&quot;id&quot;:&quot;nike-20260623&quot;,&quot;name&quot;:&quot;Nike&quot;,&quot;nameZh&quot;:&quot;耐克&quot;,&quot;nameEn&quot;:&quot;Nike&quot;,&quot;url&quot;:&quot;https://www.nike.com&quot;,&quot;tagline&quot;:&quot;Just Do It.&quot;,&quot;taglineZh&quot;:&quot;Just Do It.&quot;,&quot;taglineEn&quot;:&quot;&quot;,&quot;category&quot;:&quot;Sportswear &amp; Athletic Equipment&quot;,&quot;categoryZh&quot;:&quot;Sportswear &amp; Athletic Equipment&quot;,&quot;categoryEn&quot;:&quot;&quot;,&quot;country&quot;:&quot;United States&quot;,&quot;countryZh&quot;:&quot;United States&quot;,&quot;countryEn&quot;:&quot;&quot;,&quot;year&quot;:1964,&quot;summary&quot;:&quot;耐克是以“Swoosh”和“Just Do It”构建全球识别的运动品牌。它用极简黑白体系、强动势摄影和明星运动员矩阵，把专业性能、竞技精神与街头时尚合为一体，形成兼具传播力与产品力的超级品牌资产。&quot;,&quot;summaryEn&quot;:&quot;Nike is a global sports brand built on the universal recognition of the Swoosh and 'Just Do It.' Through a minimalist black-and-white system, high-velocity photography, and a star-athlete roster, it fuses professional performance, competitive spirit, and street culture into a brand asset that delivers both cultural reach and product power.&quot;,&quot;primaryColors&quot;:[&quot;#111111&quot;,&quot;#FFFFFF&quot;,&quot;#757575&quot;,&quot;#F5F5F5&quot;],&quot;palette&quot;:[{&quot;hex&quot;:&quot;#111111&quot;,&quot;name&quot;:&quot;黑色&quot;,&quot;nameEn&quot;:&quot;Black&quot;},{&quot;hex&quot;:&quot;#FFFFFF&quot;,&quot;name&quot;:&quot;白色&quot;,&quot;nameEn&quot;:&quot;White&quot;},{&quot;hex&quot;:&quot;#757575&quot;,&quot;name&quot;:&quot;中灰&quot;,&quot;nameEn&quot;:&quot;Mid Gray&quot;},{&quot;hex&quot;:&quot;#F5F5F5&quot;,&quot;name&quot;:&quot;浅灰&quot;,&quot;nameEn&quot;:&quot;Light Gray&quot;},{&quot;hex&quot;:&quot;#C8102E&quot;,&quot;name&quot;:&quot;耐克红&quot;,&quot;nameEn&quot;:&quot;Nike Red&quot;}],&quot;logo&quot;:{&quot;type&quot;:&quot;abstract&quot;,&quot;description&quot;:&quot;以“Swoosh”弧形勾标构成，极简却具强运动张力，常与字标组合使用。&quot;,&quot;construction&quot;:&quot;由单一流线几何构成，依靠负形、速度感曲线与高识别轮廓建立记忆点。&quot;,&quot;descriptionEn&quot;:&quot;Built on the Swoosh — a fluid arc mark that is minimalist yet charged with athletic momentum, often paired with the wordmark.&quot;,&quot;constructionEn&quot;:&quot;Formed by a single streamlined geometry, building memorability through negative space, speed-driven curves, and a high-recognition silhouette.&quot;},&quot;typography&quot;:{&quot;heading&quot;:&quot;粗体无衬线，偏 Condensed 运动广告字形&quot;,&quot;body&quot;:&quot;现代无衬线体系，接近系统字体与品牌定制字重结合&quot;,&quot;notes&quot;:&quot;标题强调力量与速度，正文保持高可读和商业化传播效率。&quot;,&quot;headingEn&quot;:&quot;Bold sans-serif, leaning toward a condensed athletic ad typeface&quot;,&quot;bodyEn&quot;:&quot;A modern sans-serif system, blending near-system fonts with brand-customized weights&quot;,&quot;notesEn&quot;:&quot;Headlines emphasize power and speed; body copy stays highly legible and built for commercial communication.&quot;},&quot;photography&quot;:{&quot;style&quot;:&quot;lifestyle, studio, documentary&quot;,&quot;lighting&quot;:&quot;高对比硬光与均匀柔光并用，强调肌肉线条与产品细节&quot;,&quot;tone&quot;:&quot;高对比、动势强、冷暖并置、真实竞技感&quot;,&quot;composition&quot;:&quot;大特写、低机位、斜线构图与留白并行，突出动作瞬间&quot;,&quot;lightingEn&quot;:&quot;High-contrast hard light paired with even soft light, emphasizing muscle definition and product detail&quot;,&quot;toneEn&quot;:&quot;High contrast, strong momentum, juxtaposed warm and cool tones, authentic competitive feel&quot;,&quot;compositionEn&quot;:&quot;Extreme close-ups, low angles, diagonal compositions alongside negative space, capturing peak action moments&quot;},&quot;tone&quot;:[&quot;力量感&quot;,&quot;进取&quot;,&quot;极简高识别&quot;,&quot;竞技精神&quot;,&quot;鼓舞性&quot;],&quot;toneEn&quot;:[&quot;Power&quot;,&quot;Drive&quot;,&quot;Minimalist and high-recognition&quot;,&quot;Competitive spirit&quot;,&quot;Inspirational&quot;],&quot;toneSummary&quot;:&quot;以极简符号承载高强度运动表达。&quot;,&quot;toneSummaryEn&quot;:&quot;High-intensity athletic expression carried by minimalist symbols.&quot;,&quot;positioning&quot;:&quot;面向全球运动人群的头部运动品牌，以产品科技与精神激励驱动消费。&quot;,&quot;positioningEn&quot;:&quot;A leading global sports brand targeting athletes worldwide, driving purchase through product technology and the power of motivation.&quot;,&quot;targetUser&quot;:{&quot;age&quot;:&quot;15-45岁&quot;,&quot;identity&quot;:&quot;专业运动员、健身人群与年轻运动消费群&quot;,&quot;pain&quot;:&quot;需要兼顾性能、风格与身份表达，同时渴望被激励和认可&quot;,&quot;scene&quot;:&quot;训练、比赛、通勤、街头穿搭与日常运动生活&quot;},&quot;targetUserEn&quot;:{&quot;age&quot;:&quot;15–45&quot;,&quot;identity&quot;:&quot;Professional athletes, fitness enthusiasts, and younger sports consumers&quot;,&quot;pain&quot;:&quot;Need to balance performance, style, and identity expression, while craving motivation and recognition&quot;,&quot;scene&quot;:&quot;Training, competition, commuting, streetwear styling, and everyday active life&quot;},&quot;sellingPoints&quot;:[&quot;Swoosh 与“Just Do It”形成极强品牌联想与传播资产。&quot;,&quot;覆盖跑步、篮球、训练、生活方式等全场景运动产品线。&quot;,&quot;长期绑定顶级运动员与赛事资源，强化专业背书。&quot;,&quot;在材料、缓震、支撑与轻量化上持续迭代产品科技。&quot;,&quot;把运动表现转译为街头时尚，兼顾功能与审美。&quot;],&quot;sellingPointsEn&quot;:[&quot;The Swoosh and 'Just Do It' form an exceptionally strong brand association and communication asset.&quot;,&quot;A full-spectrum product line covering running, basketball, training, and lifestyle.&quot;,&quot;Long-term partnerships with elite athletes and premier sporting events reinforce a professional endorsement.&quot;,&quot;Continuous iteration of product technology in materials, cushioning, support, and lightweight construction.&quot;,&quot;Translates athletic performance into street fashion, balancing function and aesthetic.&quot;],&quot;brandTakeaway&quot;:[&quot;把品牌slogan从长句压缩到3个单词&quot;,&quot;主色锁定黑+白+一个高饱和强调色&quot;,&quot;每季度发布一次核心技术升级公告&quot;,&quot;签约3位细分运动领域KOL做长代言&quot;,&quot;推出与街头品牌联名的限量胶囊系列&quot;],&quot;brandTakeawayEn&quot;:[&quot;Compress the brand slogan from a long line into three words&quot;,&quot;Lock the primary palette to black, white, and one high-saturation accent color&quot;,&quot;Release a core technology upgrade announcement every quarter&quot;,&quot;Sign three niche-sport KOLs for long-term endorsement&quot;,&quot;Launch limited-edition capsule collections in collaboration with streetwear brands&quot;],&quot;radar&quot;:{&quot;克制&quot;:7.5,&quot;温度感&quot;:4.5,&quot;游戏化&quot;:3,&quot;科技感&quot;:8.5,&quot;情感连接&quot;:7,&quot;识别强度&quot;:10},&quot;meta&quot;:{&quot;favicon&quot;:&quot;&quot;,&quot;ogImage&quot;:&quot;&quot;,&quot;heroImage&quot;:&quot;&quot;,&quot;logoCandidates&quot;:[]},&quot;reportFile&quot;:&quot;nike-20260623.html&quot;,&quot;reportUrl&quot;:&quot;./nike-20260623.html&quot;,&quot;createdAt&quot;:&quot;2026-06-23&quot;}</script>
 
   <script src="./_shared/js/echarts.min.js"></script>
   <script>
+    // ===== i18n runtime =====
+    (function () {
+      var STORAGE_KEY = 'kwi_report_lang';
+      function readLang() {
+        try { var v = localStorage.getItem(STORAGE_KEY); if (v === 'en' || v === 'zh') return v; } catch (e) {}
+        return 'en';
+      }
+      function writeLang(v) { try { localStorage.setItem(STORAGE_KEY, v); } catch (e) {} }
+      function applyLang(lang) {
+        document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
+        // 替换所有 [data-bi] 的内容
+        document.querySelectorAll('[data-bi]').forEach(function (el) {
+          var parts = el.getAttribute('data-bi').split('::');
+          el.textContent = parts[lang === 'en' ? 1 : 0] || parts[0] || '';
+        });
+        // 替换所有 [data-bi-html] 的 HTML（用于带标签的内容）
+        document.querySelectorAll('[data-bi-html]').forEach(function (el) {
+          var parts = el.getAttribute('data-bi-html').split('::');
+          el.innerHTML = parts[lang === 'en' ? 1 : 0] || parts[0] || '';
+        });
+        // 顶栏按钮状态
+        document.querySelectorAll('#lang-toggle button').forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        });
+        // 触发雷达图重绘（labels 切换）
+        if (window.__RERENDER_RADAR__) try { window.__RERENDER_RADAR__(lang); } catch (e) {}
+        // 触发 brand-name-slot 替换（如果 report-meta 里有占位）
+        try {
+          var brand = (window.__BRAND__ || '').trim() || 'Kiwii';
+          document.querySelectorAll('.brand-name-slot').forEach(function (s) { s.textContent = brand; });
+        } catch (e) {}
+        // 写 lang
+        window.__CURRENT_LANG__ = lang;
+      }
+      function init() {
+        var cur = readLang();
+        applyLang(cur);
+        document.querySelectorAll('#lang-toggle button').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var next = b.getAttribute('data-lang');
+            if (next && next !== readLang()) {
+              writeLang(next);
+              applyLang(next);
+            }
+          });
+        });
+      }
+      // 暴露供 radar 脚本用
+      window.__APPLY_LANG__ = applyLang;
+      window.__GET_LANG__ = function () { return window.__CURRENT_LANG__ || 'zh'; };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+  <script>
+    // ===== 雷达图（labels 跟语言切换） =====
     (function () {
       var data = window.__RADAR_DATA__;
       var c = document.getElementById('radar-chart');
       if (!c || !window.echarts) return;
       var chart = window.echarts.init(c, null, { renderer: 'canvas' });
       var color = "#111111";
-      var labels = data.labels || ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
-      chart.setOption({
-        color: [color],
-        tooltip: { trigger: 'item' },
-        legend: { show: false },
-        radar: {
-          indicator: labels.map(function (name) { return { name: name, max: 10 }; }),
-          shape: 'polygon',
-          splitNumber: 5,
-          axisName: { color: '#1A1A1A', fontFamily: 'InstrumentSans, sans-serif', fontSize: 13 },
-          splitLine: { lineStyle: { color: '#E8E0D4' } },
-          splitArea: { areaStyle: { color: ['rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)'] } },
-          axisLine: { lineStyle: { color: '#E8E0D4' } }
-        },
-        series: [{
-          type: 'radar',
-          symbol: 'circle',
-          symbolSize: 6,
-          data: [{
-            value: data.values,
-            name: data.name || '品牌雷达',
-            lineStyle: { width: 2, color: color },
-            itemStyle: { color: color },
-            areaStyle: { color: color + '20' }
+      var labelsZh = (data.labels && data.labels.length) ? data.labels : ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
+      var labelsEn = data.labelsEn || labelsZh;
+      function render(lang) {
+        var labels = lang === 'en' ? labelsEn : labelsZh;
+        chart.setOption({
+          color: [color],
+          tooltip: { trigger: 'item' },
+          legend: { show: false },
+          radar: {
+            indicator: labels.map(function (name) { return { name: name, max: 10 }; }),
+            shape: 'polygon',
+            splitNumber: 5,
+            axisName: { color: '#1A1A1A', fontFamily: 'InstrumentSans, sans-serif', fontSize: 13 },
+            splitLine: { lineStyle: { color: '#E8E0D4' } },
+            splitArea: { areaStyle: { color: ['rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)'] } },
+            axisLine: { lineStyle: { color: '#E8E0D4' } }
+          },
+          series: [{
+            type: 'radar',
+            symbol: 'circle',
+            symbolSize: 6,
+            data: [{
+              value: data.values,
+              name: data.name || '品牌雷达',
+              lineStyle: { width: 2, color: color },
+              itemStyle: { color: color },
+              areaStyle: { color: color + '20' }
+            }]
           }]
-        }]
-      });
+        });
+      }
+      // 暴露给 i18n runtime 调用
+      window.__RERENDER_RADAR__ = render;
+      render(window.__GET_LANG__ ? window.__GET_LANG__() : 'zh');
       window.addEventListener('resize', function () { chart.resize(); });
     })();
   </script>

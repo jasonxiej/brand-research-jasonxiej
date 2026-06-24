@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><span class="brand-name-slot">{YOUR_BRAND}</span> 品牌调研库 · Brand Research Hub</title>
+  <title data-i18n="meta.title">Kiwii · Brand Research Hub</title>
 
   <style>
     @font-face {
@@ -1295,8 +1295,15 @@
       <a href="https://github.com/jasonxiej/brand-research-jasonxiej" data-i18n="nav.docs">GitHub</a>
     </nav>
     <div class="topbar-actions">
+      <button id="custom-submit-btn" type="button" class="settings-btn" title="Custom Submit" aria-label="Custom Submit">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v18"></path>
+          <path d="M3 12h18"></path>
+        </svg>
+        <span>Custom Submit</span>
+      </button>
       <button id="lang-toggle" type="button" class="lang-toggle-btn" title="切换语言" aria-label="切换语言">中</button>
-      <button id="settings-btn" type="button" class="settings-btn" title="设置" aria-label="设置">
+      <button id="settings-btn" type="button" class="settings-btn" data-i18n-title="nav.settings" data-i18n-aria="nav.settings" title="设置" aria-label="设置">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="3"></circle>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
@@ -1317,22 +1324,22 @@
 
     
     <div class="input-card" id="generator">
-      <h2>开始一次新的品牌调研</h2>
-      <p class="input-desc">输入品牌名（如 "Hatch"）或品牌官网 URL（如 "https://www.hatch.co"），然后让 brand-research skill 接手。生成完毕后页面会出现在下方「品牌库」。</p>
+      <h2 data-i18n="input.heading">开始一次新的品牌调研</h2>
+      <p class="input-desc" data-i18n="input.desc">输入品牌名（如 "Hatch"）或品牌官网 URL（如 "https://www.hatch.co"），然后让 brand-research skill 接手。生成完毕后页面会出现在下方「品牌库」。</p>
       <div class="input-row">
-        <input id="brand-input" type="text" placeholder="例：Hatch / Oura / https://www.hatch.co" autocomplete="off">
-        <button id="generate-btn" type="button">调研</button>
+        <input id="brand-input" type="text" data-i18n-placeholder="input.placeholder" placeholder="例：Hatch / Oura / https://www.hatch.co" autocomplete="off">
+        <button id="generate-btn" type="button" data-i18n="input.submit">调研</button>
       </div>
     </div>
     
     <div class="status-panel" id="status-panel">
       <div class="panel-inner">
         <div class="panel-head">
-          <div class="panel-title" id="status-title">等待生成</div>
-          <span class="panel-status" id="panel-status">空闲</span>
+          <div class="panel-title" id="status-title" data-i18n="status.wait">等待生成</div>
+          <span class="panel-status" id="panel-status" data-i18n="status.idle">空闲</span>
           <button class="panel-close" id="status-close" type="button" aria-label="关闭" title="关闭">×</button>
         </div>
-        <div class="panel-body" id="status-body">在状态面板查看实时日志；后台调研完成后会自动刷新下方品牌库。</div>
+        <div class="panel-body" id="status-body" data-i18n="status.bodyIdle">在状态面板查看实时日志；后台调研完成后会自动刷新下方品牌库。</div>
         <pre class="log-stream" id="log-stream" aria-live="polite"></pre>
         <div class="panel-actions" id="status-actions"></div>
       </div>
@@ -1341,11 +1348,11 @@
     
     <section id="library" style="margin-top: 2rem;">
       <div class="section-head">
-        <h2>品牌库</h2>
+        <h2 data-i18n="library.heading">品牌库</h2>
         <div class="actions">
           <span class="meta" id="library-meta">0 个品牌</span>
-          <button id="refresh-btn" type="button">刷新</button>
-          <button id="trash-btn" type="button" data-trash-trigger>回收站</button>
+          <button id="refresh-btn" type="button" data-i18n="library.refresh">刷新</button>
+          <button id="trash-btn" type="button" data-trash-trigger data-i18n="library.trash">回收站</button>
           <button id="compare-btn" type="button" class="primary" disabled>对比所选 (0)</button>
         </div>
       </div>
@@ -1353,7 +1360,7 @@
       <div class="brand-grid" id="brand-grid">
         <div class="empty">
           <div class="icon">∅</div>
-          <div class="msg">正在加载品牌库…</div>
+          <div class="msg" data-i18n="library.loading">正在加载品牌库…</div>
         </div>
       </div>
     </section>
@@ -1369,26 +1376,26 @@
     <div class="compare-modal" role="dialog" aria-labelledby="compare-title" aria-modal="true">
       <div class="compare-head">
         <div class="compare-title-wrap">
-          <span class="compare-label">品牌对比 · Brand Comparison</span>
-          <h2 id="compare-title">并排对比 · Side-by-side</h2>
+          <span class="compare-label" data-i18n="compare.label">品牌对比 · Brand Comparison</span>
+          <h2 id="compare-title" data-i18n="compare.title">并排对比 · Side-by-side</h2>
         </div>
         <div class="compare-actions">
-          <button class="compare-close" id="compare-close" type="button" aria-label="关闭对比浮层" title="关闭 (Esc)">×</button>
+          <button class="compare-close" id="compare-close" type="button" data-i18n-aria="modal.closeCompare" aria-label="关闭对比浮层" title="关闭 (Esc)">×</button>
         </div>
       </div>
       <div class="compare-body">
         <!-- Picker -->
         <div class="compare-picker">
           <div class="cp-head">
-            <h3>对比品牌（2 – 4 个）</h3>
-            <span class="cp-hint">在此添加或移除品牌，也可返回品牌库调整。</span>
+            <h3 data-i18n="compare.heading">对比品牌（2 – 4 个）</h3>
+            <span class="cp-hint" data-i18n="compare.hint">在此添加或移除品牌，也可返回品牌库调整。</span>
           </div>
           <div class="cp-list" id="cp-list"></div>
           <div class="cp-foot">
             <span class="cp-status" id="cp-status">尚未选择品牌</span>
             <div class="cp-actions">
-              <select id="cp-add" aria-label="添加品牌到对比"></select>
-              <button type="button" id="cp-remove-all" class="cp-btn">清空全部</button>
+              <select id="cp-add" data-i18n-aria="modal.addBrandToCompare" aria-label="添加品牌到对比"></select>
+              <button type="button" id="cp-remove-all" class="cp-btn" data-i18n="compare.clearAll">清空全部</button>
             </div>
           </div>
         </div>
@@ -1437,6 +1444,29 @@
   </div>
 
 
+  <div class="modal-overlay" id="custom-overlay" aria-hidden="true">
+    <div class="modal-card report-modal" role="dialog" aria-labelledby="custom-title" aria-modal="true">
+      <div class="report-head">
+        <div class="report-title-wrap">
+          <span class="report-label" data-i18n="submit.heading">Custom Submit</span>
+          <h2 id="custom-title" data-i18n="submit.heading">Submit Brand Notes</h2>
+        </div>
+        <div class="report-actions">
+          <button id="custom-run-btn" type="button" class="report-btn" data-i18n="submit.run">Run Research</button>
+          <button class="report-close" id="custom-close" type="button" aria-label="Close">×</button>
+        </div>
+      </div>
+      <div class="report-body" style="padding:1rem; display:flex; flex-direction:column; gap:0.75rem;">
+        <input id="custom-brand-name" type="text" data-i18n-placeholder="submit.placeholderName" placeholder="Brand name (optional)" style="padding:0.8rem 0.9rem;border:1px solid var(--rule);border-radius:6px;font:inherit;">
+        <textarea id="custom-md-input" data-i18n-placeholder="submit.placeholder" placeholder="# Brand notes
+
+Paste your brand-related content here in Markdown.
+For example: positioning, story, visual tone, product claims, competitor notes." style="min-height:320px;padding:0.9rem;border:1px solid var(--rule);border-radius:6px;font:inherit;line-height:1.7;resize:vertical;"></textarea>
+        <div id="custom-status" style="font-size:0.85rem;color:var(--muted);"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-overlay" id="report-overlay" aria-hidden="true">
     <div class="modal-card report-modal" role="dialog" aria-labelledby="report-title" aria-modal="true">
       <div class="report-head">
@@ -1445,8 +1475,8 @@
           <h2 id="report-title">—</h2>
         </div>
         <div class="report-actions">
-          <a id="report-open-new" href="#" target="_blank" rel="noopener noreferrer" class="report-btn">新窗口打开 ↗</a>
-          <button class="report-close" id="report-close" type="button" aria-label="关闭报告">×</button>
+          <a id="report-open-new" href="#" target="_blank" rel="noopener noreferrer" class="report-btn" data-i18n="compare.openNewTab">新窗口打开 ↗</a>
+          <button class="report-close" id="report-close" type="button" data-i18n-aria="modal.closeReport" aria-label="关闭报告">×</button>
         </div>
       </div>
       <div class="report-body">
@@ -1460,17 +1490,16 @@
     <div class="modal-card trash-modal" role="dialog" aria-labelledby="trash-title" aria-modal="true">
       <div class="trash-head">
         <h2 id="trash-title" data-i18n="trash.title">回收站 · 30 天保留<span class="trash-retain" id="trash-retain"></span></h2>
-        <button class="trash-close" id="trash-close" type="button" aria-label="关闭回收站">×</button>
+        <button class="trash-close" id="trash-close" type="button" data-i18n-aria="modal.closeTrash" aria-label="关闭回收站">×</button>
       </div>
       <div class="trash-body">
         <div class="trash-toolbar">
-          <div class="hint">
-            删除的品牌案例会保留 <code>30</code> 天，到期后由服务端自动清理。<br>
+          <div class="hint" id="trash-toolbar-hint" data-i18n="trash.toolbarHint">删除的品牌案例会保留 <code>30</code> 天，到期后由服务端自动清理。<br>
             按钮说明：<strong>恢复</strong> = 重新回到下方品牌库；<strong>立即删除</strong> = 永久清除（无法恢复）。
           </div>
           <div class="trash-actions-bar">
-            <button id="trash-refresh" type="button">刷新</button>
-            <button id="trash-purge-expired" type="button">清理过期项</button>
+            <button id="trash-refresh" type="button" data-i18n="library.refresh">刷新</button>
+            <button id="trash-purge-expired" type="button" data-i18n="trash.purgeExpired">清理过期项</button>
           </div>
         </div>
         <div class="trash-list" id="trash-list"></div>
@@ -1480,10 +1509,10 @@
 
   
   <div class="compare-tray" id="compare-tray">
-    <div class="count">已选 <strong id="tray-count">0</strong> 个</div>
+    <div class="count"><span data-i18n="tray.chosen">已选</span> <strong id="tray-count">0</strong> <span data-i18n="tray.unit">个</span></div>
     <div class="tray-tags" id="tray-tags"></div>
-    <button id="tray-cancel" class="secondary" type="button">清空</button>
-    <button id="tray-go" type="button">生成对比页 →</button>
+    <button id="tray-cancel" class="secondary" type="button" data-i18n="tray.clear">清空</button>
+    <button id="tray-go" type="button" data-i18n="tray.go">生成对比页 →</button>
   </div>
 
   <script>
@@ -1521,29 +1550,44 @@
     }
 
     function renderGrid() {
-      meta.textContent = brands.length + ' 个品牌';
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const countLabel = lang === 'en'
+        ? (brands.length === 1 ? '1 brand' : brands.length + ' brands')
+        : brands.length + ' 个品牌';
+      meta.textContent = countLabel;
       if (!brands.length) {
-        grid.innerHTML = '<div class="empty"><div class="icon">∅</div><div class="msg">品牌库为空。在上方输入一个品牌名开始你的第一次调研。</div></div>';
+        const emptyMsg = lang === 'en'
+          ? 'The library is empty. Enter a brand name above to start your first research.'
+          : '品牌库为空。在上方输入一个品牌名开始你的第一次调研。';
+        grid.innerHTML = '<div class="empty"><div class="icon">∅</div><div class="msg">' + emptyMsg + '</div></div>';
         return;
       }
       grid.innerHTML = brands.map((b) => {
         const colors = (b.primaryColors || []).map((c) => `<div class="c" style="background:${c}"></div>`).join('');
         const sel = selectedIds.has(b.id);
+        const displayName = window.__i18n ? window.__i18n.pickName(b, lang) : (b.nameZh || b.name || b.id);
+        const displayCategory = window.__i18n ? window.__i18n.pickCategory(b, lang) : (b.category || 'Brand');
+        const displayCountry = window.__i18n ? window.__i18n.pickCountry(b, lang) : b.country;
+        const displaySummary = window.__i18n ? window.__i18n.pickSummary(b, lang) : (b.summary || '');
+        // Tagline: prefer taglineEn when in English, otherwise the original
+        const displayTagline = (lang === 'en' && b.taglineEn) ? b.taglineEn : (b.tagline || '');
+        const viewLabel = (window.__i18n && window.__i18n.tr) ? window.__i18n.tr('library.viewReport') : (lang === 'en' ? 'View report →' : '查看报告 →');
+        const deleteTitle = (window.__i18n && window.__i18n.tr) ? window.__i18n.tr('library.delete') : (lang === 'en' ? 'Delete to trash' : '删除到回收站');
         return `
         <div class="brand-card ${sel ? 'selected' : ''}" data-id="${escAttr(b.id)}">
           <div class="check"></div>
-          <button class="delete-btn" type="button" data-delete-id="${escAttr(b.id)}" aria-label="删除品牌" title="删除到回收站">×</button>
+          <button class="delete-btn" type="button" data-delete-id="${escAttr(b.id)}" aria-label="${deleteTitle}" title="${deleteTitle}">×</button>
           <div class="brand-meta">
-            <span class="pill">${escAttr(b.category || 'Brand')}</span>
-            ${b.country ? '<span>· ' + escAttr(b.country) + '</span>' : ''}
+            <span class="pill">${escAttr(displayCategory || 'Brand')}</span>
+            ${displayCountry ? '<span>· ' + escAttr(displayCountry) + '</span>' : ''}
           </div>
-          <h3>${escAttr(b.nameZh || b.name || b.id)}</h3>
-          ${b.tagline ? '<div class="tagline">"' + escAttr(b.tagline) + '"</div>' : ''}
-          <div class="summary">${escAttr(b.summary || '')}</div>
+          <h3>${escAttr(displayName)}</h3>
+          ${displayTagline ? '<div class="tagline">"' + escAttr(displayTagline) + '"</div>' : ''}
+          ${displaySummary ? '<div class="summary">' + escAttr(displaySummary) + '</div>' : ''}
           <div class="colors">${colors}</div>
           <div class="footer">
             <span class="date">${escAttr(b.createdAt || '')}</span>
-            <a class="open" href="#" data-report-url="${escAttr(b.reportUrl || '')}" data-report-name="${escAttr(b.nameZh || b.name || '')}" onclick="event.stopPropagation();return false;">查看报告 →</a>
+            <a class="open" href="#" data-report-url="${escAttr(b.reportUrl || '')}" data-report-name="${escAttr(displayName)}" onclick="event.stopPropagation();return false;">${viewLabel}</a>
           </div>
         </div>`;
       }).join('');
@@ -1568,7 +1612,12 @@
           e.stopPropagation();
           const id = btn.getAttribute('data-delete-id');
           if (!id) return;
-          if (!confirm('确定删除这个品牌案例吗？它会进入回收站并保留 30 天。')) return;
+          const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+          const confirmMsg = lang === 'en'
+            ? 'Delete this brand case? It will move to trash and be kept for 30 days.'
+            : '确定删除这个品牌案例吗？它会进入回收站并保留 30 天。';
+          const failMsg = lang === 'en' ? 'Delete failed: ' : '删除失败：';
+          if (!confirm(confirmMsg)) return;
           btn.disabled = true;
           try {
             const r = await fetch('/api/trash', {
@@ -1578,7 +1627,7 @@
             });
             if (!r.ok) {
               const data = await r.json().catch(() => ({}));
-              alert('删除失败：' + (data.error || ('HTTP ' + r.status)));
+              alert(failMsg + (data.error || ('HTTP ' + r.status)));
               btn.disabled = false;
               return;
             }
@@ -1587,7 +1636,7 @@
             await loadLibrary();
             updateTray();
           } catch (err) {
-            alert('删除失败：' + (err?.message || err));
+            alert(failMsg + (err?.message || err));
             btn.disabled = false;
           }
         });
@@ -1599,7 +1648,8 @@
         selectedIds.delete(id);
       } else {
         if (selectedIds.size >= 4) {
-          alert('最多选择 4 个品牌进行对比。');
+          const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+          alert(lang === 'en' ? 'You can compare up to 4 brands at once.' : '最多选择 4 个品牌进行对比。');
           return;
         }
         selectedIds.add(id);
@@ -1610,11 +1660,16 @@
 
     function updateTray() {
       const n = selectedIds.size;
-      compareBtn.textContent = `对比所选 (${n})`;
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const compareLabel = lang === 'en' ? `Compare (${n})` : `对比所选 (${n})`;
+      compareBtn.textContent = compareLabel;
       compareBtn.disabled = n < 2;
       trayCount.textContent = n;
       const selected = brands.filter((b) => selectedIds.has(b.id));
-      trayTags.innerHTML = selected.map((b) => `<span class="tray-tag">${b.name || b.nameZh}</span>`).join('');
+      trayTags.innerHTML = selected.map((b) => {
+        const name = window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id);
+        return `<span class="tray-tag">${escAttr(name)}</span>`;
+      }).join('');
       tray.classList.toggle('show', n > 0);
     }
 
@@ -1627,9 +1682,38 @@
     });
     trayGo.addEventListener('click', goCompare);
 
+    // Subscribe to language changes — re-render so all cards reflect current language
+    function bindLangChangeReRender() {
+      if (window.__i18n && typeof window.__i18n.onLangChange === 'function') {
+        window.__i18n.onLangChange(function () {
+          // Always re-render, even if brands is empty — renderGrid handles empty case
+          renderGrid();
+          updateTray();
+        });
+        // If i18n is already initialized, force a one-off re-render now so the
+        // very first paint uses the persisted language (instead of the fallback).
+        renderGrid();
+        updateTray();
+        return true;
+      }
+      return false;
+    }
+    // Try immediately (covers case where i18n script runs first)
+    if (!bindLangChangeReRender()) {
+      // i18n not ready yet — retry shortly, and schedule a one-off re-render
+      setTimeout(function () {
+        if (!bindLangChangeReRender()) {
+          // Last-ditch: just force a re-render in case subscription failed
+          renderGrid();
+          updateTray();
+        }
+      }, 50);
+    }
+
     function goCompare() {
       if (selectedIds.size < 2) {
-        alert('请至少选择 2 个品牌进行对比。');
+        const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+        alert(lang === 'en' ? 'Please select at least 2 brands to compare.' : '请至少选择 2 个品牌进行对比。');
         return;
       }
       openCompareOverlay();
@@ -1658,6 +1742,25 @@
     const panelStatus = document.getElementById('panel-status');
     const logStream = document.getElementById('log-stream');
     const statusClose = document.getElementById('status-close');
+
+    // ---- i18n helpers for the research modal ----
+    // window.__i18n is defined at the end of this file; use a local helper so
+    // every literal above can swap between languages without losing the data-i18n
+    // flow that runs on the rest of the page.
+    function _tr(key, vars) {
+      try {
+        if (window.__i18n && typeof window.__i18n.tr === 'function') {
+          return window.__i18n.tr(key, vars);
+        }
+      } catch (e) {}
+      return (vars && vars.fallback) || key;
+    }
+    function _btnLabel() {
+      // Submit button label must follow the current language. We deliberately
+      // do NOT cache the value, otherwise a language toggle would leave the
+      // button stuck on the old label.
+      return _tr('input.submit', { fallback: '调研' });
+    }
 
     function setPanelStatus(text, kind) {
       panelStatus.textContent = text;
@@ -1716,13 +1819,13 @@
       try {
         es = new EventSource(url);
       } catch (e) {
-        appendLog('error', 'SSE 连接失败：' + (e?.message || e));
+        appendLog('error', _tr('log.sseConnectFail', { msg: (e?.message || e), fallback: 'SSE 连接失败：' + (e?.message || e) }));
         return;
       }
       activeJobES = es;
 
       es.onopen = function () {
-        appendLog('info', '▶ 已连接 SSE：' + url);
+        appendLog('info', _tr('log.sseConnected', { url, fallback: '▶ 已连接 SSE：' + url }));
       };
 
       es.onmessage = function (ev) {
@@ -1736,10 +1839,10 @@
         let payload = {};
         try { payload = JSON.parse(ev.data || '{}'); } catch {}
         if (payload.ok) {
-          setPanelStatus('已完成', 'done');
-          appendLog('success', '🎉 调研完成，刷新品牌库…');
+          setPanelStatus(_tr('status.done', { fallback: '已完成' }), 'done');
+          appendLog('success', _tr('log.researchDone', { fallback: '🎉 调研完成，刷新品牌库…' }));
           btn.disabled = false;
-          btn.textContent = '调研';
+          btn.textContent = _btnLabel();
 
           loadLibrary();
 
@@ -1747,20 +1850,20 @@
             statusActions.innerHTML = '';
             const openLink = document.createElement('a');
             openLink.href = '#';
-            openLink.textContent = '打开报告（浮层）';
+            openLink.textContent = _tr('action.openReportOverlay', { fallback: '打开报告（浮层）' });
             openLink.addEventListener('click', function (e) {
               e.preventDefault();
-              openReportModal(payload.reportUrl, payload.brand || '报告');
+              openReportModal(payload.reportUrl, payload.brand || _tr('custom.fallbackName', { fallback: '报告' }));
             });
             const newWinLink = document.createElement('a');
             newWinLink.href = payload.reportUrl;
             newWinLink.target = '_blank';
             newWinLink.rel = 'noopener noreferrer';
-            newWinLink.textContent = '新窗口打开 ↗';
+            newWinLink.textContent = _tr('compare.openNewTab', { fallback: '新窗口打开 ↗' });
             const refreshLink = document.createElement('a');
             refreshLink.href = '#';
             refreshLink.className = 'secondary';
-            refreshLink.textContent = '刷新品牌库';
+            refreshLink.textContent = _tr('action.refreshLibrary', { fallback: '刷新品牌库' });
             refreshLink.addEventListener('click', function (e) {
               e.preventDefault();
               loadLibrary();
@@ -1770,10 +1873,10 @@
             statusActions.appendChild(refreshLink);
           }
         } else {
-          setPanelStatus('失败', 'failed');
-          appendLog('error', '✗ 调研失败：' + (payload.error || '未知错误'));
+          setPanelStatus(_tr('status.failed', { fallback: '失败' }), 'failed');
+          appendLog('error', _tr('log.researchFailed', { msg: (payload.error || _tr('log.unknownError', { fallback: '未知错误' })), fallback: '✗ 调研失败：' + (payload.error || '未知错误') }));
           btn.disabled = false;
-          btn.textContent = '调研';
+          btn.textContent = _btnLabel();
         }
         try { es.close(); } catch {}
         if (activeJobES === es) activeJobES = null;
@@ -1781,19 +1884,19 @@
 
       es.onerror = function () {
 
-        appendLog('warn', '⚠ SSE 连接异常（重连中或已结束）');
+        appendLog('warn', _tr('log.sseError', { fallback: '⚠ SSE 连接异常（重连中或已结束）' }));
       };
     }
 
     function renderResearchDone(payload) {
       const result = payload.result || {};
       const reportUrl = payload.reportUrl || result.reportUrl || result.url;
-      const brandName = payload.brand || result.brand || '报告';
+      const brandName = payload.brand || result.brand || _tr('custom.fallbackName', { fallback: '报告' });
 
-      setPanelStatus('已完成', 'done');
-      appendLog('success', '🎉 调研完成，刷新品牌库…');
+      setPanelStatus(_tr('status.done', { fallback: '已完成' }), 'done');
+      appendLog('success', _tr('log.researchDone', { fallback: '🎉 调研完成，刷新品牌库…' }));
       btn.disabled = false;
-      btn.textContent = '调研';
+      btn.textContent = _btnLabel();
 
       loadLibrary();
 
@@ -1801,7 +1904,7 @@
         statusActions.innerHTML = '';
         const openLink = document.createElement('a');
         openLink.href = '#';
-        openLink.textContent = '打开报告（浮层）';
+        openLink.textContent = _tr('action.openReportOverlay', { fallback: '打开报告（浮层）' });
         openLink.addEventListener('click', function (e) {
           e.preventDefault();
           openReportModal(reportUrl, brandName);
@@ -1810,11 +1913,11 @@
         newWinLink.href = reportUrl;
         newWinLink.target = '_blank';
         newWinLink.rel = 'noopener noreferrer';
-        newWinLink.textContent = '新窗口打开 ↗';
+        newWinLink.textContent = _tr('compare.openNewTab', { fallback: '新窗口打开 ↗' });
         const refreshLink = document.createElement('a');
         refreshLink.href = '#';
         refreshLink.className = 'secondary';
-        refreshLink.textContent = '刷新品牌库';
+        refreshLink.textContent = _tr('action.refreshLibrary', { fallback: '刷新品牌库' });
         refreshLink.addEventListener('click', function (e) {
           e.preventDefault();
           loadLibrary();
@@ -1833,17 +1936,17 @@
       }
       btn.disabled = true;
       const originalLabel = btn.textContent;
-      btn.textContent = '启动中…';
+      btn.textContent = _tr('action.starting', { fallback: '启动中…' });
 
 
       clearLog();
       statusActions.innerHTML = '';
-      statusTitle.textContent = '启动调研：' + raw;
-      statusBody.innerHTML = '正在通过 <code>POST /api/research</code> 启动后台任务…';
+      statusTitle.textContent = _tr('status.titleStart', { brand: raw, fallback: '启动调研：' + raw });
+      statusBody.innerHTML = _tr('status.bodyStart', { fallback: '正在通过 <code>POST /api/research</code> 启动后台任务…' });
       statusPanel.classList.add('show');
-      setPanelStatus('启动中', 'running');
-      appendLog('info', '🎯 准备调研：' + raw);
-      appendLog('info', '→ POST /api/research { brand: "' + raw + '" }');
+      setPanelStatus(_tr('status.starting', { fallback: '启动中' }), 'running');
+      appendLog('info', _tr('log.preparing', { brand: raw, fallback: '🎯 准备调研：' + raw }));
+      appendLog('info', _tr('log.postRequest', { brand: raw, fallback: '→ POST /api/research { brand: "' + raw + '" }' }));
 
       let resp;
       try {
@@ -1853,8 +1956,8 @@
           body: JSON.stringify({ brand: raw }),
         });
       } catch (e) {
-        setPanelStatus('失败', 'failed');
-        appendLog('error', '✗ 网络错误：' + (e?.message || e));
+        setPanelStatus(_tr('status.failed', { fallback: '失败' }), 'failed');
+        appendLog('error', _tr('log.networkError', { msg: (e?.message || e), fallback: '✗ 网络错误：' + (e?.message || e) }));
         btn.disabled = false;
         btn.textContent = originalLabel;
         return;
@@ -1873,15 +1976,15 @@
         (data.events || []).forEach(function (evt) {
           appendLog(evt.level || 'info', evt.msg || JSON.stringify(evt), evt.ts);
         });
-        setPanelStatus('失败', 'failed');
-        appendLog('error', '✗ 启动失败：' + (data.error || ('HTTP ' + resp.status)));
+        setPanelStatus(_tr('status.failed', { fallback: '失败' }), 'failed');
+        appendLog('error', _tr('log.startupFailed', { msg: (data.error || ('HTTP ' + resp.status)), fallback: '✗ 启动失败：' + (data.error || ('HTTP ' + resp.status)) }));
         btn.disabled = false;
         btn.textContent = originalLabel;
         return;
       }
 
-      appendLog('success', '✓ 任务已启动 · jobId=' + data.jobId.slice(0, 8));
-      setPanelStatus('运行中', 'running');
+      appendLog('success', _tr('log.jobStarted', { id: data.jobId.slice(0, 8), fallback: '✓ 任务已启动 · jobId=' + data.jobId.slice(0, 8) }));
+      setPanelStatus(_tr('status.running', { fallback: '运行中' }), 'running');
       subscribeSSE(data.jobId);
     }
 
@@ -1900,6 +2003,61 @@
     const reportTitleEl = document.getElementById('report-title');
     const reportOpenNew = document.getElementById('report-open-new');
     const reportCloseBtn= document.getElementById('report-close');
+    const customSubmitBtn = document.getElementById('custom-submit-btn');
+    const customOverlay = document.getElementById('custom-overlay');
+    const customRunBtn = document.getElementById('custom-run-btn');
+    const customCloseBtn = document.getElementById('custom-close');
+    const customBrandName = document.getElementById('custom-brand-name');
+    const customMdInput = document.getElementById('custom-md-input');
+    const customStatus = document.getElementById('custom-status');
+
+    function openCustomModal() {
+      if (!customOverlay) return;
+      customStatus.textContent = '';
+      customOverlay.classList.add('show');
+      customOverlay.setAttribute('aria-hidden', 'false');
+      setTimeout(() => customMdInput && customMdInput.focus(), 50);
+    }
+
+    function closeCustomModal() {
+      if (!customOverlay) return;
+      customOverlay.classList.remove('show');
+      customOverlay.setAttribute('aria-hidden', 'true');
+    }
+
+    async function runCustomSubmit() {
+      const md = (customMdInput && customMdInput.value || '').trim();
+      const brandName = (customBrandName && customBrandName.value || '').trim();
+      if (!md) {
+        customStatus.textContent = _tr('custom.emptyMd', { fallback: '请先在上方粘贴 Markdown 内容。' });
+        customMdInput && customMdInput.focus();
+        return;
+      }
+      customRunBtn && (customRunBtn.disabled = true);
+      customStatus.textContent = _tr('custom.submitting', { fallback: '正在提交 Markdown…' });
+      try {
+        const resp = await fetch('/api/research.md', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: md, brandName }),
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) throw new Error(data.error || ('HTTP ' + resp.status));
+        customStatus.textContent = _tr('custom.submitted', { fallback: '已提交，开始生成报告…' });
+        closeCustomModal();
+        openReportModal(data.reportUrl || data.result?.reportUrl, data.brand || brandName || _tr('custom.fallbackName', { fallback: '报告' }));
+      } catch (e) {
+        customStatus.textContent = _tr('custom.failedPrefix', { fallback: '提交失败：' }) + (e?.message || e);
+      } finally {
+        if (customRunBtn) customRunBtn.disabled = false;
+      }
+    }
+
+    customSubmitBtn && customSubmitBtn.addEventListener('click', openCustomModal);
+    customCloseBtn && customCloseBtn.addEventListener('click', closeCustomModal);
+    customRunBtn && customRunBtn.addEventListener('click', runCustomSubmit);
+    customOverlay && customOverlay.addEventListener('click', (e) => { if (e.target === customOverlay) closeCustomModal(); });
+    customMdInput && customMdInput.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') runCustomSubmit(); });
 
     function openReportModal(url, name) {
       if (!url) return;
@@ -1934,61 +2092,95 @@
 
     function fmtDate(s) {
       if (!s) return '—';
-      try { return new Date(s).toLocaleString('zh-CN', { hour12: false }); } catch { return s; }
+      try {
+        const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+        const locale = lang === 'en' ? 'en-US' : 'zh-CN';
+        return new Date(s).toLocaleString(locale, { hour12: false });
+      } catch { return s; }
     }
     function fmtDay(s) {
       if (!s) return '—';
-      try { return new Date(s).toLocaleDateString('zh-CN'); } catch { return s; }
+      try {
+        const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+        const locale = lang === 'en' ? 'en-US' : 'zh-CN';
+        return new Date(s).toLocaleDateString(locale);
+      } catch { return s; }
     }
 
     async function loadTrash() {
-      trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">…</div>加载中…</div>';
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const loadingText = lang === 'en' ? 'Loading…' : '加载中…';
+      const failPrefix  = lang === 'en' ? 'Failed to load trash: ' : '回收站加载失败：';
+      const emptyText   = lang === 'en' ? 'The trash is empty.' : '回收站目前是空的。';
+      const retainPrefix= lang === 'en' ? '· Default retention: ' : '· 默认保留 ';
+      const retainSuffix= lang === 'en' ? ' days' : ' 天';
+      const delLabel    = lang === 'en' ? 'Deleted at: ' : '删除时间：';
+      const expLabel    = lang === 'en' ? 'Expires at: ' : '到期时间：';
+      const idLabel     = lang === 'en' ? 'ID: ' : 'ID：';
+      const restoreText = lang === 'en' ? 'Restore' : '恢复';
+      const purgeText   = lang === 'en' ? 'Delete now' : '立即删除';
+      const restoreConfirm = lang === 'en'
+        ? 'Restore this brand case? It will reappear in the library.'
+        : '确定恢复这个品牌案例吗？恢复后会重新出现在下方品牌库。';
+      const purgeConfirm = lang === 'en'
+        ? 'Delete immediately? This cannot be undone; the brand case and its report HTML will be permanently removed.'
+        : '确定立即删除吗？此操作无法撤销，将永久删除该品牌案例及其报告 HTML。';
+      const restoreFail = lang === 'en' ? 'Restore failed: ' : '恢复失败：';
+      const purgeFail   = lang === 'en' ? 'Delete failed: ' : '删除失败：';
+
+      trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">…</div>' + loadingText + '</div>';
       let data = null;
       try {
         const r = await fetch('/api/trash?t=' + Date.now());
         data = await r.json();
       } catch (e) {
-        trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">!</div>回收站加载失败：' + escHtml(e.message || e) + '</div>';
+        trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">!</div>' + failPrefix + escHtml(e.message || e) + '</div>';
         return;
       }
       const items = (data && data.items) || [];
       const retain = (items[0] && items[0].retainDays) || (data && data.retainDays) || 30;
-      trashRetainEl.textContent = '· 默认保留 ' + retain + ' 天';
+      trashRetainEl.textContent = retainPrefix + retain + retainSuffix;
       if (!items.length) {
-        trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">∅</div>回收站目前是空的。<br><span style="font-size:0.82rem;color:var(--muted);">删除的品牌案例会保留 ' + retain + ' 天，到期后自动清理。</span></div>';
+        trashListEl.innerHTML = '<div class="trash-empty"><div class="icon">∅</div>' + emptyText + '<br><span style="font-size:0.82rem;color:var(--muted);">' + (lang === 'en'
+          ? 'Deleted brand cases are kept for ' + retain + ' days, then auto-cleaned.'
+          : '删除的品牌案例会保留 ' + retain + ' 天，到期后自动清理。') + '</span></div>';
         return;
       }
       trashListEl.innerHTML = items.map((it) => {
-        const name = it.nameZh || it.name || it.id;
+        const displayName = window.__i18n ? window.__i18n.pickName(it, lang) : (it.nameZh || it.name || it.id);
+        const displayCategory = window.__i18n ? window.__i18n.pickCategory(it, lang) : (it.category || 'Brand');
+        const displayCountry = window.__i18n ? window.__i18n.pickCountry(it, lang) : it.country;
         const days = typeof it.daysLeft === 'number' ? it.daysLeft : null;
         const expire = it.expiresAt ? fmtDate(it.expiresAt) : '—';
         const daysHint = days !== null
-          ? (days <= 0 ? '<span style="color:var(--accent);">（已到期，待清理）</span>' : '（剩余 ' + days + ' 天）')
+          ? (days <= 0
+              ? (lang === 'en' ? '<span style="color:var(--accent);">(expired, pending purge)</span>' : '<span style="color:var(--accent);">（已到期，待清理）</span>')
+              : (lang === 'en' ? '(' + days + ' days left)' : '（剩余 ' + days + ' 天）'))
           : '';
         return `
           <div class="trash-item">
             <div>
-              <h4>${escHtml(name)}</h4>
+              <h4>${escHtml(displayName)}</h4>
               <div class="trash-pills">
-                <span class="pill">${escHtml(it.category || 'Brand')}</span>
-                ${it.country ? '<span class="pill">' + escHtml(it.country) + '</span>' : ''}
+                <span class="pill">${escHtml(displayCategory || 'Brand')}</span>
+                ${displayCountry ? '<span class="pill">' + escHtml(displayCountry) + '</span>' : ''}
               </div>
               <div class="trash-meta">
-                删除时间：<code>${escHtml(fmtDate(it.deletedAt))}</code> · ${escHtml(fmtDay(it.deletedAt))}<br>
-                到期时间：<code>${escHtml(expire)}</code> ${daysHint}<br>
-                ID：<code>${escHtml(it.id)}</code>
+                ${delLabel}<code>${escHtml(fmtDate(it.deletedAt))}</code> · ${escHtml(fmtDay(it.deletedAt))}<br>
+                ${expLabel}<code>${escHtml(expire)}</code> ${daysHint}<br>
+                ${idLabel}<code>${escHtml(it.id)}</code>
               </div>
             </div>
             <div class="trash-buttons">
-              <button class="restore" data-id="${escAttr(it.id)}">恢复</button>
-              <button class="purge" data-id="${escAttr(it.id)}">立即删除</button>
+              <button class="restore" data-id="${escAttr(it.id)}">${restoreText}</button>
+              <button class="purge" data-id="${escAttr(it.id)}">${purgeText}</button>
             </div>
           </div>`;
       }).join('');
 
       trashListEl.querySelectorAll('button.restore').forEach((b) => {
         b.addEventListener('click', async () => {
-          if (!confirm('确定恢复这个品牌案例吗？恢复后会重新出现在下方品牌库。')) return;
+          if (!confirm(restoreConfirm)) return;
           b.disabled = true;
           try {
             const r = await fetch('/api/trash/' + encodeURIComponent(b.dataset.id) + '/restore', { method: 'POST' });
@@ -1997,10 +2189,10 @@
               loadLibrary();
             } else {
               const data = await r.json().catch(() => ({}));
-              alert('恢复失败：' + (data.error || ('HTTP ' + r.status)));
+              alert(restoreFail + (data.error || ('HTTP ' + r.status)));
             }
           } catch (e) {
-            alert('恢复失败：' + (e.message || e));
+            alert(restoreFail + (e.message || e));
           } finally {
             b.disabled = false;
           }
@@ -2008,7 +2200,7 @@
       });
       trashListEl.querySelectorAll('button.purge').forEach((b) => {
         b.addEventListener('click', async () => {
-          if (!confirm('确定立即删除吗？此操作无法撤销，将永久删除该品牌案例及其报告 HTML。')) return;
+          if (!confirm(purgeConfirm)) return;
           b.disabled = true;
           try {
             const r = await fetch('/api/trash/' + encodeURIComponent(b.dataset.id) + '/purge', { method: 'POST' });
@@ -2016,10 +2208,10 @@
               await loadTrash();
             } else {
               const data = await r.json().catch(() => ({}));
-              alert('删除失败：' + (data.error || ('HTTP ' + r.status)));
+              alert(purgeFail + (data.error || ('HTTP ' + r.status)));
             }
           } catch (e) {
-            alert('删除失败：' + (e.message || e));
+            alert(purgeFail + (e.message || e));
           } finally {
             b.disabled = false;
           }
@@ -2053,6 +2245,21 @@
     trashOverlay.addEventListener('click', (e) => {
       if (e.target === trashOverlay) closeTrashModal();
     });
+
+    // Re-render trash list when language changes
+    if (window.__i18n && typeof window.__i18n.onLangChange === 'function') {
+      window.__i18n.onLangChange(function () {
+        if (trashOverlay.classList.contains('show')) loadTrash();
+      });
+    } else {
+      setTimeout(() => {
+        if (window.__i18n && typeof window.__i18n.onLangChange === 'function') {
+          window.__i18n.onLangChange(function () {
+            if (trashOverlay.classList.contains('show')) loadTrash();
+          });
+        }
+      }, 0);
+    }
 
 
     document.querySelectorAll('[data-trash-trigger]').forEach((el) => {
@@ -2130,7 +2337,11 @@
       }
 
       document.querySelectorAll('[data-brand-placeholder]').forEach((el) => {
-        if (el.tagName === 'INPUT') el.placeholder = el.getAttribute('data-brand-placeholder').split('{YOUR_BRAND}').join(finalName);
+        if (el.tagName !== 'INPUT') return;
+        // 如果该 input 已经被 i18n 接管（data-i18n-placeholder），跳过，
+        // 避免覆盖 i18n 注入的多语言 placeholder
+        if (el.hasAttribute('data-i18n-placeholder')) return;
+        el.placeholder = el.getAttribute('data-brand-placeholder').split('{YOUR_BRAND}').join(finalName);
       });
       writeLocalBrand(finalName);
       activeBrandName = finalName;
@@ -2201,30 +2412,30 @@
   
   <div class="lan-card" id="lan-card">
     <div class="lan-head" id="lan-head">
-      <span class="lan-title">局域网共享</span>
+      <span class="lan-title" data-i18n="lan.heading">局域网共享</span>
       <span class="lan-toggle" id="lan-toggle"></span>
     </div>
     <div class="lan-body">
       <div class="lan-row">
-        <span class="lan-label">本机访问</span>
-        <div class="lan-url" data-url="" id="lan-url-local" title="点击在新窗口打开">
+        <span class="lan-label" data-i18n="lan.local">本机访问</span>
+        <div class="lan-url" data-url="" id="lan-url-local" data-i18n-title="modal.openInNewTab" title="点击在新窗口打开">
           <span class="lan-url-text" id="lan-url-local-text">检测中…</span>
-          <button class="copy-btn" data-copy="local">Copy</button>
+          <button class="copy-btn" data-copy="local" data-i18n="lan.copy">Copy</button>
         </div>
       </div>
       <div class="lan-row">
-        <span class="lan-label">局域网 URL（手机/同事可访问）</span>
-        <div class="lan-url" data-url="" id="lan-url-lan" title="点击在新窗口打开">
+        <span class="lan-label" data-i18n="lan.urlLabel">局域网 URL（手机/同事可访问）</span>
+        <div class="lan-url" data-url="" id="lan-url-lan" data-i18n-title="modal.openInNewTab" title="点击在新窗口打开">
           <span class="lan-url-text" id="lan-url-lan-text">检测中…</span>
-          <button class="copy-btn" data-copy="lan">Copy</button>
+          <button class="copy-btn" data-copy="lan" data-i18n="lan.copy">Copy</button>
         </div>
       </div>
-      <div class="lan-hint">
+      <div class="lan-hint" data-i18n="lan.hint">
         📱 同一 Wi-Fi 下的手机/平板/同事电脑，用上面"局域网 URL"打开即可访问 <span class="brand-name-slot">{YOUR_BRAND}</span> 品牌调研库。
         <br>启动方式：双击 <code>start-server.bat</code>（已绑定 0.0.0.0）
       </div>
     </div>
-    <div class="lan-toast" id="lan-toast">已复制</div>
+    <div class="lan-toast" id="lan-toast" data-i18n="lan.copied">已复制</div>
   </div>
 
   <script>
@@ -2339,32 +2550,32 @@
     <div class="settings-modal" role="dialog" aria-labelledby="settings-title">
       <div class="settings-head">
         <h2 id="settings-title" data-i18n="settings.title">设置</h2>
-        <button class="settings-close" id="settings-close" type="button" aria-label="关闭">×</button>
+        <button class="settings-close" id="settings-close" type="button" data-i18n-aria="settings.closeAria" aria-label="关闭">×</button>
       </div>
       <div class="settings-body">
-        <p class="hint">第一项是「<strong>你的品牌</strong>」名 — 保存后会实时替换页面所有 <code>{YOUR_BRAND}</code> 占位符（顶栏 logo、副标题、设置标题、LAN 提示等）。</p>
+        <p class="hint" data-i18n-html="settings.hint">第一项是「<strong>你的品牌</strong>」名 — 保存后会实时替换页面所有 <code>{YOUR_BRAND}</code> 占位符（顶栏 logo、副标题、设置标题、LAN 提示等）。</p>
         <div class="field" style="background:var(--bg3);border-radius:8px;padding:0.9rem 1rem;margin-bottom:1.2rem;">
-          <label for="cfg-brand-name"><strong>Your Brand · 你的品牌</strong></label>
-          <input id="cfg-brand-name" type="text" autocomplete="off" placeholder="例如：Kiwii / Lumi / Oura" data-brand-placeholder="例如：{YOUR_BRAND} / Lumi / Oura" />
+          <label for="cfg-brand-name"><strong data-i18n="settings.brandLabel">Your Brand · 你的品牌</strong></label>
+          <input id="cfg-brand-name" type="text" autocomplete="off" data-i18n-placeholder="settings.brandPlaceholder" placeholder="例如：Kiwii / Lumi / Oura" data-brand-placeholder="例如：{YOUR_BRAND} / Lumi / Oura" />
         </div>
         <div class="field">
-          <label for="cfg-api-key">API Key</label>
+          <label for="cfg-api-key" data-i18n="settings.apiKey">API Key</label>
           <input id="cfg-api-key" type="password" autocomplete="off" placeholder="sk-xxxxxxxxxxxxxxxx" />
         </div>
         <div class="field">
-          <label for="cfg-base-url">Base URL</label>
-          <input id="cfg-base-url" type="text" autocomplete="off" placeholder="https://platform.shuyanai.com/v1" />
+          <label for="cfg-base-url" data-i18n="settings.baseUrl">Base URL</label>
+          <input id="cfg-base-url" type="text" autocomplete="off" data-i18n-placeholder="settings.baseUrlPlaceholder" placeholder="https://your-llm-provider.example.com/v1" />
         </div>
         <div class="field">
-          <label for="cfg-model">Model</label>
-          <input id="cfg-model" type="text" autocomplete="off" placeholder="MiniMax-M3" />
+          <label for="cfg-model" data-i18n="settings.model">Model</label>
+          <input id="cfg-model" type="text" autocomplete="off" data-i18n-placeholder="settings.modelPlaceholder" placeholder="your-default-model" />
         </div>
       </div>
       <div class="settings-foot">
         <div class="status" id="settings-status"></div>
         <div class="actions">
-          <button id="settings-cancel" type="button">取消</button>
-          <button id="settings-save" class="primary" type="button">保存</button>
+          <button id="settings-cancel" type="button" data-i18n="settings.cancel">取消</button>
+          <button id="settings-save" class="primary" type="button" data-i18n="settings.save">保存</button>
         </div>
       </div>
     </div>
@@ -2476,7 +2687,12 @@
 
     // Radar dimension labels (display order) — Chinese keys used internally
     const RADAR_DIM_KEYS = ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
-    const RADAR_DIM_LABELS_EN = ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
+    const RADAR_DIM_LABELS = {
+      zh: ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'],
+      en: ['Restraint', 'Warmth', 'Gamification', 'Tech', 'Emotion', 'Identity'],
+    };
+    const RADAR_DIM_LABELS_EN = RADAR_DIM_LABELS.zh; // 旧名保持 = 中文
+    const RADAR_DIM_LABELS_ZH = RADAR_DIM_LABELS.zh;
 
     // Country code translation map (Chinese -> English) for forced English UI
     const COUNTRY_EN = {
@@ -2608,19 +2824,32 @@
     // ===== Picker =====
     function renderPicker() {
       const all = getAllBrands();
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const n = state.selectedIds.length;
+      const emptyMsg = lang === 'en'
+        ? 'No brand selected. Add 2 – 4 from the dropdown below.'
+        : '尚未选择品牌。请从下方下拉框添加 2 – 4 个。';
+      const statusNone  = lang === 'en' ? 'No brand selected' : '尚未选择品牌';
+      const statusMid   = lang === 'en' ? n + ' selected · pick at least 2 to compare' : '已选 ' + n + ' 个 · 至少选 2 个才能对比';
+      const statusReady = lang === 'en' ? n + ' / ' + MAX_BRANDS + ' selected · ready to compare' : '已选 ' + n + ' / ' + MAX_BRANDS + ' 个 · 可以开始对比';
+      const addPh  = lang === 'en' ? '— Add brand —' : '— 添加品牌 —';
+      const maxTxt = lang === 'en' ? '— Reached ' + MAX_BRANDS + ' limit —' : '— 已达 ' + MAX_BRANDS + ' 个上限 —';
+      const noMore = lang === 'en' ? '— No more brands —' : '— 没有更多品牌 —';
 
       // Selected chips
       if (state.selectedIds.length === 0) {
-        pickerList.innerHTML = '<div class="cp-empty">尚未选择品牌。请从下方下拉框添加 2 – 4 个。</div>';
+        pickerList.innerHTML = '<div class="cp-empty">' + emptyMsg + '</div>';
       } else {
         const selected = getSelectedBrands();
         pickerList.innerHTML = selected.map((b, idx) => {
           const color = SERIES_COLORS[idx % SERIES_COLORS.length];
+          const displayName = window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id);
+          const removeLabel = (lang === 'en' ? 'Remove ' : '移除 ') + displayName;
           return `
             <span class="compare-chip" data-id="${escHtml(b.id)}">
               <span class="chip-dot" style="background:${color}"></span>
-              <span>${escHtml(b.name || b.nameZh || b.id)}</span>
-              <button class="chip-remove" type="button" aria-label="移除 ${escHtml(b.name || b.id)}" data-id="${escHtml(b.id)}">×</button>
+              <span>${escHtml(displayName)}</span>
+              <button class="chip-remove" type="button" aria-label="${escAttr(removeLabel)}" data-id="${escHtml(b.id)}">×</button>
             </span>`;
         }).join('');
         pickerList.querySelectorAll('.chip-remove').forEach((btn) => {
@@ -2629,23 +2858,22 @@
       }
 
       // Status
-      const n = state.selectedIds.length;
       pickerStatus.textContent = n === 0
-        ? '尚未选择品牌'
-        : (n < 2
-            ? '已选 ' + n + ' 个 · 至少选 2 个才能对比'
-            : '已选 ' + n + ' / ' + MAX_BRANDS + ' 个 · 可以开始对比');
+        ? statusNone
+        : (n < 2 ? statusMid : statusReady);
 
       // Dropdown
       const remaining = all.filter((b) => !state.selectedIds.includes(b.id));
-      pickerAdd.innerHTML = '<option value="">— 添加品牌 —</option>' + remaining.map((b) => {
-        return '<option value="' + escHtml(b.id) + '">' + escHtml(b.name || b.nameZh || b.id) + ' · ' + escHtml(toEnCategory(b.category)) + '</option>';
+      pickerAdd.innerHTML = '<option value="">' + addPh + '</option>' + remaining.map((b) => {
+        const displayName = window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id);
+        const displayCategory = window.__i18n ? window.__i18n.pickCategory(b, lang) : toEnCategory(b.category);
+        return '<option value="' + escHtml(b.id) + '">' + escHtml(displayName) + ' · ' + escHtml(displayCategory) + '</option>';
       }).join('');
       pickerAdd.disabled = n >= MAX_BRANDS || remaining.length === 0;
       if (n >= MAX_BRANDS) {
-        pickerAdd.options[0].textContent = '— 已达 ' + MAX_BRANDS + ' 个上限 —';
+        pickerAdd.options[0].textContent = maxTxt;
       } else if (remaining.length === 0) {
-        pickerAdd.options[0].textContent = '— 没有更多品牌 —';
+        pickerAdd.options[0].textContent = noMore;
       }
 
       pickerClear.disabled = n === 0;
@@ -2672,32 +2900,55 @@
     // ===== Table =====
     function renderTable() {
       const selected = getSelectedBrands();
-      compareTMeta.textContent = selected.length + (selected.length === 1 ? ' 个品牌' : ' 个品牌');
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const tField    = lang === 'en' ? 'Field' : '字段';
+      const tCategory = lang === 'en' ? 'Category' : '品类';
+      const tCountry  = lang === 'en' ? 'Country' : '国家';
+      const tSlogan   = lang === 'en' ? 'Slogan' : 'Slogan';
+      const tRadar    = lang === 'en' ? 'Tone radar' : '维度对比';
+      const tColors   = lang === 'en' ? 'Primary palette' : '主色板';
+      const countLbl  = lang === 'en'
+        ? (selected.length === 1 ? '1 brand' : selected.length + ' brands')
+        : selected.length + ' 个品牌';
+      compareTMeta.textContent = countLbl;
 
       const headerCells = selected.map((b, idx) => {
         const color = SERIES_COLORS[idx % SERIES_COLORS.length];
-        const sub = [toEnCategory(b.category), toEnCountry(b.country)].filter(Boolean).join(' · ');
+        const displayName = window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id);
+        const cat = window.__i18n ? window.__i18n.pickCategory(b, lang) : toEnCategory(b.category);
+        const cty = window.__i18n ? window.__i18n.pickCountry(b, lang) : toEnCountry(b.country);
+        const sub = [cat, cty].filter(Boolean).join(' · ');
         return '<th class="col-cell" style="border-left: 4px solid ' + color + ';">' +
-          '<div class="brand-cell">' + escHtml(b.name || b.nameZh || b.id) +
+          '<div class="brand-cell">' + escHtml(displayName) +
           '<span class="meta">' + escHtml(sub) + '</span></div>' +
         '</th>';
       }).join('');
 
       const rows = [];
-      rows.push('<tr><th>品类</th>' + selected.map((b) => '<td>' + escHtml(toEnCategory(b.category)) + '</td>').join('') + '</tr>');
-      rows.push('<tr><th>国家</th>' + selected.map((b) => '<td>' + escHtml(toEnCountry(b.country)) + '</td>').join('') + '</tr>');
-      rows.push('<tr><th>Slogan</th>' + selected.map((b) => '<td class="tagline-cell">"' + escHtml(b.tagline || '—') + '"</td>').join('') + '</tr>');
+      rows.push('<tr><th>' + tCategory + '</th>' + selected.map((b) => {
+        const cat = window.__i18n ? window.__i18n.pickCategory(b, lang) : toEnCategory(b.category);
+        return '<td>' + escHtml(cat) + '</td>';
+      }).join('') + '</tr>');
+      rows.push('<tr><th>' + tCountry + '</th>' + selected.map((b) => {
+        const cty = window.__i18n ? window.__i18n.pickCountry(b, lang) : toEnCountry(b.country);
+        return '<td>' + escHtml(cty) + '</td>';
+      }).join('') + '</tr>');
+      rows.push('<tr><th>' + tSlogan + '</th>' + selected.map((b) => {
+        const tagline = (lang === 'en' && b.taglineEn) ? b.taglineEn : (b.tagline || '—');
+        return '<td class="tagline-cell">"' + escHtml(tagline) + '"</td>';
+      }).join('') + '</tr>');
 
       const radarCells = selected.map((b) => {
         const vals = getRadarValues(b);
-        const inner = RADAR_DIM_LABELS_EN.map((label, i) => {
+        const labels = (lang === 'en') ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
+        const inner = labels.map((label, i) => {
           const v = vals[i] || 0;
           const barWidth = Math.max(0, Math.min(10, v)) * 8;
           return '<div class="rd-row"><span class="k">' + escHtml(label) + '</span><span class="v">' + v.toFixed(1) + '<span class="bar" style="width:' + barWidth + 'px"></span></span></div>';
         }).join('');
         return '<td class="radar-cell">' + inner + '</td>';
       }).join('');
-      rows.push('<tr><th>维度对比</th>' + radarCells + '</tr>');
+      rows.push('<tr><th>' + tRadar + '</th>' + radarCells + '</tr>');
 
       const colorCells = selected.map((b) => {
         const colors = (b.primaryColors || []).slice(0, 4);
@@ -2709,10 +2960,10 @@
         }).join('');
         return '<td><div class="swatch-row">' + swatches + '</div></td>';
       }).join('');
-      rows.push('<tr><th>主色板</th>' + colorCells + '</tr>');
+      rows.push('<tr><th>' + tColors + '</th>' + colorCells + '</tr>');
 
       compareTableEl.innerHTML =
-        '<thead><tr><th>字段</th>' + headerCells + '</tr></thead>' +
+        '<thead><tr><th>' + tField + '</th>' + headerCells + '</tr></thead>' +
         '<tbody>' + rows.join('') + '</tbody>';
     }
 
@@ -2721,12 +2972,15 @@
       if (!radarEl || typeof echarts === 'undefined') return;
 
       const selected = getSelectedBrands();
-      const indicator = RADAR_DIM_LABELS_EN.map((name) => ({ name, max: 10 }));
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const radarLabels = (lang === 'en') ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
+      const indicator = radarLabels.map((name) => ({ name, max: 10 }));
 
       const seriesData = selected.map((b, idx) => {
         const color = SERIES_COLORS[idx % SERIES_COLORS.length];
+        const displayName = window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id);
         return {
-          name: b.name || b.nameZh || b.id,
+          name: displayName,
           value: getRadarValues(b),
           lineStyle: { width: 2, color },
           itemStyle: { color },
@@ -2779,6 +3033,7 @@
     // ===== Palette =====
     function renderPaletteGallery() {
       const selected = getSelectedBrands();
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
       paletteEl.innerHTML = selected.map((b, idx) => {
         const color = SERIES_COLORS[idx % SERIES_COLORS.length];
         const colors = (b.primaryColors || []).slice(0, 4);
@@ -2787,11 +3042,13 @@
           return '<div class="ps" style="background:' + escHtml(hex) + '"><span class="label">' + escHtml(label) + '</span></div>';
         }).join('');
         const padded = fills + Array.from({ length: Math.max(0, 4 - colors.length) }).map(() => '<div class="ps" style="background:#F4EFE6"><span class="label">—</span></div>').join('');
+        const displayName = window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id);
+        const displayCategory = window.__i18n ? window.__i18n.pickCategory(b, lang) : toEnCategory(b.category);
         return '<div class="compare-palette-card">' +
           '<div class="pc-head">' +
             '<span class="dot" style="background:' + color + '"></span>' +
-            '<h4>' + escHtml(b.name || b.nameZh || b.id) + '</h4>' +
-            '<span class="meta">' + escHtml(toEnCategory(b.category)) + '</span>' +
+            '<h4>' + escHtml(displayName) + '</h4>' +
+            '<span class="meta">' + escHtml(displayCategory) + '</span>' +
           '</div>' +
           '<div class="compare-palette-strip">' + padded + '</div>' +
         '</div>';
@@ -2806,8 +3063,11 @@
         return;
       }
 
-      const radars = selected.map((b) => ({ name: b.name || b.nameZh || b.id, vals: getRadarValues(b) }));
-      const dims = RADAR_DIM_LABELS_EN;
+      const radars = selected.map((b) => ({
+        name: (window.__i18n ? window.__i18n.pickName(b, (window.__i18n ? window.__i18n.getLang() : 'zh')) : (b.name || b.nameZh || b.id)),
+        vals: getRadarValues(b)
+      }));
+      const dims = (window.__i18n && window.__i18n.getLang() === 'en') ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
 
       const leaders = dims.map((dim, i) => {
         let bestIdx = 0; let bestVal = radars[0].vals[i];
@@ -2914,6 +3174,21 @@
 
     // Expose opener for index.html's "对比所选" / tray buttons
     window.__compareOverlay = open;
+
+    // Re-render compare overlay when language changes
+    if (window.__i18n && typeof window.__i18n.onLangChange === 'function') {
+      window.__i18n.onLangChange(function () {
+        if (overlay.classList.contains('show')) renderAll();
+      });
+    } else {
+      setTimeout(() => {
+        if (window.__i18n && typeof window.__i18n.onLangChange === 'function') {
+          window.__i18n.onLangChange(function () {
+            if (overlay.classList.contains('show')) renderAll();
+          });
+        }
+      }, 0);
+    }
   })();
   </script>
 
@@ -2928,36 +3203,341 @@
     'use strict';
 
     var LANG_KEY = 'lang';
-    var DEFAULT_LANG = 'zh';
+    var DEFAULT_LANG = 'en';
 
     var STRINGS = {
       'zh': {
-        'nav.home':     '首页',
-        'nav.library':  '品牌库',
-        'nav.compare':  '对比',
-        'nav.trash':    '回收站',
-        'nav.docs':     'GitHub',
-        'nav.settings': '设置',
-        'hero.label':   '品牌调研 · 枢纽',
-        'hero.title':   '让<em>品牌视觉</em>调研<br>成为 {YOUR_BRAND} 的常态',
-        'hero.subtitle':'输入品牌名 → 触发 brand-research skill → 自动生成 8 维结构化报告 + 雷达图，沉淀到本地品牌库，与 {YOUR_BRAND} 现有对标品牌做横向对比。',
-        'settings.title': '设置',
-        'trash.title':    '回收站 · 30 天保留',
+        'nav.home':           '首页',
+        'nav.library':        '品牌库',
+        'nav.compare':        '对比',
+        'nav.trash':          '回收站',
+        'nav.docs':           'GitHub',
+        'nav.settings':       '设置',
+        'hero.label':         '品牌调研 · 枢纽',
+        'hero.title':         '让<em>品牌视觉</em>调研<br>成为 {YOUR_BRAND} 的常态',
+        'hero.subtitle':      '输入品牌名 → 触发 brand-research skill → 自动生成 8 维结构化报告 + 雷达图，沉淀到本地品牌库，与 {YOUR_BRAND} 现有对标品牌做横向对比。',
+        'settings.title':     '设置',
+        'settings.hint':      '第一项是「<strong>你的品牌</strong>」名 — 保存后会实时替换页面所有 <code>{YOUR_BRAND}</code> 占位符（顶栏 logo、副标题、设置标题、LAN 提示等）。',
+        'settings.brandLabel':'Your Brand · 你的品牌',
+        'settings.brandPlaceholder':'例如：Kiwii / Lumi / Oura',
+        'settings.baseUrlPlaceholder': 'https://your-llm-provider.example.com/v1',
+        'settings.modelPlaceholder':   'your-default-model',
+        'settings.apiKey':    'API Key',
+        'settings.baseUrl':   'Base URL',
+        'settings.model':     'Model',
+        'settings.cancel':    '取消',
+        'settings.save':      '保存',
+        'settings.closeAria': '关闭',
+        'modal.closeCompare':  '关闭对比浮层',
+        'modal.addBrandToCompare': '添加品牌到对比',
+        'modal.closeReport':   '关闭报告',
+        'modal.closeTrash':    '关闭回收站',
+        'modal.openInNewTab':  '点击在新窗口打开',
+        'compare.openNewTab':  '新窗口打开 ↗',
+        'trash.title':        '回收站 · 30 天保留',
+        'input.heading':      '开始一次新的品牌调研',
+        'input.desc':         '输入品牌名（如 "Hatch"）或品牌官网 URL（如 "https://www.hatch.co"），然后让 brand-research skill 接手。生成完毕后页面会出现在下方「品牌库」。',
+        'input.placeholder':  '例：Hatch / Oura / https://www.hatch.co',
+        'input.submit':       '调研',
+        'library.heading':    '品牌库',
+        'library.refresh':    '刷新',
+        'library.trash':      '回收站',
+        'library.compare':    '对比所选',
+        'library.empty':      '品牌库为空。在上方输入一个品牌名开始你的第一次调研。',
+        'library.loading':    '正在加载品牌库…',
+        'library.viewReport': '查看报告 →',
+        'library.delete':     '删除到回收站',
+        'library.delete.confirm': '确定删除这个品牌案例吗？它会进入回收站并保留 30 天。',
+        'library.max4':       '最多选择 4 个品牌进行对比。',
+        'library.min2':       '请至少选择 2 个品牌进行对比。',
+        'status.idle':        '空闲',
+        'status.wait':        '等待生成',
+        'status.bodyIdle':    '在状态面板查看实时日志；后台调研完成后会自动刷新下方品牌库。',
+        'submit.heading':     'Submit Brand Notes',
+        'submit.hint':        '粘贴与品牌相关的 Markdown 内容（定位、故事、视觉调性、产品主张、竞品笔记），可附带品牌名。',
+        'submit.placeholder': '# Brand notes\n\nPaste your brand-related content here in Markdown.\nFor example: positioning, story, visual tone, product claims, competitor notes.',
+        'submit.placeholderName': 'Brand name (optional)',
+        'submit.run':         'RUN RESEARCH',
+        'compare.label':      '品牌对比 · Brand Comparison',
+        'compare.title':      '并排对比 · Side-by-side',
+        'compare.heading':    '对比品牌（2 – 4 个）',
+        'compare.hint':       '在此添加或移除品牌，也可返回品牌库调整。',
+        'compare.statusNone': '尚未选择品牌',
+        'compare.statusPartial': '已选 {n} 个 · 至少选 2 个才能对比',
+        'compare.statusReady': '已选 {n} / {max} 个 · 可以开始对比',
+        'compare.addPlaceholder': '— 添加品牌 —',
+        'compare.maxReached': '— 已达 {max} 个上限 —',
+        'compare.noMore':     '— 没有更多品牌 —',
+        'compare.clearAll':   '清空全部',
+        'compare.table.field':'字段',
+        'compare.table.category':'品类',
+        'compare.table.country':'国家',
+        'compare.table.slogan':'Slogan',
+        'compare.table.radar':'维度对比',
+        'compare.table.colors':'主色板',
+        'compare.countOne':   '{n} 个品牌',
+        'compare.countMany':  '{n} 个品牌',
+        'compare.removeAria': '移除 {name}',
+        'trash.delete':       '删除到回收站',
+        'trash.restore':      '恢复',
+        'trash.purge':        '立即删除',
+        'trash.restore.confirm':'确定恢复这个品牌案例吗？恢复后会重新出现在下方品牌库。',
+        'trash.purge.confirm':'确定立即删除吗？此操作无法撤销，将永久删除该品牌案例及其报告 HTML。',
+        'trash.empty':        '回收站目前是空的。',
+        'trash.empty.hint':   '删除的品牌案例会保留 {n} 天，到期后自动清理。',
+        'trash.loadFail':     '回收站加载失败：',
+        'trash.loading':      '加载中…',
+        'trash.retain':       '· 默认保留 {n} 天',
+        'trash.deletedAt':    '删除时间：',
+        'trash.expiresAt':    '到期时间：',
+        'trash.id':           'ID：',
+        'trash.daysLeft':     '（剩余 {n} 天）',
+        'trash.expired':      '（已到期，待清理）',
+        'trash.toolbarHint':  '删除的品牌案例会保留 <code>30</code> 天，到期后由服务端自动清理。<br>按钮说明：<strong>恢复</strong> = 重新回到下方品牌库；<strong>立即删除</strong> = 永久清除（无法恢复）。',
+        'trash.purgeExpired': '清理过期项',
+        'trash.purgeExpiredConfirm':'确定立即清理所有已过期的品牌案例吗？',
+        'trash.purgeExpiredFail':'清理失败：',
+        'lan.heading':        '局域网共享',
+        'lan.hint':           '同一 Wi-Fi 下的手机/平板/同事电脑，用上面「局域网 URL」打开即可访问 Kiwii 品牌调研库。',
+        'lan.startHint':      '启动方式：双击 start-server.bat（已绑定 0.0.0.0）',
+        'lan.local':          '本机访问',
+        'lan.urlLabel':       '局域网 URL（手机/同事可访问）',
+        'lan.copy':           'Copy',
+        'lan.detecting':      '检测中…',
+        'lan.copied':         '已复制',
+        'tray.chosen':        '已选',
+        'tray.unit':          '个',
+        'tray.clear':         '清空',
+        'tray.go':            '生成对比页 →',
+        'meta.title':         '{YOUR_BRAND} 品牌调研库 · Brand Research Hub',
+        'status.starting':    '启动中',
+        'status.running':     '运行中',
+        'status.done':        '已完成',
+        'status.failed':      '失败',
+        'status.titleStart':  '启动调研：{brand}',
+        'status.bodyStart':   '正在通过 <code>POST /api/research</code> 启动后台任务…',
+        'log.sseConnectFail': 'SSE 连接失败：{msg}',
+        'log.sseConnected':   '▶ 已连接 SSE：{url}',
+        'log.sseError':       '⚠ SSE 连接异常（重连中或已结束）',
+        'log.preparing':      '🎯 准备调研：{brand}',
+        'log.postRequest':    '→ POST /api/research { brand: "{brand}" }',
+        'log.researchDone':   '🎉 调研完成，刷新品牌库…',
+        'log.researchFailed': '✗ 调研失败：{msg}',
+        'log.unknownError':   '未知错误',
+        'log.networkError':   '✗ 网络错误：{msg}',
+        'log.startupFailed':  '✗ 启动失败：{msg}',
+        'log.jobStarted':     '✓ 任务已启动 · jobId={id}',
+        'action.openReportOverlay': '打开报告（浮层）',
+        'action.refreshLibrary':    '刷新品牌库',
+        'action.starting':          '启动中…',
+        'custom.emptyMd':           '请先在上方粘贴 Markdown 内容。',
+        'custom.submitting':        '正在提交 Markdown…',
+        'custom.submitted':         '已提交，开始生成报告…',
+        'custom.failedPrefix':      '提交失败：',
+        'custom.fallbackName':      '报告',
       },
       'en': {
-        'nav.home':     'Home',
-        'nav.library':  'Library',
-        'nav.compare':  'Compare',
-        'nav.trash':    'Trash',
-        'nav.docs':     'GitHub',
-        'nav.settings': 'Settings',
-        'hero.label':   'Brand Research · Hub',
-        'hero.title':   'Make <em>brand visual</em> research<br>a habit for {YOUR_BRAND}',
-        'hero.subtitle':'Enter a brand name → trigger the brand-research skill → auto-generate an 8-dimension structured report + radar chart, stored in your local brand library for side-by-side comparison with {YOUR_BRAND}\u2019s existing benchmarks.',
-        'settings.title': 'Settings',
-        'trash.title':    'Trash · 30-day Retention',
+        'nav.home':           'Home',
+        'nav.library':        'Library',
+        'nav.compare':        'Compare',
+        'nav.trash':          'Trash',
+        'nav.docs':           'GitHub',
+        'nav.settings':       'Settings',
+        'hero.label':         'Brand Research · Hub',
+        'hero.title':         'Make <em>brand visual</em> research<br>a habit for {YOUR_BRAND}',
+        'hero.subtitle':      'Enter a brand name → trigger the brand-research skill → auto-generate an 8-dimension structured report + radar chart, stored in your local brand library for side-by-side comparison with {YOUR_BRAND}\u2019s existing benchmarks.',
+        'settings.title':     'Settings',
+        'settings.hint':      'The first field is your <strong>brand name</strong>. Saving it instantly replaces every <code>{YOUR_BRAND}</code> placeholder on the page (top-bar logo, hero subtitle, settings title, LAN hint, etc.).',
+        'settings.brandLabel':'Your Brand',
+        'settings.brandPlaceholder':'e.g. Kiwii / Lumi / Oura',
+        'settings.baseUrlPlaceholder': 'https://your-llm-provider.example.com/v1',
+        'settings.modelPlaceholder':   'your-default-model',
+        'settings.apiKey':    'API Key',
+        'settings.baseUrl':   'Base URL',
+        'settings.model':     'Model',
+        'settings.cancel':    'Cancel',
+        'settings.save':      'Save',
+        'settings.closeAria': 'Close',
+        'modal.closeCompare':  'Close compare overlay',
+        'modal.addBrandToCompare': 'Add brand to compare',
+        'modal.closeReport':   'Close report',
+        'modal.closeTrash':    'Close trash',
+        'modal.openInNewTab':  'Click to open in a new tab',
+        'compare.openNewTab':  'Open in new tab ↗',
+        'trash.title':        'Trash · 30-day Retention',
+        'input.heading':      'Start a new brand research',
+        'input.desc':         'Enter a brand name (e.g. "Hatch") or the brand\u2019s website URL (e.g. "https://www.hatch.co"), and let the brand-research skill take over. The generated page will appear in the Library below.',
+        'input.placeholder':  'e.g. Hatch / Oura / https://www.hatch.co',
+        'input.submit':       'Research',
+        'library.heading':    'Library',
+        'library.refresh':    'Refresh',
+        'library.trash':      'Trash',
+        'library.compare':    'Compare',
+        'library.empty':      'The library is empty. Enter a brand name above to start your first research.',
+        'library.loading':    'Loading library\u2026',
+        'library.viewReport': 'View report →',
+        'library.delete':     'Delete to trash',
+        'library.delete.confirm': 'Delete this brand case? It will move to trash and be kept for 30 days.',
+        'library.max4':       'You can compare up to 4 brands at once.',
+        'library.min2':       'Please select at least 2 brands to compare.',
+        'status.idle':        'Idle',
+        'status.wait':        'Waiting',
+        'status.bodyIdle':    'Real-time logs appear here. The library refreshes automatically once research finishes.',
+        'submit.heading':     'Submit Brand Notes',
+        'submit.hint':        'Paste brand-related Markdown content (positioning, story, visual tone, product claims, competitor notes). Brand name is optional.',
+        'submit.placeholder': '# Brand notes\n\nPaste your brand-related content here in Markdown.\nFor example: positioning, story, visual tone, product claims, competitor notes.',
+        'submit.placeholderName': 'Brand name (optional)',
+        'submit.run':         'RUN RESEARCH',
+        'compare.label':      'Brand Comparison · 品牌对比',
+        'compare.title':      'Side-by-side · 并排对比',
+        'compare.heading':    'Brands to compare (2 – 4)',
+        'compare.hint':       'Add or remove brands here, or go back to the library to adjust.',
+        'compare.statusNone': 'No brand selected',
+        'compare.statusPartial': '{n} selected · pick at least 2 to compare',
+        'compare.statusReady': '{n} / {max} selected · ready to compare',
+        'compare.addPlaceholder': '— Add brand —',
+        'compare.maxReached': '— Reached {max} limit —',
+        'compare.noMore':     '— No more brands —',
+        'compare.clearAll':   'Clear all',
+        'compare.table.field':'Field',
+        'compare.table.category':'Category',
+        'compare.table.country':'Country',
+        'compare.table.slogan':'Slogan',
+        'compare.table.radar':'Tone radar',
+        'compare.table.colors':'Primary palette',
+        'compare.countOne':   '{n} brand',
+        'compare.countMany':  '{n} brands',
+        'compare.removeAria': 'Remove {name}',
+        'trash.delete':       'Delete to trash',
+        'trash.restore':      'Restore',
+        'trash.purge':        'Delete now',
+        'trash.restore.confirm':'Restore this brand case? It will reappear in the library.',
+        'trash.purge.confirm':'Delete immediately? This cannot be undone; the brand case and its report HTML will be permanently removed.',
+        'trash.empty':        'The trash is empty.',
+        'trash.empty.hint':   'Deleted brand cases are kept for {n} days, then auto-cleaned.',
+        'trash.loadFail':     'Failed to load trash: ',
+        'trash.loading':      'Loading\u2026',
+        'trash.retain':       '· Default retention: {n} days',
+        'trash.deletedAt':    'Deleted at: ',
+        'trash.expiresAt':    'Expires at: ',
+        'trash.id':           'ID: ',
+        'trash.daysLeft':     '({n} days left)',
+        'trash.expired':      '(expired, pending purge)',
+        'trash.toolbarHint':  'Deleted brand cases are kept for <code>30</code> days, then auto-cleaned by the server.<br>Buttons: <strong>Restore</strong> = back to the library; <strong>Delete now</strong> = permanent removal (irreversible).',
+        'trash.purgeExpired': 'Purge expired',
+        'trash.purgeExpiredConfirm':'Permanently delete all expired brand cases now?',
+        'trash.purgeExpiredFail':'Purge failed: ',
+        'lan.heading':        'LAN share',
+        'lan.hint':           'On the same Wi-Fi, phones / tablets / colleagues can open the LAN URL above to access the {YOUR_BRAND} brand library.',
+        'lan.startHint':      'How to start: double-click start-server.bat (binds to 0.0.0.0)',
+        'lan.local':          'Local',
+        'lan.urlLabel':       'LAN URL (phones / colleagues)',
+        'lan.copy':           'Copy',
+        'lan.detecting':      'Detecting…',
+        'tray.chosen':        'Selected',
+        'tray.unit':          '',
+        'tray.clear':         'Clear',
+        'tray.go':            'Generate comparison →',
+        'meta.title':         '{YOUR_BRAND} · Brand Research Hub',
+        'status.starting':    'Starting',
+        'status.running':     'Running',
+        'status.done':        'Done',
+        'status.failed':      'Failed',
+        'status.titleStart':  'Starting research: {brand}',
+        'status.bodyStart':   'Kicking off the background job via <code>POST /api/research</code>…',
+        'log.sseConnectFail': 'SSE connection failed: {msg}',
+        'log.sseConnected':   '▶ SSE connected: {url}',
+        'log.sseError':       '⚠ SSE connection issue (reconnecting or ended)',
+        'log.preparing':      '🎯 Preparing research: {brand}',
+        'log.postRequest':    '→ POST /api/research { brand: "{brand}" }',
+        'log.researchDone':   '🎉 Research complete, refreshing library…',
+        'log.researchFailed': '✗ Research failed: {msg}',
+        'log.unknownError':   'Unknown error',
+        'log.networkError':   '✗ Network error: {msg}',
+        'log.startupFailed':  '✗ Startup failed: {msg}',
+        'log.jobStarted':     '✓ Job started · jobId={id}',
+        'action.openReportOverlay': 'Open report (overlay)',
+        'action.refreshLibrary':    'Refresh library',
+        'action.starting':          'Starting…',
+        'custom.emptyMd':           'Please paste Markdown content above first.',
+        'custom.submitting':        'Submitting Markdown…',
+        'custom.submitted':         'Submitted, generating report…',
+        'custom.failedPrefix':      'Submission failed: ',
+        'custom.fallbackName':      'Report',
       },
     };
+
+    // Country / category translation map (shared with index.html static part)
+    var COUNTRY_EN = {
+      '德国':'Germany','美国':'United States','芬兰':'Finland','日本':'Japan','中国':'China',
+      '英国':'United Kingdom','法国':'France','意大利':'Italy','韩国':'South Korea','瑞典':'Sweden',
+      '丹麦':'Denmark','荷兰':'Netherlands','瑞士':'Switzerland','加拿大':'Canada',
+      '澳大利亚':'Australia','新加坡':'Singapore','挪威':'Norway','比利时':'Belgium',
+      '奥地利':'Austria','爱尔兰':'Ireland','新西兰':'New Zealand','巴西':'Brazil','印度':'India','俄罗斯':'Russia'
+    };
+    var CATEGORY_EN = {
+      '运动服饰':'Sportswear',
+      '运动服饰与运动装备':'Sportswear & Equipment',
+      '运动装备':'Sports Equipment',
+      '消费电子':'Consumer Electronics',
+      '游戏平台 / 游戏主机':'Gaming Platform / Console',
+      '游戏平台':'Gaming Platform',
+      '游戏主机':'Gaming Console',
+      '智能硬件':'Smart Hardware',
+      '可穿戴设备':'Wearable Device',
+      '健康科技':'Health Tech',
+      '生活方式':'Lifestyle'
+    };
+    function pickStatic(zhDict, enDict, val) {
+      if (!val) return val;
+      if (/[一-龥]/.test(val)) return (zhDict[val] || enDict[val] || val);
+      return val;
+    }
+    var ZH_RE = /[一-龥]/;
+    var isChinese = function (s) { return !!s && ZH_RE.test(s); };
+
+    // ---- Brand field picker ----
+    // 优先使用字段自带的 *En 版本；如果没有就回退到内置映射；最后回退到原值
+    function pickBrandName(b, lang) {
+      if (!b) return '';
+      if (lang === 'en') {
+        if (b.name && !isChinese(b.name)) return b.name;
+        return b.nameEn || b.name || b.nameZh || b.id || '';
+      }
+      return b.nameZh || b.name || b.id || '';
+    }
+    function pickBrandSummary(b, lang) {
+      if (!b) return '';
+      if (lang === 'en') {
+        if (b.summaryEn) return b.summaryEn;
+        if (b.summary && !isChinese(b.summary)) return b.summary;
+        // No English summary available — return empty rather than showing
+        // a Chinese summary in English mode. Backfill `summaryEn` to fill the gap.
+        return '';
+      }
+      return b.summary || '';
+    }
+    function pickBrandCategory(b, lang) {
+      if (!b) return '';
+      if (lang === 'en') {
+        if (b.categoryEn) return b.categoryEn;
+        if (b.category && !isChinese(b.category)) return b.category;
+        return pickStatic(CATEGORY_EN, {}, b.category) || b.category || '';
+      }
+      return b.category || '';
+    }
+    function pickBrandCountry(b, lang) {
+      if (!b) return '';
+      if (lang === 'en') {
+        if (b.countryEn) return b.countryEn;
+        if (b.country && !isChinese(b.country)) return b.country;
+        return pickStatic(COUNTRY_EN, {}, b.country) || b.country || '';
+      }
+      return b.country || '';
+    }
+
+    var currentLang = DEFAULT_LANG;
+    var langChangeListeners = [];
 
     function readLang() {
       try {
@@ -2969,6 +3549,28 @@
 
     function writeLang(v) {
       try { localStorage.setItem(LANG_KEY, v); } catch (e) {}
+    }
+
+    // Public: subscribe to language change
+    function onLangChange(fn) {
+      if (typeof fn === 'function') langChangeListeners.push(fn);
+    }
+
+    function tpl(str, vars) {
+      if (!str) return '';
+      return String(str).replace(/\{(\w+)\}/g, function (_, k) {
+        return vars && (k in vars) ? vars[k] : ('{' + k + '}');
+      });
+    }
+
+    // Public: get current language ('zh' | 'en')
+    function getLang() { return currentLang; }
+    // Public: translate a string key (used by inline JS)
+    function tr(key, vars) {
+      var dict = STRINGS[currentLang] || STRINGS[DEFAULT_LANG];
+      var v = dict[key];
+      if (typeof v !== 'string') return (vars && vars.fallback) || key;
+      return tpl(v, vars || {});
     }
 
     function getBrandName() {
@@ -2988,6 +3590,7 @@
       if (lang !== 'en' && lang !== 'zh') lang = DEFAULT_LANG;
       var dict = STRINGS[lang] || STRINGS[DEFAULT_LANG];
       var brand = getBrandName();
+      currentLang = lang;
 
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         var key = el.getAttribute('data-i18n');
@@ -2995,6 +3598,12 @@
         if (typeof tpl !== 'string') return;
         // Replace {YOUR_BRAND} placeholder with the actual brand name
         var txt = tpl.split('{YOUR_BRAND}').join(brand);
+
+        if (key === 'meta.title') {
+          // <title> can't hold a span; just set the document title
+          try { document.title = txt; } catch (e) {}
+          return;
+        }
 
         if (key === 'hero.title') {
           // Hero title contains inline <em> and <br> tags
@@ -3025,8 +3634,59 @@
           } else {
             el.textContent = txt;
           }
+        } else if (key === 'lan.hint') {
+          // Keep the <code>/<strong>/<br> formatting AND the .brand-name-slot span
+          var slot = el.querySelector('.brand-name-slot');
+          if (slot) {
+            var parts = txt.split('{YOUR_BRAND}');
+            el.innerHTML = '';
+            el.appendChild(document.createTextNode(parts[0]));
+            el.appendChild(slot);
+            if (parts[1]) el.appendChild(document.createTextNode(parts[1]));
+          } else {
+            el.innerHTML = txt;
+          }
+        } else if (key === 'trash.toolbarHint') {
+          // Keep the <code>/<strong>/<br> formatting
+          el.innerHTML = txt;
         } else {
           el.textContent = txt;
+        }
+      });
+
+      // Also handle input placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        var tpl = dict[key];
+        if (typeof tpl === 'string') {
+          el.setAttribute('placeholder', tpl.split('{YOUR_BRAND}').join(brand));
+        }
+      });
+
+      // Handle aria-label localization (e.g. modal close buttons)
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria');
+        var tpl = dict[key];
+        if (typeof tpl === 'string') {
+          el.setAttribute('aria-label', tpl.split('{YOUR_BRAND}').join(brand));
+        }
+      });
+
+      // Handle title attribute localization
+      document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-title');
+        var tpl = dict[key];
+        if (typeof tpl === 'string') {
+          el.setAttribute('title', tpl.split('{YOUR_BRAND}').join(brand));
+        }
+      });
+
+      // Handle innerHTML localization (for content with <strong>/<code> tags)
+      document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-html');
+        var tpl = dict[key];
+        if (typeof tpl === 'string') {
+          el.innerHTML = tpl.split('{YOUR_BRAND}').join(brand);
         }
       });
 
@@ -3040,6 +3700,13 @@
 
       // Update <html lang="..."> for accessibility
       try { document.documentElement.setAttribute('lang', (lang === 'zh') ? 'zh-CN' : 'en'); } catch (e) {}
+
+      // Fire language change listeners (so dynamic renders can re-render)
+      try {
+        for (var i = 0; i < langChangeListeners.length; i++) {
+          langChangeListeners[i](lang);
+        }
+      } catch (e) {}
     }
 
     function init() {
@@ -3054,6 +3721,20 @@
         });
       }
     }
+
+    // Expose public API for the rest of the page scripts
+    window.__i18n = {
+      getLang: getLang,
+      tr: tr,
+      onLangChange: onLangChange,
+      pickName: pickBrandName,
+      pickSummary: pickBrandSummary,
+      pickCategory: pickBrandCategory,
+      pickCountry: pickBrandCountry,
+      isChinese: isChinese,
+      COUNTRY_EN: COUNTRY_EN,
+      CATEGORY_EN: CATEGORY_EN,
+    };
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);

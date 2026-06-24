@@ -52,7 +52,7 @@ await runResearch({
 
 This will:
 1. Fetch the brand's homepage HTML
-2. Call MiniMax M3 (OpenAI-compatible API) to extract 8 dimensions + radar values
+2. Call your configured LLM (OpenAI-compatible API) to extract 8 dimensions + radar values
 3. Sanitize the response (`sanitizeDeep` reverses Latin-1→UTF-8 mojibake + strips control chars)
 4. Render `lib/report-template.mjs` with the LLM output
 5. Write `<slug>-<YYYYMMDD>.html` to the project root
@@ -126,9 +126,9 @@ The data block is embedded in the report HTML as `<script id="__BRAND_DATA__" ty
 
 ## Environment
 
-- `OPENAI_BASE_URL` (default `https://api.MiniMax.chat/v1`)
+- `OPENAI_BASE_URL` (default `https://your-llm-provider.example.com/v1`)
 - `OPENAI_API_KEY` (required; alias `MINIMAX_API_KEY` also accepted)
-- `OPENAI_MODEL` (default `MiniMax-M3`)
+- `OPENAI_MODEL` (default `your-default-model`)
 - `BRAND_RESEARCH_DIR` (optional, default `./brand-research`)
 - `LAN_HOST` (optional, pin a specific LAN IP for the start URL)
 - `HOST` / `PORT` (optional, default `0.0.0.0` / `8000`)

@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "品牌视觉调研中心 · 一键调研后端（Node + MiniMax M3）",
+  "description": "品牌视觉调研中心 · 一键调研后端（Node + your-default-model）",
   "main": "server.mjs",
   "scripts": {
     "start": "node server.mjs",
