@@ -3528,7 +3528,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
   (function () {
     'use strict';
 
-    var LANG_KEY = 'lang';
+    var LANG_KEY = 'kwi_hub_lang_v2'; // bumped from 'lang' to reset all prior zh picks and default to English
     var DEFAULT_LANG = 'en';
 
     var STRINGS = {
@@ -3857,11 +3857,38 @@ For example: positioning, story, visual tone, product claims, competitor notes."
       if (lang === 'en') {
         if (b.summaryEn) return b.summaryEn;
         if (b.summary && !isChinese(b.summary)) return b.summary;
-        // No English summary available — return empty rather than showing
-        // a Chinese summary in English mode. Backfill `summaryEn` to fill the gap.
-        return '';
+        // No English summary on file — synthesise a brief one from the
+        // structured 8-dimension data so the card never goes blank.
+        return generateEnglishSummary(b);
       }
       return b.summary || '';
+    }
+    // Synthesise a 1-2 sentence English intro from logo / palette / category /
+    // country / tagline when the LLM-researched summaryEn is missing. Used as
+    // a deterministic fallback in pickBrandSummary().
+    function generateEnglishSummary(b) {
+      const parts = [];
+      const name = b.name || b.nameEn || b.nameZh || b.id || '';
+      const category = b.categoryEn || (b.category && !isChinese(b.category) ? b.category : '');
+      const country = b.countryEn || (b.country && !isChinese(b.country) ? b.country : '');
+      const tagline = b.taglineEn || b.tagline || '';
+      const logoType = (b.logo && (b.logo.typeEn || b.logo.type)) || '';
+      const paletteSize = (b.palette && b.palette.length) || (b.primaryColors && b.primaryColors.length) || 0;
+      if (category && country) parts.push(name + ' is a ' + category + ' brand from ' + country + '.');
+      else if (category) parts.push(name + ' is a ' + category + ' brand.');
+      else if (country) parts.push(name + ' is a brand from ' + country + '.');
+      else if (name) parts.push(name + ' is a consumer brand.');
+      if (logoType) {
+        const lt = logoType.toLowerCase();
+        if (paletteSize > 0) parts.push('Its ' + lt + ' logo pairs with a ' + paletteSize + '-color palette.');
+        else parts.push('Its ' + lt + ' logo anchors the visual identity.');
+      } else if (paletteSize > 0) {
+        parts.push('Visual identity: a ' + paletteSize + '-color palette.');
+      }
+      if (tagline && tagline.length < 120) {
+        parts.push('Positioned as: \u201C' + tagline + '\u201D.');
+      }
+      return parts.join(' ');
     }
     function pickBrandCategory(b, lang) {
       if (!b) return '';

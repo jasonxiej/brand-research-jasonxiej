@@ -117,203 +117,6 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      },
-      "brandTakeaway": [
-        "用粗体压缩无衬线字体强化标题运动感",
-        "采用单色基底搭配一个强调色的配色法则",
-        "每季度与文化IP推一次限量联名",
-        "首页采用70%中性色加30%品牌色布局",
-        "把鞋盒和快递包装统一印上品牌符号"
-      ],
-      "brandTakeawayEn": [
-        "Use bold, condensed sans-serif type to amplify the athletic feel of headlines",
-        "Build color systems around a monochrome base paired with a single accent color",
-        "Release a limited collaboration with a cultural IP each season",
-        "Structure the homepage around a 70% neutral to 30% brand color ratio",
-        "Unify shoeboxes and shipping packaging with consistent brand symbols"
-      ],
-      "summaryEn": "Adidas is a global sports brand that built its iconic recognition around the Three Stripes, uniting professional performance, street culture, and everyday wearability. Its visual system is anchored in high-contrast black and white, bold graphic symbols, and sharp, confident typography — delivering a brand presence that feels classic, reliable, and full of kinetic energy. Through ongoing collaborations and cultural activations, it continuously reinforces a youthful, expressive edge.",
-      "toneEn": [
-        "Athletically professional",
-        "Youthful and energetic",
-        "Timeless and enduring",
-        "Urban street sensibility",
-        "Confident and driven"
-      ],
-      "toneSummaryEn": "Classic sports aesthetic that bridges professional performance with street-level energy.",
-      "positioningEn": "A top-tier global sports brand for athletes and culture-driven consumers, connecting professional performance to daily wear and self-expression.",
-      "sellingPointsEn": [
-        "Three Stripes and Trefoil form an exceptionally strong brand recognition system",
-        "Combines sports technology, comfort, and everyday styling in one product line",
-        "Covers the full spectrum of running, training, football, basketball, and lifestyle",
-        "Built on a deep heritage of sports culture and high-profile collaborations",
-        "A storied brand history that balances classic credibility with continuous innovation"
-      ],
-      "targetUserEn": {
-        "age": "16-40",
-        "identity": "Sports enthusiasts, urban youth, style-driven consumers",
-        "pain": "A need for wardrobe solutions that balance performance, comfort, and personal style",
-        "scene": "Training, commuting, street styling, casual social occasions"
-      },
-      "heuristicRadar": {
-        "克制": 4,
-        "温度感": 3.5,
-        "游戏化": 3,
-        "科技感": 8,
-        "情感连接": 3,
-        "识别强度": 7
-      },
-      "heuristicRadarArray": [
-        4,
-        3.5,
-        3,
-        8,
-        3,
-        7
-      ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 4,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.46666666666666656,
-              "weight": 0.3,
-              "explain": "variance 0.160"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.375,
-              "weight": 0.25,
-              "explain": "5 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.375,
-              "weight": 0.2,
-              "explain": "5 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0.2772727272727272,
-              "weight": 0.25,
-              "explain": "159 chars"
-            }
-          ]
-        },
-        "温度感": {
-          "score": 3.5,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.6684782608695652,
-              "weight": 0.45,
-              "explain": "mean hue 42°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.2,
-              "weight": 0.25,
-              "explain": "mean sat 20%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 0,
-              "weight": 0.3,
-              "explain": "0 warm keywords"
-            }
-          ]
-        },
-        "游戏化": {
-          "score": 3,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 0,
-              "weight": 0.65,
-              "explain": "0 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 0.88,
-              "weight": 0.35,
-              "explain": "16 yrs"
-            }
-          ]
-        },
-        "科技感": {
-          "score": 8,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 0.6666666666666666,
-              "weight": 0.65,
-              "explain": "4 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 1,
-              "weight": 0.35,
-              "explain": "geometric/sans markers found"
-            }
-          ]
-        },
-        "情感连接": {
-          "score": 3,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0,
-              "weight": 0.25,
-              "explain": "0 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 0.7,
-              "weight": 0.4,
-              "explain": "21 chars"
-            }
-          ]
-        },
-        "识别强度": {
-          "score": 7,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.2,
-              "weight": 0.35,
-              "explain": "mean sat 20%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 0.8817934782608695,
-              "weight": 0.2,
-              "explain": "spread 212°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 1,
-              "weight": 0.2,
-              "explain": "2 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 1,
-              "weight": 0.25,
-              "explain": "4 distinctive hits"
-            }
-          ]
-        }
-      },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 2.3
       }
     },
     {
@@ -428,203 +231,6 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      },
-      "brandTakeaway": [
-        "把首页首屏主图放大到占屏80%,文案缩至单行",
-        "详情页每屏只讲一个卖点,字号统一缩到14px",
-        "底部新增 ecosystem 联动区,串联至少3款产品",
-        "把全站色板从6色压缩到黑白+1个强调蓝",
-        "导航项从8个砍到4个,只留核心场景入口"
-      ],
-      "brandTakeawayEn": [
-        "Scale the homepage hero image to occupy 80% of the screen and condense copy to a single line",
-        "On detail pages, dedicate each screen to a single selling point and standardize font size to 14px",
-        "Add an ecosystem connection zone at the bottom linking at least three products",
-        "Compress the site-wide palette from six colors to black, white, plus one accent blue",
-        "Trim the navigation from eight items down to four, keeping only core scenario entry points"
-      ],
-      "summaryEn": "Apple has built a globally recognized premium-tech mindset through minimalist design and tightly integrated ecosystem synergy. Its visual language is highly consistent—relying on a simple logo, restrained color palette, and bright product imagery—to consistently convey a brand impression of \"effortless, advanced, and trustworthy,\" while reinforcing user stickiness and premium pricing power through seamless hardware-software integration.",
-      "toneEn": [
-        "Minimalist restraint",
-        "Premium sophistication",
-        "Tech-forward",
-        "Human warmth",
-        "Crisp and clean"
-      ],
-      "toneSummaryEn": "Premium tech experiences expressed through minimalist language.",
-      "positioningEn": "A premium consumer electronics and ecosystem brand built around integrated hardware-software experiences.",
-      "sellingPointsEn": [
-        "Tightly coordinated hardware, software, and services ecosystem",
-        "Minimalist industrial design with strong brand recognition",
-        "Unified user experience with low learning curve",
-        "Consistent brand aesthetic with powerful identity expression",
-        "Multi-scenario product lineup forming a closed ecosystem loop"
-      ],
-      "targetUserEn": {
-        "age": "18–45",
-        "identity": "Urban white-collar professionals, creative workers, students, and tech enthusiasts",
-        "pain": "Want devices that are intuitive to use, visually cohesive, and seamlessly connected across the ecosystem",
-        "scene": "Office, creative work, commuting, entertainment, and everyday life"
-      },
-      "heuristicRadar": {
-        "克制": 5,
-        "温度感": 1.5,
-        "游戏化": 4,
-        "科技感": 6.5,
-        "情感连接": 2.5,
-        "识别强度": 5.5
-      },
-      "heuristicRadarArray": [
-        5,
-        1.5,
-        4,
-        6.5,
-        2.5,
-        5.5
-      ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 5,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.5160717426723775,
-              "weight": 0.3,
-              "explain": "variance 0.145"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.375,
-              "weight": 0.25,
-              "explain": "5 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.375,
-              "weight": 0.2,
-              "explain": "5 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0.6272727272727272,
-              "weight": 0.25,
-              "explain": "82 chars"
-            }
-          ]
-        },
-        "温度感": {
-          "score": 1.5,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.24863169136296878,
-              "weight": 0.45,
-              "explain": "mean hue 177°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.24146031746031746,
-              "weight": 0.25,
-              "explain": "mean sat 24%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 0,
-              "weight": 0.3,
-              "explain": "0 warm keywords"
-            }
-          ]
-        },
-        "游戏化": {
-          "score": 4,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 0.16666666666666666,
-              "weight": 0.65,
-              "explain": "1 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 0.84,
-              "weight": 0.35,
-              "explain": "18 yrs"
-            }
-          ]
-        },
-        "科技感": {
-          "score": 6.5,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 1,
-              "weight": 0.65,
-              "explain": "10 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "no geometric markers"
-            }
-          ]
-        },
-        "情感连接": {
-          "score": 2.5,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0,
-              "weight": 0.25,
-              "explain": "0 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 0.6666666666666666,
-              "weight": 0.4,
-              "explain": "20 chars"
-            }
-          ]
-        },
-        "识别强度": {
-          "score": 5.5,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.24146031746031746,
-              "weight": 0.35,
-              "explain": "mean sat 24%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 1,
-              "weight": 0.2,
-              "explain": "spread 240°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 0,
-              "weight": 0.2,
-              "explain": "0 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 1,
-              "weight": 0.25,
-              "explain": "5 distinctive hits"
-            }
-          ]
-        }
-      },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 3.9
       }
     },
     {
@@ -755,205 +361,132 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
+      }
+    },
+    {
+      "id": "google-20260625",
+      "name": "Google",
+      "nameZh": "谷歌",
+      "url": "",
+      "tagline": "Organize the world's information and make it universally accessible and useful.",
+      "category": "Technology / Search Engine / Internet Services",
+      "country": "United States",
+      "year": 1998,
+      "reportFile": "google-20260625.html",
+      "reportUrl": "./google-20260625.html",
+      "createdAt": "2026-06-25",
+      "summary": "Google 成立于 1998 年，由拉里·佩奇和谢尔盖·布林在斯坦福大学的车库中创立，从一个简洁的搜索引擎演变为全球最大的科技公司之一，业务横跨搜索、AI、云、广告、硬件、移动操作系统等领域。如今 Google 正在以 Gemini 系列模型引领生成式 AI 浪潮，致力于让信息和计算能力普惠每一个人。",
+      "primaryColors": [
+        "#4285F4",
+        "#EA4335",
+        "#FBBC04",
+        "#34A853"
+      ],
+      "radar": {
+        "克制": 3,
+        "温度感": 8,
+        "游戏化": 7,
+        "科技感": 9.5,
+        "情感连接": 8.5,
+        "识别强度": 10
       },
-      "brandTakeaway": [
-        "把主 logo 拆成蓝红黄绿四色模块化设计",
-        "给每个子产品分配独立品牌色建立识别",
-        "首页采用纯白底配 60% 留白降低噪音",
-        "按钮统一用 8px 圆角配阴影提升触感",
-        "主 CTA 用 #4285F4 蓝配 #202124 深灰文字"
+      "radarValues": [
+        3,
+        8,
+        7,
+        9.5,
+        8.5,
+        10
       ],
-      "brandTakeawayEn": [
-        "Break the primary logo into modular blue, red, yellow, and green color blocks",
-        "Assign each sub-product an independent brand color to build recognition",
-        "Use a pure white homepage background with 60% negative space to reduce visual noise",
-        "Standardize buttons with 8px rounded corners and subtle shadows to add tactile warmth",
-        "Use #4285F4 blue as the primary CTA paired with #202124 deep gray text"
-      ],
-      "summaryEn": "Google is one of the world's largest search engines and AI platforms, turning \"information for everyone\" into the infrastructure of the modern internet through a minimalist geometric logo in four core colors, the Material Design language, and a seamlessly connected cross-product ecosystem.",
-      "toneEn": [
-        "friendly",
-        "simple",
-        "intelligent",
-        "open",
-        "innovative",
-        "trustworthy",
-        "inclusive"
-      ],
-      "toneSummaryEn": "Google's visual voice reads like an engineer who always wears a colorful T-shirt: expert without being cold, intelligent without being aloof, wrapping complex technology into light, clickable everyday experiences.",
-      "positioningEn": "The global gateway to information and the operating system of the AI era, building a full-stack digital foundation from search to cloud on the pillars of \"accessibility + intelligence + openness.\"",
-      "sellingPointsEn": [
-        "World-leading information retrieval and generative AI capabilities (Gemini)",
-        "A complete product ecosystem spanning Search, Workspace, Maps, YouTube, and Android",
-        "A human-centered design language led by Material Design",
-        "Continuous innovation driving the democratization of future technology and accessible experiences",
-        "An open platform connecting billions of users, developers, and advertisers"
-      ],
-      "targetUserEn": {
-        "age": "18-65 years old",
-        "identity": "Global internet users, students, developers, small and medium business owners, and advertisers",
-        "pain": "Information overload, high switching costs across tools, and a lack of integrated intelligent assistants for complex tasks",
-        "scene": "Daily search, office collaboration, travel navigation, learning and research, and content consumption"
-      },
-      "heuristicRadar": {
-        "克制": 2.5,
-        "温度感": 3.5,
-        "游戏化": 4,
-        "科技感": 6.5,
-        "情感连接": 3.5,
-        "识别强度": 6.5
-      },
-      "heuristicRadarArray": [
-        2.5,
-        3.5,
-        4,
-        6.5,
-        3.5,
-        6.5
-      ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 2.5,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.49824274493251264,
-              "weight": 0.3,
-              "explain": "variance 0.151"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.25,
-              "weight": 0.25,
-              "explain": "6 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.125,
-              "weight": 0.2,
-              "explain": "7 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0,
-              "weight": 0.25,
-              "explain": "230 chars"
-            }
-          ]
+      "palette": [
+        {
+          "hex": "#4285F4",
+          "name": "谷歌蓝",
+          "nameEn": "Google Blue"
         },
-        "温度感": {
-          "score": 3.5,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.5244333196434213,
-              "weight": 0.45,
-              "explain": "mean hue 105°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.542709897752913,
-              "weight": 0.25,
-              "explain": "mean sat 54%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 0,
-              "weight": 0.3,
-              "explain": "0 warm keywords"
-            }
-          ]
+        {
+          "hex": "#EA4335",
+          "name": "谷歌红",
+          "nameEn": "Google Red"
         },
-        "游戏化": {
-          "score": 4,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 0.16666666666666666,
-              "weight": 0.65,
-              "explain": "1 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 0.84,
-              "weight": 0.35,
-              "explain": "18 yrs"
-            }
-          ]
+        {
+          "hex": "#FBBC04",
+          "name": "谷歌黄",
+          "nameEn": "Google Yellow"
         },
-        "科技感": {
-          "score": 6.5,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 1,
-              "weight": 0.65,
-              "explain": "8 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "no geometric markers"
-            }
-          ]
+        {
+          "hex": "#34A853",
+          "name": "谷歌绿",
+          "nameEn": "Google Green"
         },
-        "情感连接": {
-          "score": 3.5,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0,
-              "weight": 0.25,
-              "explain": "0 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 0.9,
-              "weight": 0.4,
-              "explain": "27 chars"
-            }
-          ]
+        {
+          "hex": "#F8F9FA",
+          "name": "浅灰白",
+          "nameEn": "Cloud Gray"
         },
-        "识别强度": {
-          "score": 6.5,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.542709897752913,
-              "weight": 0.35,
-              "explain": "mean sat 54%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 0.9374999999999998,
-              "weight": 0.2,
-              "explain": "spread 225°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 0,
-              "weight": 0.2,
-              "explain": "0 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 1,
-              "weight": 0.25,
-              "explain": "6 distinctive hits"
-            }
-          ]
+        {
+          "hex": "#202124",
+          "name": "墨黑",
+          "nameEn": "Ink Black"
         }
+      ],
+      "logo": {
+        "type": "Wordmark with primary-color letters",
+        "typeZh": "四色字母组合字标",
+        "description": "无衬线字标，由蓝–红–黄–蓝–绿–红六个字母组成（最初版本带有感叹号），字母颜色不按彩虹顺序，强调俏皮与不规则感。",
+        "descriptionEn": "A sans-serif wordmark using six differently colored letters — blue, red, yellow, blue, green, red (the original logo even included an exclamation mark). The non-rainbow color order signals playfulness and rule-breaking.",
+        "construction": "字母 G-o-o-g-l-e 各具独立色彩，圆润几何无衬线，字形比例均等，色彩遵循品牌自有顺序而非彩虹逻辑。",
+        "constructionEn": "Each letter in G-o-o-g-l-e carries its own color, built from a rounded geometric sans-serif with even proportions. Colors follow Google's own order rather than a conventional rainbow."
       },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 3.8
+      "typography": {
+        "heading": "Product Sans / Google Sans",
+        "headingEn": "Product Sans / Google Sans",
+        "body": "Roboto",
+        "bodyEn": "Roboto",
+        "notes": "Google Sans 用于品牌与 UI 标题，Roboto 用于长文与系统界面，整体圆润、几何、中性。",
+        "notesEn": "Google Sans handles brand and UI headings; Roboto powers long-form and system text. The pair is rounded, geometric, and neutral."
+      },
+      "photography": {
+        "style": "真实、明亮、多元人物",
+        "styleEn": "Real, bright, diverse lifestyle",
+        "lighting": "高调自然光，少量彩色补光呼应品牌色",
+        "lightingEn": "High-key natural light with subtle brand-color accents",
+        "tone": "乐观、友好、包容",
+        "toneEn": "Optimistic, friendly, inclusive",
+        "composition": "大留白、人景交融、聚焦人物表情与日常",
+        "compositionEn": "Generous whitespace, people-first framing, focus on expressions and everyday life."
+      },
+      "tone": [
+        "俏皮",
+        "友好",
+        "乐观",
+        "创新",
+        "极简"
+      ],
+      "toneSummary": "以明快色彩和极简形态传递乐观与亲和力，把复杂技术藏进轻松体验之中。",
+      "positioning": "全球领先的搜索引擎与 AI 平台，以开放、普惠的方式组织世界信息并推动生成式 AI 落地。",
+      "targetUser": {
+        "age": "18-45",
+        "ageZh": "18-45 岁",
+        "identity": "学生、职场人士、内容创作者、中小企业主及开发者等数字化原住民与进阶用户。",
+        "identityZh": "学生、职场人士、内容创作者、中小企业主及开发者等数字化原住民与进阶用户。",
+        "pain": "面对信息过载与 AI 工具碎片化，渴望一个既可信又智能的统一入口来搜索、创作、协作。",
+        "painZh": "面对信息过载与 AI 工具碎片化，渴望一个既可信又智能的统一入口来搜索、创作、协作。",
+        "scene": "用 Google Search 查资料，用 Gemini 写作与总结，用 Workspace 协作办公，用 Android 联系世界。",
+        "sceneZh": "用 Google Search 查资料，用 Gemini 写作与总结，用 Workspace 协作办公，用 Android 联系世界。"
+      },
+      "sellingPoints": [
+        "全球最强的搜索引擎，覆盖网页、图片、视频、地图等多模态信息。",
+        "Gemini 驱动的生成式 AI 能力，深度整合进 Search、Gmail、Docs 等产品。",
+        "开放免费的 Android 生态，覆盖数十亿设备与海量应用。",
+        "Google Workspace 让文档、表格、会议、邮件在一个云端协同。",
+        "Google Cloud 为开发者与企业提供数据、AI 与基础设施一站式服务。"
+      ],
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
       }
     },
     {
@@ -1073,202 +606,129 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      },
-      "brandTakeaway": [
-        "把所有产品功能整合进一个 App，移除独立控制入口",
-        "建立跨 SKU 家族设计语言，配件迭代不改主轮廓",
-        "将产品摄影从精修棚拍换成家庭真实生活抓拍",
-        "把科技功能藏进材质触感，弱化 LED 屏幕外露",
-        "主色从冷调蓝灰换成鼠尾草绿+陶土橙组合"
+      }
+    },
+    {
+      "id": "hatch-20260625",
+      "name": "hatch",
+      "nameZh": "hatch（哈奇）",
+      "url": "",
+      "tagline": "Hatch into the light.",
+      "category": "Lifestyle · Wellness · Incubation Brand",
+      "country": "United States",
+      "year": 2024,
+      "reportFile": "hatch-20260625.html",
+      "reportUrl": "./hatch-20260625.html",
+      "createdAt": "2026-06-25",
+      "summary": "hatch 是一个围绕“破壳新生”概念构建的现代生活方式品牌。它以温暖米白与鼠尾草绿为主色，圆润字体与柔和摄影贯穿全触点，在理性极简与感性陪伴之间寻找平衡，目标是成为都市青年日常成长中安静而可靠的陪伴者。",
+      "primaryColors": [
+        "#F5EFE4",
+        "#A8B89C",
+        "#E8A598",
+        "#F4D58D",
+        "#2C3E50"
       ],
-      "brandTakeawayEn": [
-        "Move all product controls into one app",
-        "Lock a family silhouette across all SKUs",
-        "Swap studio shots for candid home photos",
-        "Hide tech in soft-touch materials",
-        "Swap blue-gray for sage and terracotta"
-      ],
-      "summaryEn": "Founded in Silicon Valley, Hatch first entered the parenting space with a smart baby monitor, then gradually expanded its product line to include the Rest smart sound machine, Restore adult sleep light, and a growing lamp matrix spanning pregnancy through school age. The brand ties together sleep scenarios for families with children aged 0-12 through a unified modern minimalist visual language, using the app as the emotional and control hub to translate cold smart hardware into 'companionship.' Its design philosophy emphasizes 'less is more': a restrained palette of sage green, terracotta, and cream white, paired with real family-life photography, shapes a modern parenting brand identity where technology, humanity, and warmth coexist.",
-      "toneEn": [
-        "Warm and soothing",
-        "Modern minimalist",
-        "Growing alongside",
-        "Restrained coolness"
-      ],
-      "toneSummaryEn": "A smart companion brand that gives hardware a mother's warmth",
-      "positioningEn": "Providing smart hardware + content ecosystem centered on sleep for families with children aged 0-12, making technology part of everyday companionship",
-      "sellingPointsEn": [
-        "Full-lifecycle product matrix: lamps and sound-light products covering pregnancy through age 12",
-        "Single app entry point: integrating white noise, light programming, remote soothing, and sleep data",
-        "Unified design language: family resemblance across SKUs, with accessories that evolve without changing style",
-        "Real-life photography: no idealized parents, reinforcing 'companionship over control'",
-        "Technology hidden in warmth: smart features concealed from the product exterior, emotional value first"
-      ],
-      "targetUserEn": {
-        "age": "28-40",
-        "identity": "Quality-of-life-conscious urban new parents and young families",
-        "pain": "Wanting both science-based parenting and their own personal rhythm, with no non-intrusive sleep solutions available",
-        "scene": "Bedtime soothing, night waking, nighttime rising, pre-sleep reading, remote comfort, pregnancy sleep aid"
-      },
-      "heuristicRadar": {
-        "克制": 5,
-        "温度感": 7.5,
+      "radar": {
+        "克制": 6.5,
+        "温度感": 9,
         "游戏化": 2,
-        "科技感": 10,
-        "情感连接": 5.5,
-        "识别强度": 4.5
+        "科技感": 5,
+        "情感连接": 9,
+        "识别强度": 7.5
       },
-      "heuristicRadarArray": [
-        5,
-        7.5,
+      "radarValues": [
+        6.5,
+        9,
         2,
-        10,
-        5.5,
-        4.5
+        5,
+        9,
+        7.5
       ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 5,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.8907826243538484,
-              "weight": 0.3,
-              "explain": "variance 0.033"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.25,
-              "weight": 0.25,
-              "explain": "6 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.5,
-              "weight": 0.2,
-              "explain": "4 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0.35,
-              "weight": 0.25,
-              "explain": "143 chars"
-            }
-          ]
+      "palette": [
+        {
+          "hex": "#F5EFE4",
+          "name": "晨曦米白",
+          "nameEn": "Dawn Cream"
         },
-        "温度感": {
-          "score": 7.5,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.8704975091522988,
-              "weight": 0.45,
-              "explain": "mean hue 34°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.31016361017067534,
-              "weight": 0.25,
-              "explain": "mean sat 31%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 1,
-              "weight": 0.3,
-              "explain": "6 warm keywords"
-            }
-          ]
+        {
+          "hex": "#A8B89C",
+          "name": "鼠尾草绿",
+          "nameEn": "Sage Green"
         },
-        "游戏化": {
-          "score": 2,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 0,
-              "weight": 0.65,
-              "explain": "0 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 0.64,
-              "weight": 0.35,
-              "explain": "28 yrs"
-            }
-          ]
+        {
+          "hex": "#E8A598",
+          "name": "暖珊瑚",
+          "nameEn": "Warm Coral"
         },
-        "科技感": {
-          "score": 10,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 1,
-              "weight": 0.65,
-              "explain": "6 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 1,
-              "weight": 0.35,
-              "explain": "geometric/sans markers found"
-            }
-          ]
+        {
+          "hex": "#F4D58D",
+          "name": "破壳暖黄",
+          "nameEn": "Hatch Yellow"
         },
-        "情感连接": {
-          "score": 5.5,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0.6666666666666666,
-              "weight": 0.25,
-              "explain": "2 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 1,
-              "weight": 0.4,
-              "explain": "30 chars"
-            }
-          ]
-        },
-        "识别强度": {
-          "score": 4.5,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.31016361017067534,
-              "weight": 0.35,
-              "explain": "mean sat 31%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 0.3928571428571429,
-              "weight": 0.2,
-              "explain": "spread 94°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 0,
-              "weight": 0.2,
-              "explain": "0 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 1,
-              "weight": 0.25,
-              "explain": "6 distinctive hits"
-            }
-          ]
+        {
+          "hex": "#2C3E50",
+          "name": "深岩蓝",
+          "nameEn": "Deep Slate"
         }
+      ],
+      "logo": {
+        "type": "Wordmark",
+        "typeZh": "文字标识（Wordmark）",
+        "description": "全小写无衬线字标“hatch”，字怀留白克制，字母 a 顶部开口呼应破壳意象。",
+        "descriptionEn": "A fully lowercase sans-serif wordmark 'hatch' with restrained counters; the open top of the 'a' echoes a hatching shell.",
+        "construction": "基于单圆弧与垂直笔画构建，x-height 偏大提升屏幕可读性，字母 a 采用双层结构保留呼吸感。",
+        "constructionEn": "Built on a single arc and vertical strokes; an oversized x-height boosts screen legibility, and a double-storey 'a' preserves breathing room."
       },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 2.2
+      "typography": {
+        "heading": "圆润无衬线：Nunito Rounded / Quicksand",
+        "headingEn": "Nunito Rounded / Quicksand",
+        "body": "现代无衬线：Inter / 思源黑体（Noto Sans SC）",
+        "bodyEn": "Inter / Noto Sans SC",
+        "notes": "字重控制在 Regular 与 Bold 两级，避免使用斜体；行高 1.6-1.75 保证长文可读性。",
+        "notesEn": "Stick to Regular and Bold weights; avoid italics; set line-height between 1.6 and 1.75 to ensure long-form readability."
+      },
+      "photography": {
+        "style": "自然纪实柔光风格",
+        "styleEn": "Natural documentary with soft light",
+        "lighting": "侧逆光模拟破晓或清晨窗光，避免硬阴影与高对比",
+        "lightingEn": "Side backlight simulating dawn or morning window light; avoid hard shadows and high contrast",
+        "tone": "暖米白基调，肤色柔和不饱和，整体低对比",
+        "toneEn": "Warm cream undertone; soft, desaturated skin tones; overall low contrast",
+        "composition": "大量留白 + 微距特写，主体居中或偏左三分之一",
+        "compositionEn": "Generous negative space + macro close-ups; subjects centered or on the left-third rule"
+      },
+      "tone": [
+        "温暖",
+        "柔和",
+        "现代",
+        "亲切",
+        "乐观",
+        "克制"
+      ],
+      "toneSummary": "以“破壳”这一情感隐喻为内核，在现代极简框架中注入柔和生命力，整体氛围低饱和、低噪音、有人情味。",
+      "positioning": "面向都市年轻人的孵化型生活方式品牌：以“破壳”为核心隐喻，把科技工具与情绪温度结合，帮助用户在日常缝隙中发现自我成长的微小瞬间。",
+      "targetUser": {
+        "age": "25-35",
+        "ageZh": "25-35 岁",
+        "identity": "Urban young creators and early-career professionals seeking quiet self-growth",
+        "identityZh": "寻求安静自我成长的都市青年创作者与早期职场人",
+        "pain": "渴望成长却害怕改变，希望被温柔陪伴而非被催促",
+        "painZh": "想要成长又怕改变，渴望被温柔陪伴而非被催促",
+        "scene": "Morning commute, midday solitude, and evening journaling",
+        "sceneZh": "晨间通勤、午休独处、晚间复盘"
+      },
+      "sellingPoints": [
+        "以“破壳新生”为情感锚点，区别于冷感的纯科技品牌。",
+        "全小写无衬线 logo 强化亲切感与互联网原生基因。",
+        "米白 + 鼠尾草绿主色构建自然疗愈的视觉氛围。",
+        "圆润字体与柔光摄影贯穿所有触点，降低决策门槛。",
+        "暖黄仅作关键行动点点缀，引导转化而不打扰。"
+      ],
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
       }
     },
     {
@@ -1384,203 +844,6 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      },
-      "brandTakeaway": [
-        "把品牌slogan从长句压缩到3个单词",
-        "主色锁定黑+白+一个高饱和强调色",
-        "每季度发布一次核心技术升级公告",
-        "签约3位细分运动领域KOL做长代言",
-        "推出与街头品牌联名的限量胶囊系列"
-      ],
-      "brandTakeawayEn": [
-        "Compress the brand slogan from a long line into three words",
-        "Lock the primary palette to black, white, and one high-saturation accent color",
-        "Release a core technology upgrade announcement every quarter",
-        "Sign three niche-sport KOLs for long-term endorsement",
-        "Launch limited-edition capsule collections in collaboration with streetwear brands"
-      ],
-      "summaryEn": "Nike is a global sports brand built on the universal recognition of the Swoosh and 'Just Do It.' Through a minimalist black-and-white system, high-velocity photography, and a star-athlete roster, it fuses professional performance, competitive spirit, and street culture into a brand asset that delivers both cultural reach and product power.",
-      "toneEn": [
-        "Power",
-        "Drive",
-        "Minimalist and high-recognition",
-        "Competitive spirit",
-        "Inspirational"
-      ],
-      "toneSummaryEn": "High-intensity athletic expression carried by minimalist symbols.",
-      "positioningEn": "A leading global sports brand targeting athletes worldwide, driving purchase through product technology and the power of motivation.",
-      "sellingPointsEn": [
-        "The Swoosh and 'Just Do It' form an exceptionally strong brand association and communication asset.",
-        "A full-spectrum product line covering running, basketball, training, and lifestyle.",
-        "Long-term partnerships with elite athletes and premier sporting events reinforce a professional endorsement.",
-        "Continuous iteration of product technology in materials, cushioning, support, and lightweight construction.",
-        "Translates athletic performance into street fashion, balancing function and aesthetic."
-      ],
-      "targetUserEn": {
-        "age": "15–45",
-        "identity": "Professional athletes, fitness enthusiasts, and younger sports consumers",
-        "pain": "Need to balance performance, style, and identity expression, while craving motivation and recognition",
-        "scene": "Training, competition, commuting, streetwear styling, and everyday active life"
-      },
-      "heuristicRadar": {
-        "克制": 4,
-        "温度感": 4,
-        "游戏化": 3,
-        "科技感": 10,
-        "情感连接": 4,
-        "识别强度": 5
-      },
-      "heuristicRadarArray": [
-        4,
-        4,
-        3,
-        10,
-        4,
-        5
-      ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 4,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.6129858253315044,
-              "weight": 0.3,
-              "explain": "variance 0.116"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.375,
-              "weight": 0.25,
-              "explain": "5 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.375,
-              "weight": 0.2,
-              "explain": "5 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0.2727272727272727,
-              "weight": 0.25,
-              "explain": "160 chars"
-            }
-          ]
-        },
-        "温度感": {
-          "score": 4,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.8224637681159421,
-              "weight": 0.45,
-              "explain": "mean hue 70°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.17037037037037037,
-              "weight": 0.25,
-              "explain": "mean sat 17%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 0,
-              "weight": 0.3,
-              "explain": "0 warm keywords"
-            }
-          ]
-        },
-        "游戏化": {
-          "score": 3,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 0,
-              "weight": 0.65,
-              "explain": "0 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 0.9,
-              "weight": 0.35,
-              "explain": "15 yrs"
-            }
-          ]
-        },
-        "科技感": {
-          "score": 10,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 1,
-              "weight": 0.65,
-              "explain": "8 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 1,
-              "weight": 0.35,
-              "explain": "geometric/sans markers found"
-            }
-          ]
-        },
-        "情感连接": {
-          "score": 4,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0.3333333333333333,
-              "weight": 0.25,
-              "explain": "1 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 0.8333333333333334,
-              "weight": 0.4,
-              "explain": "25 chars"
-            }
-          ]
-        },
-        "识别强度": {
-          "score": 5,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.17037037037037037,
-              "weight": 0.35,
-              "explain": "mean sat 17%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 1,
-              "weight": 0.2,
-              "explain": "spread 350°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 0,
-              "weight": 0.2,
-              "explain": "0 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 1,
-              "weight": 0.25,
-              "explain": "5 distinctive hits"
-            }
-          ]
-        }
-      },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 2.3
       }
     },
     {
@@ -1707,203 +970,6 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      },
-      "brandTakeaway": [
-        "将品牌主色锁定在单一高饱和红(#E60012)",
-        "建立四档全家可玩的内容分级体系",
-        "推出至少3款撞色配色SKU打破黑白单调",
-        "构建至少3个跨品类的独家IP角色宇宙",
-        "把旗舰做成家用+便携无缝切换的双模设备"
-      ],
-      "brandTakeawayEn": [
-        "Lock the brand color to a single high-saturation red (#E60012)",
-        "Build a four-tier family-friendly content rating system",
-        "Launch at least three color-clash SKU options to break the black-and-white monotony",
-        "Develop IP character universes spanning at least three product categories",
-        "Design flagship hardware as a dual-mode device that switches seamlessly between home and portable play"
-      ],
-      "summaryEn": "From a hanafuda card workshop in Kyoto to a global gaming powerhouse, Nintendo has spent over 130 years doing one thing: bringing play back to the heart of gaming. The Switch's hybrid form erased the line between console and handheld, the Wii's motion controls redefined the adult living room, and an IP universe of Mario, Link, and Pikachu has become shared childhood memories for generations. Its visual language has never been about spec sheets—it's about the most restrained red-and-white palette, the most rounded sans-serif letterforms, and an all-ages warmth that feels like home.",
-      "toneEn": [
-        "Playful whimsy",
-        "All-ages friendly",
-        "Crafted restraint",
-        "Joyful simplicity",
-        "IP-driven immersion"
-      ],
-      "toneSummaryEn": "Where childlike wonder meets meticulous craft—putting play back into family and shared joy",
-      "positioningEn": "Pioneering hardware plus first-party IP that creates smiles and shared screen time for every generation",
-      "sellingPointsEn": [
-        "An exclusive IP universe built on Mario, Zelda, and Pokémon",
-        "A hybrid console-plus-handheld form factor for seamless play anywhere",
-        "First-party studio output with consistent quality and reputation",
-        "An all-family content rating system that reaches the widest audience",
-        "Over a century of craftsmanship and brand trust"
-      ],
-      "targetUserEn": {
-        "age": "Ages 6–45 (spanning all generations)",
-        "identity": "Family gamers, core fans, nostalgia-driven adults",
-        "pain": "Wanting high-quality entertainment that isn't complex or violent and can be shared with family",
-        "scene": "Living room co-op, travel handheld play, friend gatherings"
-      },
-      "heuristicRadar": {
-        "克制": 3,
-        "温度感": 4.5,
-        "游戏化": 7,
-        "科技感": 3.5,
-        "情感连接": 3,
-        "识别强度": 7
-      },
-      "heuristicRadarArray": [
-        3,
-        4.5,
-        7,
-        3.5,
-        3,
-        7
-      ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 3,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.16666666666666663,
-              "weight": 0.3,
-              "explain": "variance 0.250"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.25,
-              "weight": 0.25,
-              "explain": "6 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.375,
-              "weight": 0.2,
-              "explain": "5 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0.5409090909090909,
-              "weight": 0.25,
-              "explain": "101 chars"
-            }
-          ]
-        },
-        "温度感": {
-          "score": 4.5,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.7185395079949877,
-              "weight": 0.45,
-              "explain": "mean hue 99°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.5,
-              "weight": 0.25,
-              "explain": "mean sat 50%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 0,
-              "weight": 0.3,
-              "explain": "0 warm keywords"
-            }
-          ]
-        },
-        "游戏化": {
-          "score": 7,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 0.5,
-              "weight": 0.65,
-              "explain": "3 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 1,
-              "weight": 0.35,
-              "explain": "6 yrs"
-            }
-          ]
-        },
-        "科技感": {
-          "score": 3.5,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 0,
-              "weight": 0.65,
-              "explain": "0 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 1,
-              "weight": 0.35,
-              "explain": "geometric/sans markers found"
-            }
-          ]
-        },
-        "情感连接": {
-          "score": 3,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0,
-              "weight": 0.25,
-              "explain": "0 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 0.7333333333333333,
-              "weight": 0.4,
-              "explain": "22 chars"
-            }
-          ]
-        },
-        "识别强度": {
-          "score": 7,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.5,
-              "weight": 0.35,
-              "explain": "mean sat 50%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 1,
-              "weight": 0.2,
-              "explain": "spread 355°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 1,
-              "weight": 0.2,
-              "explain": "2 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 0.5,
-              "weight": 0.25,
-              "explain": "1 distinctive hits"
-            }
-          ]
-        }
-      },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 1.7
       }
     },
     {
@@ -2019,202 +1085,6 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      },
-      "brandTakeaway": [
-        "砍掉产品屏幕，让所有数据回收到 App 端呈现",
-        "上线珠宝盒式礼盒包装，首屏放 15 秒拆盒视频",
-        "首页只露一个 AI 复合得分，把原始数据藏到二级页",
-        "首屏 hero 大字直接写'7 天续航'一句",
-        "设置页加显眼'本地加密'状态徽章"
-      ],
-      "brandTakeawayEn": [
-        "Strip the product screen; let all data surface inside the app",
-        "Launch jewelry-box-style gift packaging, with a 15-second unboxing video on the first screen",
-        "Homepage reveals only one AI composite score; bury raw data in secondary pages",
-        "Hero headline on the first screen should simply read '7-day battery'",
-        "Add a prominent 'Locally Encrypted' status badge in the settings view"
-      ],
-      "summaryEn": "Oura was founded in 2013 by a group of scientists and designers in Oulu, Finland, and launched its consumer-grade Oura Ring in 2018. The brand enters the wearables market with a screen-free, single-ring form factor, replacing the shallow narratives of step counts and calories with medical-grade metrics like Readiness Score, sleep staging, and HRV—positioning the product as a wearable health data companion. Visually, it stays true to Nordic minimalism and jewelry-grade materials, targeting knowledge workers and high-pressure professionals in pursuit of long-term health optimization.",
-      "toneEn": [
-        "Minimalist restraint",
-        "Refined tactility",
-        "Scientific rigor",
-        "Quiet warmth",
-        "Nordic rationality"
-      ],
-      "toneSummaryEn": "Conveying medical-grade health insight through Nordic minimalism and jewelry-grade materiality",
-      "positioningEn": "A screen-free, always-on health data companion, crafted for elite users pursuing long-term physical and mental optimization",
-      "sellingPointsEn": [
-        "Screen-free single-ring form factor, imperceptible through the night",
-        "Sleep staging and Readiness Score approaching medical-grade precision",
-        "Up to 7-day battery life with minimal charging downtime",
-        "Titanium and diamond-like coating, jewelry-grade material SKUs",
-        "Data encrypted both locally and in the cloud, with a strong emphasis on privacy"
-      ],
-      "targetUserEn": {
-        "identity": "Knowledge workers / sleep optimizers / biohackers",
-        "pain": "Smartwatches disrupt sleep; recovery state is hard to quantify; craving deeper health insight",
-        "scene": "Overnight sleep monitoring, post-stress recovery assessment, morning check-in ritual"
-      },
-      "heuristicRadar": {
-        "克制": 5.5,
-        "温度感": 4,
-        "游戏化": 3.5,
-        "科技感": 9,
-        "情感连接": 3,
-        "识别强度": 6.5
-      },
-      "heuristicRadarArray": [
-        5.5,
-        4,
-        3.5,
-        9,
-        3,
-        6.5
-      ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 5.5,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.9031622317409962,
-              "weight": 0.3,
-              "explain": "variance 0.029"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.375,
-              "weight": 0.25,
-              "explain": "5 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.375,
-              "weight": 0.2,
-              "explain": "5 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0.5409090909090909,
-              "weight": 0.25,
-              "explain": "101 chars"
-            }
-          ]
-        },
-        "温度感": {
-          "score": 4,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.7773178137651822,
-              "weight": 0.45,
-              "explain": "mean hue 68°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.22213277663907496,
-              "weight": 0.25,
-              "explain": "mean sat 22%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 0,
-              "weight": 0.3,
-              "explain": "0 warm keywords"
-            }
-          ]
-        },
-        "游戏化": {
-          "score": 3.5,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 0.16666666666666666,
-              "weight": 0.65,
-              "explain": "1 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 0.64,
-              "weight": 0.35,
-              "explain": "28 yrs"
-            }
-          ]
-        },
-        "科技感": {
-          "score": 9,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 0.8333333333333334,
-              "weight": 0.65,
-              "explain": "5 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 1,
-              "weight": 0.35,
-              "explain": "geometric/sans markers found"
-            }
-          ]
-        },
-        "情感连接": {
-          "score": 3,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0,
-              "weight": 0.25,
-              "explain": "0 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 0.8,
-              "weight": 0.4,
-              "explain": "24 chars"
-            }
-          ]
-        },
-        "识别强度": {
-          "score": 6.5,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.22213277663907496,
-              "weight": 0.35,
-              "explain": "mean sat 22%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 1,
-              "weight": 0.2,
-              "explain": "spread 240°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 0.5,
-              "weight": 0.2,
-              "explain": "1 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 1,
-              "weight": 0.25,
-              "explain": "3 distinctive hits"
-            }
-          ]
-        }
-      },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 2.3
       }
     },
     {
@@ -2331,203 +1201,6 @@
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      },
-      "brandTakeaway": [
-        "将品牌符号三角圆叉方做成可触摸的物理按键",
-        "主色锁定深蓝+纯白+黑三色，限制辅助色不超过2种",
-        "在产品包装上重复logo至少3次强化记忆点",
-        "把独占IP放在首屏banner左上角位置",
-        "跨代际保留核心图形，仅迭代次要细节"
-      ],
-      "brandTakeawayEn": [
-        "Turn the brand's iconic triangle, circle, cross, and square symbols into tangible physical buttons",
-        "Lock the core palette to deep blue, pure white, and black, limiting accent colors to no more than two",
-        "Reinforce the logo with at least three repetitions on product packaging to strengthen memory cues",
-        "Place exclusive IP titles in the top-left position of the homepage banner",
-        "Preserve core graphics across generations, iterating only on secondary details"
-      ],
-      "summaryEn": "PlayStation is Sony's global console gaming brand, setting the industry benchmark with its strong visual identity, rich exclusive content, and reliable hardware performance. It serves as both a hardcore gaming portal and a digital platform connecting games, entertainment, and social experiences, with a brand personality that is tech-forward, immersive, youthful, and distinctly futuristic.",
-      "toneEn": [
-        "tech-forward",
-        "futuristic",
-        "immersive",
-        "youthful",
-        "high-recognition"
-      ],
-      "toneSummaryEn": "Tech-driven immersive entertainment, blending futuristic appeal with iconic brand recognition.",
-      "positioningEn": "A globally leading interactive entertainment and gaming platform that connects consoles, content, and the player ecosystem.",
-      "sellingPointsEn": [
-        "Powerful console performance and stable graphics rendering",
-        "Rich library of exclusive titles and first-party content ecosystem",
-        "Mature online multiplayer and digital storefront infrastructure",
-        "Iconic brand symbols with cross-generational recognition",
-        "Seamless integration of gaming, film, and social entertainment"
-      ],
-      "targetUserEn": {
-        "age": "15-40",
-        "identity": "Core gamers, console users, and digital entertainment consumers",
-        "pain": "Seeking high-quality gaming experiences, immersive performance, and exclusive content",
-        "scene": "At-home console entertainment, online multiplayer, content consumption, and social sharing"
-      },
-      "heuristicRadar": {
-        "克制": 3.5,
-        "温度感": 3.5,
-        "游戏化": 9.5,
-        "科技感": 10,
-        "情感连接": 2.5,
-        "识别强度": 7
-      },
-      "heuristicRadarArray": [
-        3.5,
-        3.5,
-        9.5,
-        10,
-        2.5,
-        7
-      ],
-      "heuristicDetail": {
-        "克制": {
-          "score": 3.5,
-          "subs": [
-            {
-              "name": "palette sat variance ↓",
-              "value": 0.46666666666666645,
-              "weight": 0.3,
-              "explain": "variance 0.160"
-            },
-            {
-              "name": "palette size ↓",
-              "value": 0.375,
-              "weight": 0.25,
-              "explain": "5 colors"
-            },
-            {
-              "name": "tone tag count ↓",
-              "value": 0.375,
-              "weight": 0.2,
-              "explain": "5 tags"
-            },
-            {
-              "name": "logo desc length ↓",
-              "value": 0.1454545454545455,
-              "weight": 0.25,
-              "explain": "188 chars"
-            }
-          ]
-        },
-        "温度感": {
-          "score": 3.5,
-          "subs": [
-            {
-              "name": "mean hue warmth ↑",
-              "value": 0.674712643678161,
-              "weight": 0.45,
-              "explain": "mean hue 43°"
-            },
-            {
-              "name": "mean saturation ↑",
-              "value": 0.2,
-              "weight": 0.25,
-              "explain": "mean sat 20%"
-            },
-            {
-              "name": "warm-keyword density",
-              "value": 0,
-              "weight": 0.3,
-              "explain": "0 warm keywords"
-            }
-          ]
-        },
-        "游戏化": {
-          "score": 9.5,
-          "subs": [
-            {
-              "name": "playful-keyword density",
-              "value": 1,
-              "weight": 0.65,
-              "explain": "7 hits"
-            },
-            {
-              "name": "target-user age ↓",
-              "value": 0.9,
-              "weight": 0.35,
-              "explain": "15 yrs"
-            }
-          ]
-        },
-        "科技感": {
-          "score": 10,
-          "subs": [
-            {
-              "name": "tech-keyword density",
-              "value": 1,
-              "weight": 0.65,
-              "explain": "13 hits"
-            },
-            {
-              "name": "geometric typography",
-              "value": 1,
-              "weight": 0.35,
-              "explain": "geometric/sans markers found"
-            }
-          ]
-        },
-        "情感连接": {
-          "score": 2.5,
-          "subs": [
-            {
-              "name": "tagline emotional density",
-              "value": 0,
-              "weight": 0.35,
-              "explain": "0 emotional kw in tagline"
-            },
-            {
-              "name": "tone emotional words",
-              "value": 0,
-              "weight": 0.25,
-              "explain": "0 hits"
-            },
-            {
-              "name": "targetUser.pain specificity ↑",
-              "value": 0.6666666666666666,
-              "weight": 0.4,
-              "explain": "20 chars"
-            }
-          ]
-        },
-        "识别强度": {
-          "score": 7,
-          "subs": [
-            {
-              "name": "palette saturation ↑",
-              "value": 0.2,
-              "weight": 0.35,
-              "explain": "mean sat 20%"
-            },
-            {
-              "name": "palette hue spread ↑",
-              "value": 0.9051724137931034,
-              "weight": 0.2,
-              "explain": "spread 217°"
-            },
-            {
-              "name": "typography rarity markers",
-              "value": 1,
-              "weight": 0.2,
-              "explain": "2 rarity hits"
-            },
-            {
-              "name": "logo distinctive markers",
-              "value": 1,
-              "weight": 0.25,
-              "explain": "2 distinctive hits"
-            }
-          ]
-        }
-      },
-      "heuristicMeta": {
-        "computedAt": "2026-06-25",
-        "avgDelta": 1.9
       }
     }
   ]
