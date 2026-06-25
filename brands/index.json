@@ -4,6 +4,256 @@
   "description": "{YOUR_BRAND} 品牌调研库索引",
   "brands": [
     {
+      "id": "adidas-20260623",
+      "name": "Adidas",
+      "nameZh": "阿迪达斯",
+      "nameEn": "Adidas",
+      "url": "https://www.adidas.com",
+      "tagline": "Impossible Is Nothing",
+      "taglineZh": "Impossible Is Nothing",
+      "taglineEn": "",
+      "category": "Sportswear",
+      "categoryZh": "Sportswear",
+      "categoryEn": "",
+      "country": "Germany",
+      "countryZh": "Germany",
+      "countryEn": "",
+      "year": 1949,
+      "summary": "阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#000000",
+        "#FFFFFF",
+        "#1C1C1C",
+        "#C6C6C6"
+      ],
+      "palette": [
+        {
+          "hex": "#000000",
+          "name": "黑色",
+          "nameEn": "Black"
+        },
+        {
+          "hex": "#FFFFFF",
+          "name": "白色",
+          "nameEn": "White"
+        },
+        {
+          "hex": "#1C1C1C",
+          "name": "炭黑",
+          "nameEn": "Charcoal"
+        },
+        {
+          "hex": "#C6C6C6",
+          "name": "中性灰",
+          "nameEn": "Neutral Gray"
+        },
+        {
+          "hex": "#0057B8",
+          "name": "阿迪蓝",
+          "nameEn": "Adidas Blue"
+        }
+      ],
+      "logo": {
+        "type": "组合",
+        "description": "以三叶草与三条纹为核心识别，兼具字标与图形符号的全球统一体系。",
+        "construction": "基于简洁字形与强识别图形的组合结构，依靠三条平行斜线与留白形成动态平衡，强化运动感与品牌记忆点。",
+        "typeEn": "Combination",
+        "descriptionEn": "Built around the Trefoil and Three Stripes as core identifiers, a globally unified system combining wordmark and graphic symbol.",
+        "constructionEn": "A combination structure anchored in clean letterforms and highly recognizable graphics, using three parallel diagonal lines and negative space to create dynamic balance — reinforcing athletic energy and brand recall."
+      },
+      "typography": {
+        "heading": "无衬线粗体，偏几何感的品牌定制字形",
+        "body": "现代无衬线体，清晰高可读性，适配电商与运动场景",
+        "notes": "整体强调力量感、速度感与高识别度，字重对比明确。",
+        "headingEn": "Bold sans-serif, with a slightly geometric custom brand typeface",
+        "bodyEn": "Modern sans-serif, optimized for high readability across e-commerce and sport contexts",
+        "notesEn": "The system emphasizes power, speed, and strong recognition, with clear weight contrast throughout."
+      },
+      "photography": {
+        "style": "lifestyle, studio, documentary",
+        "lighting": "高对比自然光与硬朗棚拍混合，局部强调轮廓",
+        "tone": "利落、真实、能量感、运动感",
+        "composition": "中近景人物为主，动态姿态与大留白并存，常用强角度与品牌符号入镜",
+        "lightingEn": "A mix of high-contrast natural light and hard, directional studio lighting, with targeted emphasis on silhouette",
+        "toneEn": "Crisp, authentic, energetic, athletic",
+        "compositionEn": "Mid- and close-range portraits featuring dynamic poses alongside generous negative space, frequently incorporating strong camera angles and brand symbols within the frame"
+      },
+      "tone": [
+        "运动专业",
+        "年轻活力",
+        "经典耐看",
+        "城市街头感",
+        "自信进取"
+      ],
+      "toneEn": [],
+      "toneSummary": "经典运动美学，兼具专业与街头活力。",
+      "toneSummaryEn": "",
+      "positioning": "面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "16-40岁",
+        "identity": "运动爱好者、城市年轻人、潮流消费者",
+        "pain": "需要兼顾性能、舒适与风格表达的穿着解决方案",
+        "scene": "训练、通勤、街头穿搭、休闲社交"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "三条纹与三叶草构成极强品牌识别系统",
+        "兼具运动科技、舒适脚感与日常穿搭属性",
+        "覆盖跑步、训练、足球、篮球与生活方式全场景",
+        "拥有长期运动文化与潮流联名资产",
+        "品牌历史深厚，兼具经典性与持续创新能力"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 7.5,
+        "温度感": 5.5,
+        "游戏化": 4,
+        "科技感": 7,
+        "情感连接": 6.5,
+        "识别强度": 9.5
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/adidas-20260623.json",
+      "reportUrl": "/report/adidas-20260623",
+      "createdAt": "2026-06-23"
+    },
+    {
+      "id": "apple-20260623",
+      "name": "Apple",
+      "nameZh": "苹果",
+      "nameEn": "Apple",
+      "url": "https://www.apple.com",
+      "tagline": "Think different.",
+      "taglineZh": "Think different.",
+      "taglineEn": "",
+      "category": "Consumer Electronics",
+      "categoryZh": "Consumer Electronics",
+      "categoryEn": "",
+      "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
+      "year": 1976,
+      "summary": "“Apple”以极简设计和强生态协同建立全球高端科技心智。其视觉语言高度统一，依托简洁标志、克制色彩与明亮产品影像，持续传递“易用、先进、可信赖”的品牌印象，并通过软硬件整合强化用户粘性与溢价能力。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#000000",
+        "#F5F5F7",
+        "#A2AAAD",
+        "#0071E3"
+      ],
+      "palette": [
+        {
+          "hex": "#000000",
+          "name": "Black/黑",
+          "nameEn": "Black"
+        },
+        {
+          "hex": "#F5F5F7",
+          "name": "Off White/雾白",
+          "nameEn": "Off White"
+        },
+        {
+          "hex": "#A2AAAD",
+          "name": "Silver/银灰",
+          "nameEn": "Silver"
+        },
+        {
+          "hex": "#0071E3",
+          "name": "Blue/苹果蓝",
+          "nameEn": "Apple Blue"
+        },
+        {
+          "hex": "#1D1D1F",
+          "name": "Charcoal/炭黑",
+          "nameEn": "Charcoal"
+        }
+      ],
+      "logo": {
+        "type": "组合",
+        "description": "被咬一口的苹果轮廓，极简且高度识别。",
+        "construction": "以单一外轮廓为核心，利用负形切口形成“咬痕”，强调几何简化与符号记忆点。",
+        "typeEn": "Combination mark",
+        "descriptionEn": "A bitten apple silhouette—minimalist and instantly recognizable.",
+        "constructionEn": "Built around a single outer contour, the negative-space cut forms the signature \"bite,\" emphasizing geometric simplification and strong symbolic memorability."
+      },
+      "typography": {
+        "heading": "SF Pro Display",
+        "body": "SF Pro Text",
+        "notes": "无衬线、字重层级清晰、字面现代克制，强调高可读性与系统一致性。",
+        "notesEn": "Sans-serif typefaces with a clear weight hierarchy and a modern, restrained character—prioritizing high readability and system-wide consistency."
+      },
+      "photography": {
+        "style": "studio,lifestyle",
+        "lighting": "柔和高质感布光，常见大面积均匀补光与干净高光。",
+        "tone": "明亮、纯净、克制、现代",
+        "composition": "大留白、产品居中或偏轴对称，突出单品轮廓与材质细节。",
+        "lightingEn": "Soft, high-quality lighting, typically featuring broad, even fill and clean highlights.",
+        "toneEn": "Bright, pure, restrained, and modern",
+        "compositionEn": "Generous negative space with the product centered or placed off-center along a symmetrical axis, emphasizing silhouette and material detail."
+      },
+      "tone": [
+        "极简克制",
+        "高级感",
+        "科技感",
+        "人本温度",
+        "清爽明快"
+      ],
+      "toneEn": [],
+      "toneSummary": "以极简语言传递高端科技体验。",
+      "toneSummaryEn": "",
+      "positioning": "以软硬件一体化体验为核心的高端消费电子与生态品牌。",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "18-45岁",
+        "identity": "城市白领、创意工作者、学生及科技爱好者",
+        "pain": "希望设备简单易用、审美统一、生态联动顺畅",
+        "scene": "办公、创作、通勤、娱乐与日常生活"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "软硬件与服务生态高度协同",
+        "工业设计极简且辨识度强",
+        "操作体验统一、上手门槛低",
+        "品牌审美稳定，具备强烈身份表达",
+        "产品线覆盖多场景，形成生态闭环"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 9.5,
+        "温度感": 6,
+        "游戏化": 1.5,
+        "科技感": 9,
+        "情感连接": 7.5,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/apple-20260623.json",
+      "reportUrl": "/report/apple-20260623",
+      "createdAt": "2026-06-23"
+    },
+    {
       "id": "apple-20260625",
       "name": "Apple",
       "nameZh": "Apple（苹果）",
@@ -310,6 +560,1352 @@
       "reportFile": "brands/apple-20260625.json",
       "reportUrl": "/report/apple-20260625",
       "createdAt": "2026-06-25"
+    },
+    {
+      "id": "google-20260624",
+      "name": "Google",
+      "nameZh": "谷歌",
+      "nameEn": "Google",
+      "url": "",
+      "tagline": "Don't be evil. Make the world's information universally accessible and useful.",
+      "taglineZh": "Don't be evil. Make the world's information universally accessible and useful.",
+      "taglineEn": "",
+      "category": "Technology / Search Engine / AI / Cloud",
+      "categoryZh": "Technology / Search Engine / AI / Cloud",
+      "categoryEn": "",
+      "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
+      "year": 1998,
+      "summary": "Google 是全球最大的搜索引擎与人工智能平台之一,以四大基础色的极简几何标志、Material Design 设计语言和无缝衔接的跨产品生态,把\"信息普惠\"做成现代互联网的基础设施。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#4285F4",
+        "#EA4335",
+        "#FBBC05",
+        "#34A853",
+        "#FFFFFF",
+        "#202124"
+      ],
+      "palette": [
+        {
+          "hex": "#4285F4",
+          "name": "谷歌蓝",
+          "nameEn": "Google Blue"
+        },
+        {
+          "hex": "#EA4335",
+          "name": "谷歌红",
+          "nameEn": "Google Red"
+        },
+        {
+          "hex": "#FBBC05",
+          "name": "谷歌黄",
+          "nameEn": "Google Yellow"
+        },
+        {
+          "hex": "#34A853",
+          "name": "谷歌绿",
+          "nameEn": "Google Green"
+        },
+        {
+          "hex": "#FFFFFF",
+          "name": "纯白",
+          "nameEn": "Pure White"
+        },
+        {
+          "hex": "#202124",
+          "name": "墨黑",
+          "nameEn": "Ink Black"
+        }
+      ],
+      "logo": {
+        "type": "Geometric Sans-Serif Wordmark",
+        "typeZh": "几何无衬线字体标志",
+        "description": "由蓝、红、黄、蓝、绿、红六色组成的 Google 字标,字母基于严谨的几何圆形与拱形结构,圆润、平衡、亲切。",
+        "descriptionEn": "The Google wordmark composed of blue, red, yellow, blue, green, and red. The letterforms are built on precise geometric circles and arches, rounded, balanced, and approachable.",
+        "construction": "以圆和半圆为基本单元,通过精确的几何网格对齐每个字母;G 的弧形缺口与双层结构是识别关键。",
+        "constructionEn": "Built from circles and half-circles as the basic units, with each letter aligned to a precise geometric grid. The arc notch and double-layer structure of the G are key recognition cues."
+      },
+      "typography": {
+        "heading": "Product Sans / Google Sans Display",
+        "headingEn": "Product Sans / Google Sans Display",
+        "body": "Roboto / Google Sans Text",
+        "bodyEn": "Roboto / Google Sans Text",
+        "notes": "无衬线、几何化、字重阶梯清晰;优化屏幕阅读体验,支持 100+ 语言。",
+        "notesEn": "Sans-serif, geometric, with a clear weight scale; optimized for on-screen readability and supporting 100+ languages."
+      },
+      "photography": {
+        "style": "真实、多元、自然,贴近日常生活",
+        "styleEn": "Authentic, diverse, and natural, rooted in everyday life",
+        "lighting": "自然光为主,高调柔和,避免戏剧化阴影",
+        "lightingEn": "Natural light as the foundation, bright and soft, avoiding dramatic shadows",
+        "tone": "明亮、轻盈、乐观",
+        "toneEn": "Bright, light, and optimistic",
+        "composition": "开放式构图,人物真实,弱化摆拍,强调人与产品的自然互动",
+        "compositionEn": "Open compositions with real people, minimal posing, emphasizing natural interaction between people and product"
+      },
+      "tone": [
+        "友好",
+        "简洁",
+        "智能",
+        "开放",
+        "创新",
+        "可信",
+        "包容"
+      ],
+      "toneEn": [],
+      "toneSummary": "谷歌的视觉语调像一个永远穿着彩色T恤的工程师:专业但不冷峻,智能但不疏离,把复杂的技术包装成轻松、可点击的日常体验。",
+      "toneSummaryEn": "",
+      "positioning": "全球信息入口与 AI 时代操作系统,以\"普惠+智能+开放\"构建从搜索到云端的全栈数字底座。",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "18-65 岁",
+        "ageZh": "18-65 岁",
+        "identity": "全球互联网用户、学生、开发者、中小企业主与广告主",
+        "identityZh": "全球互联网用户、学生、开发者、中小企业主与广告主",
+        "pain": "信息过载、跨工具切换成本高、复杂任务缺乏一体化智能助手",
+        "painZh": "信息过载、跨工具切换成本高、复杂任务缺乏一体化智能助手",
+        "scene": "日常搜索、办公协作、出行导航、学习研究、内容消费",
+        "sceneZh": "日常搜索、办公协作、出行导航、学习研究、内容消费"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "全球领先的信息检索与生成式 AI(Gemini)能力",
+        "覆盖搜索、办公、地图、视频、安卓的完整产品生态",
+        "以 Material Design 为代表的人本化设计语言",
+        "持续创新驱动未来科技普惠与无障碍体验",
+        "开放平台连接亿万用户、开发者与广告主"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 6,
+        "温度感": 8.5,
+        "游戏化": 7,
+        "科技感": 9,
+        "情感连接": 8.5,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/google-20260624.json",
+      "reportUrl": "/report/google-20260624",
+      "createdAt": "2026-06-24"
+    },
+    {
+      "id": "hatch-20260624",
+      "name": "Hatch",
+      "nameZh": "Hatch（智能睡眠）",
+      "nameEn": "Hatch",
+      "url": "https://www.hatch.co",
+      "tagline": "Providing modern families with full-cycle sleep solutions from pregnancy to age 12",
+      "taglineZh": "Providing modern families with full-cycle sleep solutions from pregnancy to age 12",
+      "taglineEn": "",
+      "category": "Smart Sleep / Family Tech",
+      "categoryZh": "Smart Sleep / Family Tech",
+      "categoryEn": "",
+      "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
+      "year": 2014,
+      "summary": "Hatch 创立于硅谷，最初以智能婴儿监护器切入育儿场景，后逐步将产品扩展到 Rest 智能声光机、Restore 成人睡眠灯、孕期到学龄的成长型灯具矩阵。品牌以一套统一的现代极简视觉语言串联 0-12 岁的家庭睡眠场景，用 App 作为情感与控制的中枢，把冷冰冰的智能硬件转译为\"陪伴\"。其设计哲学强调\"少即是多\"：鼠尾草绿、陶土橙、奶油白构成的克制色板，与真实家庭生活摄影共同塑造了科技、人文、温柔三者并存的现代育儿品牌气质。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#A8B89C",
+        "#F2EDE4",
+        "#C97B5C",
+        "#E8C4B8"
+      ],
+      "palette": [
+        {
+          "hex": "#A8B89C",
+          "name": "鼠尾草绿 Sage",
+          "nameEn": "Sage Green"
+        },
+        {
+          "hex": "#F2EDE4",
+          "name": "奶油白 Cream",
+          "nameEn": "Cream White"
+        },
+        {
+          "hex": "#C97B5C",
+          "name": "陶土橙 Terracotta",
+          "nameEn": "Terracotta"
+        },
+        {
+          "hex": "#E8C4B8",
+          "name": "婴儿粉 Blush",
+          "nameEn": "Baby Blush"
+        },
+        {
+          "hex": "#2C2C2C",
+          "name": "炭黑 Charcoal",
+          "nameEn": "Charcoal"
+        },
+        {
+          "hex": "#D4C5A9",
+          "name": "燕麦色 Oat",
+          "nameEn": "Oat"
+        }
+      ],
+      "logo": {
+        "type": "wordmark",
+        "description": "全小写无衬线字标，'a' 字母采用极简几何构造，整体圆润但带科技感",
+        "construction": "几何无衬线字形，'a' 内部留白近似圆形，'h' 与 't' 收尾有微小切角，形成柔和却克制的家族标识",
+        "descriptionEn": "All-lowercase sans-serif wordmark with a minimalist geometric 'a' and an overall rounded yet tech-forward feel",
+        "constructionEn": "Geometric sans-serif forms; the counter of the 'a' approaches a circle; the 'h' and 't' feature subtle cut terminals, creating a soft yet restrained family mark"
+      },
+      "typography": {
+        "heading": "现代几何无衬线（近似 Söhne / Inter 风格）",
+        "body": "同系无衬线，字重层级丰富",
+        "notes": "全篇以小写为主，字距宽松，营造松弛、亲近的现代感",
+        "headingEn": "Modern geometric sans-serif (in the style of Söhne / Inter)",
+        "bodyEn": "Same-family sans-serif with a rich weight hierarchy",
+        "notesEn": "Predominantly lowercase throughout with generous letter-spacing, creating a relaxed, approachable modern feel"
+      },
+      "photography": {
+        "style": "lifestyle, documentary",
+        "lighting": "自然柔光，多为晨昏室内窗光",
+        "tone": "暖中性、低饱和",
+        "composition": "中近景人物+产品共处，背景生活化，不刻意摆拍",
+        "lightingEn": "Natural soft light, mostly indoor window light at dawn or dusk",
+        "toneEn": "Warm-neutral, low saturation",
+        "compositionEn": "Medium and close-up shots of people alongside products, lived-in backgrounds, no forced posing"
+      },
+      "tone": [
+        "温暖治愈",
+        "现代简约",
+        "成长陪伴",
+        "克制冷感"
+      ],
+      "toneEn": [],
+      "toneSummary": "把智能硬件做出母亲体温的科技陪伴品牌",
+      "toneSummaryEn": "",
+      "positioning": "为 0-12 岁家庭提供以睡眠为核心的智能硬件 + 内容生态，让科技成为日常陪伴",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "28-40 岁",
+        "identity": "注重生活品质的城市新手父母与年轻家庭",
+        "pain": "既要科学育儿又要保留自己的生活节奏，缺乏不打扰的睡眠解决方案",
+        "scene": "哄睡、夜醒、起夜、睡前阅读、远程安抚、孕期助眠"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "全周期产品矩阵：覆盖孕期到 12 岁的灯具与声光产品",
+        "App 单一入口：整合白噪音、灯光编程、远程哄睡、睡眠数据",
+        "统一设计语言：跨 SKU 保持家族脸谱，配件可迭代不换风格",
+        "真实生活摄影：不渲染完美父母，强化\"陪伴而非控制\"心智",
+        "科技藏在温柔里：智能功能不暴露于产品外观，情绪价值优先"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 7.5,
+        "温度感": 8.5,
+        "游戏化": 2.5,
+        "科技感": 6.5,
+        "情感连接": 8.5,
+        "识别强度": 7
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/hatch-20260624.json",
+      "reportUrl": "/report/hatch-20260624",
+      "createdAt": "2026-06-24"
+    },
+    {
+      "id": "nike-20260623",
+      "name": "Nike",
+      "nameZh": "耐克",
+      "nameEn": "Nike",
+      "url": "https://www.nike.com",
+      "tagline": "Just Do It.",
+      "taglineZh": "Just Do It.",
+      "taglineEn": "",
+      "category": "Sportswear & Athletic Equipment",
+      "categoryZh": "Sportswear & Athletic Equipment",
+      "categoryEn": "",
+      "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
+      "year": 1964,
+      "summary": "耐克是以“Swoosh”和“Just Do It”构建全球识别的运动品牌。它用极简黑白体系、强动势摄影和明星运动员矩阵，把专业性能、竞技精神与街头时尚合为一体，形成兼具传播力与产品力的超级品牌资产。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#111111",
+        "#FFFFFF",
+        "#757575",
+        "#F5F5F5"
+      ],
+      "palette": [
+        {
+          "hex": "#111111",
+          "name": "黑色",
+          "nameEn": "Black"
+        },
+        {
+          "hex": "#FFFFFF",
+          "name": "白色",
+          "nameEn": "White"
+        },
+        {
+          "hex": "#757575",
+          "name": "中灰",
+          "nameEn": "Mid Gray"
+        },
+        {
+          "hex": "#F5F5F5",
+          "name": "浅灰",
+          "nameEn": "Light Gray"
+        },
+        {
+          "hex": "#C8102E",
+          "name": "耐克红",
+          "nameEn": "Nike Red"
+        }
+      ],
+      "logo": {
+        "type": "abstract",
+        "description": "以“Swoosh”弧形勾标构成，极简却具强运动张力，常与字标组合使用。",
+        "construction": "由单一流线几何构成，依靠负形、速度感曲线与高识别轮廓建立记忆点。",
+        "descriptionEn": "Built on the Swoosh — a fluid arc mark that is minimalist yet charged with athletic momentum, often paired with the wordmark.",
+        "constructionEn": "Formed by a single streamlined geometry, building memorability through negative space, speed-driven curves, and a high-recognition silhouette."
+      },
+      "typography": {
+        "heading": "粗体无衬线，偏 Condensed 运动广告字形",
+        "body": "现代无衬线体系，接近系统字体与品牌定制字重结合",
+        "notes": "标题强调力量与速度，正文保持高可读和商业化传播效率。",
+        "headingEn": "Bold sans-serif, leaning toward a condensed athletic ad typeface",
+        "bodyEn": "A modern sans-serif system, blending near-system fonts with brand-customized weights",
+        "notesEn": "Headlines emphasize power and speed; body copy stays highly legible and built for commercial communication."
+      },
+      "photography": {
+        "style": "lifestyle, studio, documentary",
+        "lighting": "高对比硬光与均匀柔光并用，强调肌肉线条与产品细节",
+        "tone": "高对比、动势强、冷暖并置、真实竞技感",
+        "composition": "大特写、低机位、斜线构图与留白并行，突出动作瞬间",
+        "lightingEn": "High-contrast hard light paired with even soft light, emphasizing muscle definition and product detail",
+        "toneEn": "High contrast, strong momentum, juxtaposed warm and cool tones, authentic competitive feel",
+        "compositionEn": "Extreme close-ups, low angles, diagonal compositions alongside negative space, capturing peak action moments"
+      },
+      "tone": [
+        "力量感",
+        "进取",
+        "极简高识别",
+        "竞技精神",
+        "鼓舞性"
+      ],
+      "toneEn": [],
+      "toneSummary": "以极简符号承载高强度运动表达。",
+      "toneSummaryEn": "",
+      "positioning": "面向全球运动人群的头部运动品牌，以产品科技与精神激励驱动消费。",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "15-45岁",
+        "identity": "专业运动员、健身人群与年轻运动消费群",
+        "pain": "需要兼顾性能、风格与身份表达，同时渴望被激励和认可",
+        "scene": "训练、比赛、通勤、街头穿搭与日常运动生活"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "Swoosh 与“Just Do It”形成极强品牌联想与传播资产。",
+        "覆盖跑步、篮球、训练、生活方式等全场景运动产品线。",
+        "长期绑定顶级运动员与赛事资源，强化专业背书。",
+        "在材料、缓震、支撑与轻量化上持续迭代产品科技。",
+        "把运动表现转译为街头时尚，兼顾功能与审美。"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 7.5,
+        "温度感": 4.5,
+        "游戏化": 3,
+        "科技感": 8.5,
+        "情感连接": 7,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/nike-20260623.json",
+      "reportUrl": "/report/nike-20260623",
+      "createdAt": "2026-06-23"
+    },
+    {
+      "id": "nintendo-20260624",
+      "name": "Nintendo",
+      "nameZh": "任天堂",
+      "nameEn": "Nintendo",
+      "url": "https://www.nintendo.com",
+      "tagline": "Playing is believing.",
+      "taglineZh": "Playing is believing.",
+      "taglineEn": "",
+      "category": "Interactive Entertainment / Video Game",
+      "categoryZh": "Interactive Entertainment / Video Game",
+      "categoryEn": "",
+      "country": "Japan",
+      "countryZh": "Japan",
+      "countryEn": "",
+      "year": 1889,
+      "summary": "从京都一家花札作坊到全球游戏霸主，任天堂用 130 多年时间只做了一件事：让游戏回归\"玩\"本身。Switch 的混合形态打破了主机与掌机的边界，Wii 的体感重新定义了大人的客厅，而马里奥、林克、皮卡丘组成的 IP 宇宙则成为几代人共同的童年记忆。它的视觉语言从不是参数堆砌，而是用最克制的红白配色、最圆润的无衬线字体，传递一种\"全年龄友好\"的温度。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#E60012",
+        "#FFFFFF",
+        "#000000",
+        "#6E6E6E"
+      ],
+      "palette": [
+        {
+          "hex": "#E60012",
+          "name": "Nintendo Red 任天堂红",
+          "nameEn": "Nintendo Red"
+        },
+        {
+          "hex": "#FFFFFF",
+          "name": "Pure White 纯白",
+          "nameEn": "Pure White"
+        },
+        {
+          "hex": "#000000",
+          "name": "Deep Black 深黑",
+          "nameEn": "Deep Black"
+        },
+        {
+          "hex": "#6E6E6E",
+          "name": "Hardware Gray 主机灰",
+          "nameEn": "Hardware Gray"
+        },
+        {
+          "hex": "#FFD800",
+          "name": "Joy‑Con Yellow 黄",
+          "nameEn": "Joy‑Con Yellow"
+        },
+        {
+          "hex": "#00C3E3",
+          "name": "Joy‑Con Blue 蓝",
+          "nameEn": "Joy‑Con Blue"
+        }
+      ],
+      "logo": {
+        "type": "wordmark",
+        "description": "白色圆润无衬线字\"Nintendo\"嵌入红色椭圆胶囊框",
+        "construction": "红底胶囊是主图形，白色字形作为负空间嵌入，胶囊弧度与字形圆角严格呼应，形成\"圆中圆\"的几何闭环",
+        "descriptionEn": "Rounded white sans-serif wordmark 'Nintendo' set inside a red oval capsule",
+        "constructionEn": "The red capsule is the primary shape, with the white letterform embedded as negative space; the capsule's curvature echoes the letterforms' rounded geometry, creating a closed 'circle within a circle' system"
+      },
+      "typography": {
+        "heading": "Nintendo 自有定制圆体（Nintendo Sans 系，推测为 Futura/Round Gothic 改良）",
+        "body": "Nintendo Sans / Noto Sans 系列",
+        "notes": "所有字形弧度与红胶囊呼应，标题禁止使用衬线与极细字形",
+        "headingEn": "Nintendo's custom rounded typeface (Nintendo Sans family, likely a Futura/Round Gothic refinement)",
+        "bodyEn": "Nintendo Sans / Noto Sans family",
+        "notesEn": "All letterform curvature echoes the red capsule; serif and ultra-thin weights are prohibited for headlines"
+      },
+      "photography": {
+        "style": "lifestyle, studio",
+        "lighting": "高亮柔光、整体曝光偏亮，几乎不见硬阴影",
+        "tone": "高饱和、糖果色、童趣化",
+        "composition": "手部特写 + 半身人物为主，主体永远居中，背景留出品牌色块",
+        "lightingEn": "Bright, soft, overall high-exposure lighting with virtually no hard shadows",
+        "toneEn": "High saturation, candy colors, playful",
+        "compositionEn": "Hand close-ups and half-body subjects, always centered, with brand-color blocks reserved in the background"
+      },
+      "tone": [
+        "童趣横生",
+        "全年龄友好",
+        "匠心克制",
+        "欢乐至简",
+        "IP 沉浸"
+      ],
+      "toneEn": [],
+      "toneSummary": "童趣与匠心并重，让游戏回归家庭与欢乐",
+      "toneSummaryEn": "",
+      "positioning": "以独创的硬件 + 第一方 IP，为全年龄段创造笑容与同屏时光",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "6–45 岁（覆盖全龄段）",
+        "identity": "家庭玩家、核心粉丝、怀旧青年",
+        "pain": "想要不复杂、不暴力、可与家人共享的高品质娱乐",
+        "scene": "客厅同屏、旅途掌机、朋友聚会"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "马里奥/塞尔达/宝可梦构成的独家 IP 宇宙",
+        "Switch 主机 + 掌机混合形态，场景无缝切换",
+        "第一方工作室出品，质量与口碑稳定",
+        "全家可玩的内容分级策略，覆盖最广人群",
+        "百年企业沉淀的工艺感与品牌信任"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "restraint": 5.5,
+        "warmth": 8.5,
+        "gamification": 10,
+        "tech": 6,
+        "emotional": 9,
+        "recognition": 10,
+        "克制": 5,
+        "温度感": 5,
+        "游戏化": 5,
+        "科技感": 5,
+        "情感连接": 5,
+        "识别强度": 5
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/nintendo-20260624.json",
+      "reportUrl": "/report/nintendo-20260624",
+      "createdAt": "2026-06-24"
+    },
+    {
+      "id": "oura-20260624",
+      "name": "Oura",
+      "nameZh": "Oura Ring（欧拉健康戒指）",
+      "nameEn": "Oura",
+      "url": "https://ouraring.com",
+      "tagline": "One ring. Your body, quantified around the clock.",
+      "taglineZh": "One ring. Your body, quantified around the clock.",
+      "taglineEn": "",
+      "category": "Health Wearable",
+      "categoryZh": "Health Wearable",
+      "categoryEn": "",
+      "country": "Finland",
+      "countryZh": "Finland",
+      "countryEn": "",
+      "year": 2013,
+      "summary": "Oura 由芬兰奥卢的一群科学家与设计师在 2013 年创立，2018 年正式推出消费级 Oura Ring。品牌以\"无屏幕 + 单指环\"形态切入可穿戴市场，用 Readiness Score、睡眠分期、HRV 等医疗级指标取代步数与卡路里的浅层叙事，将产品定位为\"可佩戴的健康数据伙伴\"。视觉上坚持北欧极简与珠宝级材质，目标是高知高压职业人群的长期健康优化。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#1A1A1A",
+        "#EDE6DA",
+        "#B89968",
+        "#C8C8CB"
+      ],
+      "palette": [
+        {
+          "hex": "#1A1A1A",
+          "name": "深炭黑（Onyx）",
+          "nameEn": "Deep Charcoal (Onyx)"
+        },
+        {
+          "hex": "#EDE6DA",
+          "name": "米杏色（Sand）",
+          "nameEn": "Warm Beige (Sand)"
+        },
+        {
+          "hex": "#B89968",
+          "name": "香槟金（Champagne）",
+          "nameEn": "Champagne Gold"
+        },
+        {
+          "hex": "#D4B5A0",
+          "name": "玫瑰金（Rose Gold）",
+          "nameEn": "Rose Gold"
+        },
+        {
+          "hex": "#C8C8CB",
+          "name": "银灰（Silver）",
+          "nameEn": "Silver Gray"
+        }
+      ],
+      "logo": {
+        "type": "wordmark",
+        "description": "全小写无衬线字标 \"oura\"，O 字母保持正圆",
+        "construction": "几何正圆 O + 简洁小写字母，弱化装饰，靠负空间和字怀传递冷静感",
+        "descriptionEn": "All-lowercase sans-serif wordmark 'oura', with the O kept as a perfect circle",
+        "constructionEn": "Geometric perfect-circle O paired with simple lowercase letterforms, minimal ornamentation—letting negative space and counters carry the cool restraint"
+      },
+      "typography": {
+        "heading": "自研无衬线，接近 Söhne / GT America 风格，字怀宽、字重对比强",
+        "body": "同一字族细体，强调留白与节奏",
+        "notes": "全大写小标题配合大字号行距，关键词加粗形成\"呼吸感节奏\"",
+        "headingEn": "Custom sans-serif in the spirit of Söhne / GT America, with wide counters and strong weight contrast",
+        "bodyEn": "Thin weights from the same family, emphasizing whitespace and pacing",
+        "notesEn": "All-caps subheads paired with generous line-height on large sizes; key terms bolded to create a breathing rhythm"
+      },
+      "photography": {
+        "style": "studio,lifestyle",
+        "lighting": "柔和自然光、低对比度，偶用金色时段",
+        "tone": "暖中性、低饱和、米杏与沙色主导",
+        "composition": "大量负空间、近景手部与指环特写，弱化人脸",
+        "lightingEn": "Soft natural light, low contrast, with occasional golden-hour",
+        "toneEn": "Warm-neutral, low saturation, dominated by beige and sand",
+        "compositionEn": "Generous negative space, close-ups of hands and the ring, with faces deliberately downplayed"
+      },
+      "tone": [
+        "极简克制",
+        "高级质感",
+        "科学严谨",
+        "静谧温度",
+        "北欧理性"
+      ],
+      "toneEn": [],
+      "toneSummary": "以北欧极简与珠宝质感传递医学级的健康洞察",
+      "toneSummaryEn": "",
+      "positioning": "无屏幕全天候的健康数据伙伴，专为追求长期身心优化的精英用户打造",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "28-45",
+        "identity": "高知职业人 / 睡眠优化者 / 生物黑客",
+        "pain": "手表干扰睡眠、难以量化恢复状态、想要深度健康洞察",
+        "scene": "夜间睡眠监测、高压工作后的恢复评估、晨间例行打卡"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "无屏幕单指环形态，整夜佩戴无感",
+        "睡眠分期与 Readiness Score 接近医学级精度",
+        "7 天超长续航，充电间隙极短",
+        "钛金属 + 类钻镀层，珠宝级材质 SKU",
+        "数据在本地+云端双端加密，强调隐私"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 9,
+        "温度感": 6.5,
+        "游戏化": 1.5,
+        "科技感": 7.5,
+        "情感连接": 6,
+        "识别强度": 8
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/oura-20260624.json",
+      "reportUrl": "/report/oura-20260624",
+      "createdAt": "2026-06-24"
+    },
+    {
+      "id": "oura-20260625",
+      "name": "Oura",
+      "nameZh": "Oura",
+      "nameEn": "Oura",
+      "url": "",
+      "tagline": "Know your body. Own your day.",
+      "taglineEn": "",
+      "category": "Smart Health Wearables",
+      "categoryEn": "",
+      "country": "Finland",
+      "countryEn": "",
+      "summary": "Oura 是一家芬兰健康科技公司，以其 Oura Ring 智能戒指闻名——这是一枚 24 小时不间断监测睡眠、恢复度、活动、心率与体温的精致指环。Oura 立足于珠宝级设计与临床级生物数据的交汇点，将连续的生理信号转化为每日个性化的睡眠、压力与恢复指导，把\"身体数据\"包装成可以佩戴的极简单品。",
+      "summaryEn": "Oura is a Finnish health technology company best known for the Oura Ring, a sleek smart ring that tracks sleep, readiness, activity, heart rate, and body temperature around the clock. Positioned at the intersection of jewelry-grade design and clinical-grade biometrics, Oura turns continuous physiological data into personalized daily guidance for sleep, stress, and recovery.",
+      "primaryColors": [
+        "#1A1A1A",
+        "#F4F1EC",
+        "#9AA39A",
+        "#C9B79C",
+        "#2E3A4B"
+      ],
+      "palette": [
+        {
+          "hex": "#1A1A1A",
+          "name": "石墨黑",
+          "nameEn": "Graphite Black"
+        },
+        {
+          "hex": "#F4F1EC",
+          "name": "亚麻白",
+          "nameEn": "Linen White"
+        },
+        {
+          "hex": "#9AA39A",
+          "name": "雾灰",
+          "nameEn": "Mist Grey"
+        },
+        {
+          "hex": "#C9B79C",
+          "name": "钛金",
+          "nameEn": "Titanium Gold"
+        },
+        {
+          "hex": "#2E3A4B",
+          "name": "深海军",
+          "nameEn": "Deep Navy"
+        }
+      ],
+      "logo": {
+        "type": "Wordmark with circular monogram",
+        "typeZh": "字标 + 环形主图形",
+        "description": "圆润几何感的「ouraring」小写字标，配以完整圆环 O 形主图形，整体如一枚戒指。",
+        "descriptionEn": "A rounded, geometric 'ouraring' wordmark in lowercase paired with a complete circular O mark that reads as a ring.",
+        "construction": "圆形 O 作为主图形独立使用，下方是细字距小写字标；无装饰性衬线。",
+        "constructionEn": "The circular O is used as a standalone mark, with a light-weight, loosely-tracked lowercase wordmark beneath it; no decorative serifs."
+      },
+      "typography": {
+        "heading": "几何无衬线，圆润，权重偏轻至中等",
+        "headingEn": "Geometric sans-serif, rounded, light-to-medium weight",
+        "body": "人文无衬线，等高 x-height，行高宽松",
+        "bodyEn": "Humanist sans-serif with even x-height and generous line height",
+        "notes": "强调字距与留白，避免粗黑体与衬线；标题与正文靠空间分级而非字重。",
+        "notesEn": "Lean on letter spacing and white space; avoid bold serifs and heavy weights—use space, not weight, to build hierarchy."
+      },
+      "photography": {
+        "style": "极简静物，皮肤与材质特写",
+        "styleEn": "Minimalist still-life, skin and material close-ups",
+        "lighting": "柔光、低反差、自然光感",
+        "lightingEn": "Soft, low-contrast, natural-feeling light",
+        "tone": "冷中性，亚麻白底",
+        "toneEn": "Cool neutral, linen-white background",
+        "composition": "居中构图、大量负空间，俯拍与平视结合",
+        "compositionEn": "Centered composition with heavy negative space, mixing flat-lay and eye-level frames"
+      },
+      "tone": [
+        "极简",
+        "冷静",
+        "高端",
+        "克制",
+        "科技感"
+      ],
+      "toneEn": [
+        "minimalist",
+        "composed",
+        "premium",
+        "restrained",
+        "tech-forward"
+      ],
+      "toneSummary": "Oura 的视觉与文案始终保持斯堪的纳维亚式的冷静克制，以大量留白、低饱和与精确数据建立信任感，避免情绪化煽动与过度营销。",
+      "toneSummaryEn": "Oura's visual and verbal language stays Nordic-cool and restrained, building trust through white space, muted color, and precise data rather than emotional storytelling or hard-sell tactics.",
+      "positioning": "为追求长期健康表现的知识型用户，提供可穿戴的临床级生理监测与每日恢复指导。",
+      "positioningEn": "Providing wearable, clinical-grade biometric monitoring and daily readiness guidance for knowledge-driven users pursuing long-term health performance.",
+      "targetUser": {
+        "age": "28-45",
+        "ageZh": "28-45 岁",
+        "identity": "高收入健康优化者、biohacker、企业高管与创意从业者",
+        "identityZh": "高收入健康优化者、biohacker、企业高管与创意从业者",
+        "pain": "手腕空间已被占满，又渴望量化、长期追踪自身健康数据",
+        "painZh": "手腕空间已被占满，又渴望量化、长期追踪自身健康数据",
+        "scene": "睡前佩戴监测睡眠与恢复，运动与差旅中持续读取身体信号",
+        "sceneZh": "睡前佩戴监测睡眠与恢复，运动与差旅中持续读取身体信号"
+      },
+      "targetUserEn": {
+        "age": "28-45",
+        "identity": "High-income health optimizers, biohackers, executives, and creative professionals",
+        "pain": "Wrist is already full, yet they want quantified, long-term tracking of their own health data",
+        "scene": "Worn overnight to monitor sleep and recovery, kept on during workouts and travel to read body signals continuously"
+      },
+      "sellingPoints": [
+        "指环形态的连续生理监测（HRV、体温、心率、呼吸）",
+        "基于睡眠 + 活动 + 恢复度三轴的每日 Readiness 评分",
+        "钛金属 + DLC 镀层的珠宝级外观与全天候佩戴舒适度",
+        "App 内长时序趋势视图与女性周期、孕期、病后追踪",
+        "8 天以上电池续航与无屏幕、无震动的低干扰佩戴"
+      ],
+      "sellingPointsEn": [
+        "Continuous biometric monitoring in a ring form factor (HRV, temperature, heart rate, respiration)",
+        "Daily Readiness score driven by sleep, activity, and recovery axes",
+        "Jewelry-grade titanium + DLC-coated build for all-day comfort",
+        "Long-term trend views plus cycle, pregnancy, and illness tracking inside the app",
+        "8+ day battery life with screen-free, vibration-light wear"
+      ],
+      "brandTakeaway": [
+        "把首屏主色饱和度降到 5% 以内，主图换成静物特写。",
+        "在 app 顶部固定一张「今日一指标」卡片。",
+        "用 7 天柱状图替代传统 dashboard 装饰墙。",
+        "将订阅页面分两栏：洞察 vs 行动建议。",
+        "把产品展示从腕表场景切换到晨间床头柜。"
+      ],
+      "brandTakeawayEn": [
+        "Drop first-screen saturation below 5% and swap the hero image for a tactile still-life.",
+        "Pin a single \"metric of the day\" card at the very top of the app.",
+        "Replace dashboard decorative charts with a clean 7-day bar view.",
+        "Split the membership page into Insights vs. Action columns.",
+        "Move product photography from wrist shots to the bedside table at dawn."
+      ],
+      "radar": {
+        "克制": 9,
+        "温度感": 6,
+        "游戏化": 2,
+        "科技感": 8,
+        "情感连接": 6,
+        "识别强度": 8.5
+      },
+      "radarValues": [],
+      "heuristicRadar": {
+        "克制": 5.5,
+        "温度感": 3.5,
+        "游戏化": 3.5,
+        "科技感": 10,
+        "情感连接": 3.5,
+        "识别强度": 5
+      },
+      "heuristicRadarArray": [
+        5.5,
+        3.5,
+        3.5,
+        10,
+        3.5,
+        5
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 5.5,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.9508524017698636,
+              "weight": 0.3,
+              "explain": "variance 0.015"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.375,
+              "weight": 0.25,
+              "explain": "5 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.375,
+              "weight": 0.2,
+              "explain": "5 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.2863636363636364,
+              "weight": 0.25,
+              "explain": "157 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.6574137931034485,
+              "weight": 0.45,
+              "explain": "mean hue 82°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.16941717191308509,
+              "weight": 0.25,
+              "explain": "mean sat 17%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0.16666666666666666,
+              "weight": 0.65,
+              "explain": "1 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.64,
+              "weight": 0.35,
+              "explain": "28 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 10,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 1,
+              "weight": 0.65,
+              "explain": "6 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "geometric/sans markers found"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "0 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.8333333333333334,
+              "weight": 0.4,
+              "explain": "25 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 5,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.16941717191308509,
+              "weight": 0.35,
+              "explain": "mean sat 17%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 0.896551724137931,
+              "weight": 0.2,
+              "explain": "spread 215°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 0,
+              "weight": 0.2,
+              "explain": "0 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "2 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25"
+      },
+      "meta": {},
+      "reportFile": "brands/oura-20260625.json",
+      "reportUrl": "/report/oura-20260625",
+      "createdAt": "2026-06-25"
+    },
+    {
+      "id": "playstation-20260623",
+      "name": "PlayStation",
+      "nameZh": "索尼互动娱乐 PlayStation",
+      "nameEn": "PlayStation",
+      "url": "https://www.playstation.com",
+      "tagline": "Play has no limits.",
+      "taglineZh": "Play has no limits.",
+      "taglineEn": "",
+      "category": "Gaming Platform / Game Console",
+      "categoryZh": "Gaming Platform / Game Console",
+      "categoryEn": "",
+      "country": "Japan",
+      "countryZh": "Japan",
+      "countryEn": "",
+      "year": 1994,
+      "summary": "PlayStation 是索尼旗下的全球主机游戏品牌，以强烈的视觉识别、丰富独占内容与稳定硬件性能建立行业标杆。它既是硬核玩家的娱乐入口，也是连接游戏、影音与社交体验的数字平台，品牌气质偏科技、沉浸、年轻且极具未来感。",
+      "summaryEn": "",
+      "primaryColors": [
+        "#003791",
+        "#FFFFFF",
+        "#000000",
+        "#1F1F1F"
+      ],
+      "palette": [
+        {
+          "hex": "#003791",
+          "name": "PlayStation 蓝",
+          "nameEn": "PlayStation Blue"
+        },
+        {
+          "hex": "#FFFFFF",
+          "name": "纯白",
+          "nameEn": "Pure White"
+        },
+        {
+          "hex": "#000000",
+          "name": "深黑",
+          "nameEn": "Deep Black"
+        },
+        {
+          "hex": "#1F1F1F",
+          "name": "石墨灰",
+          "nameEn": "Graphite Gray"
+        },
+        {
+          "hex": "#5C5C5C",
+          "name": "中性灰",
+          "nameEn": "Neutral Gray"
+        }
+      ],
+      "logo": {
+        "type": "组合",
+        "description": "由红黄蓝绿四色立体“PS”字标与简洁英文名共同构成，识别度极强。",
+        "construction": "以几何切面和负形叠压形成“P/S”错视结构，强调体块、透视和色彩分层。",
+        "typeEn": "Combination",
+        "descriptionEn": "Composed of a three-dimensional 'PS' wordmark in red, yellow, blue, and green, paired with a clean English logotype, delivering exceptional recognizability.",
+        "constructionEn": "Uses geometric facets and negative-space layering to create an optical 'P/S' illusion structure, emphasizing volumetric blocks, perspective, and color stratification."
+      },
+      "typography": {
+        "heading": "无衬线体，偏几何感，接近定制化品牌字形",
+        "body": "现代无衬线系统字体，常见于数字产品界面",
+        "notes": "整体呈现科技、简洁、国际化，标题更强调力量感与空间感。",
+        "headingEn": "Sans-serif, geometric in feel, close to a customized brand typeface",
+        "bodyEn": "Modern sans-serif system fonts, commonly seen in digital product interfaces",
+        "notesEn": "The overall feel is tech-driven, clean, and international, with headings emphasizing strength and spatial presence."
+      },
+      "photography": {
+        "style": "studio, 3D, lifestyle",
+        "lighting": "高对比冷光，辅以局部霓虹或屏幕发光",
+        "tone": "冷峻、通透、未来感",
+        "composition": "中心构图与大留白并存，常用机身特写、游戏场景联动和动态视觉切片",
+        "lightingEn": "High-contrast cool light, accented with localized neon or screen-glow effects",
+        "toneEn": "Cool, translucent, and futuristic",
+        "compositionEn": "Centered framing balanced with generous negative space, frequently featuring product close-ups, in-game scene integration, and dynamic visual slices"
+      },
+      "tone": [
+        "科技感",
+        "未来感",
+        "沉浸式",
+        "年轻化",
+        "高识别度"
+      ],
+      "toneEn": [],
+      "toneSummary": "以科技驱动沉浸娱乐，兼具未来感与潮流识别。",
+      "toneSummaryEn": "",
+      "positioning": "全球领先的互动娱乐游戏平台，连接主机、内容与玩家生态。",
+      "positioningEn": "",
+      "targetUser": {
+        "age": "15-40岁",
+        "identity": "核心游戏玩家、主机用户、数字娱乐消费者",
+        "pain": "追求高质量游戏体验、沉浸式性能与独占内容",
+        "scene": "居家主机娱乐、在线联机、内容消费与社交分享"
+      },
+      "targetUserEn": null,
+      "sellingPoints": [
+        "强大的主机性能与稳定的图形表现",
+        "丰富的独占游戏与第一方内容生态",
+        "成熟的在线联机与数字商店体系",
+        "标志性的品牌符号与跨代际认知",
+        "将游戏、影视、社交娱乐融为一体"
+      ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 6,
+        "温度感": 4,
+        "游戏化": 9.5,
+        "科技感": 9,
+        "情感连接": 7,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      },
+      "reportFile": "brands/playstation-20260623.json",
+      "reportUrl": "/report/playstation-20260623",
+      "createdAt": "2026-06-23"
+    },
+    {
+      "id": "google-20260625",
+      "name": "Google",
+      "nameZh": "谷歌",
+      "url": "",
+      "tagline": "Organize the world's information and make it universally accessible and useful.",
+      "category": "Technology / Search Engine / Internet Services",
+      "country": "United States",
+      "year": null,
+      "reportFile": "google-20260625.html",
+      "reportUrl": "./google-20260625.html",
+      "createdAt": "2026-06-25",
+      "summary": "Google 由 Larry Page 与 Sergey Brin 于 1998 年在加州创立，最初只是一个名为 BackRub 的学术搜索引擎项目。如今它已成长为全球最大的科技公司之一，核心产品包括搜索、Gmail、YouTube、Android、Chrome、Maps、Cloud 和 AI（Gemini / Bard）。其品牌以四色 Logo、极简 sans-serif 字体与\"做正确的事\"价值观闻名，把\"人人可访问的全球信息\"作为长期使命。",
+      "primaryColors": [
+        "#4285F4",
+        "#EA4335",
+        "#FBBC05",
+        "#34A853"
+      ],
+      "radar": {
+        "克制": 7.5,
+        "温度感": 7.5,
+        "游戏化": 7,
+        "科技感": 9,
+        "情感连接": 7.5,
+        "识别强度": 10
+      },
+      "radarValues": [
+        7.5,
+        7.5,
+        7,
+        9,
+        7.5,
+        10
+      ],
+      "palette": [
+        {
+          "hex": "#4285F4",
+          "name": "谷歌蓝",
+          "nameEn": "Google Blue"
+        },
+        {
+          "hex": "#EA4335",
+          "name": "谷歌红",
+          "nameEn": "Google Red"
+        },
+        {
+          "hex": "#FBBC05",
+          "name": "谷歌黄",
+          "nameEn": "Google Yellow"
+        },
+        {
+          "hex": "#34A853",
+          "name": "谷歌绿",
+          "nameEn": "Google Green"
+        },
+        {
+          "hex": "#202124",
+          "name": "墨黑",
+          "nameEn": "Ink Black"
+        },
+        {
+          "hex": "#F8F9FA",
+          "name": "云白",
+          "nameEn": "Cloud White"
+        },
+        {
+          "hex": "#5F6368",
+          "name": "石墨灰",
+          "nameEn": "Graphite Gray"
+        }
+      ],
+      "logo": {
+        "type": "Wordmark / Logotype",
+        "typeZh": "字标 (Logotype)",
+        "description": "由四个字母 G-o-o-g-l-e 组成，每个字母对应一种主色（蓝、红、黄、蓝、绿、红），笔画末端做圆切处理，整体圆润、亲和、童趣与现代并存。",
+        "descriptionEn": "A five-letter wordmark spelling G-o-o-g-l-e, each letter colored with one of four primaries (blue, red, yellow, blue, green, red). Strokes end in soft cuts, balancing friendliness, playfulness and modernity.",
+        "construction": "字母基于几何圆与直线网格定制，几何中心对齐；四色分布遵循固定顺序（蓝-红-黄-蓝-绿-红），禁止乱序或改色。",
+        "constructionEn": "Letters are custom-built on a geometric grid of circles and straight strokes with shared centers. The color sequence (blue-red-yellow-blue-green-red) is fixed and must never be reordered."
+      },
+      "typography": {
+        "heading": "Product Sans / Google Sans Display",
+        "headingEn": "Product Sans / Google Sans Display",
+        "body": "Google Sans Text / Roboto / Roboto Flex",
+        "bodyEn": "Google Sans Text / Roboto / Roboto Flex",
+        "notes": "标题偏几何 sans、字面宽、重几何圆；正文用更紧凑、人机工学优化的 Roboto 系列，强调屏幕可读性。",
+        "notesEn": "Headings use a geometric sans with wide apertures and rounded geometry; body uses Roboto, a denser screen-optimized family built for long reading sessions."
+      },
+      "photography": {
+        "style": "明亮、高饱和、真实生活场景；产品页以纯净 UI 与渲染图为主",
+        "styleEn": "Bright, high-saturation real-life scenes; product pages rely on clean UI screenshots and crisp 3D renders",
+        "lighting": "自然柔光为主，常带窗外天光，阴影柔和不压抑",
+        "lightingEn": "Soft natural daylight with window-like key light; gentle, non-oppressive shadows",
+        "tone": "乐观、温暖、普惠；人群多元、肤色多样、设备多样",
+        "toneEn": "Optimistic, warm, inclusive; visibly diverse cast, skin tones and devices",
+        "composition": "人物居中或三分构图，留白充足，主体清晰；产品图常用居中英雄式构图",
+        "compositionEn": "Centered or rule-of-thirds framing with generous negative space and a clear subject; product shots favor a centered hero composition"
+      },
+      "tone": [
+        "友好",
+        "好奇",
+        "极简",
+        "乐观",
+        "权威",
+        "俏皮",
+        "普惠"
+      ],
+      "toneSummary": "谷歌对外的语气像一个永远好奇、耐心又可靠的朋友：把复杂的技术讲得人话化，用四色 logo 和节日 doodle 保持俏皮，但底层始终保持搜索巨头该有的权威与克制。",
+      "positioning": "全球默认的搜索引擎与日常数字基础设施，把\"让信息对每个人都有用\"作为长期承诺，在 AI 时代继续以 Gemini 把搜索升级为对话式智能助手。",
+      "targetUser": {
+        "age": "18-55 岁，覆盖学生、白领、创作者与企业用户",
+        "ageZh": "18-55 岁，覆盖学生、白领、创作者与企业用户",
+        "identity": "全球互联网用户；学生、研究者、营销人、开发者、普通家庭",
+        "identityZh": "全球互联网用户；学生、研究者、营销人、开发者、普通家庭",
+        "pain": "想快速找到可靠答案，不想被广告或低质内容淹没；跨设备同步日常任务",
+        "painZh": "想快速找到可靠答案，不想被广告或低质内容淹没；跨设备同步日常任务",
+        "scene": "每天无数次：搜索、写邮件、导航、翻译、看视频、写文档、问 AI",
+        "sceneZh": "每天无数次：搜索、写邮件、导航、翻译、看视频、写文档、问 AI"
+      },
+      "sellingPoints": [
+        "全球第一搜索引擎，索引万亿级网页，结果秒级返回",
+        "Gemini AI 把搜索升级为对话式智能助手，可直接生成总结与方案",
+        "一站式生态：Search / Gmail / Maps / YouTube / Drive / Android 跨设备无缝协同",
+        "Material You 与四色品牌系统让产品既统一又充满活力",
+        "持续投入普惠：免费工具、翻译、开放 Android、Pixel 硬件与开发者 API"
+      ],
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      }
+    },
+    {
+      "id": "hatch-20260625",
+      "name": "hatch",
+      "nameZh": "hatch（哈奇）",
+      "url": "",
+      "tagline": "Hatch into the light.",
+      "category": "Lifestyle · Wellness · Incubation Brand",
+      "country": "United States",
+      "year": 2024,
+      "reportFile": "hatch-20260625.html",
+      "reportUrl": "./hatch-20260625.html",
+      "createdAt": "2026-06-25",
+      "summary": "hatch 是一个围绕“破壳新生”概念构建的现代生活方式品牌。它以温暖米白与鼠尾草绿为主色，圆润字体与柔和摄影贯穿全触点，在理性极简与感性陪伴之间寻找平衡，目标是成为都市青年日常成长中安静而可靠的陪伴者。",
+      "primaryColors": [
+        "#F5EFE4",
+        "#A8B89C",
+        "#E8A598",
+        "#F4D58D",
+        "#2C3E50"
+      ],
+      "radar": {
+        "克制": 6.5,
+        "温度感": 9,
+        "游戏化": 2,
+        "科技感": 5,
+        "情感连接": 9,
+        "识别强度": 7.5
+      },
+      "radarValues": [
+        6.5,
+        9,
+        2,
+        5,
+        9,
+        7.5
+      ],
+      "palette": [
+        {
+          "hex": "#F5EFE4",
+          "name": "晨曦米白",
+          "nameEn": "Dawn Cream"
+        },
+        {
+          "hex": "#A8B89C",
+          "name": "鼠尾草绿",
+          "nameEn": "Sage Green"
+        },
+        {
+          "hex": "#E8A598",
+          "name": "暖珊瑚",
+          "nameEn": "Warm Coral"
+        },
+        {
+          "hex": "#F4D58D",
+          "name": "破壳暖黄",
+          "nameEn": "Hatch Yellow"
+        },
+        {
+          "hex": "#2C3E50",
+          "name": "深岩蓝",
+          "nameEn": "Deep Slate"
+        }
+      ],
+      "logo": {
+        "type": "Wordmark",
+        "typeZh": "文字标识（Wordmark）",
+        "description": "全小写无衬线字标“hatch”，字怀留白克制，字母 a 顶部开口呼应破壳意象。",
+        "descriptionEn": "A fully lowercase sans-serif wordmark 'hatch' with restrained counters; the open top of the 'a' echoes a hatching shell.",
+        "construction": "基于单圆弧与垂直笔画构建，x-height 偏大提升屏幕可读性，字母 a 采用双层结构保留呼吸感。",
+        "constructionEn": "Built on a single arc and vertical strokes; an oversized x-height boosts screen legibility, and a double-storey 'a' preserves breathing room."
+      },
+      "typography": {
+        "heading": "圆润无衬线：Nunito Rounded / Quicksand",
+        "headingEn": "Nunito Rounded / Quicksand",
+        "body": "现代无衬线：Inter / 思源黑体（Noto Sans SC）",
+        "bodyEn": "Inter / Noto Sans SC",
+        "notes": "字重控制在 Regular 与 Bold 两级，避免使用斜体；行高 1.6-1.75 保证长文可读性。",
+        "notesEn": "Stick to Regular and Bold weights; avoid italics; set line-height between 1.6 and 1.75 to ensure long-form readability."
+      },
+      "photography": {
+        "style": "自然纪实柔光风格",
+        "styleEn": "Natural documentary with soft light",
+        "lighting": "侧逆光模拟破晓或清晨窗光，避免硬阴影与高对比",
+        "lightingEn": "Side backlight simulating dawn or morning window light; avoid hard shadows and high contrast",
+        "tone": "暖米白基调，肤色柔和不饱和，整体低对比",
+        "toneEn": "Warm cream undertone; soft, desaturated skin tones; overall low contrast",
+        "composition": "大量留白 + 微距特写，主体居中或偏左三分之一",
+        "compositionEn": "Generous negative space + macro close-ups; subjects centered or on the left-third rule"
+      },
+      "tone": [
+        "温暖",
+        "柔和",
+        "现代",
+        "亲切",
+        "乐观",
+        "克制"
+      ],
+      "toneSummary": "以“破壳”这一情感隐喻为内核，在现代极简框架中注入柔和生命力，整体氛围低饱和、低噪音、有人情味。",
+      "positioning": "面向都市年轻人的孵化型生活方式品牌：以“破壳”为核心隐喻，把科技工具与情绪温度结合，帮助用户在日常缝隙中发现自我成长的微小瞬间。",
+      "targetUser": {
+        "age": "25-35",
+        "ageZh": "25-35 岁",
+        "identity": "Urban young creators and early-career professionals seeking quiet self-growth",
+        "identityZh": "寻求安静自我成长的都市青年创作者与早期职场人",
+        "pain": "渴望成长却害怕改变，希望被温柔陪伴而非被催促",
+        "painZh": "想要成长又怕改变，渴望被温柔陪伴而非被催促",
+        "scene": "Morning commute, midday solitude, and evening journaling",
+        "sceneZh": "晨间通勤、午休独处、晚间复盘"
+      },
+      "sellingPoints": [
+        "以“破壳新生”为情感锚点，区别于冷感的纯科技品牌。",
+        "全小写无衬线 logo 强化亲切感与互联网原生基因。",
+        "米白 + 鼠尾草绿主色构建自然疗愈的视觉氛围。",
+        "圆润字体与柔光摄影贯穿所有触点，降低决策门槛。",
+        "暖黄仅作关键行动点点缀，引导转化而不打扰。"
+      ],
+      "meta": {
+        "favicon": "",
+        "ogImage": "",
+        "heroImage": "",
+        "logoCandidates": []
+      }
     }
   ]
 }

@@ -1,0 +1,309 @@
+{
+  "id": "oura-20260625",
+  "name": "Oura",
+  "nameZh": "Oura",
+  "nameEn": "Oura",
+  "url": "",
+  "tagline": "Know your body. Own your day.",
+  "taglineEn": "",
+  "category": "Smart Health Wearables",
+  "categoryEn": "",
+  "country": "Finland",
+  "countryEn": "",
+  "summary": "Oura 是一家芬兰健康科技公司，以其 Oura Ring 智能戒指闻名——这是一枚 24 小时不间断监测睡眠、恢复度、活动、心率与体温的精致指环。Oura 立足于珠宝级设计与临床级生物数据的交汇点，将连续的生理信号转化为每日个性化的睡眠、压力与恢复指导，把\"身体数据\"包装成可以佩戴的极简单品。",
+  "summaryEn": "Oura is a Finnish health technology company best known for the Oura Ring, a sleek smart ring that tracks sleep, readiness, activity, heart rate, and body temperature around the clock. Positioned at the intersection of jewelry-grade design and clinical-grade biometrics, Oura turns continuous physiological data into personalized daily guidance for sleep, stress, and recovery.",
+  "primaryColors": [
+    "#1A1A1A",
+    "#F4F1EC",
+    "#9AA39A",
+    "#C9B79C",
+    "#2E3A4B"
+  ],
+  "palette": [
+    {
+      "hex": "#1A1A1A",
+      "name": "石墨黑",
+      "nameEn": "Graphite Black"
+    },
+    {
+      "hex": "#F4F1EC",
+      "name": "亚麻白",
+      "nameEn": "Linen White"
+    },
+    {
+      "hex": "#9AA39A",
+      "name": "雾灰",
+      "nameEn": "Mist Grey"
+    },
+    {
+      "hex": "#C9B79C",
+      "name": "钛金",
+      "nameEn": "Titanium Gold"
+    },
+    {
+      "hex": "#2E3A4B",
+      "name": "深海军",
+      "nameEn": "Deep Navy"
+    }
+  ],
+  "logo": {
+    "type": "Wordmark with circular monogram",
+    "typeZh": "字标 + 环形主图形",
+    "description": "圆润几何感的「ouraring」小写字标，配以完整圆环 O 形主图形，整体如一枚戒指。",
+    "descriptionEn": "A rounded, geometric 'ouraring' wordmark in lowercase paired with a complete circular O mark that reads as a ring.",
+    "construction": "圆形 O 作为主图形独立使用，下方是细字距小写字标；无装饰性衬线。",
+    "constructionEn": "The circular O is used as a standalone mark, with a light-weight, loosely-tracked lowercase wordmark beneath it; no decorative serifs."
+  },
+  "typography": {
+    "heading": "几何无衬线，圆润，权重偏轻至中等",
+    "headingEn": "Geometric sans-serif, rounded, light-to-medium weight",
+    "body": "人文无衬线，等高 x-height，行高宽松",
+    "bodyEn": "Humanist sans-serif with even x-height and generous line height",
+    "notes": "强调字距与留白，避免粗黑体与衬线；标题与正文靠空间分级而非字重。",
+    "notesEn": "Lean on letter spacing and white space; avoid bold serifs and heavy weights—use space, not weight, to build hierarchy."
+  },
+  "photography": {
+    "style": "极简静物，皮肤与材质特写",
+    "styleEn": "Minimalist still-life, skin and material close-ups",
+    "lighting": "柔光、低反差、自然光感",
+    "lightingEn": "Soft, low-contrast, natural-feeling light",
+    "tone": "冷中性，亚麻白底",
+    "toneEn": "Cool neutral, linen-white background",
+    "composition": "居中构图、大量负空间，俯拍与平视结合",
+    "compositionEn": "Centered composition with heavy negative space, mixing flat-lay and eye-level frames"
+  },
+  "tone": [
+    "极简",
+    "冷静",
+    "高端",
+    "克制",
+    "科技感"
+  ],
+  "toneEn": [
+    "minimalist",
+    "composed",
+    "premium",
+    "restrained",
+    "tech-forward"
+  ],
+  "toneSummary": "Oura 的视觉与文案始终保持斯堪的纳维亚式的冷静克制，以大量留白、低饱和与精确数据建立信任感，避免情绪化煽动与过度营销。",
+  "toneSummaryEn": "Oura's visual and verbal language stays Nordic-cool and restrained, building trust through white space, muted color, and precise data rather than emotional storytelling or hard-sell tactics.",
+  "positioning": "为追求长期健康表现的知识型用户，提供可穿戴的临床级生理监测与每日恢复指导。",
+  "positioningEn": "Providing wearable, clinical-grade biometric monitoring and daily readiness guidance for knowledge-driven users pursuing long-term health performance.",
+  "targetUser": {
+    "age": "28-45",
+    "ageZh": "28-45 岁",
+    "identity": "高收入健康优化者、biohacker、企业高管与创意从业者",
+    "identityZh": "高收入健康优化者、biohacker、企业高管与创意从业者",
+    "pain": "手腕空间已被占满，又渴望量化、长期追踪自身健康数据",
+    "painZh": "手腕空间已被占满，又渴望量化、长期追踪自身健康数据",
+    "scene": "睡前佩戴监测睡眠与恢复，运动与差旅中持续读取身体信号",
+    "sceneZh": "睡前佩戴监测睡眠与恢复，运动与差旅中持续读取身体信号"
+  },
+  "targetUserEn": {
+    "age": "28-45",
+    "identity": "High-income health optimizers, biohackers, executives, and creative professionals",
+    "pain": "Wrist is already full, yet they want quantified, long-term tracking of their own health data",
+    "scene": "Worn overnight to monitor sleep and recovery, kept on during workouts and travel to read body signals continuously"
+  },
+  "sellingPoints": [
+    "指环形态的连续生理监测（HRV、体温、心率、呼吸）",
+    "基于睡眠 + 活动 + 恢复度三轴的每日 Readiness 评分",
+    "钛金属 + DLC 镀层的珠宝级外观与全天候佩戴舒适度",
+    "App 内长时序趋势视图与女性周期、孕期、病后追踪",
+    "8 天以上电池续航与无屏幕、无震动的低干扰佩戴"
+  ],
+  "sellingPointsEn": [
+    "Continuous biometric monitoring in a ring form factor (HRV, temperature, heart rate, respiration)",
+    "Daily Readiness score driven by sleep, activity, and recovery axes",
+    "Jewelry-grade titanium + DLC-coated build for all-day comfort",
+    "Long-term trend views plus cycle, pregnancy, and illness tracking inside the app",
+    "8+ day battery life with screen-free, vibration-light wear"
+  ],
+  "brandTakeaway": [
+    "把首屏主色饱和度降到 5% 以内，主图换成静物特写。",
+    "在 app 顶部固定一张「今日一指标」卡片。",
+    "用 7 天柱状图替代传统 dashboard 装饰墙。",
+    "将订阅页面分两栏：洞察 vs 行动建议。",
+    "把产品展示从腕表场景切换到晨间床头柜。"
+  ],
+  "brandTakeawayEn": [
+    "Drop first-screen saturation below 5% and swap the hero image for a tactile still-life.",
+    "Pin a single \"metric of the day\" card at the very top of the app.",
+    "Replace dashboard decorative charts with a clean 7-day bar view.",
+    "Split the membership page into Insights vs. Action columns.",
+    "Move product photography from wrist shots to the bedside table at dawn."
+  ],
+  "radar": {
+    "克制": 9,
+    "温度感": 6,
+    "游戏化": 2,
+    "科技感": 8,
+    "情感连接": 6,
+    "识别强度": 8.5
+  },
+  "radarValues": [],
+  "heuristicRadar": {
+    "克制": 5.5,
+    "温度感": 3.5,
+    "游戏化": 3.5,
+    "科技感": 10,
+    "情感连接": 3.5,
+    "识别强度": 5
+  },
+  "heuristicRadarArray": [
+    5.5,
+    3.5,
+    3.5,
+    10,
+    3.5,
+    5
+  ],
+  "heuristicDetail": {
+    "克制": {
+      "score": 5.5,
+      "subs": [
+        {
+          "name": "palette sat variance ↓",
+          "value": 0.9508524017698636,
+          "weight": 0.3,
+          "explain": "variance 0.015"
+        },
+        {
+          "name": "palette size ↓",
+          "value": 0.375,
+          "weight": 0.25,
+          "explain": "5 colors"
+        },
+        {
+          "name": "tone tag count ↓",
+          "value": 0.375,
+          "weight": 0.2,
+          "explain": "5 tags"
+        },
+        {
+          "name": "logo desc length ↓",
+          "value": 0.2863636363636364,
+          "weight": 0.25,
+          "explain": "157 chars"
+        }
+      ]
+    },
+    "温度感": {
+      "score": 3.5,
+      "subs": [
+        {
+          "name": "mean hue warmth ↑",
+          "value": 0.6574137931034485,
+          "weight": 0.45,
+          "explain": "mean hue 82°"
+        },
+        {
+          "name": "mean saturation ↑",
+          "value": 0.16941717191308509,
+          "weight": 0.25,
+          "explain": "mean sat 17%"
+        },
+        {
+          "name": "warm-keyword density",
+          "value": 0,
+          "weight": 0.3,
+          "explain": "0 warm keywords"
+        }
+      ]
+    },
+    "游戏化": {
+      "score": 3.5,
+      "subs": [
+        {
+          "name": "playful-keyword density",
+          "value": 0.16666666666666666,
+          "weight": 0.65,
+          "explain": "1 hits"
+        },
+        {
+          "name": "target-user age ↓",
+          "value": 0.64,
+          "weight": 0.35,
+          "explain": "28 yrs"
+        }
+      ]
+    },
+    "科技感": {
+      "score": 10,
+      "subs": [
+        {
+          "name": "tech-keyword density",
+          "value": 1,
+          "weight": 0.65,
+          "explain": "6 hits"
+        },
+        {
+          "name": "geometric typography",
+          "value": 1,
+          "weight": 0.35,
+          "explain": "geometric/sans markers found"
+        }
+      ]
+    },
+    "情感连接": {
+      "score": 3.5,
+      "subs": [
+        {
+          "name": "tagline emotional density",
+          "value": 0,
+          "weight": 0.35,
+          "explain": "0 emotional kw in tagline"
+        },
+        {
+          "name": "tone emotional words",
+          "value": 0,
+          "weight": 0.25,
+          "explain": "0 hits"
+        },
+        {
+          "name": "targetUser.pain specificity ↑",
+          "value": 0.8333333333333334,
+          "weight": 0.4,
+          "explain": "25 chars"
+        }
+      ]
+    },
+    "识别强度": {
+      "score": 5,
+      "subs": [
+        {
+          "name": "palette saturation ↑",
+          "value": 0.16941717191308509,
+          "weight": 0.35,
+          "explain": "mean sat 17%"
+        },
+        {
+          "name": "palette hue spread ↑",
+          "value": 0.896551724137931,
+          "weight": 0.2,
+          "explain": "spread 215°"
+        },
+        {
+          "name": "typography rarity markers",
+          "value": 0,
+          "weight": 0.2,
+          "explain": "0 rarity hits"
+        },
+        {
+          "name": "logo distinctive markers",
+          "value": 1,
+          "weight": 0.25,
+          "explain": "2 distinctive hits"
+        }
+      ]
+    }
+  },
+  "heuristicMeta": {
+    "computedAt": "2026-06-25"
+  },
+  "meta": {},
+  "reportFile": "brands/oura-20260625.json",
+  "reportUrl": "/report/oura-20260625",
+  "createdAt": "2026-06-25"
+}

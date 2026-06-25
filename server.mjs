@@ -23,6 +23,8 @@ import { spawn } from 'node:child_process';
 import { runResearch, slugify } from './lib/researcher.mjs';
 import { renderReport } from './lib/report-template.mjs';
 import { normalizeImportedReport } from './lib/report-import.mjs';
+import mammoth from 'mammoth';
+import Busboy from 'busboy';
 import {
   listTrash, listTrashIds,
   moveToTrash, restoreFromTrash, purgeTrashItem, purgeExpired,
@@ -255,6 +257,120 @@ async function handleResearchMd(req, res) {
       reportUrl: payload.reportUrl,
     },
   });
+}
+
+// ============================================================
+// POST /api/parse-file
+//   Accepts multipart/form-data with a single file part. Extracts
+//   plain text from:
+//     - .md / .markdown / .txt   → UTF-8 read directly
+//     - .docx                    → mammoth.extractRawText({ buffer })
+//     - .doc (legacy binary)     → 415 (we cannot safely parse this
+//                                   on the server without LibreOffice
+//                                   or similar; ask user to save-as
+//                                   .docx in Word)
+//   Returns { ok:true, text, charCount, filename, kind } on success,
+//   or { ok:false, error } on failure. 10 MB hard cap on input size.
+// ============================================================
+async function handleParseFile(req, res) {
+  const ct = String(req.headers['content-type'] || '').toLowerCase();
+  if (!ct.startsWith('multipart/form-data')) {
+    return sendJSON(res, 415, { ok: false, error: '需要 multipart/form-data 上传' });
+  }
+
+  const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
+  const busboy = Busboy({
+    headers: req.headers,
+    limits: { fileSize: MAX_BYTES, files: 1 },
+  });
+
+  let resolved = false;
+  function done(status, body) {
+    if (resolved) return;
+    resolved = true;
+    try { req.unpipe(busboy); } catch {}
+    sendJSON(res, status, body);
+  }
+
+  busboy.on('file', async (_field, fileStream, info) => {
+    const filename = info.filename || 'upload';
+    const ext = path.extname(filename).toLowerCase().replace(/^\./, '');
+    const chunks = [];
+    let total = 0;
+    let tooLarge = false;
+
+    fileStream.on('data', (chunk) => {
+      total += chunk.length;
+      if (total > MAX_BYTES) {
+        tooLarge = true;
+        // Drain the rest so busboy can finish cleanly, but we already have enough
+        fileStream.resume();
+      } else {
+        chunks.push(chunk);
+      }
+    });
+
+    fileStream.on('limit', () => { tooLarge = true; });
+
+    fileStream.on('end', async () => {
+      if (tooLarge) {
+        return done(413, { ok: false, error: `文件超过 ${(MAX_BYTES / 1024 / 1024).toFixed(0)} MB 上限` });
+      }
+      const buffer = Buffer.concat(chunks);
+      try {
+        let text = '';
+        let kind = ext;
+        if (ext === 'md' || ext === 'markdown' || ext === 'txt') {
+          // Strip UTF-8 BOM if present
+          let buf = buffer;
+          if (buf.length >= 3 && buf[0] === 0xef && buf[1] === 0xbb && buf[2] === 0xbf) {
+            buf = buf.subarray(3);
+          }
+          text = buf.toString('utf8');
+          kind = 'markdown';
+        } else if (ext === 'docx') {
+          const result = await mammoth.extractRawText({ buffer });
+          text = result.value || '';
+          // mammoth's messages include style warnings — drop them in the
+          // returned text but expose for debugging
+          kind = 'docx';
+        } else if (ext === 'doc') {
+          return done(415, {
+            ok: false,
+            error: '暂不支持 .doc（旧版二进制 Word），请在 Word 里"另存为 .docx"后重新上传',
+          });
+        } else {
+          return done(415, {
+            ok: false,
+            error: `不支持的文件类型: .${ext || '(无后缀)'}\n支持: .md / .markdown / .txt / .docx`,
+          });
+        }
+
+        // Normalize line endings, collapse trailing whitespace per line
+        text = text.replace(/\r\n?/g, '\n').replace(/[ \t]+\n/g, '\n');
+
+        done(200, {
+          ok: true,
+          filename,
+          kind,
+          charCount: text.length,
+          text,
+        });
+      } catch (e) {
+        done(500, { ok: false, error: '解析失败: ' + (e?.message || String(e)) });
+      }
+    });
+
+    fileStream.on('error', (err) => {
+      done(500, { ok: false, error: '上传流错误: ' + (err?.message || String(err)) });
+    });
+  });
+
+  busboy.on('error', (err) => {
+    done(400, { ok: false, error: '上传解析失败: ' + (err?.message || String(err)) });
+  });
+
+  req.pipe(busboy);
 }
 
 // ---------- 后台异步调研 ----------
@@ -642,6 +758,7 @@ const server = http.createServer(async (req, res) => {
     if (p === '/api/config' && method === 'POST') return await handleConfigSave(req, res);
     if (p === '/api/research' && method === 'POST') return handleResearch(req, res);
     if (p === '/api/research.md' && method === 'POST') return await handleResearchMd(req, res);
+    if (p === '/api/parse-file' && method === 'POST') return await handleParseFile(req, res);
     if (p === '/api/refresh-index' && method === 'POST') return handleRefreshIndex(req, res);
     // On-demand report rendering: /report/<slug>-<YYYYMMDD>
     const reportMatch = p.match(/^\/report\/([a-z0-9-]+-\d{8})$/);

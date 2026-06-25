@@ -893,6 +893,34 @@
     .report-body { flex: 1; background: var(--bg); }
     #report-iframe { width: 100%; height: 100%; border: 0; background: var(--bg); }
 
+    /* ----- File upload drop zone (Submit Brand Notes modal) ----- */
+    .upload-drop { user-select: none; }
+    .upload-drop:hover { border-color: var(--ink) !important; }
+    .upload-drop:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+    .upload-hint { font-weight: 500; }
+    .upload-meta { font-family: var(--font-mono, monospace); opacity: 0.85; }
+    .upload-clear {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .15s, border-color .15s;
+    }
+    .upload-clear:hover { color: var(--ink); border-color: var(--ink); }
+
     
     .trash-modal {
       width: 94%; max-width: 760px;
@@ -1569,6 +1597,20 @@
       </div>
       <div class="report-body" style="padding:1rem; display:flex; flex-direction:column; gap:0.75rem;">
         <input id="custom-brand-name" type="text" data-i18n-placeholder="submit.placeholderName" placeholder="Brand name (optional)" style="padding:0.8rem 0.9rem;border:1px solid var(--rule);border-radius:6px;font:inherit;">
+
+        <!-- File upload zone (Word / Markdown / plain text). The hidden
+             <input type="file"> is triggered by the visible button, and
+             the same drop target also accepts drag-and-drop. -->
+        <div id="custom-drop" class="upload-drop" tabindex="0" role="button" aria-label="上传文件" style="display:flex;align-items:center;gap:0.75rem;padding:0.7rem 0.9rem;border:1.5px dashed var(--rule);border-radius:8px;background:#FBF8F3;cursor:pointer;transition:border-color .15s, background .15s;">
+          <input id="custom-file" type="file" accept=".md,.markdown,.txt,.docx,.doc" hidden>
+          <button id="custom-upload-btn" type="button" class="report-btn report-btn-secondary" style="flex-shrink:0;" data-i18n="submit.uploadBtn">📎 上传文件</button>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;">
+            <span id="custom-upload-hint" class="upload-hint" data-i18n="submit.uploadHint" style="font-size:0.85rem;color:var(--ink,#1A1A1A);">拖入或点击上传 .md / .docx / .txt 文件</span>
+            <span id="custom-upload-meta" class="upload-meta" style="font-size:0.75rem;color:var(--muted);"></span>
+          </div>
+          <button id="custom-clear-btn" type="button" class="upload-clear" hidden aria-label="清空已上传文件" title="清空">×</button>
+        </div>
+
         <textarea id="custom-md-input" data-i18n-placeholder="submit.placeholder" placeholder="# Brand notes
 
 Paste your brand-related content here in Markdown.
@@ -2380,6 +2422,155 @@ For example: positioning, story, visual tone, product claims, competitor notes."
     customRunBtn && customRunBtn.addEventListener('click', runCustomSubmit);
     customOverlay && customOverlay.addEventListener('click', (e) => { if (e.target === customOverlay) closeCustomModal(); });
     customMdInput && customMdInput.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') runCustomSubmit(); });
+
+    // ----- File upload (Word / Markdown / plain text) -----
+    // The drop zone accepts a click → opens file picker, OR a drag-drop
+    // of a file onto it. Text files (.md / .markdown / .txt) are read
+    // straight from the browser with FileReader; .docx is uploaded as
+    // multipart/form-data to /api/parse-file where mammoth extracts the
+    // plain text. .doc (legacy binary) is rejected on the server.
+    const customDrop      = document.getElementById('custom-drop');
+    const customFileInput = document.getElementById('custom-file');
+    const customUploadBtn = document.getElementById('custom-upload-btn');
+    const customUploadHint= document.getElementById('custom-upload-hint');
+    const customUploadMeta= document.getElementById('custom-upload-meta');
+    const customClearBtn  = document.getElementById('custom-clear-btn');
+    let   lastUploadedName= '';
+
+    function setUploadHint(key, vars) {
+      if (!customUploadHint) return;
+      const txt = _tr(key, { ...vars, fallback: '' });
+      customUploadHint.textContent = txt || '';
+    }
+    function setUploadMeta(text) {
+      if (customUploadMeta) customUploadMeta.textContent = text || '';
+    }
+    function showClearBtn(show) {
+      if (customClearBtn) customClearBtn.hidden = !show;
+    }
+
+    async function readTextFile(file) {
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(String(r.result || ''));
+        r.onerror = () => reject(new Error('读取失败'));
+        r.readAsText(file, 'utf-8');
+      });
+    }
+
+    async function uploadFile(file) {
+      if (!file) return;
+      const name = file.name || '';
+      lastUploadedName = name;
+      const ext = (name.split('.').pop() || '').toLowerCase();
+
+      // Reset any prior status in the textarea
+      setUploadMeta('');
+      setUploadHint('submit.uploadLoading');
+
+      try {
+        let text = '';
+        if (ext === 'md' || ext === 'markdown' || ext === 'txt') {
+          // Client-side parse — no network round-trip needed
+          text = await readTextFile(file);
+        } else if (ext === 'docx') {
+          // Server-side parse via mammoth
+          const form = new FormData();
+          form.append('file', file, name);
+          const resp = await fetch('/api/parse-file', { method: 'POST', body: form });
+          const data = await resp.json().catch(() => ({}));
+          if (!resp.ok || !data.ok) throw new Error(data.error || ('HTTP ' + resp.status));
+          text = data.text || '';
+          setUploadMeta(data.kind.toUpperCase() + ' · ' + (data.filename || name));
+        } else if (ext === 'doc') {
+          throw new Error('暂不支持 .doc（旧版二进制 Word），请在 Word 里"另存为 .docx"后重新上传');
+        } else {
+          throw new Error('不支持的文件类型: ' + (ext || '(无后缀)') + '。支持: .md / .docx / .txt');
+        }
+
+        // Insert into the textarea. If user has typed something already,
+        // append with a separator so neither side gets clobbered.
+        const cur = customMdInput.value.trim();
+        const sep = cur ? '\n\n---\n\n' : '';
+        customMdInput.value = cur + sep + text;
+        // Move caret to the end so the user sees what was inserted
+        customMdInput.scrollTop = customMdInput.scrollHeight;
+        try { customMdInput.setSelectionRange(customMdInput.value.length, customMdInput.value.length); } catch {}
+
+        setUploadHint('submit.uploadOk', { filename: name, charCount: text.length });
+        showClearBtn(true);
+
+        // Surface a small footer status so the user sees the upload succeeded
+        if (customStatus) {
+          customStatus.textContent = _tr('submit.uploadOk', { filename: name, charCount: text.length, fallback: 'Loaded ' + name });
+        }
+      } catch (e) {
+        setUploadHint('submit.uploadFail', { error: e?.message || String(e) });
+        if (customStatus) {
+          customStatus.textContent = _tr('submit.uploadFail', { error: e?.message || String(e), fallback: 'Parse failed: ' + (e?.message || e) });
+        }
+      }
+    }
+
+    function resetUploadState() {
+      lastUploadedName = '';
+      if (customFileInput) customFileInput.value = '';
+      setUploadMeta('');
+      setUploadHint('submit.uploadEmpty');
+      showClearBtn(false);
+    }
+
+    customUploadBtn && customUploadBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      customFileInput && customFileInput.click();
+    });
+    customDrop && customDrop.addEventListener('click', (e) => {
+      // Click anywhere in the drop zone (except the clear button) → file picker
+      if (e.target === customClearBtn) return;
+      customFileInput && customFileInput.click();
+    });
+    customDrop && customDrop.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        customFileInput && customFileInput.click();
+      }
+    });
+    customFileInput && customFileInput.addEventListener('change', () => {
+      const f = customFileInput.files && customFileInput.files[0];
+      if (f) uploadFile(f);
+    });
+
+    // Drag-and-drop on the drop zone
+    ['dragenter', 'dragover'].forEach((ev) => {
+      customDrop && customDrop.addEventListener(ev, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        customDrop.style.borderColor = '#1A1A1A';
+        customDrop.style.background = '#F4EFE6';
+      });
+    });
+    ['dragleave', 'drop'].forEach((ev) => {
+      customDrop && customDrop.addEventListener(ev, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        customDrop.style.borderColor = '';
+        customDrop.style.background = '';
+      });
+    });
+    customDrop && customDrop.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      if (!dt || !dt.files || dt.files.length === 0) return;
+      const f = dt.files[0];
+      uploadFile(f);
+    });
+
+    // Clear uploaded file indicator (does NOT clear the textarea — the
+    // inserted text stays; this only resets the drop zone state so the
+    // user can upload a different file in this session).
+    customClearBtn && customClearBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      resetUploadState();
+    });
 
     function openReportModal(url, name) {
       if (!url) return;
@@ -3662,7 +3853,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
           items.push('<strong>' + dimRecognition + '</strong> TOP 2: ' + rankNames.join(' & ') + '. Borrow their signature cues first (logo, signature color, reusable graphic units), then refine the rest.');
         } else {
           const rankedList = sortedByRecognition.map((r, i) => '<strong>' + r.name + '</strong> ' + r.vals[5].toFixed(1)).join(' › ');
-          items.push('<strong>' + dimRecognition + '</strong> ranking: ' + rankedList + '. Lead with <strong>' + topName + '</strong>'s signature cues; treat the bottom of the list as "holes" you can either fill or deliberately ignore.');
+          items.push('<strong>' + dimRecognition + '</strong> ranking: ' + rankedList + '. Lead with <strong>' + topName + '</strong>’s signature cues; treat the bottom of the list as "holes" you can either fill or deliberately ignore.');
         }
       } else {
         if (N === 2) {
@@ -3678,7 +3869,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         ? dimRestraint + ' ' + avgPerDim[0].avg.toFixed(1) + ' · ' + dimWarmth + ' ' + avgPerDim[1].avg.toFixed(1) + ' · ' + dimRecognition + ' ' + avgPerDim[5].avg.toFixed(1)
         : dimRestraint + ' ' + avgPerDim[0].avg.toFixed(1) + ' · ' + dimWarmth + ' ' + avgPerDim[1].avg.toFixed(1) + ' · ' + dimRecognition + ' ' + avgPerDim[5].avg.toFixed(1);
       if (isEn) {
-        items.push('Group averages: ' + avgsShort + '. The widest scoring gap is on <strong>' + widestGap.dim + '</strong> (' + widestGap.gap.toFixed(1) + ') — that's where this group is most fragmented, so it's your cleanest lane to differentiate.');
+        items.push('Group averages: ' + avgsShort + '. The widest scoring gap is on <strong>' + widestGap.dim + '</strong> (' + widestGap.gap.toFixed(1) + ') — that’s where this group is most fragmented, so it’s your cleanest lane to differentiate.');
       } else {
         items.push('组内平均：' + avgsShort + '。差距最大的维度是 <strong>' + widestGap.dim + '</strong>（极差 ' + widestGap.gap.toFixed(1) + '）—— 这一维各家最分散，是最干净的差异化切入点。');
       }
@@ -3689,7 +3880,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
           items.push('Palette strategy: keep one neutral base + one signature accent. <strong>' + paletteInfo[0].name + '</strong> uses ' + paletteInfo[0].count + ' primary colors, <strong>' + paletteInfo[1].name + '</strong> uses ' + paletteInfo[1].count + ' — pick the magnitude you can sustain.');
         } else {
           const countsList = paletteInfo.map((p) => '<strong>' + p.name + '</strong> ' + p.count).join(' · ');
-          items.push('Palette strategy: keep one neutral base + one signature accent. Color counts — ' + countsList + ' (group avg ' + avgColorCount + '). Lean toward the leaner end (<strong>' + minColorBrand.name + '</strong>, ' + minColorBrand.count + ') for visual consistency, or push toward <strong>' + maxColorBrand.name + '</strong>'s ' + maxColorBrand.count + ' if you need range.');
+          items.push('Palette strategy: keep one neutral base + one signature accent. Color counts — ' + countsList + ' (group avg ' + avgColorCount + '). Lean toward the leaner end (<strong>' + minColorBrand.name + '</strong>, ' + minColorBrand.count + ') for visual consistency, or push toward <strong>' + maxColorBrand.name + '</strong>’s ' + maxColorBrand.count + ' if you need range.');
         }
       } else {
         if (N === 2) {
@@ -3877,6 +4068,12 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'submit.placeholder': '# Brand notes\n\nPaste your brand-related content here in Markdown.\nFor example: positioning, story, visual tone, product claims, competitor notes.',
         'submit.placeholderName': 'Brand name (optional)',
         'submit.run':         'RUN RESEARCH',
+        'submit.uploadBtn':   '📎 上传文件',
+        'submit.uploadHint':  '拖入或点击上传 .md / .docx / .txt 文件',
+        'submit.uploadEmpty': '未选择文件',
+        'submit.uploadLoading':'正在解析…',
+        'submit.uploadOk':    '已加载 {filename} ({charCount} 字符)',
+        'submit.uploadFail':  '解析失败：{error}',
         'compare.label':      '品牌对比 · Brand Comparison',
         'compare.title':      '并排对比 · Side-by-side',
         'compare.heading':    '对比品牌（2 – 4 个）',
@@ -4018,6 +4215,12 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'submit.placeholder': '# Brand notes\n\nPaste your brand-related content here in Markdown.\nFor example: positioning, story, visual tone, product claims, competitor notes.',
         'submit.placeholderName': 'Brand name (optional)',
         'submit.run':         'RUN RESEARCH',
+        'submit.uploadBtn':   '📎 Upload file',
+        'submit.uploadHint':  'Drag in or click to upload .md / .docx / .txt',
+        'submit.uploadEmpty': 'No file selected',
+        'submit.uploadLoading':'Parsing…',
+        'submit.uploadOk':    'Loaded {filename} ({charCount} chars)',
+        'submit.uploadFail':  'Parse failed: {error}',
         'compare.label':      'Brand Comparison',
         'compare.title':      'Side-by-side',
         'compare.heading':    'Brands to compare (2 – 4)',
