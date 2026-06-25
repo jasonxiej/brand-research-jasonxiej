@@ -1421,22 +1421,22 @@
           </div>
 
           <div class="compare-section-head">
-            <h2>3 · 主色板并排对比</h2>
-            <div class="meta">每品牌展示 4 个主色</div>
+            <h2 data-i18n="compare.section.palette">3 · 主色板并排对比</h2>
+            <div class="meta" data-i18n="compare.section.paletteMeta">每品牌展示 4 个主色</div>
           </div>
           <div class="compare-palette-gallery" id="compare-palette-gallery"></div>
 
           <div class="compare-section-head">
-            <h2>4 · 可执行建议</h2>
-            <div class="meta">基于本次对比的可执行洞察</div>
+            <h2 data-i18n="compare.section.takeaway">4 · 可执行建议</h2>
+            <div class="meta" data-i18n="compare.section.takeawayMeta">基于本次对比的可执行洞察</div>
           </div>
           <div class="compare-takeaway">
-            <h3>可执行建议 · Actionable Insights</h3>
+            <h3 data-i18n="compare.takeaway.heading">可执行建议 · Actionable Insights</h3>
             <ol id="compare-takeaway-list"></ol>
           </div>
         </div>
 
-        <div id="compare-result-empty" class="compare-state-banner">
+        <div id="compare-result-empty" class="compare-state-banner" data-i18n="compare.empty">
           至少选择 2 个品牌开始对比。
         </div>
       </div>
@@ -1727,7 +1727,9 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         // Fallback: if module not yet ready, wait a tick.
         setTimeout(() => {
           if (typeof window.__compareOverlay === 'function') window.__compareOverlay();
-          else alert('对比浮层尚未就绪，请稍后重试。');
+          else alert((window.__i18n && window.__i18n.getLang() === 'en')
+            ? 'Compare overlay not ready yet, please retry shortly.'
+            : '对比浮层尚未就绪，请稍后重试。');
         }, 50);
       }
     }
@@ -3058,16 +3060,25 @@ For example: positioning, story, visual tone, product claims, competitor notes."
     // ===== Takeaway =====
     function renderTakeaway() {
       const selected = getSelectedBrands();
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const isEn = lang === 'en';
+
       if (selected.length < 2) {
-        takeawayEl.innerHTML = '<li>至少选择 2 个品牌以获得洞察建议。</li>';
+        takeawayEl.innerHTML = '<li>'
+          + (isEn ? 'Select at least 2 brands to unlock insights.' : '至少选择 2 个品牌以获得洞察建议。')
+          + '</li>';
         return;
       }
 
       const radars = selected.map((b) => ({
-        name: (window.__i18n ? window.__i18n.pickName(b, (window.__i18n ? window.__i18n.getLang() : 'zh')) : (b.name || b.nameZh || b.id)),
+        name: window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id),
         vals: getRadarValues(b)
       }));
-      const dims = (window.__i18n && window.__i18n.getLang() === 'en') ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
+      const dims = isEn ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
+      // dim[0] = Restraint / 克制, dim[1] = Warmth / 温度感, dim[5] = Identity / 识别强度
+      const dimRestraint   = dims[0];
+      const dimWarmth      = dims[1];
+      const dimRecognition = dims[5];
 
       const leaders = dims.map((dim, i) => {
         let bestIdx = 0; let bestVal = radars[0].vals[i];
@@ -3083,13 +3094,27 @@ For example: positioning, story, visual tone, product claims, competitor notes."
       const avgRecognition = avg(radars.map((r) => r.vals[5]));
 
       const sortedByRecognition = [...radars].sort((a, b) => b.vals[5] - a.vals[5]);
+      const top2Names = sortedByRecognition.slice(0, 2).map((r) => r.name);
+
+      const firstName = window.__i18n
+        ? window.__i18n.pickName(selected[0], lang)
+        : (selected[0].name || selected[0].nameZh || selected[0].id);
+      const firstColorCount = (selected[0].primaryColors || []).slice(0, 4).length;
 
       const items = [];
-      items.push('<strong>' + leaders[0].name + '</strong> 在 <strong>克制</strong> 维度领先（' + leaders[0].val.toFixed(1) + '），而 <strong>' + leaders[1].name + '</strong> 在 <strong>温度感</strong> 维度领先（' + leaders[1].val.toFixed(1) + '）—— 建议找到契合品牌定位的平衡点。');
-      items.push('<strong>识别强度</strong> TOP 2：' + sortedByRecognition.slice(0, 2).map((r) => r.name).join(' 与 ') + '。可优先借鉴它们的标志性符号（Logo、专属色、可复用的图形单元），再打磨其他细节。');
-      items.push('组内平均：克制 ' + avgRestraint.toFixed(1) + ' · 温度感 ' + avgWarmth.toFixed(1) + ' · 识别强度 ' + avgRecognition.toFixed(1) + '。建议把品牌定位在「低分与高分差距最大」的维度上，做差异化。');
-      items.push('主色板策略：保持一个中性底色 + 一个标志性强调色。' + (selected[0].name || '每个品牌') + ' 使用 ' + (selected[0].primaryColors || []).slice(0, 4).length + ' 个主色 —— 视觉一致性上对齐这个数量级。');
-      items.push('避免在所有维度上都和这组品牌对标。挑出 1–2 个可以「过度投入」的维度（如温度感或科技感），让其他维度保持品类平均即可。');
+      if (isEn) {
+        items.push('<strong>' + leaders[0].name + '</strong> leads on <strong>' + dimRestraint + '</strong> (' + leaders[0].val.toFixed(1) + '), while <strong>' + leaders[1].name + '</strong> leads on <strong>' + dimWarmth + '</strong> (' + leaders[1].val.toFixed(1) + ') — find the balance that fits your brand positioning.');
+        items.push('<strong>' + dimRecognition + '</strong> TOP 2: ' + top2Names.join(' & ') + '. Borrow their signature cues first (logo, signature color, reusable graphic units), then refine the rest.');
+        items.push('Group averages: ' + dimRestraint + ' ' + avgRestraint.toFixed(1) + ' · ' + dimWarmth + ' ' + avgWarmth.toFixed(1) + ' · ' + dimRecognition + ' ' + avgRecognition.toFixed(1) + '. Position your brand on the dimension with the widest gap between the lowest and highest scorer to differentiate.');
+        items.push('Palette strategy: keep one neutral base + one signature accent. <strong>' + firstName + '</strong> uses ' + firstColorCount + ' primary colors — align visual consistency around this magnitude.');
+        items.push('Do not benchmark every dimension against this set. Pick 1–2 dimensions to "over-invest" in (e.g. ' + dimWarmth + ' or ' + dims[3] + '), and keep the others at category average.');
+      } else {
+        items.push('<strong>' + leaders[0].name + '</strong> 在 <strong>' + dimRestraint + '</strong> 维度领先（' + leaders[0].val.toFixed(1) + '），而 <strong>' + leaders[1].name + '</strong> 在 <strong>' + dimWarmth + '</strong> 维度领先（' + leaders[1].val.toFixed(1) + '）—— 建议找到契合品牌定位的平衡点。');
+        items.push('<strong>' + dimRecognition + '</strong> TOP 2：' + top2Names.join(' 与 ') + '。可优先借鉴它们的标志性符号（Logo、专属色、可复用的图形单元），再打磨其他细节。');
+        items.push('组内平均：' + dimRestraint + ' ' + avgRestraint.toFixed(1) + ' · ' + dimWarmth + ' ' + avgWarmth.toFixed(1) + ' · ' + dimRecognition + ' ' + avgRecognition.toFixed(1) + '。建议把品牌定位在「低分与高分差距最大」的维度上，做差异化。');
+        items.push('主色板策略：保持一个中性底色 + 一个标志性强调色。<strong>' + firstName + '</strong> 使用 ' + firstColorCount + ' 个主色 —— 视觉一致性上对齐这个数量级。');
+        items.push('避免在所有维度上都和这组品牌对标。挑出 1–2 个可以「过度投入」的维度（如 ' + dimWarmth + ' 或 ' + dims[3] + '），让其他维度保持品类平均即可。');
+      }
 
       takeawayEl.innerHTML = items.map((t) => '<li>' + t + '</li>').join('');
     }
@@ -3098,12 +3123,14 @@ For example: positioning, story, visual tone, product claims, competitor notes."
     function renderAll() {
       renderPicker();
       const selected = getSelectedBrands();
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const isEn = lang === 'en';
       if (selected.length < 2) {
         resultArea.style.display = 'none';
         resultEmpty.style.display = 'block';
         resultEmpty.textContent = selected.length === 0
-          ? '尚未选择品牌。请从上方选择 2 – 4 个品牌开始对比。'
-          : '已选 ' + selected.length + ' 个品牌。再选至少 1 个开始对比。';
+          ? (isEn ? 'No brand selected yet. Pick 2 – 4 brands above to start comparing.' : '尚未选择品牌。请从上方选择 2 – 4 个品牌开始对比。')
+          : (isEn ? (selected.length + ' selected. Add at least 1 more to start comparing.') : ('已选 ' + selected.length + ' 个品牌。再选至少 1 个开始对比。'));
         if (state.chart) { try { state.chart.dispose(); } catch (e) {} state.chart = null; }
         return;
       }
@@ -3278,6 +3305,12 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'compare.countOne':   '{n} 个品牌',
         'compare.countMany':  '{n} 个品牌',
         'compare.removeAria': '移除 {name}',
+        'compare.section.palette': '3 · 主色板并排对比',
+        'compare.section.paletteMeta': '每品牌展示 4 个主色',
+        'compare.section.takeaway': '4 · 可执行建议',
+        'compare.section.takeawayMeta': '基于本次对比的可执行洞察',
+        'compare.takeaway.heading': '可执行建议 · Actionable Insights',
+        'compare.empty':     '至少选择 2 个品牌开始对比。',
         'trash.delete':       '删除到回收站',
         'trash.restore':      '恢复',
         'trash.purge':        '立即删除',
@@ -3408,6 +3441,12 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'compare.countOne':   '{n} brand',
         'compare.countMany':  '{n} brands',
         'compare.removeAria': 'Remove {name}',
+        'compare.section.palette': '3 · Primary palettes side-by-side',
+        'compare.section.paletteMeta': '4 primary colors per brand',
+        'compare.section.takeaway': '4 · Actionable insights',
+        'compare.section.takeawayMeta': 'Insights grounded in this comparison',
+        'compare.takeaway.heading': 'Actionable Insights · 可执行建议',
+        'compare.empty':     'Select at least 2 brands to start comparing.',
         'trash.delete':       'Delete to trash',
         'trash.restore':      'Restore',
         'trash.purge':        'Delete now',
