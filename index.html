@@ -3202,7 +3202,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
       }).join('');
     }
 
-    // ===== Takeaway =====
+    // ===== Takeaway (N-brand aware) =====
     function renderTakeaway() {
       const selected = getSelectedBrands();
       const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
@@ -3220,45 +3220,146 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         vals: getRadarValues(b)
       }));
       const dims = isEn ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
-      // dim[0] = Restraint / 克制, dim[1] = Warmth / 温度感, dim[5] = Identity / 识别强度
       const dimRestraint   = dims[0];
       const dimWarmth      = dims[1];
+      const dimGamification= dims[2];
+      const dimTech        = dims[3];
+      const dimEmotion     = dims[4];
       const dimRecognition = dims[5];
+      const N = radars.length;
+      const sep = isEn ? ' & ' : ' 与 ';
+      const andJoin = (arr) => arr.length <= 1
+        ? arr.join('')
+        : arr.slice(0, -1).join(sep) + (isEn ? ' & ' : ' 与 ') + arr[arr.length - 1];
 
+      // ---- 1. Per-dimension leaders (all 6 dims)
       const leaders = dims.map((dim, i) => {
         let bestIdx = 0; let bestVal = radars[0].vals[i];
         for (let k = 1; k < radars.length; k++) {
           if (radars[k].vals[i] > bestVal) { bestVal = radars[k].vals[i]; bestIdx = k; }
         }
-        return { dim, name: radars[bestIdx].name, val: bestVal };
+        return { dim, name: radars[bestIdx].name, val: bestVal, idx: bestIdx };
       });
+      // Per-brand leadership count (how many dims each brand leads)
+      const leadershipByBrand = radars.map((r, i) => ({
+        name: r.name,
+        dims: leaders.filter((l) => l.idx === i).map((l) => l.dim),
+        count: leaders.filter((l) => l.idx === i).length,
+        idx: i,
+      }));
+      const fullLeaders = leadershipByBrand.filter((b) => b.count > 0);
 
-      const avg = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
-      const avgRestraint   = avg(radars.map((r) => r.vals[0]));
-      const avgWarmth      = avg(radars.map((r) => r.vals[1]));
-      const avgRecognition = avg(radars.map((r) => r.vals[5]));
-
+      // ---- 2. Recognition ranking (all N brands)
       const sortedByRecognition = [...radars].sort((a, b) => b.vals[5] - a.vals[5]);
-      const top2Names = sortedByRecognition.slice(0, 2).map((r) => r.name);
+      const rankNames = sortedByRecognition.map((r) => r.name);
+      const topName = rankNames[0];
+      const topRecVal = sortedByRecognition[0].vals[5];
 
-      const firstName = window.__i18n
-        ? window.__i18n.pickName(selected[0], lang)
-        : (selected[0].name || selected[0].nameZh || selected[0].id);
-      const firstColorCount = (selected[0].primaryColors || []).slice(0, 4).length;
+      // ---- 3. Group averages + widest gap
+      const avg = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
+      const avgPerDim = dims.map((dim, i) => ({ dim, avg: avg(radars.map((r) => r.vals[i])) }));
+      const minMaxPerDim = dims.map((dim, i) => {
+        let lo = radars[0].vals[i], hi = radars[0].vals[i];
+        for (let k = 1; k < radars.length; k++) {
+          if (radars[k].vals[i] < lo) lo = radars[k].vals[i];
+          if (radars[k].vals[i] > hi) hi = radars[k].vals[i];
+        }
+        return { dim, gap: hi - lo };
+      });
+      const widestGap = [...minMaxPerDim].sort((a, b) => b.gap - a.gap)[0];
+
+      // ---- 4. Palette counts (per brand)
+      const paletteInfo = selected.map((b) => ({
+        name: window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id),
+        count: (b.primaryColors && b.primaryColors.length) ? Math.min(4, b.primaryColors.length) : ((b.palette || []).length || 1),
+      }));
+      const avgColorCount = (paletteInfo.reduce((s, p) => s + p.count, 0) / paletteInfo.length).toFixed(1);
+      const minColorBrand = paletteInfo.reduce((m, p) => (p.count < m.count ? p : m), paletteInfo[0]);
+      const maxColorBrand = paletteInfo.reduce((m, p) => (p.count > m.count ? p : m), paletteInfo[0]);
 
       const items = [];
+
+      // === Suggestion 1: Dimension leaders ===
+      // 2 brands: "A leads dim1, B leads dim2 — find the balance."
+      // N brands: full mapping — list which brand leads each dim, plus overall leader board.
       if (isEn) {
-        items.push('<strong>' + leaders[0].name + '</strong> leads on <strong>' + dimRestraint + '</strong> (' + leaders[0].val.toFixed(1) + '), while <strong>' + leaders[1].name + '</strong> leads on <strong>' + dimWarmth + '</strong> (' + leaders[1].val.toFixed(1) + ') — find the balance that fits your brand positioning.');
-        items.push('<strong>' + dimRecognition + '</strong> TOP 2: ' + top2Names.join(' & ') + '. Borrow their signature cues first (logo, signature color, reusable graphic units), then refine the rest.');
-        items.push('Group averages: ' + dimRestraint + ' ' + avgRestraint.toFixed(1) + ' · ' + dimWarmth + ' ' + avgWarmth.toFixed(1) + ' · ' + dimRecognition + ' ' + avgRecognition.toFixed(1) + '. Position your brand on the dimension with the widest gap between the lowest and highest scorer to differentiate.');
-        items.push('Palette strategy: keep one neutral base + one signature accent. <strong>' + firstName + '</strong> uses ' + firstColorCount + ' primary colors — align visual consistency around this magnitude.');
-        items.push('Do not benchmark every dimension against this set. Pick 1–2 dimensions to "over-invest" in (e.g. ' + dimWarmth + ' or ' + dims[3] + '), and keep the others at category average.');
+        if (N === 2) {
+          items.push('<strong>' + leaders[0].name + '</strong> leads on <strong>' + dimRestraint + '</strong> (' + leaders[0].val.toFixed(1) + '), while <strong>' + leaders[1].name + '</strong> leads on <strong>' + dimWarmth + '</strong> (' + leaders[1].val.toFixed(1) + ') — find the balance that fits your brand positioning.');
+        } else {
+          // Group leaders by brand, then list them
+          const lines = fullLeaders.sort((a, b) => b.count - a.count).map((b) => {
+            const dimsList = b.dims.map((d) => '<strong>' + d + '</strong>').join(', ');
+            return '<strong>' + b.name + '</strong>: ' + dimsList;
+          });
+          const leaderSentence = N === 3
+            ? lines[0] + '; ' + lines[1] + '; ' + lines[2]
+            : lines.join('; ');
+          items.push('Dimension leaders across ' + N + ' brands — ' + leaderSentence + '. Pick the brand whose pattern resonates most, or differentiate on a dim where no one leads.');
+        }
       } else {
-        items.push('<strong>' + leaders[0].name + '</strong> 在 <strong>' + dimRestraint + '</strong> 维度领先（' + leaders[0].val.toFixed(1) + '），而 <strong>' + leaders[1].name + '</strong> 在 <strong>' + dimWarmth + '</strong> 维度领先（' + leaders[1].val.toFixed(1) + '）—— 建议找到契合品牌定位的平衡点。');
-        items.push('<strong>' + dimRecognition + '</strong> TOP 2：' + top2Names.join(' 与 ') + '。可优先借鉴它们的标志性符号（Logo、专属色、可复用的图形单元），再打磨其他细节。');
-        items.push('组内平均：' + dimRestraint + ' ' + avgRestraint.toFixed(1) + ' · ' + dimWarmth + ' ' + avgWarmth.toFixed(1) + ' · ' + dimRecognition + ' ' + avgRecognition.toFixed(1) + '。建议把品牌定位在「低分与高分差距最大」的维度上，做差异化。');
-        items.push('主色板策略：保持一个中性底色 + 一个标志性强调色。<strong>' + firstName + '</strong> 使用 ' + firstColorCount + ' 个主色 —— 视觉一致性上对齐这个数量级。');
-        items.push('避免在所有维度上都和这组品牌对标。挑出 1–2 个可以「过度投入」的维度（如 ' + dimWarmth + ' 或 ' + dims[3] + '），让其他维度保持品类平均即可。');
+        if (N === 2) {
+          items.push('<strong>' + leaders[0].name + '</strong> 在 <strong>' + dimRestraint + '</strong> 维度领先（' + leaders[0].val.toFixed(1) + '），而 <strong>' + leaders[1].name + '</strong> 在 <strong>' + dimWarmth + '</strong> 维度领先（' + leaders[1].val.toFixed(1) + '）—— 建议找到契合品牌定位的平衡点。');
+        } else {
+          const lines = fullLeaders.sort((a, b) => b.count - a.count).map((b) => {
+            const dimsList = b.dims.map((d) => '<strong>' + d + '</strong>').join('、');
+            return '<strong>' + b.name + '</strong>：' + dimsList;
+          });
+          const leaderSentence = lines.join('；');
+          items.push(N + ' 个品牌的维度领先分布 —— ' + leaderSentence + '。可参考最契合的那一家，或挑一个无人领先的维度做差异化。');
+        }
+      }
+
+      // === Suggestion 2: Recognition ranking ===
+      // 2 brands: TOP 2 with values
+      // N brands: full ranking, highlight top + bottom
+      if (isEn) {
+        if (N === 2) {
+          items.push('<strong>' + dimRecognition + '</strong> TOP 2: ' + rankNames.join(' & ') + '. Borrow their signature cues first (logo, signature color, reusable graphic units), then refine the rest.');
+        } else {
+          const rankedList = sortedByRecognition.map((r, i) => '<strong>' + r.name + '</strong> ' + r.vals[5].toFixed(1)).join(' › ');
+          items.push('<strong>' + dimRecognition + '</strong> ranking: ' + rankedList + '. Lead with <strong>' + topName + '</strong>'s signature cues; treat the bottom of the list as "holes" you can either fill or deliberately ignore.');
+        }
+      } else {
+        if (N === 2) {
+          items.push('<strong>' + dimRecognition + '</strong> TOP 2：' + rankNames.join(' 与 ') + '。可优先借鉴它们的标志性符号（Logo、专属色、可复用的图形单元），再打磨其他细节。');
+        } else {
+          const rankedList = sortedByRecognition.map((r) => '<strong>' + r.name + '</strong> ' + r.vals[5].toFixed(1)).join(' › ');
+          items.push('<strong>' + dimRecognition + '</strong> 排名：' + rankedList + '。先借鉴 <strong>' + topName + '</strong> 的标志性符号；榜单末位的品牌可作为「可以差异化补位」的机会点。');
+        }
+      }
+
+      // === Suggestion 3: Group averages + widest gap (N-aware) ===
+      const avgsShort = isEn
+        ? dimRestraint + ' ' + avgPerDim[0].avg.toFixed(1) + ' · ' + dimWarmth + ' ' + avgPerDim[1].avg.toFixed(1) + ' · ' + dimRecognition + ' ' + avgPerDim[5].avg.toFixed(1)
+        : dimRestraint + ' ' + avgPerDim[0].avg.toFixed(1) + ' · ' + dimWarmth + ' ' + avgPerDim[1].avg.toFixed(1) + ' · ' + dimRecognition + ' ' + avgPerDim[5].avg.toFixed(1);
+      if (isEn) {
+        items.push('Group averages: ' + avgsShort + '. The widest scoring gap is on <strong>' + widestGap.dim + '</strong> (' + widestGap.gap.toFixed(1) + ') — that's where this group is most fragmented, so it's your cleanest lane to differentiate.');
+      } else {
+        items.push('组内平均：' + avgsShort + '。差距最大的维度是 <strong>' + widestGap.dim + '</strong>（极差 ' + widestGap.gap.toFixed(1) + '）—— 这一维各家最分散，是最干净的差异化切入点。');
+      }
+
+      // === Suggestion 4: Palette strategy (N-aware) ===
+      if (isEn) {
+        if (N === 2) {
+          items.push('Palette strategy: keep one neutral base + one signature accent. <strong>' + paletteInfo[0].name + '</strong> uses ' + paletteInfo[0].count + ' primary colors, <strong>' + paletteInfo[1].name + '</strong> uses ' + paletteInfo[1].count + ' — pick the magnitude you can sustain.');
+        } else {
+          const countsList = paletteInfo.map((p) => '<strong>' + p.name + '</strong> ' + p.count).join(' · ');
+          items.push('Palette strategy: keep one neutral base + one signature accent. Color counts — ' + countsList + ' (group avg ' + avgColorCount + '). Lean toward the leaner end (<strong>' + minColorBrand.name + '</strong>, ' + minColorBrand.count + ') for visual consistency, or push toward <strong>' + maxColorBrand.name + '</strong>'s ' + maxColorBrand.count + ' if you need range.');
+        }
+      } else {
+        if (N === 2) {
+          items.push('主色板策略：保持一个中性底色 + 一个标志性强调色。<strong>' + paletteInfo[0].name + '</strong> 使用 ' + paletteInfo[0].count + ' 个主色，<strong>' + paletteInfo[1].name + '</strong> 使用 ' + paletteInfo[1].count + ' 个 —— 选你能稳定维护的数量级。');
+        } else {
+          const countsList = paletteInfo.map((p) => '<strong>' + p.name + '</strong> ' + p.count).join(' · ');
+          items.push('主色板策略：保持一个中性底色 + 一个标志性强调色。各家主色数 —— ' + countsList + '（组内平均 ' + avgColorCount + '）。若想视觉一致，偏 <strong>' + minColorBrand.name + '</strong> 的精简路线（' + minColorBrand.count + ' 个）；若需要表达广度，可参考 <strong>' + maxColorBrand.name + '</strong> 的 ' + maxColorBrand.count + ' 个。');
+        }
+      }
+
+      // === Suggestion 5: Over-invest in 1-2 dims ===
+      if (isEn) {
+        items.push('Do not benchmark every dimension against this set. Pick 1–2 dimensions to "over-invest" in (e.g. <strong>' + dimWarmth + '</strong> or <strong>' + dimTech + '</strong>), and keep the others at category average.');
+      } else {
+        items.push('避免在所有维度上都和这组品牌对标。挑出 1–2 个可以「过度投入」的维度（如 <strong>' + dimWarmth + '</strong> 或 <strong>' + dimTech + '</strong>），让其他维度保持品类平均即可。');
       }
 
       takeawayEl.innerHTML = items.map((t) => '<li>' + t + '</li>').join('');
