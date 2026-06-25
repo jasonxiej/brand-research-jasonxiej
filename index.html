@@ -1115,6 +1115,34 @@
       color: var(--muted); display: block; margin-top: 0.25rem;
     }
 
+    /* Compare table — 8-dimension detail cells */
+    .compare-table .dim-cell { font-size: 0.86rem; line-height: 1.55; color: var(--ink); }
+    .compare-table .dim-cell .dim-k {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-right: 0.35rem;
+    }
+    .compare-table .dim-cell .dim-block { margin-bottom: 0.45rem; }
+    .compare-table .dim-cell .dim-block:last-child { margin-bottom: 0; }
+    .compare-table .dim-cell .dim-block strong { font-weight: 600; }
+    .compare-table .dim-cell .dim-block em { color: var(--muted); font-style: normal; font-size: 0.82rem; }
+    .compare-table .dim-cell ul.dim-list {
+      margin: 0; padding-left: 1.05rem; list-style: disc;
+    }
+    .compare-table .dim-cell ul.dim-list li { margin-bottom: 0.18rem; }
+    .compare-table .dim-cell .palette-swatch-row {
+      display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.2rem;
+    }
+    .compare-table .dim-cell .palette-swatch {
+      display: flex; align-items: center; gap: 0.3rem;
+      font-family: var(--font-mono); font-size: 0.72rem;
+      padding: 0.18rem 0.45rem; border: 1px solid var(--rule); border-radius: 999px;
+      background: var(--bg3); color: var(--ink);
+    }
+    .compare-table .dim-cell .palette-swatch .ps-chip {
+      width: 12px; height: 12px; border-radius: 50%; border: 1px solid var(--rule);
+    }
+
     /* Chart card */
     .compare-chart-card {
       background: var(--bg2);
@@ -1471,7 +1499,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
     <div class="modal-card report-modal" role="dialog" aria-labelledby="report-title" aria-modal="true">
       <div class="report-head">
         <div class="report-title-wrap">
-          <span class="report-label">报告预览 · Report</span>
+          <span class="report-label" data-i18n="report.label">报告预览 · Report</span>
           <h2 id="report-title">—</h2>
         </div>
         <div class="report-actions">
@@ -1480,7 +1508,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         </div>
       </div>
       <div class="report-body">
-        <iframe id="report-iframe" title="报告预览" src="about:blank" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe id="report-iframe" data-i18n-title="report.iframeTitle" title="报告预览" src="about:blank" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -2900,17 +2928,148 @@ For example: positioning, story, visual tone, product claims, competitor notes."
       renderAll();
     }
 
-    // ===== Table =====
+    // ===== Table (8 dimensions + 2 quick-context rows) =====
+    const DIM_LABELS = {
+      field:        { zh: '字段', en: 'Field' },
+      category:     { zh: '品类', en: 'Category' },
+      country:      { zh: '国家', en: 'Country' },
+      logo:         { zh: '1 · Logo', en: '1 · Logo' },
+      palette:      { zh: '2 · 色板', en: '2 · Palette' },
+      typography:   { zh: '3 · 字体', en: '3 · Typography' },
+      photography:  { zh: '4 · 摄影', en: '4 · Photography' },
+      tone:         { zh: '5 · 调性', en: '5 · Tone' },
+      positioning:  { zh: '6 · 定位', en: '6 · Positioning' },
+      user:         { zh: '7 · 目标用户', en: '7 · Target user' },
+      selling:      { zh: '8 · 卖点', en: '8 · Selling points' },
+      fieldType:    { zh: '类型', en: 'Type' },
+      fieldHeading: { zh: '标题', en: 'Heading' },
+      fieldBody:    { zh: '正文', en: 'Body' },
+      fieldNotes:   { zh: '备注', en: 'Notes' },
+      fieldLighting:{ zh: '光线', en: 'Lighting' },
+      fieldTone:    { zh: '色调', en: 'Tone' },
+      fieldCompos:  { zh: '构图', en: 'Composition' },
+      fieldKw:      { zh: '关键词', en: 'Keywords' },
+      fieldSummary: { zh: '摘要', en: 'Summary' },
+      fieldTagline: { zh: 'Tagline', en: 'Tagline' },
+      fieldAge:     { zh: '年龄', en: 'Age' },
+      fieldIdentity:{ zh: '身份', en: 'Identity' },
+      fieldPain:    { zh: '痛点', en: 'Pain' },
+      fieldScene:   { zh: '场景', en: 'Scene' },
+    };
+    function pickField(brand, key, lang) {
+      const en = brand[key + 'En'] || brand.i18n?.en?.[key + 'En'] || brand.i18n?.en?.[key];
+      const zh = brand[key] || brand[key + 'Zh'];
+      if (lang === 'en') return en || (zh && /[一-鿿]/.test(zh) ? '' : zh) || '';
+      return zh || '';
+    }
+    function pickNested(obj, zhKey, enKey, lang) {
+      if (!obj) return '';
+      const en = obj[enKey];
+      const zh = obj[zhKey];
+      if (lang === 'en') return en || (zh && /[一-鿿]/.test(zh) ? '' : zh) || '';
+      return zh || '';
+    }
+    function labelText(key, lang) {
+      return (DIM_LABELS[key] && DIM_LABELS[key][lang]) || (DIM_LABELS[key] && DIM_LABELS[key].zh) || key;
+    }
+
+    function renderLogoCell(b, lang) {
+      const logo = b.logo || {};
+      const type = lang === 'en' ? (logo.typeEn || '') : (logo.type || '');
+      const desc = pickNested(logo, 'description', 'descriptionEn', lang);
+      const cons = pickNested(logo, 'construction', 'constructionEn', lang);
+      const blocks = [];
+      if (type)  blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldType', lang)) + '</span><strong>' + escHtml(type) + '</strong></div>');
+      if (desc)  blocks.push('<div class="dim-block">' + escHtml(desc) + '</div>');
+      if (cons)  blocks.push('<div class="dim-block"><em>' + escHtml(cons) + '</em></div>');
+      return blocks.join('') || '<span class="dim-k">—</span>';
+    }
+    function renderPaletteCell(b, lang) {
+      const palette = (b.palette && b.palette.length) ? b.palette : (b.primaryColors || []).map((hex) => ({ hex, name: hex, nameEn: hex }));
+      if (!palette.length) return '<span class="dim-k">—</span>';
+      const swatches = palette.slice(0, 6).map((p) => {
+        const hex = p.hex || '#CCCCCC';
+        const name = lang === 'en' ? (p.nameEn || p.name || hex) : (p.name || p.nameEn || hex);
+        return '<span class="palette-swatch"><span class="ps-chip" style="background:' + escHtml(hex) + '"></span>' + escHtml(name) + '</span>';
+      }).join('');
+      return '<div class="palette-swatch-row">' + swatches + '</div>';
+    }
+    function renderTypographyCell(b, lang) {
+      const typo = b.typography || {};
+      const heading = pickNested(typo, 'heading', 'headingEn', lang);
+      const body    = pickNested(typo, 'body', 'bodyEn', lang);
+      const notes   = pickNested(typo, 'notes', 'notesEn', lang);
+      const blocks = [];
+      if (heading) blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldHeading', lang)) + '</span>' + escHtml(heading) + '</div>');
+      if (body)    blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldBody', lang)) + '</span>' + escHtml(body) + '</div>');
+      if (notes)   blocks.push('<div class="dim-block"><em>' + escHtml(notes) + '</em></div>');
+      return blocks.join('') || '<span class="dim-k">—</span>';
+    }
+    function renderPhotographyCell(b, lang) {
+      const photo = b.photography || {};
+      const style   = pickNested(photo, 'style', 'styleEn', lang);
+      const lighting= pickNested(photo, 'lighting', 'lightingEn', lang);
+      const tone    = pickNested(photo, 'tone', 'toneEn', lang);
+      const comp    = pickNested(photo, 'composition', 'compositionEn', lang);
+      const blocks = [];
+      if (style)    blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldType', lang)) + '</span><strong>' + escHtml(style) + '</strong></div>');
+      if (lighting) blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldLighting', lang)) + '</span>' + escHtml(lighting) + '</div>');
+      if (tone)     blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldTone', lang)) + '</span>' + escHtml(tone) + '</div>');
+      if (comp)     blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldCompos', lang)) + '</span>' + escHtml(comp) + '</div>');
+      return blocks.join('') || '<span class="dim-k">—</span>';
+    }
+    function renderToneCell(b, lang) {
+      const tagsArr = lang === 'en'
+        ? (b.toneEn && b.toneEn.length ? b.toneEn : (b.toneSummaryEn ? [b.toneSummaryEn] : []))
+        : (b.tone || []);
+      const summary = pickField(b, 'toneSummary', lang);
+      const sep = lang === 'en' ? ', ' : '、';
+      const blocks = [];
+      if (tagsArr && tagsArr.length) {
+        blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldKw', lang)) + '</span>' + escHtml(tagsArr.join(sep)) + '</div>');
+      }
+      if (summary) {
+        blocks.push('<div class="dim-block"><em>' + escHtml(summary) + '</em></div>');
+      }
+      return blocks.join('') || '<span class="dim-k">—</span>';
+    }
+    function renderPositioningCell(b, lang) {
+      const tagline = lang === 'en' ? (b.taglineEn || '') : (b.tagline || '');
+      const positioning = pickField(b, 'positioning', lang);
+      const blocks = [];
+      if (tagline) {
+        blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldTagline', lang)) + '</span><em>"' + escHtml(tagline) + '"</em></div>');
+      }
+      if (positioning) {
+        blocks.push('<div class="dim-block">' + escHtml(positioning) + '</div>');
+      }
+      return blocks.join('') || '<span class="dim-k">—</span>';
+    }
+    function renderUserCell(b, lang) {
+      const u = b.targetUser || {};
+      const age      = pickNested(u, 'age', 'ageEn', lang);
+      const identity = pickNested(u, 'identity', 'identityEn', lang);
+      const pain     = pickNested(u, 'pain', 'painEn', lang);
+      const scene    = pickNested(u, 'scene', 'sceneEn', lang);
+      const blocks = [];
+      if (age)      blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldAge', lang)) + '</span>' + escHtml(age) + '</div>');
+      if (identity) blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldIdentity', lang)) + '</span>' + escHtml(identity) + '</div>');
+      if (pain)     blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldPain', lang)) + '</span>' + escHtml(pain) + '</div>');
+      if (scene)    blocks.push('<div class="dim-block"><span class="dim-k">' + escHtml(labelText('fieldScene', lang)) + '</span>' + escHtml(scene) + '</div>');
+      return blocks.join('') || '<span class="dim-k">—</span>';
+    }
+    function renderSellingCell(b, lang) {
+      const arr = lang === 'en' ? (b.sellingPointsEn || []) : (b.sellingPoints || []);
+      if (!arr.length) return '<span class="dim-k">—</span>';
+      const items = arr.map((s) => '<li>' + escHtml(s) + '</li>').join('');
+      return '<ul class="dim-list">' + items + '</ul>';
+    }
+
     function renderTable() {
       const selected = getSelectedBrands();
       const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
-      const tField    = lang === 'en' ? 'Field' : '字段';
-      const tCategory = lang === 'en' ? 'Category' : '品类';
-      const tCountry  = lang === 'en' ? 'Country' : '国家';
-      const tSlogan   = lang === 'en' ? 'Slogan' : 'Slogan';
-      const tRadar    = lang === 'en' ? 'Tone radar' : '维度对比';
-      const tColors   = lang === 'en' ? 'Primary palette' : '主色板';
-      const countLbl  = lang === 'en'
+      const isEn = lang === 'en';
+      const countLbl = isEn
         ? (selected.length === 1 ? '1 brand' : selected.length + ' brands')
         : selected.length + ' 个品牌';
       compareTMeta.textContent = countLbl;
@@ -2927,47 +3086,26 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         '</th>';
       }).join('');
 
-      const rows = [];
-      rows.push('<tr><th>' + tCategory + '</th>' + selected.map((b) => {
-        const cat = window.__i18n ? window.__i18n.pickCategory(b, lang) : toEnCategory(b.category);
-        return '<td>' + escHtml(cat) + '</td>';
-      }).join('') + '</tr>');
-      rows.push('<tr><th>' + tCountry + '</th>' + selected.map((b) => {
-        const cty = window.__i18n ? window.__i18n.pickCountry(b, lang) : toEnCountry(b.country);
-        return '<td>' + escHtml(cty) + '</td>';
-      }).join('') + '</tr>');
-      rows.push('<tr><th>' + tSlogan + '</th>' + selected.map((b) => {
-        const tagline = (lang === 'en' && b.taglineEn) ? b.taglineEn : (b.tagline || '—');
-        return '<td class="tagline-cell">"' + escHtml(tagline) + '"</td>';
-      }).join('') + '</tr>');
-
-      const radarCells = selected.map((b) => {
-        const vals = getRadarValues(b);
-        const labels = (lang === 'en') ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
-        const inner = labels.map((label, i) => {
-          const v = vals[i] || 0;
-          const barWidth = Math.max(0, Math.min(10, v)) * 8;
-          return '<div class="rd-row"><span class="k">' + escHtml(label) + '</span><span class="v">' + v.toFixed(1) + '<span class="bar" style="width:' + barWidth + 'px"></span></span></div>';
-        }).join('');
-        return '<td class="radar-cell">' + inner + '</td>';
+      const dims = [
+        { key: 'category',    label: labelText('category', lang),    render: (b) => escHtml(window.__i18n ? window.__i18n.pickCategory(b, lang) : toEnCategory(b.category)) },
+        { key: 'country',     label: labelText('country', lang),     render: (b) => escHtml(window.__i18n ? window.__i18n.pickCountry(b, lang) : toEnCountry(b.country)) },
+        { key: 'logo',        label: labelText('logo', lang),        render: (b) => renderLogoCell(b, lang) },
+        { key: 'palette',     label: labelText('palette', lang),     render: (b) => renderPaletteCell(b, lang) },
+        { key: 'typography',  label: labelText('typography', lang),  render: (b) => renderTypographyCell(b, lang) },
+        { key: 'photography', label: labelText('photography', lang), render: (b) => renderPhotographyCell(b, lang) },
+        { key: 'tone',        label: labelText('tone', lang),        render: (b) => renderToneCell(b, lang) },
+        { key: 'positioning', label: labelText('positioning', lang), render: (b) => renderPositioningCell(b, lang) },
+        { key: 'user',        label: labelText('user', lang),        render: (b) => renderUserCell(b, lang) },
+        { key: 'selling',     label: labelText('selling', lang),     render: (b) => renderSellingCell(b, lang) },
+      ];
+      const rows = dims.map((d) => {
+        const cells = selected.map((b) => '<td class="dim-cell">' + d.render(b) + '</td>').join('');
+        return '<tr><th>' + escHtml(d.label) + '</th>' + cells + '</tr>';
       }).join('');
-      rows.push('<tr><th>' + tRadar + '</th>' + radarCells + '</tr>');
-
-      const colorCells = selected.map((b) => {
-        const colors = (b.primaryColors || []).slice(0, 4);
-        const swatches = colors.map((hex) => {
-          return '<div>' +
-            '<div class="swatch" style="background:' + escHtml(hex) + '"></div>' +
-            '<span class="swatch-hex">' + escHtml(hex) + '</span>' +
-          '</div>';
-        }).join('');
-        return '<td><div class="swatch-row">' + swatches + '</div></td>';
-      }).join('');
-      rows.push('<tr><th>' + tColors + '</th>' + colorCells + '</tr>');
 
       compareTableEl.innerHTML =
-        '<thead><tr><th>' + tField + '</th>' + headerCells + '</tr></thead>' +
-        '<tbody>' + rows.join('') + '</tbody>';
+        '<thead><tr><th>' + escHtml(labelText('field', lang)) + '</th>' + headerCells + '</tr></thead>' +
+        '<tbody>' + rows + '</tbody>';
     }
 
     // ===== Radar =====
@@ -3312,6 +3450,8 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'compare.countOne':   '{n} 个品牌',
         'compare.countMany':  '{n} 个品牌',
         'compare.removeAria': '移除 {name}',
+        'report.label':      '报告预览',
+        'report.iframeTitle':'报告预览',
         'compare.section.overview': '1 · 对比总览',
         'compare.section.radar': '2 · 6 维风格雷达',
         'compare.section.palette': '3 · 主色板并排对比',
@@ -3450,6 +3590,8 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'compare.countOne':   '{n} brand',
         'compare.countMany':  '{n} brands',
         'compare.removeAria': 'Remove {name}',
+        'report.label':      'Report preview',
+        'report.iframeTitle':'Report preview',
         'compare.section.overview': '1 · Comparison overview',
         'compare.section.radar': '2 · 6-axis tone radar',
         'compare.section.palette': '3 · Primary palettes side-by-side',
