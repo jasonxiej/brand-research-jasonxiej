@@ -2019,6 +2019,8 @@ For example: positioning, story, visual tone, product claims, competitor notes."
             btn.disabled = true;
             const failMsg = isEn ? 'Delete failed: ' : '删除失败：';
             let ok = 0, fail = 0;
+            let staleDeployHint = null;
+            let supabaseHint = null;
             for (const id of ids) {
               try {
                 const r = await fetch('/api/trash', {
@@ -2029,7 +2031,17 @@ For example: positioning, story, visual tone, product claims, competitor notes."
                 if (r.ok) {
                   ok++;
                   if (selectedIds.has(id)) selectedIds.delete(id);
-                } else { fail++; }
+                } else {
+                  fail++;
+                  // Capture the most actionable error from the first failure
+                  // so the user sees the real reason (e.g. Vercel is on a
+                  // stale build, or Supabase env vars are missing).
+                  try {
+                    const body = await r.json();
+                    if (body?.code === 'STALE_DEPLOY' && !staleDeployHint) staleDeployHint = body.error;
+                    if (r.status === 503 && !supabaseHint) supabaseHint = body.error;
+                  } catch {}
+                }
               } catch (e) {
                 fail++;
               }
@@ -2039,10 +2051,11 @@ For example: positioning, story, visual tone, product claims, competitor notes."
             updateTray();
             await loadLibrary();
             updateTray();
-            if (fail === 0) {
-              // Silent success — already removed from UI
-            } else {
-              alert((isEn ? 'Deleted ' : '已删除 ') + ok + (isEn ? ' · ' : ' · 失败 ') + fail);
+            if (fail > 0) {
+              // Prefer the most actionable explanation
+              const msg = staleDeployHint || supabaseHint
+                || ((isEn ? 'Deleted ' : '已删除 ') + ok + (isEn ? ' · ' : ' · 失败 ') + fail);
+              alert(msg);
             }
           });
         });
