@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-06-24",
+  "updated": "2026-06-25",
   "description": "{YOUR_BRAND} 品牌调研库索引",
   "brands": [
     {
@@ -154,6 +154,166 @@
         "identity": "Sports enthusiasts, urban youth, style-driven consumers",
         "pain": "A need for wardrobe solutions that balance performance, comfort, and personal style",
         "scene": "Training, commuting, street styling, casual social occasions"
+      },
+      "heuristicRadar": {
+        "克制": 4,
+        "温度感": 3.5,
+        "游戏化": 3,
+        "科技感": 8,
+        "情感连接": 3,
+        "识别强度": 7
+      },
+      "heuristicRadarArray": [
+        4,
+        3.5,
+        3,
+        8,
+        3,
+        7
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 4,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.46666666666666656,
+              "weight": 0.3,
+              "explain": "variance 0.160"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.375,
+              "weight": 0.25,
+              "explain": "5 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.375,
+              "weight": 0.2,
+              "explain": "5 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.2772727272727272,
+              "weight": 0.25,
+              "explain": "159 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.6684782608695652,
+              "weight": 0.45,
+              "explain": "mean hue 42°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.2,
+              "weight": 0.25,
+              "explain": "mean sat 20%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 3,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0,
+              "weight": 0.65,
+              "explain": "0 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.88,
+              "weight": 0.35,
+              "explain": "16 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 8,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 0.6666666666666666,
+              "weight": 0.65,
+              "explain": "4 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "geometric/sans markers found"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 3,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "0 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.7,
+              "weight": 0.4,
+              "explain": "21 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 7,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.2,
+              "weight": 0.35,
+              "explain": "mean sat 20%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 0.8817934782608695,
+              "weight": 0.2,
+              "explain": "spread 212°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 1,
+              "weight": 0.2,
+              "explain": "2 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "4 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 2.3
       }
     },
     {
@@ -305,6 +465,166 @@
         "identity": "Urban white-collar professionals, creative workers, students, and tech enthusiasts",
         "pain": "Want devices that are intuitive to use, visually cohesive, and seamlessly connected across the ecosystem",
         "scene": "Office, creative work, commuting, entertainment, and everyday life"
+      },
+      "heuristicRadar": {
+        "克制": 5,
+        "温度感": 1.5,
+        "游戏化": 4,
+        "科技感": 6.5,
+        "情感连接": 2.5,
+        "识别强度": 5.5
+      },
+      "heuristicRadarArray": [
+        5,
+        1.5,
+        4,
+        6.5,
+        2.5,
+        5.5
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 5,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.5160717426723775,
+              "weight": 0.3,
+              "explain": "variance 0.145"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.375,
+              "weight": 0.25,
+              "explain": "5 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.375,
+              "weight": 0.2,
+              "explain": "5 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.6272727272727272,
+              "weight": 0.25,
+              "explain": "82 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 1.5,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.24863169136296878,
+              "weight": 0.45,
+              "explain": "mean hue 177°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.24146031746031746,
+              "weight": 0.25,
+              "explain": "mean sat 24%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 4,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0.16666666666666666,
+              "weight": 0.65,
+              "explain": "1 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.84,
+              "weight": 0.35,
+              "explain": "18 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 6.5,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 1,
+              "weight": 0.65,
+              "explain": "10 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "no geometric markers"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 2.5,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "0 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.6666666666666666,
+              "weight": 0.4,
+              "explain": "20 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 5.5,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.24146031746031746,
+              "weight": 0.35,
+              "explain": "mean sat 24%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 1,
+              "weight": 0.2,
+              "explain": "spread 240°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 0,
+              "weight": 0.2,
+              "explain": "0 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "5 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 3.9
       }
     },
     {
@@ -474,6 +794,166 @@
         "identity": "Global internet users, students, developers, small and medium business owners, and advertisers",
         "pain": "Information overload, high switching costs across tools, and a lack of integrated intelligent assistants for complex tasks",
         "scene": "Daily search, office collaboration, travel navigation, learning and research, and content consumption"
+      },
+      "heuristicRadar": {
+        "克制": 2.5,
+        "温度感": 3.5,
+        "游戏化": 4,
+        "科技感": 6.5,
+        "情感连接": 3.5,
+        "识别强度": 6.5
+      },
+      "heuristicRadarArray": [
+        2.5,
+        3.5,
+        4,
+        6.5,
+        3.5,
+        6.5
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 2.5,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.49824274493251264,
+              "weight": 0.3,
+              "explain": "variance 0.151"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.25,
+              "weight": 0.25,
+              "explain": "6 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.125,
+              "weight": 0.2,
+              "explain": "7 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "230 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.5244333196434213,
+              "weight": 0.45,
+              "explain": "mean hue 105°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.542709897752913,
+              "weight": 0.25,
+              "explain": "mean sat 54%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 4,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0.16666666666666666,
+              "weight": 0.65,
+              "explain": "1 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.84,
+              "weight": 0.35,
+              "explain": "18 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 6.5,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 1,
+              "weight": 0.65,
+              "explain": "8 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "no geometric markers"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "0 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.9,
+              "weight": 0.4,
+              "explain": "27 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 6.5,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.542709897752913,
+              "weight": 0.35,
+              "explain": "mean sat 54%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 0.9374999999999998,
+              "weight": 0.2,
+              "explain": "spread 225°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 0,
+              "weight": 0.2,
+              "explain": "0 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "6 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 3.8
       }
     },
     {
@@ -629,6 +1109,166 @@
         "identity": "Quality-of-life-conscious urban new parents and young families",
         "pain": "Wanting both science-based parenting and their own personal rhythm, with no non-intrusive sleep solutions available",
         "scene": "Bedtime soothing, night waking, nighttime rising, pre-sleep reading, remote comfort, pregnancy sleep aid"
+      },
+      "heuristicRadar": {
+        "克制": 5,
+        "温度感": 7.5,
+        "游戏化": 2,
+        "科技感": 10,
+        "情感连接": 5.5,
+        "识别强度": 4.5
+      },
+      "heuristicRadarArray": [
+        5,
+        7.5,
+        2,
+        10,
+        5.5,
+        4.5
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 5,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.8907826243538484,
+              "weight": 0.3,
+              "explain": "variance 0.033"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.25,
+              "weight": 0.25,
+              "explain": "6 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.5,
+              "weight": 0.2,
+              "explain": "4 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.35,
+              "weight": 0.25,
+              "explain": "143 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 7.5,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.8704975091522988,
+              "weight": 0.45,
+              "explain": "mean hue 34°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.31016361017067534,
+              "weight": 0.25,
+              "explain": "mean sat 31%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 1,
+              "weight": 0.3,
+              "explain": "6 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 2,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0,
+              "weight": 0.65,
+              "explain": "0 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.64,
+              "weight": 0.35,
+              "explain": "28 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 10,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 1,
+              "weight": 0.65,
+              "explain": "6 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "geometric/sans markers found"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 5.5,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0.6666666666666666,
+              "weight": 0.25,
+              "explain": "2 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 1,
+              "weight": 0.4,
+              "explain": "30 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 4.5,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.31016361017067534,
+              "weight": 0.35,
+              "explain": "mean sat 31%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 0.3928571428571429,
+              "weight": 0.2,
+              "explain": "spread 94°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 0,
+              "weight": 0.2,
+              "explain": "0 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "6 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 2.2
       }
     },
     {
@@ -781,6 +1421,166 @@
         "identity": "Professional athletes, fitness enthusiasts, and younger sports consumers",
         "pain": "Need to balance performance, style, and identity expression, while craving motivation and recognition",
         "scene": "Training, competition, commuting, streetwear styling, and everyday active life"
+      },
+      "heuristicRadar": {
+        "克制": 4,
+        "温度感": 4,
+        "游戏化": 3,
+        "科技感": 10,
+        "情感连接": 4,
+        "识别强度": 5
+      },
+      "heuristicRadarArray": [
+        4,
+        4,
+        3,
+        10,
+        4,
+        5
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 4,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.6129858253315044,
+              "weight": 0.3,
+              "explain": "variance 0.116"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.375,
+              "weight": 0.25,
+              "explain": "5 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.375,
+              "weight": 0.2,
+              "explain": "5 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.2727272727272727,
+              "weight": 0.25,
+              "explain": "160 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 4,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.8224637681159421,
+              "weight": 0.45,
+              "explain": "mean hue 70°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.17037037037037037,
+              "weight": 0.25,
+              "explain": "mean sat 17%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 3,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0,
+              "weight": 0.65,
+              "explain": "0 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.9,
+              "weight": 0.35,
+              "explain": "15 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 10,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 1,
+              "weight": 0.65,
+              "explain": "8 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "geometric/sans markers found"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 4,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0.3333333333333333,
+              "weight": 0.25,
+              "explain": "1 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.8333333333333334,
+              "weight": 0.4,
+              "explain": "25 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 5,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.17037037037037037,
+              "weight": 0.35,
+              "explain": "mean sat 17%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 1,
+              "weight": 0.2,
+              "explain": "spread 350°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 0,
+              "weight": 0.2,
+              "explain": "0 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "5 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 2.3
       }
     },
     {
@@ -944,6 +1744,166 @@
         "identity": "Family gamers, core fans, nostalgia-driven adults",
         "pain": "Wanting high-quality entertainment that isn't complex or violent and can be shared with family",
         "scene": "Living room co-op, travel handheld play, friend gatherings"
+      },
+      "heuristicRadar": {
+        "克制": 3,
+        "温度感": 4.5,
+        "游戏化": 7,
+        "科技感": 3.5,
+        "情感连接": 3,
+        "识别强度": 7
+      },
+      "heuristicRadarArray": [
+        3,
+        4.5,
+        7,
+        3.5,
+        3,
+        7
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 3,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.16666666666666663,
+              "weight": 0.3,
+              "explain": "variance 0.250"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.25,
+              "weight": 0.25,
+              "explain": "6 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.375,
+              "weight": 0.2,
+              "explain": "5 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.5409090909090909,
+              "weight": 0.25,
+              "explain": "101 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 4.5,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.7185395079949877,
+              "weight": 0.45,
+              "explain": "mean hue 99°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.5,
+              "weight": 0.25,
+              "explain": "mean sat 50%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 7,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0.5,
+              "weight": 0.65,
+              "explain": "3 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "6 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 0,
+              "weight": 0.65,
+              "explain": "0 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "geometric/sans markers found"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 3,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "0 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.7333333333333333,
+              "weight": 0.4,
+              "explain": "22 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 7,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.5,
+              "weight": 0.35,
+              "explain": "mean sat 50%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 1,
+              "weight": 0.2,
+              "explain": "spread 355°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 1,
+              "weight": 0.2,
+              "explain": "2 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 0.5,
+              "weight": 0.25,
+              "explain": "1 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 1.7
       }
     },
     {
@@ -1095,6 +2055,166 @@
         "identity": "Knowledge workers / sleep optimizers / biohackers",
         "pain": "Smartwatches disrupt sleep; recovery state is hard to quantify; craving deeper health insight",
         "scene": "Overnight sleep monitoring, post-stress recovery assessment, morning check-in ritual"
+      },
+      "heuristicRadar": {
+        "克制": 5.5,
+        "温度感": 4,
+        "游戏化": 3.5,
+        "科技感": 9,
+        "情感连接": 3,
+        "识别强度": 6.5
+      },
+      "heuristicRadarArray": [
+        5.5,
+        4,
+        3.5,
+        9,
+        3,
+        6.5
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 5.5,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.9031622317409962,
+              "weight": 0.3,
+              "explain": "variance 0.029"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.375,
+              "weight": 0.25,
+              "explain": "5 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.375,
+              "weight": 0.2,
+              "explain": "5 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.5409090909090909,
+              "weight": 0.25,
+              "explain": "101 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 4,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.7773178137651822,
+              "weight": 0.45,
+              "explain": "mean hue 68°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.22213277663907496,
+              "weight": 0.25,
+              "explain": "mean sat 22%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 0.16666666666666666,
+              "weight": 0.65,
+              "explain": "1 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.64,
+              "weight": 0.35,
+              "explain": "28 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 9,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 0.8333333333333334,
+              "weight": 0.65,
+              "explain": "5 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "geometric/sans markers found"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 3,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "0 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.8,
+              "weight": 0.4,
+              "explain": "24 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 6.5,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.22213277663907496,
+              "weight": 0.35,
+              "explain": "mean sat 22%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 1,
+              "weight": 0.2,
+              "explain": "spread 240°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 0.5,
+              "weight": 0.2,
+              "explain": "1 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "3 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 2.3
       }
     },
     {
@@ -1248,6 +2368,166 @@
         "identity": "Core gamers, console users, and digital entertainment consumers",
         "pain": "Seeking high-quality gaming experiences, immersive performance, and exclusive content",
         "scene": "At-home console entertainment, online multiplayer, content consumption, and social sharing"
+      },
+      "heuristicRadar": {
+        "克制": 3.5,
+        "温度感": 3.5,
+        "游戏化": 9.5,
+        "科技感": 10,
+        "情感连接": 2.5,
+        "识别强度": 7
+      },
+      "heuristicRadarArray": [
+        3.5,
+        3.5,
+        9.5,
+        10,
+        2.5,
+        7
+      ],
+      "heuristicDetail": {
+        "克制": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "palette sat variance ↓",
+              "value": 0.46666666666666645,
+              "weight": 0.3,
+              "explain": "variance 0.160"
+            },
+            {
+              "name": "palette size ↓",
+              "value": 0.375,
+              "weight": 0.25,
+              "explain": "5 colors"
+            },
+            {
+              "name": "tone tag count ↓",
+              "value": 0.375,
+              "weight": 0.2,
+              "explain": "5 tags"
+            },
+            {
+              "name": "logo desc length ↓",
+              "value": 0.1454545454545455,
+              "weight": 0.25,
+              "explain": "188 chars"
+            }
+          ]
+        },
+        "温度感": {
+          "score": 3.5,
+          "subs": [
+            {
+              "name": "mean hue warmth ↑",
+              "value": 0.674712643678161,
+              "weight": 0.45,
+              "explain": "mean hue 43°"
+            },
+            {
+              "name": "mean saturation ↑",
+              "value": 0.2,
+              "weight": 0.25,
+              "explain": "mean sat 20%"
+            },
+            {
+              "name": "warm-keyword density",
+              "value": 0,
+              "weight": 0.3,
+              "explain": "0 warm keywords"
+            }
+          ]
+        },
+        "游戏化": {
+          "score": 9.5,
+          "subs": [
+            {
+              "name": "playful-keyword density",
+              "value": 1,
+              "weight": 0.65,
+              "explain": "7 hits"
+            },
+            {
+              "name": "target-user age ↓",
+              "value": 0.9,
+              "weight": 0.35,
+              "explain": "15 yrs"
+            }
+          ]
+        },
+        "科技感": {
+          "score": 10,
+          "subs": [
+            {
+              "name": "tech-keyword density",
+              "value": 1,
+              "weight": 0.65,
+              "explain": "13 hits"
+            },
+            {
+              "name": "geometric typography",
+              "value": 1,
+              "weight": 0.35,
+              "explain": "geometric/sans markers found"
+            }
+          ]
+        },
+        "情感连接": {
+          "score": 2.5,
+          "subs": [
+            {
+              "name": "tagline emotional density",
+              "value": 0,
+              "weight": 0.35,
+              "explain": "0 emotional kw in tagline"
+            },
+            {
+              "name": "tone emotional words",
+              "value": 0,
+              "weight": 0.25,
+              "explain": "0 hits"
+            },
+            {
+              "name": "targetUser.pain specificity ↑",
+              "value": 0.6666666666666666,
+              "weight": 0.4,
+              "explain": "20 chars"
+            }
+          ]
+        },
+        "识别强度": {
+          "score": 7,
+          "subs": [
+            {
+              "name": "palette saturation ↑",
+              "value": 0.2,
+              "weight": 0.35,
+              "explain": "mean sat 20%"
+            },
+            {
+              "name": "palette hue spread ↑",
+              "value": 0.9051724137931034,
+              "weight": 0.2,
+              "explain": "spread 217°"
+            },
+            {
+              "name": "typography rarity markers",
+              "value": 1,
+              "weight": 0.2,
+              "explain": "2 rarity hits"
+            },
+            {
+              "name": "logo distinctive markers",
+              "value": 1,
+              "weight": 0.25,
+              "explain": "2 distinctive hits"
+            }
+          ]
+        }
+      },
+      "heuristicMeta": {
+        "computedAt": "2026-06-25",
+        "avgDelta": 1.9
       }
     }
   ]

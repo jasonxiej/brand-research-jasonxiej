@@ -2962,6 +2962,18 @@ For example: positioning, story, visual tone, product claims, competitor notes."
       if (lang === 'en') return en || (zh && /[一-鿿]/.test(zh) ? '' : zh) || '';
       return zh || '';
     }
+    function getHeuristicRadarValues(brand) {
+      // Prefer the persisted array form (heuristicRadarArray, computed by
+      // scripts/backfill-heuristic.mjs). Fall back to building it from the
+      // object form so the chart stays functional even without backfill.
+      if (Array.isArray(brand.heuristicRadarArray) && brand.heuristicRadarArray.length === 6) {
+        return brand.heuristicRadarArray.map((v) => Number(v) || 0);
+      }
+      if (brand.heuristicRadar && !Array.isArray(brand.heuristicRadar)) {
+        return RADAR_DIM_KEYS.map((k) => Number(brand.heuristicRadar[k]) || 0);
+      }
+      return null; // signal: heuristic not available for this brand
+    }
     function pickNested(obj, zhKey, enKey, lang) {
       if (!obj) return '';
       const en = obj[enKey];
@@ -3108,7 +3120,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         '<tbody>' + rows + '</tbody>';
     }
 
-    // ===== Radar =====
+    // ===== Radar (dual-track: AI subjective + heuristic objective) =====
     function renderRadar() {
       if (!radarEl || typeof echarts === 'undefined') return;
 
@@ -3123,28 +3135,69 @@ For example: positioning, story, visual tone, product claims, competitor notes."
           : '克制 · 温度感 · 游戏化 · 科技感 · 情感连接 · 识别强度';
       }
 
-      const seriesData = selected.map((b, idx) => {
+      const aiLbl = lang === 'en' ? 'AI' : 'AI';
+      const objLbl = lang === 'en' ? 'Obj' : '客观';
+
+      const seriesData = [];
+      const legendData = [];
+      for (let idx = 0; idx < selected.length; idx++) {
+        const b = selected[idx];
         const color = SERIES_COLORS[idx % SERIES_COLORS.length];
         const displayName = window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id);
-        return {
-          name: displayName,
+        // AI (subjective LLM) curve — solid line + filled area
+        seriesData.push({
+          name: displayName + ' · ' + aiLbl,
           value: getRadarValues(b),
-          lineStyle: { width: 2, color },
+          lineStyle: { width: 2.4, color, type: 'solid' },
           itemStyle: { color },
-          areaStyle: { color: hexToRgba(color, 0.12) },
+          areaStyle: { color: hexToRgba(color, 0.10) },
           symbol: 'circle',
           symbolSize: 6,
-        };
-      });
+          _brandIdx: idx,
+          _track: 'ai',
+        });
+        legendData.push({ name: displayName + ' · ' + aiLbl, icon: 'roundRect' });
+        // Heuristic (objective) curve — dashed line, no fill, smaller marker
+        const heuVals = getHeuristicRadarValues(b);
+        if (heuVals) {
+          seriesData.push({
+            name: displayName + ' · ' + objLbl,
+            value: heuVals,
+            lineStyle: { width: 1.6, color, type: 'dashed', opacity: 0.85 },
+            itemStyle: { color, opacity: 0.85 },
+            areaStyle: { color: 'transparent' },
+            symbol: 'diamond',
+            symbolSize: 5,
+            _brandIdx: idx,
+            _track: 'heu',
+          });
+          legendData.push({ name: displayName + ' · ' + objLbl, icon: 'diamond' });
+        }
+      }
 
       const option = {
-        tooltip: { trigger: 'item' },
+        tooltip: {
+          trigger: 'item',
+          formatter: function (params) {
+            const d = params.data || {};
+            const track = d._track === 'heu'
+              ? (lang === 'en' ? ' (Heuristic)' : ' (客观)')
+              : (lang === 'en' ? ' (AI)' : ' (AI)');
+            const lines = ['<strong>' + params.name.replace(/ · (AI|Obj|客观)/, '') + '</strong>' + track];
+            const dims = (lang === 'en') ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
+            (params.value || []).forEach((v, i) => {
+              lines.push(dims[i] + ': <strong>' + (typeof v === 'number' ? v.toFixed(1) : v) + '</strong>');
+            });
+            return lines.join('<br/>');
+          },
+        },
         legend: {
           bottom: 0,
-          icon: 'circle',
-          itemWidth: 10,
-          itemHeight: 10,
-          textStyle: { fontFamily: 'InstrumentSans, sans-serif', color: '#1A1A1A' },
+          icon: 'roundRect',
+          itemWidth: 14,
+          itemHeight: 8,
+          data: legendData,
+          textStyle: { fontFamily: 'InstrumentSans, sans-serif', color: '#1A1A1A', fontSize: 11 },
         },
         radar: {
           indicator,
