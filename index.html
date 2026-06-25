@@ -768,7 +768,89 @@
     }
     .modal-overlay.show .modal-card { transform: translateY(0); }
 
-    
+    /* Dynamic modal (batch delete + compare overflow) */
+    .dynamic-modal {
+      position: relative;
+      padding: 1.75rem 1.75rem 1.5rem;
+      width: 92%; max-width: 560px;
+    }
+    .dynamic-modal > .trash-close {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+    }
+    .dynamic-modal h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+    .dynamic-modal p {
+      font-size: 0.92rem; line-height: 1.55;
+      color: var(--ink);
+      margin: 0.4rem 0 0.8rem;
+    }
+    .dynamic-modal p strong { color: var(--accent); }
+    .dynamic-modal .muted { color: var(--muted); font-size: 0.82em; font-family: var(--font-mono); }
+    .dynamic-modal .modal-actions {
+      display: flex; justify-content: flex-end; gap: 0.6rem;
+    }
+    .dynamic-modal button.primary.danger {
+      background: #B53224; color: #fff; border-color: #B53224;
+    }
+    .dynamic-modal button.primary.danger:hover { background: #962319; }
+    .dynamic-modal button.primary.danger:disabled {
+      background: var(--muted); border-color: var(--muted); opacity: 0.6;
+    }
+    .dynamic-modal button.ghost.small {
+      padding: 0.3rem 0.7rem; font-size: 0.8rem;
+    }
+    .bd-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0.6rem;
+    }
+    .bd-toolbar .bd-count {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .bd-list {
+      list-style: none; padding: 0; margin: 0;
+      max-height: 320px; overflow-y: auto;
+    }
+    .bd-list li {
+      border-bottom: 1px dashed var(--rule);
+    }
+    .bd-list li:last-child { border-bottom: none; }
+    .bd-list label {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.55rem 0.25rem;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .bd-list input[type="checkbox"] {
+      width: 16px; height: 16px; accent-color: var(--accent);
+      flex-shrink: 0;
+    }
+    .bd-list .bd-name { flex: 1; min-width: 0; }
+    .overflow-list {
+      list-style: none; padding: 0; margin: 0.5rem 0 0;
+      max-height: 240px; overflow-y: auto;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      background: var(--bg);
+    }
+    .overflow-list li {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5rem 0.9rem;
+      border-bottom: 1px dashed var(--rule);
+      font-size: 0.9rem;
+    }
+    .overflow-list li:last-child { border-bottom: none; }
+
+
     .report-modal {
       width: 94%; max-width: 1100px; height: 86vh;
       display: flex; flex-direction: column;
@@ -1380,6 +1462,7 @@
         <div class="actions">
           <span class="meta" id="library-meta">0 个品牌</span>
           <button id="refresh-btn" type="button" data-i18n="library.refresh">刷新</button>
+          <button id="batch-delete-btn" type="button" disabled>批量删除 (0)</button>
           <button id="trash-btn" type="button" data-trash-trigger data-i18n="library.trash">回收站</button>
           <button id="compare-btn" type="button" class="primary" disabled>对比所选 (0)</button>
         </div>
@@ -1513,7 +1596,14 @@ For example: positioning, story, visual tone, product claims, competitor notes."
     </div>
   </div>
 
-  
+  <!-- Generic modal slot used by batch delete, compare overflow, and other dynamic flows -->
+  <div class="modal-overlay" id="dynamic-overlay" aria-hidden="true">
+    <div class="modal-card dynamic-modal" role="dialog" aria-modal="true">
+      <button class="trash-close" id="dynamic-close" type="button" aria-label="关闭">×</button>
+      <div id="dynamic-body"></div>
+    </div>
+  </div>
+
   <div class="modal-overlay" id="trash-overlay" aria-hidden="true">
     <div class="modal-card trash-modal" role="dialog" aria-labelledby="trash-title" aria-modal="true">
       <div class="trash-head">
@@ -1675,11 +1765,10 @@ For example: positioning, story, visual tone, product claims, competitor notes."
       if (selectedIds.has(id)) {
         selectedIds.delete(id);
       } else {
-        if (selectedIds.size >= 4) {
-          const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
-          alert(lang === 'en' ? 'You can compare up to 4 brands at once.' : '最多选择 4 个品牌进行对比。');
-          return;
-        }
+        // No upper limit at select time. The 4-brand cap is only enforced
+        // when the user clicks "对比所选" — see goCompare(). Users can
+        // pre-select any number, then trim via batch delete if they want
+        // to compare.
         selectedIds.add(id);
       }
       renderGrid();
@@ -1699,6 +1788,15 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         return `<span class="tray-tag">${escAttr(name)}</span>`;
       }).join('');
       tray.classList.toggle('show', n > 0);
+      // Sync batch-delete button: enabled when at least 1 brand is selected,
+      // shows live count.
+      const batchBtn = document.getElementById('batch-delete-btn');
+      if (batchBtn) {
+        batchBtn.disabled = n === 0;
+        batchBtn.textContent = lang === 'en'
+          ? `Batch delete (${n})`
+          : `批量删除 (${n})`;
+      }
     }
 
     refreshBtn.addEventListener('click', loadLibrary);
@@ -1739,12 +1837,206 @@ For example: positioning, story, visual tone, product claims, competitor notes."
     }
 
     function goCompare() {
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
       if (selectedIds.size < 2) {
-        const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
-        alert(lang === 'en' ? 'Please select at least 2 brands to compare.' : '请至少选择 2 个品牌进行对比。');
+        alert(lang === 'en'
+          ? 'Please select at least 2 brands to compare.'
+          : '请至少选择 2 个品牌进行对比。');
+        return;
+      }
+      // 4-brand cap is enforced HERE, not at select time. If the user has
+      // pre-selected too many, surface the extra ones and offer a one-click
+      // path to trim them via batch delete.
+      if (selectedIds.size > 4) {
+        const extra = Array.from(selectedIds).slice(4); // overflow (first-come, first-kept)
+        showCompareOverflowModal(extra, lang);
         return;
       }
       openCompareOverlay();
+    }
+
+    // ---- Compare overflow modal ----
+    // Triggered when the user tries to compare with > 4 brands. Lists the
+    // overflow brands and lets them either trim via batch delete, or cancel.
+    function showCompareOverflowModal(extraIds, lang) {
+      const isEn = lang === 'en';
+      const overflow = brands.filter((b) => extraIds.includes(b.id));
+
+      const body = `
+        <h3 style="margin-top:0">${isEn ? 'Too many brands to compare' : '对比数量超出限制'}</h3>
+        <p>${isEn
+          ? 'You can only compare up to <strong>4 brands</strong> at once.'
+          : '对比最多支持 <strong>4 个</strong>品牌。'}</p>
+        <p>${isEn
+          ? ('You currently have <strong>' + selectedIds.size + '</strong> selected. Please remove <strong>' + (selectedIds.size - 4) + '</strong>:')
+          : ('当前已选 <strong>' + selectedIds.size + '</strong> 个，请删减 <strong>' + (selectedIds.size - 4) + '</strong> 个：')}</p>
+        <ul class="overflow-list">
+          ${overflow.map((b) => {
+            const nm = (window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id));
+            return `<li data-id="${escAttr(b.id)}"><span>${escAttr(nm)}</span><span class="muted">${escAttr(b.id)}</span></li>`;
+          }).join('')}
+        </ul>
+        <div class="modal-actions" style="margin-top:1.5rem">
+          <button type="button" class="ghost" data-action="cancel">${isEn ? 'Cancel' : '取消'}</button>
+          <button type="button" class="primary" data-action="open-batch">${isEn ? 'Batch delete…' : '去批量删除…'}</button>
+        </div>
+      `;
+      openDynamicModal(body, function (root, close) {
+        root.querySelector('[data-action="cancel"]').addEventListener('click', close);
+        root.querySelector('[data-action="open-batch"]').addEventListener('click', () => {
+          // Pre-select all overflow brands in batch-delete modal so the user
+          // can quickly trim, then close this overflow modal.
+          const batchState = { selectedIds: new Set(extraIds) };
+          close();
+          openBatchDeleteModal(batchState);
+        });
+      });
+    }
+
+    // ---- Batch delete modal ----
+    // Lets the user delete multiple brands at once. If a batchState is
+    // passed (e.g. from the compare overflow flow), it pre-selects those
+    // brands; otherwise it starts from the current home-page selection.
+    function openBatchDeleteModal(batchState) {
+      const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
+      const isEn = lang === 'en';
+      // Working set of ids inside the modal (independent of the home selection
+      // so that the user can toggle inside the modal without disturbing the
+      // underlying selection until they confirm).
+      const workIds = batchState
+        ? new Set(batchState.selectedIds)
+        : new Set(selectedIds);
+      if (workIds.size === 0) {
+        alert(isEn
+          ? 'Select at least one brand to delete.'
+          : '请至少选择 1 个品牌进行删除。');
+        return;
+      }
+
+      function render() {
+        const items = brands.filter((b) => workIds.has(b.id));
+        const listHtml = items.map((b) => {
+          const nm = (window.__i18n ? window.__i18n.pickName(b, lang) : (b.name || b.nameZh || b.id));
+          return `<li data-id="${escAttr(b.id)}">
+            <label>
+              <input type="checkbox" checked />
+              <span class="bd-name">${escAttr(nm)}</span>
+              <span class="muted">${escAttr(b.id)}</span>
+            </label>
+          </li>`;
+        }).join('');
+        const body = `
+          <h3 style="margin-top:0">${isEn ? 'Batch delete' : '批量删除'}</h3>
+          <p>${isEn
+            ? 'Brands moved to trash will be kept for 30 days.'
+            : '被删除的品牌将进入回收站，保留 30 天。'}</p>
+          <div class="bd-toolbar">
+            <span class="bd-count">${isEn
+              ? ('Selected: ' + workIds.size)
+              : ('已选：' + workIds.size)}</span>
+            <button type="button" class="ghost small" data-bd-action="none">${isEn ? 'Clear' : '清空'}</button>
+          </div>
+          <ul class="bd-list">${listHtml}</ul>
+          <div class="modal-actions" style="margin-top:1.5rem">
+            <button type="button" class="ghost" data-bd-action="cancel">${isEn ? 'Cancel' : '取消'}</button>
+            <button type="button" class="primary danger" data-bd-action="confirm" ${workIds.size === 0 ? 'disabled' : ''}>
+              ${isEn ? ('Delete ' + workIds.size) : ('删除 ' + workIds.size + ' 个')}
+            </button>
+          </div>
+        `;
+        openDynamicModal(body, function (root, close) {
+          // Wire checkbox changes → live-update workIds + count
+          root.querySelectorAll('.bd-list li input[type="checkbox"]').forEach((cb) => {
+            cb.addEventListener('change', () => {
+              const li = cb.closest('li');
+              const id = li.getAttribute('data-id');
+              if (cb.checked) workIds.add(id); else workIds.delete(id);
+              // Re-render count without closing
+              const countEl = root.querySelector('.bd-count');
+              if (countEl) countEl.textContent = isEn
+                ? ('Selected: ' + workIds.size)
+                : ('已选：' + workIds.size);
+              const btn = root.querySelector('[data-bd-action="confirm"]');
+              if (btn) {
+                btn.disabled = workIds.size === 0;
+                btn.textContent = isEn
+                  ? ('Delete ' + workIds.size)
+                  : ('删除 ' + workIds.size + ' 个');
+              }
+            });
+          });
+          root.querySelector('[data-bd-action="none"]').addEventListener('click', () => {
+            workIds.clear();
+            render();
+          });
+          root.querySelector('[data-bd-action="cancel"]').addEventListener('click', close);
+          root.querySelector('[data-bd-action="confirm"]').addEventListener('click', async () => {
+            const ids = Array.from(workIds);
+            if (!ids.length) return;
+            const btn = root.querySelector('[data-bd-action="confirm"]');
+            btn.disabled = true;
+            const failMsg = isEn ? 'Delete failed: ' : '删除失败：';
+            let ok = 0, fail = 0;
+            for (const id of ids) {
+              try {
+                const r = await fetch('/api/trash', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ id }),
+                });
+                if (r.ok) {
+                  ok++;
+                  if (selectedIds.has(id)) selectedIds.delete(id);
+                } else { fail++; }
+              } catch (e) {
+                fail++;
+              }
+            }
+            close();
+            renderGrid();
+            updateTray();
+            await loadLibrary();
+            updateTray();
+            if (fail === 0) {
+              // Silent success — already removed from UI
+            } else {
+              alert((isEn ? 'Deleted ' : '已删除 ') + ok + (isEn ? ' · ' : ' · 失败 ') + fail);
+            }
+          });
+        });
+      }
+      render();
+    }
+
+    // ---- Dynamic modal helper (shared by batch delete + compare overflow) ----
+    let _dynamicOverlayEl = null;
+    let _dynamicBodyEl = null;
+    let _dynamicCloseBtn = null;
+    function ensureDynamicModalEls() {
+      if (!_dynamicOverlayEl) _dynamicOverlayEl = document.getElementById('dynamic-overlay');
+      if (!_dynamicBodyEl) _dynamicBodyEl = document.getElementById('dynamic-body');
+      if (!_dynamicCloseBtn) _dynamicCloseBtn = document.getElementById('dynamic-close');
+    }
+    function openDynamicModal(html, bind) {
+      ensureDynamicModalEls();
+      if (!_dynamicOverlayEl || !_dynamicBodyEl) return;
+      _dynamicBodyEl.innerHTML = html;
+      _dynamicOverlayEl.classList.add('show');
+      _dynamicOverlayEl.setAttribute('aria-hidden', 'false');
+      const close = () => {
+        _dynamicOverlayEl.classList.remove('show');
+        _dynamicOverlayEl.setAttribute('aria-hidden', 'true');
+        _dynamicBodyEl.innerHTML = '';
+      };
+      if (_dynamicCloseBtn) _dynamicCloseBtn.onclick = close;
+      _dynamicOverlayEl.onclick = (e) => { if (e.target === _dynamicOverlayEl) close(); };
+      bind(_dynamicBodyEl, close);
+    }
+
+    // Wire the batch-delete button to open the modal
+    const batchDeleteBtn = document.getElementById('batch-delete-btn');
+    if (batchDeleteBtn) {
+      batchDeleteBtn.addEventListener('click', () => openBatchDeleteModal());
     }
 
     // Defer to the compare overlay module (defined later in the page)
@@ -3567,6 +3859,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'input.submit':       '调研',
         'library.heading':    '品牌库',
         'library.refresh':    '刷新',
+        'library.batchDelete':'批量删除',
         'library.trash':      '回收站',
         'library.compare':    '对比所选',
         'library.empty':      '品牌库为空。在上方输入一个品牌名开始你的第一次调研。',
@@ -3707,6 +4000,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'input.submit':       'Research',
         'library.heading':    'Library',
         'library.refresh':    'Refresh',
+        'library.batchDelete':'Batch delete',
         'library.trash':      'Trash',
         'library.compare':    'Compare',
         'library.empty':      'The library is empty. Enter a brand name above to start your first research.',
