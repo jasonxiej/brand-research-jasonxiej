@@ -315,7 +315,7 @@
         // 替换所有 [data-bi] 的内容
         document.querySelectorAll('[data-bi]').forEach(function (el) {
           var parts = el.getAttribute('data-bi').split('::');
-          el.textContent = parts[lang === 'en' ? 1 : 0] || parts[0] || '';
+          el.innerHTML = parts[lang === 'en' ? 1 : 0] || parts[0] || '';
         });
         // 替换所有 [data-bi-html] 的 HTML（用于带标签的内容）
         document.querySelectorAll('[data-bi-html]').forEach(function (el) {
