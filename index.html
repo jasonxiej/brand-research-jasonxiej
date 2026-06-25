@@ -1696,6 +1696,37 @@ For example: positioning, story, visual tone, product claims, competitor notes."
 
     footerDate.textContent = new Date().toISOString().slice(0, 10);
 
+    // ----- Delete/trash error translation -----
+    // The Vercel deployment is on an old bundle that returns the raw
+    // Node 'EROFS: read-only file system, open /var/task/brands/index.json'
+    // string when the user tries to delete a brand. Translate that into
+    // something actionable so the user knows to redeploy, and also pick
+    // up the new server-side hints (code: 'STALE_DEPLOY', HTTP 503 for
+    // missing Supabase env) once Vercel is on the latest code.
+    function isEnLang() {
+      return !!(window.__i18n && window.__i18n.getLang() === 'en');
+    }
+    function translateDeleteError(body, status) {
+      const en = isEnLang();
+      // New server hint (applies once Vercel is on latest api/trash.js)
+      if (body && body.code === 'STALE_DEPLOY' && body.error) return body.error;
+      if (status === 503 && body && body.error) {
+        return en
+          ? 'Server missing Supabase config: ' + body.error
+          : '服务端缺少 Supabase 配置：' + body.error;
+      }
+      const raw = String((body && body.error) || (status ? ('HTTP ' + status) : ''));
+      // Catch the stale-deploy signature from the OLD Vercel bundle
+      // so the user sees a useful message even before redeploy lands.
+      if (/EROFS|read-only file system/i.test(raw)) {
+        return en
+          ? 'Vercel is still running an old build. Go to Vercel → Deployments → click the three-dot menu on the latest row → Redeploy (uncheck "Use existing Build Cache") → wait 30s → hard-refresh this page (Ctrl+Shift+R). See VERCEL_REDEPLOY.md for details.'
+          : 'Vercel 当前运行的还是旧版代码。打开 Vercel → Deployments → 在最新一条上点 ⋮ → Redeploy（取消勾选"Use existing Build Cache"）→ 等待约 30 秒 → 在本页面硬刷新（Ctrl+Shift+R）。详见项目里的 VERCEL_REDEPLOY.md。';
+      }
+      if (!raw) return en ? 'Delete failed (unknown reason).' : '删除失败（未知原因）。';
+      return raw;
+    }
+
     async function loadLibrary() {
       try {
         let r = await fetch('/api/brands?t=' + Date.now());
@@ -1776,7 +1807,6 @@ For example: positioning, story, visual tone, product claims, competitor notes."
           const confirmMsg = lang === 'en'
             ? 'Delete this brand case? It will move to trash and be kept for 30 days.'
             : '确定删除这个品牌案例吗？它会进入回收站并保留 30 天。';
-          const failMsg = lang === 'en' ? 'Delete failed: ' : '删除失败：';
           if (!confirm(confirmMsg)) return;
           btn.disabled = true;
           try {
@@ -1787,7 +1817,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
             });
             if (!r.ok) {
               const data = await r.json().catch(() => ({}));
-              alert(failMsg + (data.error || ('HTTP ' + r.status)));
+              alert(translateDeleteError(data, r.status));
               btn.disabled = false;
               return;
             }
@@ -1796,7 +1826,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
             await loadLibrary();
             updateTray();
           } catch (err) {
-            alert(failMsg + (err?.message || err));
+            alert(translateDeleteError({ error: err?.message || String(err) }, 0));
             btn.disabled = false;
           }
         });
@@ -2017,10 +2047,8 @@ For example: positioning, story, visual tone, product claims, competitor notes."
             if (!ids.length) return;
             const btn = root.querySelector('[data-bd-action="confirm"]');
             btn.disabled = true;
-            const failMsg = isEn ? 'Delete failed: ' : '删除失败：';
             let ok = 0, fail = 0;
-            let staleDeployHint = null;
-            let supabaseHint = null;
+            let firstErrorMsg = null;
             for (const id of ids) {
               try {
                 const r = await fetch('/api/trash', {
@@ -2036,14 +2064,18 @@ For example: positioning, story, visual tone, product claims, competitor notes."
                   // Capture the most actionable error from the first failure
                   // so the user sees the real reason (e.g. Vercel is on a
                   // stale build, or Supabase env vars are missing).
-                  try {
-                    const body = await r.json();
-                    if (body?.code === 'STALE_DEPLOY' && !staleDeployHint) staleDeployHint = body.error;
-                    if (r.status === 503 && !supabaseHint) supabaseHint = body.error;
-                  } catch {}
+                  if (!firstErrorMsg) {
+                    try {
+                      const body = await r.json();
+                      firstErrorMsg = translateDeleteError(body, r.status);
+                    } catch {
+                      firstErrorMsg = translateDeleteError({}, r.status);
+                    }
+                  }
                 }
               } catch (e) {
                 fail++;
+                if (!firstErrorMsg) firstErrorMsg = translateDeleteError({ error: e?.message || String(e) }, 0);
               }
             }
             close();
@@ -2052,10 +2084,11 @@ For example: positioning, story, visual tone, product claims, competitor notes."
             await loadLibrary();
             updateTray();
             if (fail > 0) {
-              // Prefer the most actionable explanation
-              const msg = staleDeployHint || supabaseHint
-                || ((isEn ? 'Deleted ' : '已删除 ') + ok + (isEn ? ' · ' : ' · 失败 ') + fail);
-              alert(msg);
+              // Prefer the most actionable explanation (translated server
+              // hint or client-side EROFS detection), falling back to the
+              // generic X-success / Y-fail counter.
+              const fallback = (isEn ? 'Deleted ' : '已删除 ') + ok + (isEn ? ' · ' : ' · 失败 ') + fail;
+              alert(firstErrorMsg || fallback);
             }
           });
         });
@@ -2715,10 +2748,10 @@ For example: positioning, story, visual tone, product claims, competitor notes."
               loadLibrary();
             } else {
               const data = await r.json().catch(() => ({}));
-              alert(restoreFail + (data.error || ('HTTP ' + r.status)));
+              alert(translateDeleteError(data, r.status));
             }
           } catch (e) {
-            alert(restoreFail + (e.message || e));
+            alert(translateDeleteError({ error: e.message || String(e) }, 0));
           } finally {
             b.disabled = false;
           }
@@ -2734,10 +2767,10 @@ For example: positioning, story, visual tone, product claims, competitor notes."
               await loadTrash();
             } else {
               const data = await r.json().catch(() => ({}));
-              alert(purgeFail + (data.error || ('HTTP ' + r.status)));
+              alert(translateDeleteError(data, r.status));
             }
           } catch (e) {
-            alert(purgeFail + (e.message || e));
+            alert(translateDeleteError({ error: e.message || String(e) }, 0));
           } finally {
             b.disabled = false;
           }
