@@ -356,6 +356,30 @@
       var labelsEn = data.labelsEn || labelsZh;
       function render(lang) {
         var labels = lang === 'en' ? labelsEn : labelsZh;
+        // Build the series data OUTSIDE the setOption object literal so the
+        // optional heuristic series can be appended cleanly.
+        var seriesArr = [{
+          value: data.values,
+          name: (data.name || '品牌') + ' · AI',
+          lineStyle: { width: 2.4, color: color, type: 'solid' },
+          itemStyle: { color: color },
+          areaStyle: { color: color + '22' },
+          symbol: 'circle',
+          symbolSize: 6,
+          _track: 'ai'
+        }];
+        if (data.hasHeuristic && data.heuristicValues) {
+          seriesArr.push({
+            value: data.heuristicValues,
+            name: (data.name || '品牌') + ' · Obj',
+            lineStyle: { width: 1.6, color: color, type: 'dashed', opacity: 0.85 },
+            itemStyle: { color: color, opacity: 0.85 },
+            areaStyle: { color: 'transparent' },
+            symbol: 'diamond',
+            symbolSize: 5,
+            _track: 'heu'
+          });
+        }
         chart.setOption({
           color: [color],
           tooltip: { trigger: 'item' },
@@ -369,28 +393,6 @@
             splitArea: { areaStyle: { color: ['rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)', 'rgba(244,239,230,0.4)', 'rgba(251,248,243,0.6)'] } },
             axisLine: { lineStyle: { color: '#E8E0D4' } }
           },
-          var seriesArr = [{
-            value: data.values,
-            name: (data.name || '品牌') + ' · AI',
-            lineStyle: { width: 2.4, color: color, type: 'solid' },
-            itemStyle: { color: color },
-            areaStyle: { color: color + '22' },
-            symbol: 'circle',
-            symbolSize: 6,
-            _track: 'ai'
-          }];
-          if (data.hasHeuristic && data.heuristicValues) {
-            seriesArr.push({
-              value: data.heuristicValues,
-              name: (data.name || '品牌') + ' · Obj',
-              lineStyle: { width: 1.6, color: color, type: 'dashed', opacity: 0.85 },
-              itemStyle: { color: color, opacity: 0.85 },
-              areaStyle: { color: 'transparent' },
-              symbol: 'diamond',
-              symbolSize: 5,
-              _track: 'heu'
-            });
-          }
           series: [{
             type: 'radar',
             data: seriesArr,
