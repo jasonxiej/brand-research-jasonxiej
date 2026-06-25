@@ -347,7 +347,7 @@
       var c = document.getElementById('radar-chart');
       if (!c || !window.echarts) return;
       var chart = window.echarts.init(c, null, { renderer: 'canvas' });
-      var color = "#FFFFFF";
+      var color = "#1D1D1F";
       var labelsZh = (data.labels && data.labels.length) ? data.labels : ['克制', '温度感', '游戏化', '科技感', '情感连接', '识别强度'];
       var labelsEn = data.labelsEn || labelsZh;
       function render(lang) {
