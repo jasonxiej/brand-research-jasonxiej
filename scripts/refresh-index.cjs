@@ -18,12 +18,28 @@ const TRASH_FILE = path.join(ROOT, 'brands', 'trash.json');
 
 const FILE_RE = /^([a-z0-9-]+)-(\d{8})\.html$/i;
 
-function listHtmlFiles() {
-  return fs
-    .readdirSync(HTML_DIR)
-    .filter((f) => f.endsWith('.html'))
-    .map((f) => ({ file: f, full: path.join(HTML_DIR, f) }))
-    .filter(({ file }) => FILE_RE.test(file));
+// Brand entries live as brands/<slug>-<YYYYMMDD>.json (preferred).
+// Legacy <slug>-<YYYYMMDD>.html files in the workspace root still work —
+// if a brand has only an HTML and no JSON, the HTML's __BRAND_DATA__
+// block is parsed to populate the index. JSON wins when both exist.
+function listEntries() {
+  const jsonDir = path.join(ROOT, 'brands');
+  const out = new Map(); // id -> { file, full, kind }
+  if (fs.existsSync(jsonDir)) {
+    for (const f of fs.readdirSync(jsonDir)) {
+      const m = f.match(/^([a-z0-9-]+)-(\d{8})\.json$/);
+      if (!m) continue;
+      out.set(m[1] + '-' + m[2], { file: 'brands/' + f, full: path.join(jsonDir, f), kind: 'json' });
+    }
+  }
+  for (const f of fs.readdirSync(HTML_DIR)) {
+    const m = f.match(FILE_RE);
+    if (!m) continue;
+    const id = m[1] + '-' + m[2];
+    if (out.has(id)) continue; // JSON wins
+    out.set(id, { file: f, full: path.join(HTML_DIR, f), kind: 'html' });
+  }
+  return Array.from(out.values());
 }
 
 function pickBetween(text, start, end) {
@@ -98,10 +114,20 @@ function extractBrand(html, slug) {
   };
 }
 
-function buildEntry({ file, full }) {
-  const [, slug, date] = file.match(FILE_RE);
-  const html = fs.readFileSync(full, 'utf8');
+function buildEntry({ file, full, kind }) {
+  const date = file.match(/(\d{8})\./)[1];
   const dataCompact = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
+  if (kind === 'json') {
+    const data = JSON.parse(fs.readFileSync(full, 'utf8'));
+    return {
+      ...data,
+      id: data.id || file.replace(/\.json$/, ''),
+      reportFile: data.reportFile || 'brands/' + file,
+      reportUrl: data.reportUrl || '/report/' + file.replace(/\.json$/, ''),
+      createdAt: data.createdAt || dataCompact,
+    };
+  }
+  const html = fs.readFileSync(full, 'utf8');
 
   // 优先从 __BRAND_DATA__ 块读（包含完整 8 维 + meta + url）
   const data = extractBrandData(html);
@@ -181,8 +207,8 @@ function main() {
     } catch {}
   }
 
-  const files = listHtmlFiles();
-  const fileIds = new Set(files.map((f) => f.file.replace(/\.html$/, '')));
+  const files = listEntries();
+  const fileIds = new Set(files.map((f) => f.file.replace(/\.(html|json)$/, '')));
 
   // ★ 0.5) 对账：trash 里有 id 但磁盘上仍有对应 HTML 文件 → 视为「重新生成」
   // 自动从 trash 移除，让 brand 重新进入索引

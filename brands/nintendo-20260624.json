@@ -1,0 +1,136 @@
+{
+  "id": "nintendo-20260624",
+  "name": "Nintendo",
+  "nameZh": "任天堂",
+  "nameEn": "Nintendo",
+  "url": "https://www.nintendo.com",
+  "tagline": "Playing is believing.",
+  "taglineZh": "Playing is believing.",
+  "taglineEn": "",
+  "category": "Interactive Entertainment / Video Game",
+  "categoryZh": "Interactive Entertainment / Video Game",
+  "categoryEn": "",
+  "country": "Japan",
+  "countryZh": "Japan",
+  "countryEn": "",
+  "year": 1889,
+  "summary": "从京都一家花札作坊到全球游戏霸主，任天堂用 130 多年时间只做了一件事：让游戏回归\"玩\"本身。Switch 的混合形态打破了主机与掌机的边界，Wii 的体感重新定义了大人的客厅，而马里奥、林克、皮卡丘组成的 IP 宇宙则成为几代人共同的童年记忆。它的视觉语言从不是参数堆砌，而是用最克制的红白配色、最圆润的无衬线字体，传递一种\"全年龄友好\"的温度。",
+  "summaryEn": "",
+  "primaryColors": [
+    "#E60012",
+    "#FFFFFF",
+    "#000000",
+    "#6E6E6E"
+  ],
+  "palette": [
+    {
+      "hex": "#E60012",
+      "name": "Nintendo Red 任天堂红",
+      "nameEn": "Nintendo Red"
+    },
+    {
+      "hex": "#FFFFFF",
+      "name": "Pure White 纯白",
+      "nameEn": "Pure White"
+    },
+    {
+      "hex": "#000000",
+      "name": "Deep Black 深黑",
+      "nameEn": "Deep Black"
+    },
+    {
+      "hex": "#6E6E6E",
+      "name": "Hardware Gray 主机灰",
+      "nameEn": "Hardware Gray"
+    },
+    {
+      "hex": "#FFD800",
+      "name": "Joy‑Con Yellow 黄",
+      "nameEn": "Joy‑Con Yellow"
+    },
+    {
+      "hex": "#00C3E3",
+      "name": "Joy‑Con Blue 蓝",
+      "nameEn": "Joy‑Con Blue"
+    }
+  ],
+  "logo": {
+    "type": "wordmark",
+    "description": "白色圆润无衬线字\"Nintendo\"嵌入红色椭圆胶囊框",
+    "construction": "红底胶囊是主图形，白色字形作为负空间嵌入，胶囊弧度与字形圆角严格呼应，形成\"圆中圆\"的几何闭环",
+    "descriptionEn": "Rounded white sans-serif wordmark 'Nintendo' set inside a red oval capsule",
+    "constructionEn": "The red capsule is the primary shape, with the white letterform embedded as negative space; the capsule's curvature echoes the letterforms' rounded geometry, creating a closed 'circle within a circle' system"
+  },
+  "typography": {
+    "heading": "Nintendo 自有定制圆体（Nintendo Sans 系，推测为 Futura/Round Gothic 改良）",
+    "body": "Nintendo Sans / Noto Sans 系列",
+    "notes": "所有字形弧度与红胶囊呼应，标题禁止使用衬线与极细字形",
+    "headingEn": "Nintendo's custom rounded typeface (Nintendo Sans family, likely a Futura/Round Gothic refinement)",
+    "bodyEn": "Nintendo Sans / Noto Sans family",
+    "notesEn": "All letterform curvature echoes the red capsule; serif and ultra-thin weights are prohibited for headlines"
+  },
+  "photography": {
+    "style": "lifestyle, studio",
+    "lighting": "高亮柔光、整体曝光偏亮，几乎不见硬阴影",
+    "tone": "高饱和、糖果色、童趣化",
+    "composition": "手部特写 + 半身人物为主，主体永远居中，背景留出品牌色块",
+    "lightingEn": "Bright, soft, overall high-exposure lighting with virtually no hard shadows",
+    "toneEn": "High saturation, candy colors, playful",
+    "compositionEn": "Hand close-ups and half-body subjects, always centered, with brand-color blocks reserved in the background"
+  },
+  "tone": [
+    "童趣横生",
+    "全年龄友好",
+    "匠心克制",
+    "欢乐至简",
+    "IP 沉浸"
+  ],
+  "toneEn": [],
+  "toneSummary": "童趣与匠心并重，让游戏回归家庭与欢乐",
+  "toneSummaryEn": "",
+  "positioning": "以独创的硬件 + 第一方 IP，为全年龄段创造笑容与同屏时光",
+  "positioningEn": "",
+  "targetUser": {
+    "age": "6–45 岁（覆盖全龄段）",
+    "identity": "家庭玩家、核心粉丝、怀旧青年",
+    "pain": "想要不复杂、不暴力、可与家人共享的高品质娱乐",
+    "scene": "客厅同屏、旅途掌机、朋友聚会"
+  },
+  "targetUserEn": null,
+  "sellingPoints": [
+    "马里奥/塞尔达/宝可梦构成的独家 IP 宇宙",
+    "Switch 主机 + 掌机混合形态，场景无缝切换",
+    "第一方工作室出品，质量与口碑稳定",
+    "全家可玩的内容分级策略，覆盖最广人群",
+    "百年企业沉淀的工艺感与品牌信任"
+  ],
+  "sellingPointsEn": [],
+  "brandTakeaway": [],
+  "brandTakeawayEn": [],
+  "radar": {
+    "restraint": 5.5,
+    "warmth": 8.5,
+    "gamification": 10,
+    "tech": 6,
+    "emotional": 9,
+    "recognition": 10,
+    "克制": 5,
+    "温度感": 5,
+    "游戏化": 5,
+    "科技感": 5,
+    "情感连接": 5,
+    "识别强度": 5
+  },
+  "heuristicRadar": null,
+  "heuristicRadarArray": null,
+  "heuristicDetail": null,
+  "meta": {
+    "favicon": "",
+    "ogImage": "",
+    "heroImage": "",
+    "logoCandidates": []
+  },
+  "reportFile": "brands/nintendo-20260624.json",
+  "reportUrl": "/report/nintendo-20260624",
+  "createdAt": "2026-06-24"
+}

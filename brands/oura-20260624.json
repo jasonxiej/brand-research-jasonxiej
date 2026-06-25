@@ -1,0 +1,125 @@
+{
+  "id": "oura-20260624",
+  "name": "Oura",
+  "nameZh": "Oura Ring（欧拉健康戒指）",
+  "nameEn": "Oura",
+  "url": "https://ouraring.com",
+  "tagline": "One ring. Your body, quantified around the clock.",
+  "taglineZh": "One ring. Your body, quantified around the clock.",
+  "taglineEn": "",
+  "category": "Health Wearable",
+  "categoryZh": "Health Wearable",
+  "categoryEn": "",
+  "country": "Finland",
+  "countryZh": "Finland",
+  "countryEn": "",
+  "year": 2013,
+  "summary": "Oura 由芬兰奥卢的一群科学家与设计师在 2013 年创立，2018 年正式推出消费级 Oura Ring。品牌以\"无屏幕 + 单指环\"形态切入可穿戴市场，用 Readiness Score、睡眠分期、HRV 等医疗级指标取代步数与卡路里的浅层叙事，将产品定位为\"可佩戴的健康数据伙伴\"。视觉上坚持北欧极简与珠宝级材质，目标是高知高压职业人群的长期健康优化。",
+  "summaryEn": "",
+  "primaryColors": [
+    "#1A1A1A",
+    "#EDE6DA",
+    "#B89968",
+    "#C8C8CB"
+  ],
+  "palette": [
+    {
+      "hex": "#1A1A1A",
+      "name": "深炭黑（Onyx）",
+      "nameEn": "Deep Charcoal (Onyx)"
+    },
+    {
+      "hex": "#EDE6DA",
+      "name": "米杏色（Sand）",
+      "nameEn": "Warm Beige (Sand)"
+    },
+    {
+      "hex": "#B89968",
+      "name": "香槟金（Champagne）",
+      "nameEn": "Champagne Gold"
+    },
+    {
+      "hex": "#D4B5A0",
+      "name": "玫瑰金（Rose Gold）",
+      "nameEn": "Rose Gold"
+    },
+    {
+      "hex": "#C8C8CB",
+      "name": "银灰（Silver）",
+      "nameEn": "Silver Gray"
+    }
+  ],
+  "logo": {
+    "type": "wordmark",
+    "description": "全小写无衬线字标 \"oura\"，O 字母保持正圆",
+    "construction": "几何正圆 O + 简洁小写字母，弱化装饰，靠负空间和字怀传递冷静感",
+    "descriptionEn": "All-lowercase sans-serif wordmark 'oura', with the O kept as a perfect circle",
+    "constructionEn": "Geometric perfect-circle O paired with simple lowercase letterforms, minimal ornamentation—letting negative space and counters carry the cool restraint"
+  },
+  "typography": {
+    "heading": "自研无衬线，接近 Söhne / GT America 风格，字怀宽、字重对比强",
+    "body": "同一字族细体，强调留白与节奏",
+    "notes": "全大写小标题配合大字号行距，关键词加粗形成\"呼吸感节奏\"",
+    "headingEn": "Custom sans-serif in the spirit of Söhne / GT America, with wide counters and strong weight contrast",
+    "bodyEn": "Thin weights from the same family, emphasizing whitespace and pacing",
+    "notesEn": "All-caps subheads paired with generous line-height on large sizes; key terms bolded to create a breathing rhythm"
+  },
+  "photography": {
+    "style": "studio,lifestyle",
+    "lighting": "柔和自然光、低对比度，偶用金色时段",
+    "tone": "暖中性、低饱和、米杏与沙色主导",
+    "composition": "大量负空间、近景手部与指环特写，弱化人脸",
+    "lightingEn": "Soft natural light, low contrast, with occasional golden-hour",
+    "toneEn": "Warm-neutral, low saturation, dominated by beige and sand",
+    "compositionEn": "Generous negative space, close-ups of hands and the ring, with faces deliberately downplayed"
+  },
+  "tone": [
+    "极简克制",
+    "高级质感",
+    "科学严谨",
+    "静谧温度",
+    "北欧理性"
+  ],
+  "toneEn": [],
+  "toneSummary": "以北欧极简与珠宝质感传递医学级的健康洞察",
+  "toneSummaryEn": "",
+  "positioning": "无屏幕全天候的健康数据伙伴，专为追求长期身心优化的精英用户打造",
+  "positioningEn": "",
+  "targetUser": {
+    "age": "28-45",
+    "identity": "高知职业人 / 睡眠优化者 / 生物黑客",
+    "pain": "手表干扰睡眠、难以量化恢复状态、想要深度健康洞察",
+    "scene": "夜间睡眠监测、高压工作后的恢复评估、晨间例行打卡"
+  },
+  "targetUserEn": null,
+  "sellingPoints": [
+    "无屏幕单指环形态，整夜佩戴无感",
+    "睡眠分期与 Readiness Score 接近医学级精度",
+    "7 天超长续航，充电间隙极短",
+    "钛金属 + 类钻镀层，珠宝级材质 SKU",
+    "数据在本地+云端双端加密，强调隐私"
+  ],
+  "sellingPointsEn": [],
+  "brandTakeaway": [],
+  "brandTakeawayEn": [],
+  "radar": {
+    "克制": 9,
+    "温度感": 6.5,
+    "游戏化": 1.5,
+    "科技感": 7.5,
+    "情感连接": 6,
+    "识别强度": 8
+  },
+  "heuristicRadar": null,
+  "heuristicRadarArray": null,
+  "heuristicDetail": null,
+  "meta": {
+    "favicon": "",
+    "ogImage": "",
+    "heroImage": "",
+    "logoCandidates": []
+  },
+  "reportFile": "brands/oura-20260624.json",
+  "reportUrl": "/report/oura-20260624",
+  "createdAt": "2026-06-24"
+}

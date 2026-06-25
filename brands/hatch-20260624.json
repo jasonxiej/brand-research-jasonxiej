@@ -1,0 +1,129 @@
+{
+  "id": "hatch-20260624",
+  "name": "Hatch",
+  "nameZh": "Hatch（智能睡眠）",
+  "nameEn": "Hatch",
+  "url": "https://www.hatch.co",
+  "tagline": "Providing modern families with full-cycle sleep solutions from pregnancy to age 12",
+  "taglineZh": "Providing modern families with full-cycle sleep solutions from pregnancy to age 12",
+  "taglineEn": "",
+  "category": "Smart Sleep / Family Tech",
+  "categoryZh": "Smart Sleep / Family Tech",
+  "categoryEn": "",
+  "country": "United States",
+  "countryZh": "United States",
+  "countryEn": "",
+  "year": 2014,
+  "summary": "Hatch 创立于硅谷，最初以智能婴儿监护器切入育儿场景，后逐步将产品扩展到 Rest 智能声光机、Restore 成人睡眠灯、孕期到学龄的成长型灯具矩阵。品牌以一套统一的现代极简视觉语言串联 0-12 岁的家庭睡眠场景，用 App 作为情感与控制的中枢，把冷冰冰的智能硬件转译为\"陪伴\"。其设计哲学强调\"少即是多\"：鼠尾草绿、陶土橙、奶油白构成的克制色板，与真实家庭生活摄影共同塑造了科技、人文、温柔三者并存的现代育儿品牌气质。",
+  "summaryEn": "",
+  "primaryColors": [
+    "#A8B89C",
+    "#F2EDE4",
+    "#C97B5C",
+    "#E8C4B8"
+  ],
+  "palette": [
+    {
+      "hex": "#A8B89C",
+      "name": "鼠尾草绿 Sage",
+      "nameEn": "Sage Green"
+    },
+    {
+      "hex": "#F2EDE4",
+      "name": "奶油白 Cream",
+      "nameEn": "Cream White"
+    },
+    {
+      "hex": "#C97B5C",
+      "name": "陶土橙 Terracotta",
+      "nameEn": "Terracotta"
+    },
+    {
+      "hex": "#E8C4B8",
+      "name": "婴儿粉 Blush",
+      "nameEn": "Baby Blush"
+    },
+    {
+      "hex": "#2C2C2C",
+      "name": "炭黑 Charcoal",
+      "nameEn": "Charcoal"
+    },
+    {
+      "hex": "#D4C5A9",
+      "name": "燕麦色 Oat",
+      "nameEn": "Oat"
+    }
+  ],
+  "logo": {
+    "type": "wordmark",
+    "description": "全小写无衬线字标，'a' 字母采用极简几何构造，整体圆润但带科技感",
+    "construction": "几何无衬线字形，'a' 内部留白近似圆形，'h' 与 't' 收尾有微小切角，形成柔和却克制的家族标识",
+    "descriptionEn": "All-lowercase sans-serif wordmark with a minimalist geometric 'a' and an overall rounded yet tech-forward feel",
+    "constructionEn": "Geometric sans-serif forms; the counter of the 'a' approaches a circle; the 'h' and 't' feature subtle cut terminals, creating a soft yet restrained family mark"
+  },
+  "typography": {
+    "heading": "现代几何无衬线（近似 Söhne / Inter 风格）",
+    "body": "同系无衬线，字重层级丰富",
+    "notes": "全篇以小写为主，字距宽松，营造松弛、亲近的现代感",
+    "headingEn": "Modern geometric sans-serif (in the style of Söhne / Inter)",
+    "bodyEn": "Same-family sans-serif with a rich weight hierarchy",
+    "notesEn": "Predominantly lowercase throughout with generous letter-spacing, creating a relaxed, approachable modern feel"
+  },
+  "photography": {
+    "style": "lifestyle, documentary",
+    "lighting": "自然柔光，多为晨昏室内窗光",
+    "tone": "暖中性、低饱和",
+    "composition": "中近景人物+产品共处，背景生活化，不刻意摆拍",
+    "lightingEn": "Natural soft light, mostly indoor window light at dawn or dusk",
+    "toneEn": "Warm-neutral, low saturation",
+    "compositionEn": "Medium and close-up shots of people alongside products, lived-in backgrounds, no forced posing"
+  },
+  "tone": [
+    "温暖治愈",
+    "现代简约",
+    "成长陪伴",
+    "克制冷感"
+  ],
+  "toneEn": [],
+  "toneSummary": "把智能硬件做出母亲体温的科技陪伴品牌",
+  "toneSummaryEn": "",
+  "positioning": "为 0-12 岁家庭提供以睡眠为核心的智能硬件 + 内容生态，让科技成为日常陪伴",
+  "positioningEn": "",
+  "targetUser": {
+    "age": "28-40 岁",
+    "identity": "注重生活品质的城市新手父母与年轻家庭",
+    "pain": "既要科学育儿又要保留自己的生活节奏，缺乏不打扰的睡眠解决方案",
+    "scene": "哄睡、夜醒、起夜、睡前阅读、远程安抚、孕期助眠"
+  },
+  "targetUserEn": null,
+  "sellingPoints": [
+    "全周期产品矩阵：覆盖孕期到 12 岁的灯具与声光产品",
+    "App 单一入口：整合白噪音、灯光编程、远程哄睡、睡眠数据",
+    "统一设计语言：跨 SKU 保持家族脸谱，配件可迭代不换风格",
+    "真实生活摄影：不渲染完美父母，强化\"陪伴而非控制\"心智",
+    "科技藏在温柔里：智能功能不暴露于产品外观，情绪价值优先"
+  ],
+  "sellingPointsEn": [],
+  "brandTakeaway": [],
+  "brandTakeawayEn": [],
+  "radar": {
+    "克制": 7.5,
+    "温度感": 8.5,
+    "游戏化": 2.5,
+    "科技感": 6.5,
+    "情感连接": 8.5,
+    "识别强度": 7
+  },
+  "heuristicRadar": null,
+  "heuristicRadarArray": null,
+  "heuristicDetail": null,
+  "meta": {
+    "favicon": "",
+    "ogImage": "",
+    "heroImage": "",
+    "logoCandidates": []
+  },
+  "reportFile": "brands/hatch-20260624.json",
+  "reportUrl": "/report/hatch-20260624",
+  "createdAt": "2026-06-24"
+}

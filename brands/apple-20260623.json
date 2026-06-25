@@ -1,0 +1,124 @@
+{
+  "id": "apple-20260623",
+  "name": "Apple",
+  "nameZh": "苹果",
+  "nameEn": "Apple",
+  "url": "https://www.apple.com",
+  "tagline": "Think different.",
+  "taglineZh": "Think different.",
+  "taglineEn": "",
+  "category": "Consumer Electronics",
+  "categoryZh": "Consumer Electronics",
+  "categoryEn": "",
+  "country": "United States",
+  "countryZh": "United States",
+  "countryEn": "",
+  "year": 1976,
+  "summary": "“Apple”以极简设计和强生态协同建立全球高端科技心智。其视觉语言高度统一，依托简洁标志、克制色彩与明亮产品影像，持续传递“易用、先进、可信赖”的品牌印象，并通过软硬件整合强化用户粘性与溢价能力。",
+  "summaryEn": "",
+  "primaryColors": [
+    "#000000",
+    "#F5F5F7",
+    "#A2AAAD",
+    "#0071E3"
+  ],
+  "palette": [
+    {
+      "hex": "#000000",
+      "name": "Black/黑",
+      "nameEn": "Black"
+    },
+    {
+      "hex": "#F5F5F7",
+      "name": "Off White/雾白",
+      "nameEn": "Off White"
+    },
+    {
+      "hex": "#A2AAAD",
+      "name": "Silver/银灰",
+      "nameEn": "Silver"
+    },
+    {
+      "hex": "#0071E3",
+      "name": "Blue/苹果蓝",
+      "nameEn": "Apple Blue"
+    },
+    {
+      "hex": "#1D1D1F",
+      "name": "Charcoal/炭黑",
+      "nameEn": "Charcoal"
+    }
+  ],
+  "logo": {
+    "type": "组合",
+    "description": "被咬一口的苹果轮廓，极简且高度识别。",
+    "construction": "以单一外轮廓为核心，利用负形切口形成“咬痕”，强调几何简化与符号记忆点。",
+    "typeEn": "Combination mark",
+    "descriptionEn": "A bitten apple silhouette—minimalist and instantly recognizable.",
+    "constructionEn": "Built around a single outer contour, the negative-space cut forms the signature \"bite,\" emphasizing geometric simplification and strong symbolic memorability."
+  },
+  "typography": {
+    "heading": "SF Pro Display",
+    "body": "SF Pro Text",
+    "notes": "无衬线、字重层级清晰、字面现代克制，强调高可读性与系统一致性。",
+    "notesEn": "Sans-serif typefaces with a clear weight hierarchy and a modern, restrained character—prioritizing high readability and system-wide consistency."
+  },
+  "photography": {
+    "style": "studio,lifestyle",
+    "lighting": "柔和高质感布光，常见大面积均匀补光与干净高光。",
+    "tone": "明亮、纯净、克制、现代",
+    "composition": "大留白、产品居中或偏轴对称，突出单品轮廓与材质细节。",
+    "lightingEn": "Soft, high-quality lighting, typically featuring broad, even fill and clean highlights.",
+    "toneEn": "Bright, pure, restrained, and modern",
+    "compositionEn": "Generous negative space with the product centered or placed off-center along a symmetrical axis, emphasizing silhouette and material detail."
+  },
+  "tone": [
+    "极简克制",
+    "高级感",
+    "科技感",
+    "人本温度",
+    "清爽明快"
+  ],
+  "toneEn": [],
+  "toneSummary": "以极简语言传递高端科技体验。",
+  "toneSummaryEn": "",
+  "positioning": "以软硬件一体化体验为核心的高端消费电子与生态品牌。",
+  "positioningEn": "",
+  "targetUser": {
+    "age": "18-45岁",
+    "identity": "城市白领、创意工作者、学生及科技爱好者",
+    "pain": "希望设备简单易用、审美统一、生态联动顺畅",
+    "scene": "办公、创作、通勤、娱乐与日常生活"
+  },
+  "targetUserEn": null,
+  "sellingPoints": [
+    "软硬件与服务生态高度协同",
+    "工业设计极简且辨识度强",
+    "操作体验统一、上手门槛低",
+    "品牌审美稳定，具备强烈身份表达",
+    "产品线覆盖多场景，形成生态闭环"
+  ],
+  "sellingPointsEn": [],
+  "brandTakeaway": [],
+  "brandTakeawayEn": [],
+  "radar": {
+    "克制": 9.5,
+    "温度感": 6,
+    "游戏化": 1.5,
+    "科技感": 9,
+    "情感连接": 7.5,
+    "识别强度": 10
+  },
+  "heuristicRadar": null,
+  "heuristicRadarArray": null,
+  "heuristicDetail": null,
+  "meta": {
+    "favicon": "",
+    "ogImage": "",
+    "heroImage": "",
+    "logoCandidates": []
+  },
+  "reportFile": "brands/apple-20260623.json",
+  "reportUrl": "/report/apple-20260623",
+  "createdAt": "2026-06-23"
+}

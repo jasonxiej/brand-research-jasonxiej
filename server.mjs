@@ -191,29 +191,68 @@ async function handleResearchMd(req, res) {
   });
 
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-  const fileName = `${result.slug}-${date}.html`;
-  const filePath = path.join(ROOT, fileName);
+  const fileId = `${result.slug}-${date}`;
+  const data = result.data || {};
 
-  const html = renderReport({
-    name: result.name,
-    url: result.url,
-    data: result.data,
-    meta: result.meta,
+  // Save the raw data as JSON — no HTML written. /report/<id> renders
+  // HTML on demand. This keeps the brand library from bloating with
+  // 50KB+ rendered HTML per research.
+  const payload = {
+    id: fileId,
+    name: data.name || result.name || '',
+    nameZh: data.nameZh || '',
+    nameEn: data.nameEn || '',
+    url: data.url || result.url || '',
+    tagline: data.tagline || '',
+    taglineEn: data.taglineEn || '',
+    category: data.category || '',
+    categoryEn: data.categoryEn || '',
+    country: data.country || '',
+    countryEn: data.countryEn || '',
+    summary: data.summary || '',
+    summaryEn: data.summaryEn || '',
+    primaryColors: data.primaryColors || [],
+    palette: data.palette || [],
+    logo: data.logo || {},
+    typography: data.typography || {},
+    photography: data.photography || {},
+    tone: data.tone || [],
+    toneEn: data.toneEn || [],
+    toneSummary: data.toneSummary || '',
+    toneSummaryEn: data.toneSummaryEn || '',
+    positioning: data.positioning || '',
+    positioningEn: data.positioningEn || '',
+    targetUser: data.targetUser || {},
+    targetUserEn: data.targetUserEn || {},
+    sellingPoints: data.sellingPoints || [],
+    sellingPointsEn: data.sellingPointsEn || [],
+    brandTakeaway: data.brandTakeaway || [],
+    brandTakeawayEn: data.brandTakeawayEn || [],
+    radar: data.radar || {},
+    radarValues: data.radarValues || [],
+    heuristicRadar: data.heuristicRadar || {},
+    heuristicRadarArray: data.heuristicRadarArray || [],
+    heuristicDetail: data.heuristicDetail || {},
+    heuristicMeta: data.heuristicMeta || null,
+    meta: data.meta || {},
+    reportFile: 'brands/' + fileId + '.json',
+    reportUrl: '/report/' + fileId,
     createdAt: new Date().toISOString().slice(0, 10),
-    userBrand: currentBrandName(),
-  });
-  await fsp.writeFile(filePath, html, 'utf8');
+  };
+  await fsp.writeFile(path.join(ROOT, 'brands', fileId + '.json'), JSON.stringify(payload, null, 2) + '\n', 'utf8');
+  await runRefreshIndex();
 
   sendJSON(res, 200, {
     ok: true,
     status: 'done',
-    brand: result.data.name || result.name,
-    reportUrl: './' + fileName,
+    brand: payload.name,
+    reportUrl: payload.reportUrl,
+    jsonFile: 'brands/' + fileId + '.json',
     result: {
       slug: result.slug,
-      brand: result.data.name || result.name,
-      file: fileName,
-      reportUrl: './' + fileName,
+      brand: payload.name,
+      file: fileId + '.json',
+      reportUrl: payload.reportUrl,
     },
   });
 }
@@ -237,37 +276,74 @@ async function runJob(job, raw) {
       onLog: log,
     });
 
-    // 2. 鐢熸垚鎶ュ憡 HTML
+    // 2. Save raw data as JSON — HTML is rendered on-demand via /report/:id.
+    //    No 50KB .html file is written to disk any more; the brand card on
+    //    the home page links to /report/<id> which reads this JSON and
+    //    streams the rendered HTML on each visit.
     const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-    const fileName = `${result.slug}-${date}.html`;
-    const filePath = path.join(ROOT, fileName);
+    const fileId = `${result.slug}-${date}`;
 
-    log({ level: 'info', msg: `鈫?鐢熸垚鎶ュ憡 HTML: ${fileName}` });
-    const html = renderReport({
-      name: result.name,
-      url: result.url,
-      data: result.data,
-      meta: result.meta,
+    log({ level: 'info', msg: '💾 保存调研数据 brands/' + fileId + '.json …' });
+    const _data = result.data || {};
+    const _payload = {
+      id: fileId,
+      name: _data.name || result.name || '',
+      nameZh: _data.nameZh || '',
+      nameEn: _data.nameEn || '',
+      url: _data.url || result.url || '',
+      tagline: _data.tagline || '',
+      taglineEn: _data.taglineEn || '',
+      category: _data.category || '',
+      categoryEn: _data.categoryEn || '',
+      country: _data.country || '',
+      countryEn: _data.countryEn || '',
+      summary: _data.summary || '',
+      summaryEn: _data.summaryEn || '',
+      primaryColors: _data.primaryColors || [],
+      palette: _data.palette || [],
+      logo: _data.logo || {},
+      typography: _data.typography || {},
+      photography: _data.photography || {},
+      tone: _data.tone || [],
+      toneEn: _data.toneEn || [],
+      toneSummary: _data.toneSummary || '',
+      toneSummaryEn: _data.toneSummaryEn || '',
+      positioning: _data.positioning || '',
+      positioningEn: _data.positioningEn || '',
+      targetUser: _data.targetUser || {},
+      targetUserEn: _data.targetUserEn || {},
+      sellingPoints: _data.sellingPoints || [],
+      sellingPointsEn: _data.sellingPointsEn || [],
+      brandTakeaway: _data.brandTakeaway || [],
+      brandTakeawayEn: _data.brandTakeawayEn || [],
+      radar: _data.radar || {},
+      radarValues: _data.radarValues || [],
+      heuristicRadar: _data.heuristicRadar || {},
+      heuristicRadarArray: _data.heuristicRadarArray || [],
+      heuristicDetail: _data.heuristicDetail || {},
+      heuristicMeta: _data.heuristicMeta || null,
+      meta: _data.meta || {},
+      reportFile: 'brands/' + fileId + '.json',
+      reportUrl: '/report/' + fileId,
       createdAt: new Date().toISOString().slice(0, 10),
-      userBrand: job.userBrand,
-    });
-    await fsp.writeFile(filePath, html, 'utf8');
-    log({ level: 'success', msg: `鉁?鎶ュ憡宸插啓鍏? ${fileName} (${(html.length / 1024).toFixed(1)} KB)` });
+    };
+    await fsp.writeFile(path.join(ROOT, 'brands', fileId + '.json'), JSON.stringify(_payload, null, 2) + '\n', 'utf8');
+    log({ level: 'success', msg: '✓ 数据已保存（' + (JSON.stringify(_payload).length / 1024).toFixed(1) + ' KB）' });
 
-    // 3. 鍒锋柊鍝佺墝搴撶储寮?
+    // 3. 刷新品牌库索引
     log({ level: 'info', msg: '刷新品牌库索引…' });
     await runRefreshIndex();
-    log({ level: 'success', msg: '鉁?鍝佺墝搴撶储寮曞凡鏇存柊' });
+    log({ level: 'success', msg: '✓ 品牌库索引已更新' });
 
     job.status = 'done';
     job.result = {
       slug: result.slug,
-      brand: result.data.name || result.name,
-      file: fileName,
-      url: '/' + fileName,
-      reportUrl: './' + fileName,
+      brand: _payload.name,
+      file: fileId + '.json',
+      url: '/report/' + fileId,
+      reportUrl: '/report/' + fileId,
     };
-    log({ level: 'success', msg: `馃帀 璋冪爺瀹屾垚锛佹煡鐪嬫姤鍛? <a href="./${fileName}" target="_blank">${fileName}</a>` });
+    log({ level: 'success', msg: '📊 调研完成；查看报告 <a href="/report/' + fileId + '" target="_blank">' + fileId + '</a>' });
   } catch (e) {
     job.status = 'failed';
     job.error = e?.message || String(e);
@@ -462,6 +538,46 @@ function handleSSE(req, res, jobId) {
   req.on('close', () => { clearInterval(tick); clearInterval(hb); });
 }
 
+// ---------- GET /report/:id ----------
+// On-demand HTML rendering. Reads brands/:id.json (preferred) and falls back
+// to extracting __BRAND_DATA__ from the legacy .html file if only HTML
+// exists. The full HTML is generated by renderReport() at request time so
+// the workspace never has to store a rendered copy.
+async function handleReport(req, res, id) {
+  const jsonPath = path.join(ROOT, 'brands', id + '.json');
+  const htmlPath = path.join(ROOT, id + '.html');
+  let data = null;
+  if (fs.existsSync(jsonPath)) {
+    try { data = JSON.parse(fs.readFileSync(jsonPath, 'utf8')); } catch {}
+  } else if (fs.existsSync(htmlPath)) {
+    try {
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      const m = html.match(/<script\s+id="__BRAND_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+      if (m) {
+        const raw = m[1]
+          .replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+        data = JSON.parse(raw);
+      }
+    } catch {}
+  }
+  if (!data) return sendText(res, 404, 'Report not found: ' + id);
+
+  try {
+    const rendered = renderReport({
+      name: data.name,
+      url: data.url,
+      data,
+      meta: data.meta,
+      createdAt: data.createdAt,
+      userBrand: currentBrandName(),
+    });
+    sendText(res, 200, rendered, 'text/html; charset=utf-8');
+  } catch (e) {
+    sendText(res, 500, 'Render error: ' + (e?.message || e));
+  }
+}
+
 // ---------- GET /api/jobs/:id ----------
 function handleGetJob(req, res, jobId) {
   const job = jobs.get(jobId);
@@ -529,6 +645,8 @@ const server = http.createServer(async (req, res) => {
     if (p === '/api/config' && method === 'POST') return await handleConfigSave(req, res);
     if (p === '/api/research' && method === 'POST') return handleResearch(req, res);
     if (p === '/api/research.md' && method === 'POST') return await handleResearchMd(req, res);
+    const reportMatch = p.match(/^\/report\/([a-z0-9-]+-\d{8})$/);
+    if (reportMatch && (method === 'GET' || method === 'HEAD')) return handleReport(req, res, reportMatch[1]);
     if (p === '/api/refresh-index' && method === 'POST') return handleRefreshIndex(req, res);
     const sseMatch = p.match(/^\/api\/research\/([0-9a-f-]+)\/events$/);
     if (sseMatch && method === 'GET') return handleSSE(req, res, sseMatch[1]);

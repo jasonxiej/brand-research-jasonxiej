@@ -1,0 +1,126 @@
+{
+  "id": "playstation-20260623",
+  "name": "PlayStation",
+  "nameZh": "索尼互动娱乐 PlayStation",
+  "nameEn": "PlayStation",
+  "url": "https://www.playstation.com",
+  "tagline": "Play has no limits.",
+  "taglineZh": "Play has no limits.",
+  "taglineEn": "",
+  "category": "Gaming Platform / Game Console",
+  "categoryZh": "Gaming Platform / Game Console",
+  "categoryEn": "",
+  "country": "Japan",
+  "countryZh": "Japan",
+  "countryEn": "",
+  "year": 1994,
+  "summary": "PlayStation 是索尼旗下的全球主机游戏品牌，以强烈的视觉识别、丰富独占内容与稳定硬件性能建立行业标杆。它既是硬核玩家的娱乐入口，也是连接游戏、影音与社交体验的数字平台，品牌气质偏科技、沉浸、年轻且极具未来感。",
+  "summaryEn": "",
+  "primaryColors": [
+    "#003791",
+    "#FFFFFF",
+    "#000000",
+    "#1F1F1F"
+  ],
+  "palette": [
+    {
+      "hex": "#003791",
+      "name": "PlayStation 蓝",
+      "nameEn": "PlayStation Blue"
+    },
+    {
+      "hex": "#FFFFFF",
+      "name": "纯白",
+      "nameEn": "Pure White"
+    },
+    {
+      "hex": "#000000",
+      "name": "深黑",
+      "nameEn": "Deep Black"
+    },
+    {
+      "hex": "#1F1F1F",
+      "name": "石墨灰",
+      "nameEn": "Graphite Gray"
+    },
+    {
+      "hex": "#5C5C5C",
+      "name": "中性灰",
+      "nameEn": "Neutral Gray"
+    }
+  ],
+  "logo": {
+    "type": "组合",
+    "description": "由红黄蓝绿四色立体“PS”字标与简洁英文名共同构成，识别度极强。",
+    "construction": "以几何切面和负形叠压形成“P/S”错视结构，强调体块、透视和色彩分层。",
+    "typeEn": "Combination",
+    "descriptionEn": "Composed of a three-dimensional 'PS' wordmark in red, yellow, blue, and green, paired with a clean English logotype, delivering exceptional recognizability.",
+    "constructionEn": "Uses geometric facets and negative-space layering to create an optical 'P/S' illusion structure, emphasizing volumetric blocks, perspective, and color stratification."
+  },
+  "typography": {
+    "heading": "无衬线体，偏几何感，接近定制化品牌字形",
+    "body": "现代无衬线系统字体，常见于数字产品界面",
+    "notes": "整体呈现科技、简洁、国际化，标题更强调力量感与空间感。",
+    "headingEn": "Sans-serif, geometric in feel, close to a customized brand typeface",
+    "bodyEn": "Modern sans-serif system fonts, commonly seen in digital product interfaces",
+    "notesEn": "The overall feel is tech-driven, clean, and international, with headings emphasizing strength and spatial presence."
+  },
+  "photography": {
+    "style": "studio, 3D, lifestyle",
+    "lighting": "高对比冷光，辅以局部霓虹或屏幕发光",
+    "tone": "冷峻、通透、未来感",
+    "composition": "中心构图与大留白并存，常用机身特写、游戏场景联动和动态视觉切片",
+    "lightingEn": "High-contrast cool light, accented with localized neon or screen-glow effects",
+    "toneEn": "Cool, translucent, and futuristic",
+    "compositionEn": "Centered framing balanced with generous negative space, frequently featuring product close-ups, in-game scene integration, and dynamic visual slices"
+  },
+  "tone": [
+    "科技感",
+    "未来感",
+    "沉浸式",
+    "年轻化",
+    "高识别度"
+  ],
+  "toneEn": [],
+  "toneSummary": "以科技驱动沉浸娱乐，兼具未来感与潮流识别。",
+  "toneSummaryEn": "",
+  "positioning": "全球领先的互动娱乐游戏平台，连接主机、内容与玩家生态。",
+  "positioningEn": "",
+  "targetUser": {
+    "age": "15-40岁",
+    "identity": "核心游戏玩家、主机用户、数字娱乐消费者",
+    "pain": "追求高质量游戏体验、沉浸式性能与独占内容",
+    "scene": "居家主机娱乐、在线联机、内容消费与社交分享"
+  },
+  "targetUserEn": null,
+  "sellingPoints": [
+    "强大的主机性能与稳定的图形表现",
+    "丰富的独占游戏与第一方内容生态",
+    "成熟的在线联机与数字商店体系",
+    "标志性的品牌符号与跨代际认知",
+    "将游戏、影视、社交娱乐融为一体"
+  ],
+  "sellingPointsEn": [],
+  "brandTakeaway": [],
+  "brandTakeawayEn": [],
+  "radar": {
+    "克制": 6,
+    "温度感": 4,
+    "游戏化": 9.5,
+    "科技感": 9,
+    "情感连接": 7,
+    "识别强度": 10
+  },
+  "heuristicRadar": null,
+  "heuristicRadarArray": null,
+  "heuristicDetail": null,
+  "meta": {
+    "favicon": "",
+    "ogImage": "",
+    "heroImage": "",
+    "logoCandidates": []
+  },
+  "reportFile": "brands/playstation-20260623.json",
+  "reportUrl": "/report/playstation-20260623",
+  "createdAt": "2026-06-23"
+}

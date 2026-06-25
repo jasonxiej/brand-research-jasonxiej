@@ -1,0 +1,126 @@
+{
+  "id": "adidas-20260623",
+  "name": "Adidas",
+  "nameZh": "阿迪达斯",
+  "nameEn": "Adidas",
+  "url": "https://www.adidas.com",
+  "tagline": "Impossible Is Nothing",
+  "taglineZh": "Impossible Is Nothing",
+  "taglineEn": "",
+  "category": "Sportswear",
+  "categoryZh": "Sportswear",
+  "categoryEn": "",
+  "country": "Germany",
+  "countryZh": "Germany",
+  "countryEn": "",
+  "year": 1949,
+  "summary": "阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。",
+  "summaryEn": "",
+  "primaryColors": [
+    "#000000",
+    "#FFFFFF",
+    "#1C1C1C",
+    "#C6C6C6"
+  ],
+  "palette": [
+    {
+      "hex": "#000000",
+      "name": "黑色",
+      "nameEn": "Black"
+    },
+    {
+      "hex": "#FFFFFF",
+      "name": "白色",
+      "nameEn": "White"
+    },
+    {
+      "hex": "#1C1C1C",
+      "name": "炭黑",
+      "nameEn": "Charcoal"
+    },
+    {
+      "hex": "#C6C6C6",
+      "name": "中性灰",
+      "nameEn": "Neutral Gray"
+    },
+    {
+      "hex": "#0057B8",
+      "name": "阿迪蓝",
+      "nameEn": "Adidas Blue"
+    }
+  ],
+  "logo": {
+    "type": "组合",
+    "description": "以三叶草与三条纹为核心识别，兼具字标与图形符号的全球统一体系。",
+    "construction": "基于简洁字形与强识别图形的组合结构，依靠三条平行斜线与留白形成动态平衡，强化运动感与品牌记忆点。",
+    "typeEn": "Combination",
+    "descriptionEn": "Built around the Trefoil and Three Stripes as core identifiers, a globally unified system combining wordmark and graphic symbol.",
+    "constructionEn": "A combination structure anchored in clean letterforms and highly recognizable graphics, using three parallel diagonal lines and negative space to create dynamic balance — reinforcing athletic energy and brand recall."
+  },
+  "typography": {
+    "heading": "无衬线粗体，偏几何感的品牌定制字形",
+    "body": "现代无衬线体，清晰高可读性，适配电商与运动场景",
+    "notes": "整体强调力量感、速度感与高识别度，字重对比明确。",
+    "headingEn": "Bold sans-serif, with a slightly geometric custom brand typeface",
+    "bodyEn": "Modern sans-serif, optimized for high readability across e-commerce and sport contexts",
+    "notesEn": "The system emphasizes power, speed, and strong recognition, with clear weight contrast throughout."
+  },
+  "photography": {
+    "style": "lifestyle, studio, documentary",
+    "lighting": "高对比自然光与硬朗棚拍混合，局部强调轮廓",
+    "tone": "利落、真实、能量感、运动感",
+    "composition": "中近景人物为主，动态姿态与大留白并存，常用强角度与品牌符号入镜",
+    "lightingEn": "A mix of high-contrast natural light and hard, directional studio lighting, with targeted emphasis on silhouette",
+    "toneEn": "Crisp, authentic, energetic, athletic",
+    "compositionEn": "Mid- and close-range portraits featuring dynamic poses alongside generous negative space, frequently incorporating strong camera angles and brand symbols within the frame"
+  },
+  "tone": [
+    "运动专业",
+    "年轻活力",
+    "经典耐看",
+    "城市街头感",
+    "自信进取"
+  ],
+  "toneEn": [],
+  "toneSummary": "经典运动美学，兼具专业与街头活力。",
+  "toneSummaryEn": "",
+  "positioning": "面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。",
+  "positioningEn": "",
+  "targetUser": {
+    "age": "16-40岁",
+    "identity": "运动爱好者、城市年轻人、潮流消费者",
+    "pain": "需要兼顾性能、舒适与风格表达的穿着解决方案",
+    "scene": "训练、通勤、街头穿搭、休闲社交"
+  },
+  "targetUserEn": null,
+  "sellingPoints": [
+    "三条纹与三叶草构成极强品牌识别系统",
+    "兼具运动科技、舒适脚感与日常穿搭属性",
+    "覆盖跑步、训练、足球、篮球与生活方式全场景",
+    "拥有长期运动文化与潮流联名资产",
+    "品牌历史深厚，兼具经典性与持续创新能力"
+  ],
+  "sellingPointsEn": [],
+  "brandTakeaway": [],
+  "brandTakeawayEn": [],
+  "radar": {
+    "克制": 7.5,
+    "温度感": 5.5,
+    "游戏化": 4,
+    "科技感": 7,
+    "情感连接": 6.5,
+    "识别强度": 9.5
+  },
+  "heuristicRadar": null,
+  "heuristicRadarArray": null,
+  "heuristicDetail": null,
+  "meta": {
+    "favicon": "",
+    "ogImage": "",
+    "heroImage": "",
+    "logoCandidates": []
+  },
+  "reportFile": "brands/adidas-20260623.json",
+  "reportUrl": "/report/adidas-20260623",
+  "createdAt": "2026-06-23"
+}

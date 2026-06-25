@@ -7,36 +7,25 @@
       "id": "adidas-20260623",
       "name": "Adidas",
       "nameZh": "阿迪达斯",
+      "nameEn": "Adidas",
       "url": "https://www.adidas.com",
       "tagline": "Impossible Is Nothing",
+      "taglineZh": "Impossible Is Nothing",
+      "taglineEn": "",
       "category": "Sportswear",
+      "categoryZh": "Sportswear",
+      "categoryEn": "",
       "country": "Germany",
+      "countryZh": "Germany",
+      "countryEn": "",
       "year": 1949,
-      "reportFile": "adidas-20260623.html",
-      "reportUrl": "./adidas-20260623.html",
-      "createdAt": "2026-06-23",
       "summary": "阿迪达斯是以“三条纹”建立全球高识别度的运动品牌，兼具专业性能、街头潮流与大众穿着场景。其视觉系统以黑白高对比、强图形符号和利落字形为核心，传递出经典、可靠、充满动能的品牌气质，同时通过联名与文化运营持续强化年轻化表达。",
+      "summaryEn": "",
       "primaryColors": [
         "#000000",
         "#FFFFFF",
         "#1C1C1C",
         "#C6C6C6"
-      ],
-      "radar": {
-        "克制": 7.5,
-        "温度感": 5.5,
-        "游戏化": 4,
-        "科技感": 7,
-        "情感连接": 6.5,
-        "识别强度": 9.5
-      },
-      "radarValues": [
-        7.5,
-        5.5,
-        4,
-        7,
-        6.5,
-        9.5
       ],
       "palette": [
         {
@@ -97,14 +86,18 @@
         "城市街头感",
         "自信进取"
       ],
+      "toneEn": [],
       "toneSummary": "经典运动美学，兼具专业与街头活力。",
+      "toneSummaryEn": "",
       "positioning": "面向全球运动与潮流人群的顶级运动品牌，主张以专业性能连接日常穿着与自我表达。",
+      "positioningEn": "",
       "targetUser": {
         "age": "16-40岁",
         "identity": "运动爱好者、城市年轻人、潮流消费者",
         "pain": "需要兼顾性能、舒适与风格表达的穿着解决方案",
         "scene": "训练、通勤、街头穿搭、休闲社交"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "三条纹与三叶草构成极强品牌识别系统",
         "兼具运动科技、舒适脚感与日常穿搭属性",
@@ -112,47 +105,53 @@
         "拥有长期运动文化与潮流联名资产",
         "品牌历史深厚，兼具经典性与持续创新能力"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 7.5,
+        "温度感": 5.5,
+        "游戏化": 4,
+        "科技感": 7,
+        "情感连接": 6.5,
+        "识别强度": 9.5
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/adidas-20260623.json",
+      "reportUrl": "/report/adidas-20260623",
+      "createdAt": "2026-06-23"
     },
     {
       "id": "apple-20260623",
       "name": "Apple",
       "nameZh": "苹果",
+      "nameEn": "Apple",
       "url": "https://www.apple.com",
       "tagline": "Think different.",
+      "taglineZh": "Think different.",
+      "taglineEn": "",
       "category": "Consumer Electronics",
+      "categoryZh": "Consumer Electronics",
+      "categoryEn": "",
       "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
       "year": 1976,
-      "reportFile": "apple-20260623.html",
-      "reportUrl": "./apple-20260623.html",
-      "createdAt": "2026-06-23",
       "summary": "“Apple”以极简设计和强生态协同建立全球高端科技心智。其视觉语言高度统一，依托简洁标志、克制色彩与明亮产品影像，持续传递“易用、先进、可信赖”的品牌印象，并通过软硬件整合强化用户粘性与溢价能力。",
+      "summaryEn": "",
       "primaryColors": [
         "#000000",
         "#F5F5F7",
         "#A2AAAD",
         "#0071E3"
-      ],
-      "radar": {
-        "克制": 9.5,
-        "温度感": 6,
-        "游戏化": 1.5,
-        "科技感": 9,
-        "情感连接": 7.5,
-        "识别强度": 10
-      },
-      "radarValues": [
-        9.5,
-        6,
-        1.5,
-        9,
-        7.5,
-        10
       ],
       "palette": [
         {
@@ -211,14 +210,18 @@
         "人本温度",
         "清爽明快"
       ],
+      "toneEn": [],
       "toneSummary": "以极简语言传递高端科技体验。",
+      "toneSummaryEn": "",
       "positioning": "以软硬件一体化体验为核心的高端消费电子与生态品牌。",
+      "positioningEn": "",
       "targetUser": {
         "age": "18-45岁",
         "identity": "城市白领、创意工作者、学生及科技爱好者",
         "pain": "希望设备简单易用、审美统一、生态联动顺畅",
         "scene": "办公、创作、通勤、娱乐与日常生活"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "软硬件与服务生态高度协同",
         "工业设计极简且辨识度强",
@@ -226,26 +229,48 @@
         "品牌审美稳定，具备强烈身份表达",
         "产品线覆盖多场景，形成生态闭环"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 9.5,
+        "温度感": 6,
+        "游戏化": 1.5,
+        "科技感": 9,
+        "情感连接": 7.5,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/apple-20260623.json",
+      "reportUrl": "/report/apple-20260623",
+      "createdAt": "2026-06-23"
     },
     {
       "id": "google-20260624",
       "name": "Google",
       "nameZh": "谷歌",
+      "nameEn": "Google",
       "url": "",
       "tagline": "Don't be evil. Make the world's information universally accessible and useful.",
+      "taglineZh": "Don't be evil. Make the world's information universally accessible and useful.",
+      "taglineEn": "",
       "category": "Technology / Search Engine / AI / Cloud",
+      "categoryZh": "Technology / Search Engine / AI / Cloud",
+      "categoryEn": "",
       "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
       "year": 1998,
-      "reportFile": "google-20260624.html",
-      "reportUrl": "./google-20260624.html",
-      "createdAt": "2026-06-24",
       "summary": "Google 是全球最大的搜索引擎与人工智能平台之一,以四大基础色的极简几何标志、Material Design 设计语言和无缝衔接的跨产品生态,把\"信息普惠\"做成现代互联网的基础设施。",
+      "summaryEn": "",
       "primaryColors": [
         "#4285F4",
         "#EA4335",
@@ -253,22 +278,6 @@
         "#34A853",
         "#FFFFFF",
         "#202124"
-      ],
-      "radar": {
-        "克制": 6,
-        "温度感": 8.5,
-        "游戏化": 7,
-        "科技感": 9,
-        "情感连接": 8.5,
-        "识别强度": 10
-      },
-      "radarValues": [
-        6,
-        8.5,
-        7,
-        9,
-        8.5,
-        10
       ],
       "palette": [
         {
@@ -337,8 +346,11 @@
         "可信",
         "包容"
       ],
+      "toneEn": [],
       "toneSummary": "谷歌的视觉语调像一个永远穿着彩色T恤的工程师:专业但不冷峻,智能但不疏离,把复杂的技术包装成轻松、可点击的日常体验。",
+      "toneSummaryEn": "",
       "positioning": "全球信息入口与 AI 时代操作系统,以\"普惠+智能+开放\"构建从搜索到云端的全栈数字底座。",
+      "positioningEn": "",
       "targetUser": {
         "age": "18-65 岁",
         "ageZh": "18-65 岁",
@@ -349,6 +361,7 @@
         "scene": "日常搜索、办公协作、出行导航、学习研究、内容消费",
         "sceneZh": "日常搜索、办公协作、出行导航、学习研究、内容消费"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "全球领先的信息检索与生成式 AI(Gemini)能力",
         "覆盖搜索、办公、地图、视频、安卓的完整产品生态",
@@ -356,47 +369,53 @@
         "持续创新驱动未来科技普惠与无障碍体验",
         "开放平台连接亿万用户、开发者与广告主"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 6,
+        "温度感": 8.5,
+        "游戏化": 7,
+        "科技感": 9,
+        "情感连接": 8.5,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/google-20260624.json",
+      "reportUrl": "/report/google-20260624",
+      "createdAt": "2026-06-24"
     },
     {
       "id": "google-20260625",
       "name": "Google",
       "nameZh": "谷歌",
+      "nameEn": "Google",
       "url": "",
       "tagline": "Organize the world's information and make it universally accessible and useful.",
+      "taglineZh": "Organize the world's information and make it universally accessible and useful.",
+      "taglineEn": "",
       "category": "Technology / Search Engine / Internet Services",
+      "categoryZh": "Technology / Search Engine / Internet Services",
+      "categoryEn": "",
       "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
       "year": 1998,
-      "reportFile": "google-20260625.html",
-      "reportUrl": "./google-20260625.html",
-      "createdAt": "2026-06-25",
       "summary": "Google 成立于 1998 年，由拉里·佩奇和谢尔盖·布林在斯坦福大学的车库中创立，从一个简洁的搜索引擎演变为全球最大的科技公司之一，业务横跨搜索、AI、云、广告、硬件、移动操作系统等领域。如今 Google 正在以 Gemini 系列模型引领生成式 AI 浪潮，致力于让信息和计算能力普惠每一个人。",
+      "summaryEn": "",
       "primaryColors": [
         "#4285F4",
         "#EA4335",
         "#FBBC04",
         "#34A853"
-      ],
-      "radar": {
-        "克制": 3,
-        "温度感": 8,
-        "游戏化": 7,
-        "科技感": 9.5,
-        "情感连接": 8.5,
-        "识别强度": 10
-      },
-      "radarValues": [
-        3,
-        8,
-        7,
-        9.5,
-        8.5,
-        10
       ],
       "palette": [
         {
@@ -463,8 +482,11 @@
         "创新",
         "极简"
       ],
+      "toneEn": [],
       "toneSummary": "以明快色彩和极简形态传递乐观与亲和力，把复杂技术藏进轻松体验之中。",
+      "toneSummaryEn": "",
       "positioning": "全球领先的搜索引擎与 AI 平台，以开放、普惠的方式组织世界信息并推动生成式 AI 落地。",
+      "positioningEn": "",
       "targetUser": {
         "age": "18-45",
         "ageZh": "18-45 岁",
@@ -475,6 +497,7 @@
         "scene": "用 Google Search 查资料，用 Gemini 写作与总结，用 Workspace 协作办公，用 Android 联系世界。",
         "sceneZh": "用 Google Search 查资料，用 Gemini 写作与总结，用 Workspace 协作办公，用 Android 联系世界。"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "全球最强的搜索引擎，覆盖网页、图片、视频、地图等多模态信息。",
         "Gemini 驱动的生成式 AI 能力，深度整合进 Search、Gmail、Docs 等产品。",
@@ -482,47 +505,53 @@
         "Google Workspace 让文档、表格、会议、邮件在一个云端协同。",
         "Google Cloud 为开发者与企业提供数据、AI 与基础设施一站式服务。"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 3,
+        "温度感": 8,
+        "游戏化": 7,
+        "科技感": 9.5,
+        "情感连接": 8.5,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/google-20260625.json",
+      "reportUrl": "/report/google-20260625",
+      "createdAt": "2026-06-25"
     },
     {
       "id": "hatch-20260624",
       "name": "Hatch",
       "nameZh": "Hatch（智能睡眠）",
+      "nameEn": "Hatch",
       "url": "https://www.hatch.co",
       "tagline": "Providing modern families with full-cycle sleep solutions from pregnancy to age 12",
+      "taglineZh": "Providing modern families with full-cycle sleep solutions from pregnancy to age 12",
+      "taglineEn": "",
       "category": "Smart Sleep / Family Tech",
+      "categoryZh": "Smart Sleep / Family Tech",
+      "categoryEn": "",
       "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
       "year": 2014,
-      "reportFile": "hatch-20260624.html",
-      "reportUrl": "./hatch-20260624.html",
-      "createdAt": "2026-06-24",
       "summary": "Hatch 创立于硅谷，最初以智能婴儿监护器切入育儿场景，后逐步将产品扩展到 Rest 智能声光机、Restore 成人睡眠灯、孕期到学龄的成长型灯具矩阵。品牌以一套统一的现代极简视觉语言串联 0-12 岁的家庭睡眠场景，用 App 作为情感与控制的中枢，把冷冰冰的智能硬件转译为\"陪伴\"。其设计哲学强调\"少即是多\"：鼠尾草绿、陶土橙、奶油白构成的克制色板，与真实家庭生活摄影共同塑造了科技、人文、温柔三者并存的现代育儿品牌气质。",
+      "summaryEn": "",
       "primaryColors": [
         "#A8B89C",
         "#F2EDE4",
         "#C97B5C",
         "#E8C4B8"
-      ],
-      "radar": {
-        "克制": 7.5,
-        "温度感": 8.5,
-        "游戏化": 2.5,
-        "科技感": 6.5,
-        "情感连接": 8.5,
-        "识别强度": 7
-      },
-      "radarValues": [
-        7.5,
-        8.5,
-        2.5,
-        6.5,
-        8.5,
-        7
       ],
       "palette": [
         {
@@ -586,14 +615,18 @@
         "成长陪伴",
         "克制冷感"
       ],
+      "toneEn": [],
       "toneSummary": "把智能硬件做出母亲体温的科技陪伴品牌",
+      "toneSummaryEn": "",
       "positioning": "为 0-12 岁家庭提供以睡眠为核心的智能硬件 + 内容生态，让科技成为日常陪伴",
+      "positioningEn": "",
       "targetUser": {
         "age": "28-40 岁",
         "identity": "注重生活品质的城市新手父母与年轻家庭",
         "pain": "既要科学育儿又要保留自己的生活节奏，缺乏不打扰的睡眠解决方案",
         "scene": "哄睡、夜醒、起夜、睡前阅读、远程安抚、孕期助眠"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "全周期产品矩阵：覆盖孕期到 12 岁的灯具与声光产品",
         "App 单一入口：整合白噪音、灯光编程、远程哄睡、睡眠数据",
@@ -601,48 +634,54 @@
         "真实生活摄影：不渲染完美父母，强化\"陪伴而非控制\"心智",
         "科技藏在温柔里：智能功能不暴露于产品外观，情绪价值优先"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 7.5,
+        "温度感": 8.5,
+        "游戏化": 2.5,
+        "科技感": 6.5,
+        "情感连接": 8.5,
+        "识别强度": 7
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/hatch-20260624.json",
+      "reportUrl": "/report/hatch-20260624",
+      "createdAt": "2026-06-24"
     },
     {
       "id": "hatch-20260625",
       "name": "hatch",
       "nameZh": "hatch（哈奇）",
+      "nameEn": "hatch",
       "url": "",
       "tagline": "Hatch into the light.",
+      "taglineZh": "Hatch into the light.",
+      "taglineEn": "",
       "category": "Lifestyle · Wellness · Incubation Brand",
+      "categoryZh": "Lifestyle · Wellness · Incubation Brand",
+      "categoryEn": "",
       "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
       "year": 2024,
-      "reportFile": "hatch-20260625.html",
-      "reportUrl": "./hatch-20260625.html",
-      "createdAt": "2026-06-25",
       "summary": "hatch 是一个围绕“破壳新生”概念构建的现代生活方式品牌。它以温暖米白与鼠尾草绿为主色，圆润字体与柔和摄影贯穿全触点，在理性极简与感性陪伴之间寻找平衡，目标是成为都市青年日常成长中安静而可靠的陪伴者。",
+      "summaryEn": "",
       "primaryColors": [
         "#F5EFE4",
         "#A8B89C",
         "#E8A598",
         "#F4D58D",
         "#2C3E50"
-      ],
-      "radar": {
-        "克制": 6.5,
-        "温度感": 9,
-        "游戏化": 2,
-        "科技感": 5,
-        "情感连接": 9,
-        "识别强度": 7.5
-      },
-      "radarValues": [
-        6.5,
-        9,
-        2,
-        5,
-        9,
-        7.5
       ],
       "palette": [
         {
@@ -705,8 +744,11 @@
         "乐观",
         "克制"
       ],
+      "toneEn": [],
       "toneSummary": "以“破壳”这一情感隐喻为内核，在现代极简框架中注入柔和生命力，整体氛围低饱和、低噪音、有人情味。",
+      "toneSummaryEn": "",
       "positioning": "面向都市年轻人的孵化型生活方式品牌：以“破壳”为核心隐喻，把科技工具与情绪温度结合，帮助用户在日常缝隙中发现自我成长的微小瞬间。",
+      "positioningEn": "",
       "targetUser": {
         "age": "25-35",
         "ageZh": "25-35 岁",
@@ -717,6 +759,7 @@
         "scene": "Morning commute, midday solitude, and evening journaling",
         "sceneZh": "晨间通勤、午休独处、晚间复盘"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "以“破壳新生”为情感锚点，区别于冷感的纯科技品牌。",
         "全小写无衬线 logo 强化亲切感与互联网原生基因。",
@@ -724,47 +767,53 @@
         "圆润字体与柔光摄影贯穿所有触点，降低决策门槛。",
         "暖黄仅作关键行动点点缀，引导转化而不打扰。"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 6.5,
+        "温度感": 9,
+        "游戏化": 2,
+        "科技感": 5,
+        "情感连接": 9,
+        "识别强度": 7.5
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/hatch-20260625.json",
+      "reportUrl": "/report/hatch-20260625",
+      "createdAt": "2026-06-25"
     },
     {
       "id": "nike-20260623",
       "name": "Nike",
       "nameZh": "耐克",
+      "nameEn": "Nike",
       "url": "https://www.nike.com",
       "tagline": "Just Do It.",
+      "taglineZh": "Just Do It.",
+      "taglineEn": "",
       "category": "Sportswear & Athletic Equipment",
+      "categoryZh": "Sportswear & Athletic Equipment",
+      "categoryEn": "",
       "country": "United States",
+      "countryZh": "United States",
+      "countryEn": "",
       "year": 1964,
-      "reportFile": "nike-20260623.html",
-      "reportUrl": "./nike-20260623.html",
-      "createdAt": "2026-06-23",
       "summary": "耐克是以“Swoosh”和“Just Do It”构建全球识别的运动品牌。它用极简黑白体系、强动势摄影和明星运动员矩阵，把专业性能、竞技精神与街头时尚合为一体，形成兼具传播力与产品力的超级品牌资产。",
+      "summaryEn": "",
       "primaryColors": [
         "#111111",
         "#FFFFFF",
         "#757575",
         "#F5F5F5"
-      ],
-      "radar": {
-        "克制": 7.5,
-        "温度感": 4.5,
-        "游戏化": 3,
-        "科技感": 8.5,
-        "情感连接": 7,
-        "识别强度": 10
-      },
-      "radarValues": [
-        7.5,
-        4.5,
-        3,
-        8.5,
-        7,
-        10
       ],
       "palette": [
         {
@@ -824,14 +873,18 @@
         "竞技精神",
         "鼓舞性"
       ],
+      "toneEn": [],
       "toneSummary": "以极简符号承载高强度运动表达。",
+      "toneSummaryEn": "",
       "positioning": "面向全球运动人群的头部运动品牌，以产品科技与精神激励驱动消费。",
+      "positioningEn": "",
       "targetUser": {
         "age": "15-45岁",
         "identity": "专业运动员、健身人群与年轻运动消费群",
         "pain": "需要兼顾性能、风格与身份表达，同时渴望被激励和认可",
         "scene": "训练、比赛、通勤、街头穿搭与日常运动生活"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "Swoosh 与“Just Do It”形成极强品牌联想与传播资产。",
         "覆盖跑步、篮球、训练、生活方式等全场景运动产品线。",
@@ -839,53 +892,53 @@
         "在材料、缓震、支撑与轻量化上持续迭代产品科技。",
         "把运动表现转译为街头时尚，兼顾功能与审美。"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 7.5,
+        "温度感": 4.5,
+        "游戏化": 3,
+        "科技感": 8.5,
+        "情感连接": 7,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/nike-20260623.json",
+      "reportUrl": "/report/nike-20260623",
+      "createdAt": "2026-06-23"
     },
     {
       "id": "nintendo-20260624",
       "name": "Nintendo",
       "nameZh": "任天堂",
+      "nameEn": "Nintendo",
       "url": "https://www.nintendo.com",
       "tagline": "Playing is believing.",
+      "taglineZh": "Playing is believing.",
+      "taglineEn": "",
       "category": "Interactive Entertainment / Video Game",
+      "categoryZh": "Interactive Entertainment / Video Game",
+      "categoryEn": "",
       "country": "Japan",
+      "countryZh": "Japan",
+      "countryEn": "",
       "year": 1889,
-      "reportFile": "nintendo-20260624.html",
-      "reportUrl": "./nintendo-20260624.html",
-      "createdAt": "2026-06-24",
       "summary": "从京都一家花札作坊到全球游戏霸主，任天堂用 130 多年时间只做了一件事：让游戏回归\"玩\"本身。Switch 的混合形态打破了主机与掌机的边界，Wii 的体感重新定义了大人的客厅，而马里奥、林克、皮卡丘组成的 IP 宇宙则成为几代人共同的童年记忆。它的视觉语言从不是参数堆砌，而是用最克制的红白配色、最圆润的无衬线字体，传递一种\"全年龄友好\"的温度。",
+      "summaryEn": "",
       "primaryColors": [
         "#E60012",
         "#FFFFFF",
         "#000000",
         "#6E6E6E"
-      ],
-      "radar": {
-        "restraint": 5.5,
-        "warmth": 8.5,
-        "gamification": 10,
-        "tech": 6,
-        "emotional": 9,
-        "recognition": 10,
-        "克制": 5,
-        "温度感": 5,
-        "游戏化": 5,
-        "科技感": 5,
-        "情感连接": 5,
-        "识别强度": 5
-      },
-      "radarValues": [
-        5,
-        5,
-        5,
-        5,
-        5,
-        5
       ],
       "palette": [
         {
@@ -950,14 +1003,18 @@
         "欢乐至简",
         "IP 沉浸"
       ],
+      "toneEn": [],
       "toneSummary": "童趣与匠心并重，让游戏回归家庭与欢乐",
+      "toneSummaryEn": "",
       "positioning": "以独创的硬件 + 第一方 IP，为全年龄段创造笑容与同屏时光",
+      "positioningEn": "",
       "targetUser": {
         "age": "6–45 岁（覆盖全龄段）",
         "identity": "家庭玩家、核心粉丝、怀旧青年",
         "pain": "想要不复杂、不暴力、可与家人共享的高品质娱乐",
         "scene": "客厅同屏、旅途掌机、朋友聚会"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "马里奥/塞尔达/宝可梦构成的独家 IP 宇宙",
         "Switch 主机 + 掌机混合形态，场景无缝切换",
@@ -965,47 +1022,59 @@
         "全家可玩的内容分级策略，覆盖最广人群",
         "百年企业沉淀的工艺感与品牌信任"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "restraint": 5.5,
+        "warmth": 8.5,
+        "gamification": 10,
+        "tech": 6,
+        "emotional": 9,
+        "recognition": 10,
+        "克制": 5,
+        "温度感": 5,
+        "游戏化": 5,
+        "科技感": 5,
+        "情感连接": 5,
+        "识别强度": 5
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/nintendo-20260624.json",
+      "reportUrl": "/report/nintendo-20260624",
+      "createdAt": "2026-06-24"
     },
     {
       "id": "oura-20260624",
       "name": "Oura",
       "nameZh": "Oura Ring（欧拉健康戒指）",
+      "nameEn": "Oura",
       "url": "https://ouraring.com",
       "tagline": "One ring. Your body, quantified around the clock.",
+      "taglineZh": "One ring. Your body, quantified around the clock.",
+      "taglineEn": "",
       "category": "Health Wearable",
+      "categoryZh": "Health Wearable",
+      "categoryEn": "",
       "country": "Finland",
+      "countryZh": "Finland",
+      "countryEn": "",
       "year": 2013,
-      "reportFile": "oura-20260624.html",
-      "reportUrl": "./oura-20260624.html",
-      "createdAt": "2026-06-24",
       "summary": "Oura 由芬兰奥卢的一群科学家与设计师在 2013 年创立，2018 年正式推出消费级 Oura Ring。品牌以\"无屏幕 + 单指环\"形态切入可穿戴市场，用 Readiness Score、睡眠分期、HRV 等医疗级指标取代步数与卡路里的浅层叙事，将产品定位为\"可佩戴的健康数据伙伴\"。视觉上坚持北欧极简与珠宝级材质，目标是高知高压职业人群的长期健康优化。",
+      "summaryEn": "",
       "primaryColors": [
         "#1A1A1A",
         "#EDE6DA",
         "#B89968",
         "#C8C8CB"
-      ],
-      "radar": {
-        "克制": 9,
-        "温度感": 6.5,
-        "游戏化": 1.5,
-        "科技感": 7.5,
-        "情感连接": 6,
-        "识别强度": 8
-      },
-      "radarValues": [
-        9,
-        6.5,
-        1.5,
-        7.5,
-        6,
-        8
       ],
       "palette": [
         {
@@ -1065,14 +1134,18 @@
         "静谧温度",
         "北欧理性"
       ],
+      "toneEn": [],
       "toneSummary": "以北欧极简与珠宝质感传递医学级的健康洞察",
+      "toneSummaryEn": "",
       "positioning": "无屏幕全天候的健康数据伙伴，专为追求长期身心优化的精英用户打造",
+      "positioningEn": "",
       "targetUser": {
         "age": "28-45",
         "identity": "高知职业人 / 睡眠优化者 / 生物黑客",
         "pain": "手表干扰睡眠、难以量化恢复状态、想要深度健康洞察",
         "scene": "夜间睡眠监测、高压工作后的恢复评估、晨间例行打卡"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "无屏幕单指环形态，整夜佩戴无感",
         "睡眠分期与 Readiness Score 接近医学级精度",
@@ -1080,47 +1153,53 @@
         "钛金属 + 类钻镀层，珠宝级材质 SKU",
         "数据在本地+云端双端加密，强调隐私"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 9,
+        "温度感": 6.5,
+        "游戏化": 1.5,
+        "科技感": 7.5,
+        "情感连接": 6,
+        "识别强度": 8
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/oura-20260624.json",
+      "reportUrl": "/report/oura-20260624",
+      "createdAt": "2026-06-24"
     },
     {
       "id": "playstation-20260623",
       "name": "PlayStation",
       "nameZh": "索尼互动娱乐 PlayStation",
+      "nameEn": "PlayStation",
       "url": "https://www.playstation.com",
       "tagline": "Play has no limits.",
+      "taglineZh": "Play has no limits.",
+      "taglineEn": "",
       "category": "Gaming Platform / Game Console",
+      "categoryZh": "Gaming Platform / Game Console",
+      "categoryEn": "",
       "country": "Japan",
+      "countryZh": "Japan",
+      "countryEn": "",
       "year": 1994,
-      "reportFile": "playstation-20260623.html",
-      "reportUrl": "./playstation-20260623.html",
-      "createdAt": "2026-06-23",
       "summary": "PlayStation 是索尼旗下的全球主机游戏品牌，以强烈的视觉识别、丰富独占内容与稳定硬件性能建立行业标杆。它既是硬核玩家的娱乐入口，也是连接游戏、影音与社交体验的数字平台，品牌气质偏科技、沉浸、年轻且极具未来感。",
+      "summaryEn": "",
       "primaryColors": [
         "#003791",
         "#FFFFFF",
         "#000000",
         "#1F1F1F"
-      ],
-      "radar": {
-        "克制": 6,
-        "温度感": 4,
-        "游戏化": 9.5,
-        "科技感": 9,
-        "情感连接": 7,
-        "识别强度": 10
-      },
-      "radarValues": [
-        6,
-        4,
-        9.5,
-        9,
-        7,
-        10
       ],
       "palette": [
         {
@@ -1181,14 +1260,18 @@
         "年轻化",
         "高识别度"
       ],
+      "toneEn": [],
       "toneSummary": "以科技驱动沉浸娱乐，兼具未来感与潮流识别。",
+      "toneSummaryEn": "",
       "positioning": "全球领先的互动娱乐游戏平台，连接主机、内容与玩家生态。",
+      "positioningEn": "",
       "targetUser": {
         "age": "15-40岁",
         "identity": "核心游戏玩家、主机用户、数字娱乐消费者",
         "pain": "追求高质量游戏体验、沉浸式性能与独占内容",
         "scene": "居家主机娱乐、在线联机、内容消费与社交分享"
       },
+      "targetUserEn": null,
       "sellingPoints": [
         "强大的主机性能与稳定的图形表现",
         "丰富的独占游戏与第一方内容生态",
@@ -1196,12 +1279,29 @@
         "标志性的品牌符号与跨代际认知",
         "将游戏、影视、社交娱乐融为一体"
       ],
+      "sellingPointsEn": [],
+      "brandTakeaway": [],
+      "brandTakeawayEn": [],
+      "radar": {
+        "克制": 6,
+        "温度感": 4,
+        "游戏化": 9.5,
+        "科技感": 9,
+        "情感连接": 7,
+        "识别强度": 10
+      },
+      "heuristicRadar": null,
+      "heuristicRadarArray": null,
+      "heuristicDetail": null,
       "meta": {
         "favicon": "",
         "ogImage": "",
         "heroImage": "",
         "logoCandidates": []
-      }
+      },
+      "reportFile": "brands/playstation-20260623.json",
+      "reportUrl": "/report/playstation-20260623",
+      "createdAt": "2026-06-23"
     }
   ]
 }
