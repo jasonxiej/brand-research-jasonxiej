@@ -1403,7 +1403,7 @@
         <!-- Result area -->
         <div id="compare-result" style="display:none;">
           <div class="compare-section-head">
-            <h2>1 · 对比总览</h2>
+            <h2 data-i18n="compare.section.overview">1 · 对比总览</h2>
             <div class="meta" id="compare-t-meta">0 个品牌</div>
           </div>
           <div class="compare-table-card">
@@ -1413,8 +1413,8 @@
           </div>
 
           <div class="compare-section-head">
-            <h2>2 · 6 维风格雷达</h2>
-            <div class="meta">克制 · 温度感 · 游戏化 · 科技感 · 情感连接 · 识别强度</div>
+            <h2 data-i18n="compare.section.radar">2 · 6 维风格雷达</h2>
+            <div class="meta" id="compare-radar-meta">克制 · 温度感 · 游戏化 · 科技感 · 情感连接 · 识别强度</div>
           </div>
           <div class="compare-chart-card">
             <div id="compare-radar-chart"></div>
@@ -2806,6 +2806,7 @@ For example: positioning, story, visual tone, product claims, competitor notes."
     const resultEmpty = document.getElementById('compare-result-empty');
     const compareTableEl = document.getElementById('compare-table');
     const compareTMeta = document.getElementById('compare-t-meta');
+    const compareRadarMeta = document.getElementById('compare-radar-meta');
     const paletteEl   = document.getElementById('compare-palette-gallery');
     const takeawayEl  = document.getElementById('compare-takeaway-list');
     const radarEl     = document.getElementById('compare-radar-chart');
@@ -2977,6 +2978,12 @@ For example: positioning, story, visual tone, product claims, competitor notes."
       const lang = window.__i18n ? window.__i18n.getLang() : 'zh';
       const radarLabels = (lang === 'en') ? RADAR_DIM_LABELS.en : RADAR_DIM_LABELS.zh;
       const indicator = radarLabels.map((name) => ({ name, max: 10 }));
+      // Section-2 meta caption — keep in sync with the radar's axis labels
+      if (compareRadarMeta) {
+        compareRadarMeta.textContent = lang === 'en'
+          ? 'Restraint · Warmth · Gamification · Tech · Emotion · Identity'
+          : '克制 · 温度感 · 游戏化 · 科技感 · 情感连接 · 识别强度';
+      }
 
       const seriesData = selected.map((b, idx) => {
         const color = SERIES_COLORS[idx % SERIES_COLORS.length];
@@ -3305,6 +3312,8 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'compare.countOne':   '{n} 个品牌',
         'compare.countMany':  '{n} 个品牌',
         'compare.removeAria': '移除 {name}',
+        'compare.section.overview': '1 · 对比总览',
+        'compare.section.radar': '2 · 6 维风格雷达',
         'compare.section.palette': '3 · 主色板并排对比',
         'compare.section.paletteMeta': '每品牌展示 4 个主色',
         'compare.section.takeaway': '4 · 可执行建议',
@@ -3421,8 +3430,8 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'submit.placeholder': '# Brand notes\n\nPaste your brand-related content here in Markdown.\nFor example: positioning, story, visual tone, product claims, competitor notes.',
         'submit.placeholderName': 'Brand name (optional)',
         'submit.run':         'RUN RESEARCH',
-        'compare.label':      'Brand Comparison · 品牌对比',
-        'compare.title':      'Side-by-side · 并排对比',
+        'compare.label':      'Brand Comparison',
+        'compare.title':      'Side-by-side',
         'compare.heading':    'Brands to compare (2 – 4)',
         'compare.hint':       'Add or remove brands here, or go back to the library to adjust.',
         'compare.statusNone': 'No brand selected',
@@ -3441,11 +3450,13 @@ For example: positioning, story, visual tone, product claims, competitor notes."
         'compare.countOne':   '{n} brand',
         'compare.countMany':  '{n} brands',
         'compare.removeAria': 'Remove {name}',
+        'compare.section.overview': '1 · Comparison overview',
+        'compare.section.radar': '2 · 6-axis tone radar',
         'compare.section.palette': '3 · Primary palettes side-by-side',
         'compare.section.paletteMeta': '4 primary colors per brand',
         'compare.section.takeaway': '4 · Actionable insights',
         'compare.section.takeawayMeta': 'Insights grounded in this comparison',
-        'compare.takeaway.heading': 'Actionable Insights · 可执行建议',
+        'compare.takeaway.heading': 'Actionable Insights',
         'compare.empty':     'Select at least 2 brands to start comparing.',
         'trash.delete':       'Delete to trash',
         'trash.restore':      'Restore',
